@@ -105,12 +105,14 @@ Milestones are delegated to pi via pi-bridge and reviewed by Claude (`/implement
 - M0: Tests import helpers as `tests.fake_ollama` (`tests/__init__.py` exists). pytest-asyncio runs in `auto` mode, so `async def test_…` needs no marker. Starlette's "use httpx2" TestClient deprecation warning is filtered in `pyproject.toml`.
 - M0: Migrations are split with `sqlite3.complete_statement` (trigger bodies and `;` in literals stay whole) and run between explicit `BEGIN`/`COMMIT` with `isolation_level=None`; a file must end each statement with `;`.
 - M0: Fixtures recorded 2026-11-24 (see `tests/fixtures/README.md`). Krebs now answers `application/rss+xml`; `test_html_page_is_broken_not_empty` (M4) uses `msrc-blog-html.html`.
+- M2 (Claude): `textclean.to_text(s)` HTML or plain text → plain text (drops script/style/iframe/noscript/svg/template/head/title/object/math/select/textarea, comments, CDATA, PIs; blocks → `\n\n`, `<br>` → `\n`, `<li>` → `\n• `; entities decoded exactly once via `HTMLParser(convert_charrefs=False)`; a raw tag-like `<` left in text becomes `‹`; control chars → space, zero-width/bidi/BOM/soft hyphen removed, NFC). Input without a tag-like `<` is plain text: line breaks kept, `html.unescape` once. `clean_title(s, max_len=300)` one line; `truncate(text, max_chars)` word boundary + `…`, `len <= max_chars`; `excerpt(html, max_chars=1500)`. Never raises; 2 MB in about 1 s (test limit 2 s). Decoded entity text like `&lt;x&gt;` → `<x>` is data, rendered as text.
+- M3a (Claude): `net/guard.py`: `UrlGuard(*, resolver=None, allowed_ports=(80, 443), allow_private=False)`; `await guard.check(url, *, allow_hosts=None) -> CheckedUrl(url, host, port, addresses)` or raises `UrlBlocked` (`.reason`, safe to log; also raised for DNS failure / no addresses). `resolver` is `async (host, port) -> Sequence[str]` (default `default_resolver`, loop `getaddrinfo`); tests pass a fake. `allow_hosts=[]` allows nothing (sources with empty `article_hosts` get no enrichment). **M3b: the fetcher must call `guard.check` on the first URL and on every redirect `Location` (resolved against the current URL) before requesting it**, passing the same `allow_hosts`; the plan's `test_redirect_to_private_blocked` lives in `test_guard.py` at guard level, so `test_fetch.py` needs its own test that a 302 to `http://127.0.0.1/` raises `UrlBlocked` without requesting it. `UrlBlocked` is not retried.
 
 ## Status
 - [x] M0 scaffolding, fixtures, seeds, app skeleton (Claude, 2026-11-24)
 - [ ] M1 `timeutil.py`, `urls.py`
-- [ ] M2 `textclean.py` (Claude writes, pi writes tests)
-- [ ] M3 `net/guard.py` (Claude) + `net/fetch.py` (pi)
+- [x] M2 `textclean.py` (Claude, 2026-11-24; tests by Claude, not pi: security module)
+- [ ] M3 `net/guard.py` (Claude) + `net/fetch.py` (pi) — M3a guard.py done (Claude)
 - [ ] M4 `sources/base.py`, `rss.py`, `msrc.py`
 - [ ] M5 `cisa_kev.py`, `hn_algolia.py`
 - [ ] M6 repos (M6a sources + runs, M6b items + stories)
