@@ -1,0 +1,462 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" version="2.0">
+  <channel>
+    <title>Microsoft Sentinel Blog articles</title>
+    <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/bg-p/MicrosoftSentinelBlog</link>
+    <description>Microsoft Sentinel Blog articles</description>
+    <pubDate>Tue, 24 Nov 2026 14:54:18 GMT</pubDate>
+    <dc:creator>MicrosoftSentinelBlog</dc:creator>
+    <dc:date>2026-11-24T14:54:18Z</dc:date>
+    <item>
+      <title>Ignite 2026: What's new in Microsoft Sentinel</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/ignite-2026-what-s-new-in-microsoft-sentinel/ba-p/4571174</link>
+      <description><![CDATA[<H5><STRONG>Co-author: Vivek Kokkengada</STRONG></H5>
+<P>Microsoft Ignite 2026 is here, and we're excited to share what's new in Microsoft Sentinel. We’re making it easier for security teams to unify operations, connect and use more security data, and accelerate detection and response, all within the Microsoft Defender portal.</P>
+<UL>
+<LI><STRONG>The foundation for agentic security:</STRONG> Integrated Security Operations (ISOC) is now available to eligible Microsoft Sentinel customers with Defender Suite, Microsoft 365 E5 and Microsoft 365 E7 licenses. ISOC brings SIEM and threat protection together in Defender to simplify operations and get more value from existing Microsoft security investments<STRONG>.</STRONG></LI>
+<LI><STRONG>More data for richer context:</STRONG> Expand threat visibility with a growing connector ecosystem and normalize it at ingestion, making security data ready for detection, hunting, and investigation.</LI>
+<LI><STRONG>Simplified connections:</STRONG> Connect and manage security data faster with AI-assisted development and unified monitoring of connector health and ingestion performance.</LI>
+</UL>
+<P>Together, these innovations give security teams a more connected foundation for security operations, helping them unlock greater value from their data, simplify operations, and build toward a more AI-powered security future.</P>
+<H3><STRONG>Unified security operations for agentic security</STRONG></H3>
+<H4>Integrated Security Operations Center (ISOC) expands to Microsoft Sentinel customers</H4>
+<P>Starting November 17, 2026, existing Microsoft Sentinel customers with Microsoft 365 E5, Microsoft 365 E7, or Microsoft Defender Suite licenses can opt in to <A href="https://learn.microsoft.com/en-us/defender-xdr/isoc-overview" target="_blank" rel="noopener">ISOC in Microsoft Defender</A>, bringing SIEM and threat protection together. ISOC helps organizations simplify security operations, maximize the value of their existing Microsoft security investments, and give people and agents a shared foundation to work together more effectively.</P>
+<P>Eligible customers get:</P>
+<UL>
+<LI><STRONG>90 days of retention</STRONG><STRONG> </STRONG>up from 30 days for eligible Defender data.</LI>
+</UL>
+<UL>
+<LI><STRONG>Lower-cost ingestion</STRONG> at $2.4 per GB to broaden visibility across Microsoft and non-Microsoft data through 500+ connectors.</LI>
+<LI><STRONG>Integrated SIEM and threat protection</STRONG> within Microsoft Defender giving teams a shared view, richer context, and more connected workflows across security operations.</LI>
+<LI><STRONG>Built-in data lake </STRONG>for historical hunting, investigations, and compliance.</LI>
+</UL>
+<P><STRONG>Opting in is optional. </STRONG>Customers can continue using Microsoft Sentinel as they do today or opt in to ISOC when it best aligns with their security needs and investments.</P>
+<H4>More visibility into automation</H4>
+<P>Investigate unexpected changes to your security automation with a  [truncated]]]></description>
+      <pubDate>Tue, 17 Nov 2026 18:15:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/ignite-2026-what-s-new-in-microsoft-sentinel/ba-p/4571174</guid>
+      <dc:creator>Dana_Bargury</dc:creator>
+      <dc:date>2026-11-17T18:15:00Z</dc:date>
+    </item>
+    <item>
+      <title>Protecting Microsoft's SAP workload with Microsoft Sentinel for SAP: the RISE with SAP chapter</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/protecting-microsoft-s-sap-workload-with-microsoft-sentinel-for/ba-p/4571716</link>
+      <description><![CDATA[<P><EM>Inside Track | Microsoft Digital</EM></P>
+<H1>When infrastructure operations shift, security visibility must evolve with the operating model</H1>
+<P>Four years ago, we told the story of how Microsoft became <STRONG>Customer Zero</STRONG> for using Microsoft Sentinel as the SIEM for its own SAP estate, pairing a then-new product “Sentinel Solution for SAP” with our existing SOAR platform and proving out cross-correlation between SAP and the rest of the enterprise. The ambition was stated plainly at the time: an internally managed and configured SIEM that could baseline user behaviors and detect anomalies across SAP, spanning the OS and network layer, the database layer, and the application and business logic layers.</P>
+<P>Then we moved to RISE with SAP on Azure. With that move, responsibility for instrumenting one of those layers transitioned to SAP under the RISE operating model.</P>
+<H2>The visibility challenge shared responsibility creates</H2>
+<P>In RISE with SAP, SAP operates the underlying infrastructure, operating system, and database as part of the managed service. This changes how customers obtain security telemetry from those layers and raises an important shared-responsibility question: how can the customer SOC maintain end-to-end visibility while SAP operates the platform? The layers remain relevant to security monitoring, so visibility must extend across both SAP-managed and customer-managed parts of the landscape.</P>
+<H2>What changed: SAP LogServ meets Sentinel for SAP</H2>
+<P><A href="https://learn.microsoft.com/azure/sentinel/sap/sap-logserv-overview" target="_blank" rel="noopener">SAP LogServ</A> is SAP's centralized log service for RISE-managed landscapes, carrying the security-relevant telemetry from the layers SAP now operates. Microsoft Sentinel for SAP ingests it directly, authenticated with managed identity for Azure. There is no stored secret, no rotation calendar and no bespoke connector for a future engineer to inherit and maintain. <STRONG>The integration is a configuration, not a project</STRONG>.</P>
+<P>&nbsp;</P>
+<img />
+<P>&nbsp;</P>
+<BLOCKQUOTE>
+<P>“RISE with SAP introduces a shared operating model in which SAP manages the infrastructure while customers remain responsible for maintaining end-to-end security oversight. The integration of SAP LogServ with Microsoft Sentinel for SAP, secured through managed identity for Azure, brings telemetry from SAP-managed layers together with application-layer signals and the wider enterprise context. Our SOC can continue using familiar detections and workflows without a separate integration or credential-management process. At Microsoft, we believe in being Customer Zero, so we are putting this approach to work in our own RISE with SAP on Azure environment.”</P>
+<P>— Narasa Reddy Pekety, Principal Platform Lead, Microsoft Commerce Financial Platforms (CFP)</P>
+</BLOCKQUOTE>
+<P>For our SOC, the practical effect is that almost nothing about the working day changed. Events  [truncated]]]></description>
+      <pubDate>Mon, 16 Nov 2026 10:04:14 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/protecting-microsoft-s-sap-workload-with-microsoft-sentinel-for/ba-p/4571716</guid>
+      <dc:creator>MartinPankraz</dc:creator>
+      <dc:date>2026-11-16T10:04:14Z</dc:date>
+    </item>
+    <item>
+      <title>Microsoft Sentinel at Ignite 2026: what to see and where to start</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/microsoft-sentinel-at-ignite-2026-what-to-see-and-where-to-start/ba-p/4572656</link>
+      <description>&lt;P&gt;Agentic security is only as effective as the security data it can access. That is why Microsoft Sentinel is a core part of the integrated SOC (ISOC), where SIEM and XDR work together with Microsoft Defender. At Ignite 2026, November 17 to 20 in San Francisco and online, see how the pieces come together and what is new.&lt;/P&gt;
+&lt;P&gt;What to look for: the blueprint for the Agentic SOC, featuring Rob Lefferts, CVP of Defender (BRK324); what is new with ISOC and expanded SIEM capabilities, shown in a live demo (THR876); and how richer security data from Microsoft and third party sources improves detection, investigation and AI workflows (LTG1230). Times, rooms and links are in our session guide, sorted by role: &lt;A class="lia-internal-link lia-internal-url lia-internal-url-content-type-blog" href="https://techcommunity.microsoft.com/blog/MicrosoftThreatProtectionBlog/catch-microsoft-defender-and-sentinel-at-ignite-2026/4572639" target="_blank" rel="noopener" data-lia-auto-title="Catch Microsoft Defender and Sentinel at Ignite 2026." data-lia-auto-title-active="0"&gt;Catch Microsoft Defender and Sentinel at Ignite 2026.&lt;/A&gt;&lt;/P&gt;</description>
+      <pubDate>Wed, 11 Nov 2026 22:24:39 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/microsoft-sentinel-at-ignite-2026-what-to-see-and-where-to-start/ba-p/4572656</guid>
+      <dc:creator>jevontan</dc:creator>
+      <dc:date>2026-11-11T22:24:39Z</dc:date>
+    </item>
+    <item>
+      <title>Microsoft Ignite 2026: New Sentinel Connectors Announcement</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/microsoft-ignite-2026-new-sentinel-connectors-announcement/ba-p/4565258</link>
+      <description><![CDATA[<P class="lia-align-left"><SPAN data-contrast="auto">Microsoft Sentinel helps organizations detect, investigate, and respond to threats across increasingly complex environments. As AI transforms security operations, bringing together the right data and context is more important than ever, giving human defenders and AI agents a more complete view of the environment to reason over and act on.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:210,&quot;335559739&quot;:210,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">These integrations bring signals from Microsoft and third-party technologies together across the security environment, unlocking richer context for investigations and helping power the new </SPAN><A href="https://www.microsoft.com/en-us/security/blog/2026/09/23/reimagining-the-soc-for-the-agentic-era-in-microsoft-defender/" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">Integrated Security Operations Center (ISOC) in Microsoft Defender</SPAN><SPAN data-ccp-charstyle="Hyperlink">,</SPAN></SPAN></A><SPAN data-contrast="auto"> where human defenders and AI agents can reason across the environment with shared context.</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559685&quot;:0,&quot;335559737&quot;:0,&quot;335559738&quot;:210,&quot;335559739&quot;:210,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">The connector ecosystem isn’t the only area seeing rapid growth. Microsoft Sentinel continues to add new capabilities, including </SPAN><A href="https://techcommunity.microsoft.com/blog/microsoftsentinelblog/public-preview-nested-api-support-comes-to-microsoft-sentinel-ccf/4537026" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">Nested API</SPAN></SPAN></A><SPAN data-contrast="auto"> support, </SPAN><A href="https://techcommunity.microsoft.com/blog/microsoftsentinelblog/extending-sentinel-data-integration-azure-blob-storage-support-for-ccf-connector/4516896?" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">Azure Blob</SPAN></SPAN></A><SPAN data-contrast="auto"> support, and </SPAN><A href="https://techcommunity.microsoft.com/blog/microsoftsentinelblog/public-preview-multi-account-support-for-microsoft-sentinel-codeless-connectors/4544380" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">multi-account</SPAN></SPAN></A><SPAN data-contrast="auto"> support, while AI-powered tools like the </SPAN><A href="https://techcommunity.microsoft.com/blog/microsoft-security-blog/accelerate-connectors-development-using-ai-agent-in-microsoft-sentinel/4507019" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">connector builder agent</SP [truncated]]]></description>
+      <pubDate>Mon, 23 Nov 2026 22:53:24 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/microsoft-ignite-2026-new-sentinel-connectors-announcement/ba-p/4565258</guid>
+      <dc:creator>JesseKopavi</dc:creator>
+      <dc:date>2026-11-23T22:53:24Z</dc:date>
+    </item>
+    <item>
+      <title>What’s new in Microsoft Sentinel: October 2026</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/what-s-new-in-microsoft-sentinel-october-2026/ba-p/4568804</link>
+      <description><![CDATA[<P>Welcome back to What's new in Microsoft Sentinel. In October, cross-tenant delegated access reaches general availability so you can run security operations across tenants with least privilege, the Advanced Security Information Model (ASIM) EmailEvent schema gives you one consistent structure for email events across sources, an SAP analytics rule helps you spot active use of custom apps with high or critical vulnerabilities, and Unified Data Management brings connectors, tables, and ingestion health together in the Microsoft Defender portal. Read on for the details, and don’t forget to register for our upcoming Microsoft Ignite conference below in additional resources.&nbsp;<BR /><BR /></P>
+<P><STRONG>Sentinel innovations:</STRONG></P>
+<UL>
+<LI><A class="lia-internal-link" href="#community--1-siem" target="_blank" rel="noopener" data-lia-auto-title="Sentinel SIEM" data-lia-auto-title-active="0">Sentinel SIEM</A></LI>
+<LI><A class="lia-internal-link" href="#community--1-datalake" target="_blank" rel="noopener" data-lia-auto-title="Sentinel data lake" data-lia-auto-title-active="0">Sentinel data lake</A></LI>
+</UL>
+<H1><a id="community--1-siem" class="lia-anchor"></a><STRONG class="lia-linked-item">Sentinel SIEM</STRONG></H1>
+<H3><STRONG>Cross-tenant delegated access (Generally available)</STRONG></H3>
+<P>Cross-tenant delegated access in Defender lets you run security operations across tenants using the same governance relationship model as Microsoft Entra Tenant Governance. Whether you’re a managed security service provider (MSSP) or a central security team working across business units, regions, or subsidiaries, you sign in with your home-tenant account instead of maintaining local administrator or Microsoft Entra B2B guest accounts in every tenant. Delegated access also extends to Sentinel resources, with granular permissions assigned through Defender unified role-based access control (RBAC). Each governed tenant approves the relationship and decides exactly which roles and resource scopes to grant, while you keep access current by managing membership in your own security groups. This means you can scale cross-tenant security operations with least privilege and without separate access models for identity and security. <A href="https://techcommunity.microsoft.com/blog/microsoftsentinelblog/expanded-cross-tenant-delegated-access-in-microsoft-defender-is-generally-availa/4565941" target="_blank" rel="noopener">Learn more.</A></P>
+<H3><STRONG>ASIM EmailEvent schema (</STRONG><STRONG>Generally available</STRONG><STRONG>)</STRONG></H3>
+<P>Email products often describe the same activity with different table names, fields, and values, which makes it harder to build detections and investigations that work consistently. The Advanced Security Information Model (ASIM) EmailEvent schema in Sentinel gives you a common structure for email delivery and inspection events across supported email data sources. EmailEvent normalizes the details you need to underst [truncated]]]></description>
+      <pubDate>Fri, 30 Oct 2026 16:44:57 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/what-s-new-in-microsoft-sentinel-october-2026/ba-p/4568804</guid>
+      <dc:creator>vkokkengada</dc:creator>
+      <dc:date>2026-10-30T16:44:57Z</dc:date>
+    </item>
+    <item>
+      <title>Growing our connector ecosystem with 500+ Microsoft Sentinel connectors</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/growing-our-connector-ecosystem-with-500-microsoft-sentinel/ba-p/4567832</link>
+      <description><![CDATA[<H2 id="mcetoc_1k5t6arp6_1" aria-level="2"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 2">Connecting the modern security environment&nbsp;</SPAN></SPAN><SPAN data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}">&nbsp;</SPAN></H2>
+<P><SPAN data-contrast="none">Having spent years working across Microsoft's cloud, AI, and customer-facing organizations. </SPAN><SPAN data-contrast="auto">I have seen that technology delivers the greatest value when it works with the environments customers already operate. </SPAN><SPAN data-contrast="none">That's especially true in cybersecurity.&nbsp;</SPAN><SPAN data-contrast="auto"> Most organizations rely</SPAN><SPAN data-contrast="none"> on a diverse mix of platforms, applications, and security solutions.</SPAN><SPAN data-contrast="auto"> Security teams need to bring signals from across that environment together so they can understand risk, investigate threats, and respond with confidence.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:210,&quot;335559739&quot;:210,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="none">As a Microsoft Security customer experience leader, one of my priorities is ensuring that we're helping connect</SPAN><SPAN data-contrast="auto"> these technologies and get more value from their existing investments. When security data remains fragmented across disconnected tools, teams can lose valuable context. When that data comes together, defenders gain a more complete view of their environment and can make faster, better-informed decisions.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:210,&quot;335559739&quot;:210,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<H2 id="mcetoc_1k5t6arp6_2"><SPAN data-contrast="none">Expanding the connector ecosystem</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:210,&quot;335559739&quot;:210,&quot;335559740&quot;:300}">&nbsp;</SPAN></H2>
+<P><SPAN data-contrast="none">Microsoft recently announced the </SPAN><A href="https://www.microsoft.com/en-us/security/blog/2026/09/23/reimagining-the-soc-for-the-agentic-era-in-microsoft-defender/" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">Integrated Security Operations Center (ISOC)</SPAN><SPAN data-ccp-charstyle="Hyperlink"> in Microsoft Defender</SPAN></SPAN></A><SPAN data-contrast="auto">.</SPAN><SPAN data-contrast="none"> ISOC brings together security signals, threat intelligence, AI, and protection capabilities into a unified experience. It gives humans defenders and AI agents shared</SPAN><SPAN data-contrast="auto"> context to reason across the environment, coordinate investigations, and strengthen protection</SPAN><SPAN data-contrast="none">.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:0,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data- [truncated]]]></description>
+      <pubDate>Wed, 28 Oct 2026 16:00:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/growing-our-connector-ecosystem-with-500-microsoft-sentinel/ba-p/4567832</guid>
+      <dc:creator>alihob</dc:creator>
+      <dc:date>2026-10-28T16:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>Manage all your Microsoft Sentinel data in one place with Unified Data Management (Public Preview)</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/manage-all-your-microsoft-sentinel-data-in-one-place-with/ba-p/4565940</link>
+      <description><![CDATA[<P>As security teams bring in more data from more sources and use it across SIEM and XDR workflows, decisions about connector health, ingestion volume, and cost optimization get harder.</P>
+<P>Today, we’re announcing the public preview of Unified Data Management for Microsoft Sentinel, available in the new <STRONG>Data &amp; connectors</STRONG> experience in the Microsoft Defender portal, so you can monitor and manage your data from a single place.</P>
+<H2><STRONG>What Unified Data Management is and why it matters</STRONG></H2>
+<P>Unified Data Management brings connectors, tables, and ingestion health together. Instead of moving between separate pages, you can see your full data landscape, spot issues, and act on them from one view. It’s designed to help you quickly answer questions like:</P>
+<UL>
+<LI>Which connectors are configured and which need attention?</LI>
+<LI>Which tables are receiving data?</LI>
+<LI>Are there ingestion spikes, drops, or stale data patterns?</LI>
+<LI>Which tables drive the most ingestion volume?</LI>
+<LI>What schema, transformations, and retention settings apply to a table?</LI>
+</UL>
+<P>You’ll find it under <STRONG>Setup &amp; configuration</STRONG> &gt; <STRONG>Data &amp; connectors</STRONG>, organized into three tabs: <STRONG>Overview</STRONG>, <STRONG>Connectors</STRONG>, and <STRONG>Tables</STRONG>.</P>
+<H2><STRONG>Overview: See health at a glance</STRONG></H2>
+<P>The <STRONG>Overview</STRONG> tab gives you a workspace-level snapshot of ingestion and health, so you can catch data issues before they impact analytics, detections, investigations, or reporting. It surfaces:</P>
+<UL>
+<LI><STRONG>Ingestion volume</STRONG>: Daily ingestion split by Analytics tier and Data Lake tier for your selected time range.</LI>
+<LI><STRONG>Connectors that need attention</STRONG>: Connectors with credential errors, ingestion failures, or outages, including error type, failure count, and last successful ingestion.</LI>
+<LI><STRONG>Table ingestion fluctuations</STRONG>: Tables with unexpected volume changes, grouped into spikes and drops.</LI>
+<LI><STRONG>Data ingestion volume by table</STRONG>: Your top ingesting tables, ranked by daily volume.</LI>
+<LI><STRONG>Ingestion latency by table</STRONG>: How long it takes for data to become available after it’s generated.</LI>
+</UL>
+<P>Together, these insights help you troubleshoot connector failures, track down cost spikes, validate that new connectors are flowing, and catch unexpected changes in volume.</P>
+<img />
+<P class="lia-align-center">Figure 1: The Overview tab shows daily ingestion volume by tier alongside data health insights, <BR />including connectors that need attention and tables with unexpected volume spikes or drops.</P>
+<H2><STRONG>Connectors: One inventory for unified and classic connectors</STRONG></H2>
+<P>The <STRONG>Connectors</STRONG> tab puts <A href="https://learn.microsoft.com/azure/sentinel/unified-connector" target="_blank" rel="noopener">unified data connectors</A> [truncated]]]></description>
+      <pubDate>Tue, 20 Oct 2026 19:34:43 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/manage-all-your-microsoft-sentinel-data-in-one-place-with/ba-p/4565940</guid>
+      <dc:creator>amybook</dc:creator>
+      <dc:date>2026-10-20T19:34:43Z</dc:date>
+    </item>
+    <item>
+      <title>Expanded cross-tenant delegated access in Microsoft Defender is generally available</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/expanded-cross-tenant-delegated-access-in-microsoft-defender-is/ba-p/4565941</link>
+      <description><![CDATA[<P>Security operations rarely stop at a single tenant boundary. Managed security service providers (MSSPs) protect many customer environments, and central security teams often operate across a tenant estate spanning business units, regions, or subsidiaries. In both cases, teams need to delegate security work without granting broad access or managing permissions one analyst at a time.</P>
+<P>Today, we’re announcing the general availability of cross-tenant delegated administration in Microsoft Defender, built on the same governance relationship model as <STRONG>Microsoft Entra Tenant Governance</STRONG>. Organizations can now use a consistent governance model to establish cross-tenant relationships, delegate access to partner or central security teams, and enforce least-privilege permissions across their tenant estate.</P>
+<P>We’re also extending delegated access to support Microsoft Sentinel resources and enabling granular permissions for delegated users through Defender unified RBAC, reducing the need for separate access models across identity and security. With the consistent access model, MSSPs partners (non-CSP) and multitenant organizations can run security operations across tenants, while each customer or governed tenant decides exactly what access to grant.</P>
+<H2><STRONG>Govern access across your tenant estate</STRONG></H2>
+<P>Microsoft Entra Tenant Governance helps organizations establish least-privilege governance relationships across related tenants. The same governance relationship model now extends into Microsoft Defender and Sentinel, enabling MSSPs and central security teams to manage security operations across governed environments without requiring separate local administrator identities in each tenant.</P>
+<P>This model helps organizations:</P>
+<UL>
+<LI><STRONG>Scale without multiplying identities.</STRONG> Analysts use their home-tenant accounts instead of requiring local administrator or Microsoft Entra B2B guest accounts in every governed tenant.</LI>
+<LI><STRONG>Apply least privilege.</STRONG> Each governed tenant controls the roles and resource scopes assigned to remote tenant groups.</LI>
+<LI><STRONG>Simplify ongoing administration.</STRONG> The partner or central team keeps access current by managing membership in its own security groups rather than maintaining individual assignments across customer tenants.</LI>
+<LI><STRONG>Support integrated security operations.</STRONG> MSSPs and multitenant organizations can use a consistent governance relationship to support delegated operations across Microsoft Defender and Sentinel.</LI>
+<LI><STRONG>Bring identity and security access together. </STRONG>Use a consistent governance relationship model across Microsoft Entra, Defender, and Sentinel, reducing the need for separate delegated-access arrangements.</LI>
+</UL>
+<H2><STRONG>One relationship, two controls</STRONG></H2>
+<P>A governance relationship is a directional connection between two Microsoft Entra tenants:</P>
+<UL>
+<LI>The [truncated]]]></description>
+      <pubDate>Tue, 20 Oct 2026 17:24:44 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/expanded-cross-tenant-delegated-access-in-microsoft-defender-is/ba-p/4565941</guid>
+      <dc:creator>Robi Czitron</dc:creator>
+      <dc:date>2026-10-20T17:24:44Z</dc:date>
+    </item>
+    <item>
+      <title>Introducing the Microsoft Sentinel ASIM EmailEvent schema</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/introducing-the-microsoft-sentinel-asim-emailevent-schema/ba-p/4562581</link>
+      <description><![CDATA[<P>Email remains one of the most common entry points for security threats. Yet email products often describe the same activity with different table names, fields, and values. This makes it harder to build detections and investigations that work consistently across data sources.</P>
+<P>The Microsoft Sentinel Advanced Security Information Model, or ASIM, EmailEvent schema is now available. It provides a common structure for email delivery and inspection events, helping customers and partners create security content that works across supported email data sources.</P>
+<H1>A consistent view of email security activity</H1>
+<P>EmailEvent standardizes the information analysts need to understand what happened to an email and why. It covers:</P>
+<UL>
+<LI aria-setsize="-1" data-leveltext="•" data-font="" data-listid="1" data-list-defn-props="{&quot;335551500&quot;:30932,&quot;335552541&quot;:1,&quot;335559685&quot;:600,&quot;335559991&quot;:300,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;•&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><SPAN data-contrast="none">Email delivery and inspection events</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:100,&quot;335559740&quot;:480}">&nbsp;</SPAN></LI>
+</UL>
+<UL>
+<LI aria-setsize="-1" data-leveltext="•" data-font="" data-listid="1" data-list-defn-props="{&quot;335551500&quot;:30932,&quot;335552541&quot;:1,&quot;335559685&quot;:600,&quot;335559991&quot;:300,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;•&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><SPAN data-contrast="none">Sender, source, and recipient information</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:100,&quot;335559740&quot;:480}">&nbsp;</SPAN></LI>
+</UL>
+<UL>
+<LI aria-setsize="-1" data-leveltext="•" data-font="" data-listid="1" data-list-defn-props="{&quot;335551500&quot;:30932,&quot;335552541&quot;:1,&quot;335559685&quot;:600,&quot;335559991&quot;:300,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;•&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="3" data-aria-level="1"><SPAN data-contrast="none">Message subject, size, direction, and delivery location</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:100,&quot;335559740&quot;:480}">&nbsp;</SPAN></LI>
+</UL>
+<UL>
+<LI aria-setsize="-1" data-leveltext="•" data-font="" data-listid="1" data-list-defn-props="{&quot;335551500&quot;:30932,&quot;335552541&quot;:1,&quot;335559685&quot;:600,&quot;335559991&quot;:300,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;•&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="4" data-aria-level="1"><SPAN data-contrast="none">URLs an [truncated]]]></description>
+      <pubDate>Wed, 07 Oct 2026 20:21:05 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/introducing-the-microsoft-sentinel-asim-emailevent-schema/ba-p/4562581</guid>
+      <dc:creator>JamesAde</dc:creator>
+      <dc:date>2026-10-07T20:21:05Z</dc:date>
+    </item>
+    <item>
+      <title>What’s new in Microsoft Sentinel: September 2026</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/what-s-new-in-microsoft-sentinel-september-2026/ba-p/4560902</link>
+      <description><![CDATA[<P>Welcome back to What's new in Microsoft Sentinel. In September, Case Management brings investigation and collaboration together in Microsoft Defender, with a shared workspace to track work through resolution. Defender unified RBAC custom roles for granular delegated admin privileges (GDAP) give you finer control over what managed security service providers (MSSPs) and other partners can access. In Sentinel data lake, a single Codeless Connector Framework (CCF) connector can bring in data from many accounts, and our connector catalog has passed 500 data connectors. Read on for the details.</P>
+<P><STRONG>Sentinel innovations:</STRONG></P>
+<UL>
+<LI><A class="lia-internal-link" href="#community--1-siem" target="_blank" rel="noopener" data-lia-auto-title="Sentinel SIEM" data-lia-auto-title-active="0">Sentinel SIEM</A></LI>
+<LI><A class="lia-internal-link" href="#community--1-datalake" target="_blank" rel="noopener" data-lia-auto-title="Sentinel data lake" data-lia-auto-title-active="0">Sentinel data lake</A></LI>
+</UL>
+<H1><a id="community--1-siem" class="lia-anchor"></a><STRONG class="lia-linked-item">Sentinel SIEM</STRONG></H1>
+<H3><STRONG>Case</STRONG><STRONG> Management (Public Preview)</STRONG></H3>
+<P>Starting September 23, 2026, Case Management brings investigation and collaboration together in one experience in Defender. With Incident Cases, you can investigate, coordinate response, assign work, capture notes, and track progress through resolution, all from a shared workspace that holds investigation context alongside tasks and workflow tracking. Your existing Sentinel automation, playbooks, workbooks, and integrations carry over unchanged. This builds on the integrated security operations (<A href="https://aka.ms/isocannouncement" target="_blank" rel="noopener">ISOC</A>) vision of bringing the context and workflows practitioners need to investigate and respond together in Defender. Read <A class="lia-external-url" href="https://aka.ms/caseindefender" target="_blank" rel="noopener">our Case Management blog</A>, see <A class="lia-external-url" href="https://aka.ms/caselearningdocs" target="_blank" rel="noopener">the documentation</A>, and watch <A class="lia-external-url" href="https://aka.ms/casedemovideo" target="_blank" rel="noopener">the demo</A> to learn more.</P>
+<H3><STRONG>Unified RBAC</STRONG><STRONG> custom roles (Public Preview)</STRONG></H3>
+<P>If you work with a managed security service provider (MSSP) or manage multiple tenants, giving partners the right level of access is simpler. Granular delegated admin privileges (GDAP) sets which partner groups can be delegated access to your tenant, and Defender unified role-based access control (RBAC) sets what they can see and do once delegated. You can assign unified RBAC custom roles to GDAP remote tenant groups and scope each role down to specific security products, data sources, and data collections so partners receive only the access they need. GDAP previously only supported Micro [truncated]]]></description>
+      <pubDate>Wed, 30 Sep 2026 16:00:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/what-s-new-in-microsoft-sentinel-september-2026/ba-p/4560902</guid>
+      <dc:creator>vkokkengada</dc:creator>
+      <dc:date>2026-09-30T16:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>Public Preview: Multi-account support for Microsoft Sentinel codeless connectors</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/public-preview-multi-account-support-for-microsoft-sentinel/ba-p/4544380</link>
+      <description><![CDATA[<P><SPAN data-contrast="auto">Security teams rarely have just one of anything. Most SOCs run separate production, staging, and development accounts. Large enterprises segment by region, business unit, or brand. And managed security service providers (MSSPs) watch over many customers at once.&nbsp;</SPAN><SPAN data-contrast="auto"> Traditionally, ISVs have used the following configuration – one connector for one product (or workspace), over as many instances of that product as are implemented. We set out to simplify and streamline that experience.</SPAN><SPAN data-contrast="auto">&nbsp;</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Today we're excited to announce the public preview of </SPAN><SPAN data-contrast="auto">multi-account</SPAN><SPAN data-contrast="auto"> support for codeless connectors</SPAN><SPAN data-contrast="auto"> in Microsoft Sentinel. A single connector built on the </SPAN><A href="https://learn.microsoft.com/en-us/azure/sentinel/isv/create-codeless-connector" target="_blank" rel="noopener"><SPAN data-contrast="auto">Codeless Connector Framework (CCF)</SPAN></A><SPAN data-contrast="auto"> can now support multiple, independently deployable connections in the same workspace, each shown in one unified list so that one connector scales to however many accounts a customer runs.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P>&nbsp;</P>
+<img />
+<P><SPAN data-ccp-props="{&quot;335551550&quot;:2,&quot;335551620&quot;:2}">&nbsp;</SPAN></P>
+<P><STRONG><SPAN data-contrast="auto">What's new</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></STRONG></P>
+<P><SPAN data-contrast="auto">The current CCF separates a connector's user interface from its connection configuration. That separation is what makes multiple connections possible. With the multi-account pattern, a connector provides:</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<UL>
+<LI><SPAN data-contrast="auto">A unified connections list:</SPAN><SPAN data-contrast="auto"> Every connection appears as its own row, labeled with the details that identify it such as account name, tenant ID, or environment (as seen in the screenshot above).</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></LI>
+<LI><SPAN data-contrast="auto">An </SPAN><SPAN data-contrast="auto">Add connection</SPAN><SPAN data-contrast="auto"> experience:</SPAN><SPAN data-contrast="auto"> Users add another connection through a guided&nbsp; form without disturbing the connections that already exist.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></LI>
+<LI><SPAN data-contrast="auto">Independent lifecycle per connection:</SPAN><SPAN data-contrast="auto"> Each connection is deployed, edited, and deleted on its own. Removing one leaves the others untouched.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></LI>
+<LI><SPAN data-contrast="auto">Shared, efficient ingestion:</SPAN><SPAN data-contrast="auto"> All connections flow through the same data collection rule and land in the same table, so adding connect [truncated]]]></description>
+      <pubDate>Mon, 14 Sep 2026 18:13:41 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/public-preview-multi-account-support-for-microsoft-sentinel/ba-p/4544380</guid>
+      <dc:creator>MitchellGulledge</dc:creator>
+      <dc:date>2026-09-14T18:13:41Z</dc:date>
+    </item>
+    <item>
+      <title>What’s new in Microsoft Sentinel: August 2026</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/what-s-new-in-microsoft-sentinel-august-2026/ba-p/4551405</link>
+      <description><![CDATA[<P>Welcome back to What's new in Microsoft Sentinel. This August, Sentinel innovation kicks off with the AI-powered playbook generator, generally available to all Sentinel customers in the Microsoft Defender portal. Meanwhile, User and Entity Behavior Analytics (UEBA) anomalies enter public preview on the Behaviors layer, with coverage across Fortinet, AWS GuardDuty, Check Point, and Zscaler. In Sentinel data lake, nested API support in the Codeless Connector Framework (CCF) enters public preview to connect data sources whose APIs span multiple calls, and multi-account data ingestion is now generally available for Auth0, CrowdStrike, and Salesforce. Finally, the free Microsoft Threat Intelligence connector for unified SecOps, marking the final phase of MDTI convergence, is now generally available in the Defender portal.</P>
+<P>Read on for the details, and explore our resources at the end to go deeper.</P>
+<P><STRONG>Sentinel innovations:</STRONG></P>
+<UL>
+<LI><A class="lia-internal-link" href="#community--1-siem" target="_blank" rel="noopener" data-lia-auto-title="Sentinel SIEM" data-lia-auto-title-active="0">Sentinel SIEM</A></LI>
+<LI><A class="lia-internal-link" href="#community--1-lake" target="_blank" rel="noopener" data-lia-auto-title="Sentinel data lake" data-lia-auto-title-active="0">Sentinel data lake</A></LI>
+</UL>
+<H3><a id="community--1-siem" class="lia-anchor"></a><STRONG class="lia-linked-item">Sentinel SIEM</STRONG></H3>
+<H4><STRONG>AI-powered playbook generator</STRONG><STRONG> expanded to all Sentinel customers in the Defender portal [Generally Available]</STRONG></H4>
+<P>Go from intent to action faster with the AI-powered playbook generator. It is available to all Sentinel customers using the Defender portal with no Security Copilot enablement or additional cost required. Describe the response you want in natural language and generate an editable, code-based playbook complete with tests, documentation, and a visual flow.</P>
+<img>Figure 1: Automatically-created visual flow diagram of the playbook.</img>
+<P>To get started, confirm you have Automation Playbooks Unified RBAC Read and Write permissions, then select <STRONG>Automation &gt; + Create &gt; Playbook Generator</STRONG>. <A href="https://techcommunity.microsoft.com/blog/microsoftsentinelblog/ai-powered-playbook-generator-now-available-to-more-customers/4544385" target="_blank" rel="noopener">Read our blog</A> to learn more.</P>
+<H4><STRONG>UEBA Anomalies are now built on top of Behaviors, along with expanded coverage through new data sources</STRONG><STRONG> [Public Preview]</STRONG></H4>
+<P>Understand what happened and why it matters in one place. Sentinel adds UEBA anomaly insights and explainable context directly to the Behaviors layer, while expanding coverage across Fortinet, AWS GuardDuty, Check Point, and Zscaler data. This helps you identify unusual activity across identity, network, and cloud environments, reduce investigation time, and focus on the highest-risk be [truncated]]]></description>
+      <pubDate>Mon, 31 Aug 2026 16:00:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/what-s-new-in-microsoft-sentinel-august-2026/ba-p/4551405</guid>
+      <dc:creator>spalani</dc:creator>
+      <dc:date>2026-08-31T16:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>Building Microsoft Sentinel Connectors in Minutes with the Sentinel Connector Builder Agent</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/building-microsoft-sentinel-connectors-in-minutes-with-the/ba-p/4544378</link>
+      <description><![CDATA[<H1>Overview</H1>
+<P>We previously announced the public preview of the <A href="https://aka.ms/SentinelCCF_Connector-Builder-Agent" target="_blank" rel="noopener">Microsoft Sentinel connector builder agent</A> via VS code extension, that helps developers build Microsoft Sentinel codeless connectors faster with low-code and AI-assisted prompts. This post walks through a hands-on lab using a mock Network Log API to demonstrate how the Sentinel connector builder agent simplifies building Codeless Connector Framework (CCF) pull connectors. Instead of manually creating ingestion infrastructure and configuration files, you’ll use a guided, conversational workflow in VS Code to generate connector artifacts, test them against a live API, and deploy them into Microsoft Sentinel. The lab focuses on the end-to-end experience ranging from API setup to validated connector deployment so you can see how quickly a working integration can be produced. For additional guidance beyond this lab, refer to our <A class="lia-external-url" href="https://learn.microsoft.com/en-us/azure/sentinel/isv/create-custom-connector-builder-agent" target="_blank" rel="noopener">MS Learn documentation</A>.</P>
+<H1>The Lab Environment&nbsp;</H1>
+<P>This lab is built around a mock Network Log API hosted as an Azure Function App. The purpose of the lab environment is to give us a live API that we can use to build, validate, and test the Sentinel CCF connector builder agent against end to end. The API exposes 50 synthetic network activity records that look and behave like a real product data source, including web traffic, DNS requests, blocked remote access attempts, malware command-and-control blocks, VPN activity, and other common network events. That makes it a useful stand-in for the type of telemetry many teams want to onboard into Microsoft Sentinel.&nbsp;</P>
+<P>The API is intentionally shaped like the kind of source a customer might expose for telemetry retrieval. It uses API key authentication through the <CODE>X-API-Key</CODE> header, returns paginated results through a <CODE>nextLink</CODE> model, and provides a predictable response structure that the builder agent can map into a pull connector configuration.&nbsp;</P>
+<P>The repo&nbsp;contains&nbsp;everything needed for the walkthrough. There is an ARM template to deploy the Function App, reference documentation for the API, and a sample connector package showing the generated polling config, table schema, DCR, and connector definition. The end goal of the lab is straightforward: use the builder agent to generate a CCF pull connector that ingests this API into the custom <CODE>NetworkLogAPIGetNetworkLogs_CL</CODE> table in Sentinel.&nbsp;</P>
+<H1>Prerequisites&nbsp;</H1>
+<P>Before starting, make sure you have the following:</P>
+<P><STRONG>Azure subscription</STRONG> -- with Contributor access on a resource group (for deploying the Function App) and Microsoft Sentinel Contributor access on a Sentinel-enabled workspace (for dep [truncated]]]></description>
+      <pubDate>Tue, 11 Aug 2026 16:00:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/building-microsoft-sentinel-connectors-in-minutes-with-the/ba-p/4544378</guid>
+      <dc:creator>Robert_Moriarty</dc:creator>
+      <dc:date>2026-08-11T16:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>AI-powered playbook generator, now available to more customers</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/ai-powered-playbook-generator-now-available-to-more-customers/ba-p/4544385</link>
+      <description><![CDATA[<P><SPAN data-contrast="auto">We’re excited to announce we’re making it easier than ever to go from intent to action with the AI-powered playbook generator now available to more customers.</SPAN><SPAN data-ccp-props="{&quot;335559739&quot;:160}">&nbsp;</SPAN></P>
+<H4 aria-level="2"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 2">What’s new</SPAN></SPAN><SPAN data-ccp-props="{&quot;335559738&quot;:260,&quot;335559739&quot;:120}">&nbsp;</SPAN></H4>
+<P><SPAN data-contrast="auto"><SPAN data-olk-copy-source="MessageBody">All Microsoft Sentinel customers in Defender portal can now create AI-generated playbooks directly in their automation workflow.</SPAN> As part of this change, Security Copilot enablement is no longer required: playbook generator is now available to more teams out of the box and without any extra cost.</SPAN><SPAN data-ccp-props="{&quot;335559739&quot;:160}">&nbsp;</SPAN></P>
+<H4 aria-level="2"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 2">What&nbsp;</SPAN><SPAN data-ccp-parastyle="heading 2">p</SPAN><SPAN data-ccp-parastyle="heading 2">laybook&nbsp;</SPAN><SPAN data-ccp-parastyle="heading 2">g</SPAN><SPAN data-ccp-parastyle="heading 2">enerator does</SPAN></SPAN><SPAN data-ccp-props="{&quot;335559738&quot;:260,&quot;335559739&quot;:120}">&nbsp;</SPAN></H4>
+<P><SPAN data-contrast="auto">Playbook&nbsp;generator uses AI to turn what you want to automate into a working playbook. Instead of hand-building automation&nbsp;in python code, describe the response you need&nbsp;in natural language&nbsp;and get an editable&nbsp;playbook,&nbsp;its tests and documentation&nbsp;generated for you right inside the Microsoft Defender portal.</SPAN><SPAN data-ccp-props="{&quot;335559739&quot;:160}">&nbsp;</SPAN></P>
+<UL>
+<LI aria-setsize="-1" data-leveltext="•" data-font="" data-listid="2" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;•&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><SPAN data-contrast="auto"><STRONG>Faster response automation:</STRONG>&nbsp;</SPAN><SPAN data-contrast="auto">go from idea to playbook in minutes.</SPAN><SPAN data-ccp-props="{&quot;335559739&quot;:60}">&nbsp;</SPAN></LI>
+</UL>
+<UL>
+<LI aria-setsize="-1" data-leveltext="•" data-font="" data-listid="2" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;•&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><STRONG><SPAN data-contrast="auto">Built into your workflow:&nbsp;</SPAN></STRONG><SPAN data-contrast="auto">find it under Automation › + Create › Playbook Generator.</SPAN><SPAN data-ccp-props="{&quot;335559739&quot;:60}">&nbsp;</SPAN></LI>
+</UL>
+<U [truncated]]]></description>
+      <pubDate>Fri, 07 Aug 2026 19:28:40 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/ai-powered-playbook-generator-now-available-to-more-customers/ba-p/4544385</guid>
+      <dc:creator>NoaCafri</dc:creator>
+      <dc:date>2026-08-07T19:28:40Z</dc:date>
+    </item>
+    <item>
+      <title>Smarter signals, broader coverage: UEBA anomalies on top of Behaviors layer and new data sources</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/smarter-signals-broader-coverage-ueba-anomalies-on-top-of/ba-p/4544384</link>
+      <description><![CDATA[<P><EM><STRONG><SPAN data-contrast="auto">Co-authors: Ron Shlomo and Ryan Smith</SPAN></STRONG></EM></P>
+<P><SPAN data-contrast="auto">Security teams don't struggle with a lack of security signals. The real challenge is understanding which activity matters, why it stands out, and where to focus first.</SPAN><SPAN data-ccp-props="{&quot;335559739&quot;:120}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Microsoft Sentinel's Behaviors layer already helps analysts transform raw security events into meaningful behavioral patterns. Today,&nbsp;we're&nbsp;making that experience both smarter and broader.</SPAN><SPAN data-ccp-props="{&quot;335559739&quot;:120}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">What if every behavior could&nbsp;immediately&nbsp;tell you&nbsp;</SPAN><STRONG><SPAN data-contrast="auto">not only what happened, but why it matters</SPAN></STRONG><SPAN data-contrast="auto">?&nbsp;We're&nbsp;bringing&nbsp;</SPAN><STRONG><SPAN data-contrast="auto">UEBA anomaly intelligence directly into the Behaviors layer</SPAN></STRONG><SPAN data-contrast="auto">, so every behavior now includes anomaly insights together with explainable context.&nbsp;</SPAN><SPAN data-contrast="auto"><STRONG>At the same time</STRONG>,</SPAN><SPAN data-contrast="auto">&nbsp;UEBA expands beyond identity signals to support network and cloud data sources, enabling richer behavioral insights across more of your environment and helping security teams detect suspicious activity wherever it occurs.</SPAN><SPAN data-ccp-props="{&quot;335559739&quot;:120}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">If&nbsp;you're&nbsp;new to these capabilities, we recommend reviewing our&nbsp;previous&nbsp;announcements on the&nbsp;</SPAN><A class="lia-internal-link lia-internal-url lia-internal-url-content-type-blog" href="https://techcommunity.microsoft.com/blog/microsoftsentinelblog/microsoft-sentinel%E2%80%99s-ai-driven-ueba-ushers-in-the-next-era-of-behavioral-analyti/4448390" target="_blank" rel="noopener" data-lia-auto-title="UEBA expansion" data-lia-auto-title-active="0">UEBA expansion</A><SPAN data-contrast="auto">&nbsp;and the&nbsp;</SPAN><A class="lia-internal-link lia-internal-url lia-internal-url-content-type-blog" href="https://techcommunity.microsoft.com/blog/microsoftsentinelblog/turn-complexity-into-clarity-introducing-the-new-ueba-behaviors-layer-in-microso/4484493" target="_blank" rel="noopener" data-lia-auto-title="Behaviors public preview" data-lia-auto-title-active="0">Behaviors public preview</A><SPAN data-contrast="auto">, which provide&nbsp;additional&nbsp;background on the Behaviors layer and its underlying UEBA capabilities.</SPAN><SPAN data-ccp-props="{&quot;335559738&quot;:240,&quot;335559739&quot;:240}">&nbsp;</SPAN></P>
+<H3 aria-level="1"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 1">What's</SPAN><SPAN data-ccp-parastyle="heading 1"> new in Sentinel UEBA and B</SPAN><SPAN data-ccp-parastyle="heading 1">ehaviors layer</SPAN></SPAN><SPAN [truncated]]]></description>
+      <pubDate>Tue, 18 Aug 2026 18:39:45 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/smarter-signals-broader-coverage-ueba-anomalies-on-top-of/ba-p/4544384</guid>
+      <dc:creator>SaraSamokovlija</dc:creator>
+      <dc:date>2026-08-18T18:39:45Z</dc:date>
+    </item>
+    <item>
+      <title>Public Preview: Nested API Support Comes to Microsoft Sentinel CCF</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/public-preview-nested-api-support-comes-to-microsoft-sentinel/ba-p/4537026</link>
+      <description><![CDATA[<P>Microsoft Sentinel continues to evolve its capabilities to support an expanding ecosystem of partners and data integrations. Recent innovations include the Codeless Connector Framework (CCF) <A href="https://aka.ms/SentinelCCFPush" target="_blank" rel="noopener">Push feature</A>, the new <A href="https://techcommunity.microsoft.com/blog/microsoft-security-blog/accelerate-connectors-development-using-ai-agent-in-microsoft-sentinel/4507019" target="_blank" rel="noopener">Sentinel connector builder agent</A>, and the CCF expansion to pull data from <A href="https://aka.ms/SentinelAzureBlobStorage" target="_blank" rel="noopener">Azure Storage Blob</A>. Each of these reflects our ongoing investment in making it easier for ISVs and developers to build scalable, high-fidelity data connectors that bring telemetry into Sentinel data lake.</P>
+<P>Today, we are excited to announce another advancement in this journey – the public preview for Nested API support in CCF.</P>
+<P><STRONG>What is Nested API support and Why it Matters</STRONG></P>
+<P>Nested API support enables a pattern common across many ISV log sources, where a single polling cycle spans multiple dependent API calls: an initial call returns a list of records (such as alert IDs or case references), and one or more follow-up calls fetch the full detail for each record in that list.</P>
+<P>This support allows CCF to accommodate the list-then-detail API pattern as it exists in many API designs, so that partners don’t need to restructure or adapt their endpoints. The result is broader integration coverage that allows partners to connect data sources whose APIs are naturally paginated across multiple calls, and then to ingest complete records into Microsoft Sentinel without building custom middleware.</P>
+<P><STRONG>Support for Nested API in the Microsoft Sentinel VS Code extension</STRONG></P>
+<P>This pattern is also available through the Visual Studio Code (VS Code) extension for Microsoft Sentinel connectors. The extension is an agentic tool that helps ISVs and partners build, test, and package data connectors more efficiently, providing a guided experience for bringing data into Microsoft Sentinel.</P>
+<P>As part of its design, the extension enables developers to implement Nested API workflows, allowing connectors to orchestrate multi-step API calls and support APIs that require chained or dependent requests. To learn more, see the <A href="https://techcommunity.microsoft.com/blog/microsoft-security-blog/accelerate-connectors-development-using-ai-agent-in-microsoft-sentinel/4507019" target="_blank" rel="noopener">Sentinel connector builder agent blog</A> and the <A href="https://learn.microsoft.com/en-us/azure/sentinel/create-custom-connector-builder-agent" target="_blank" rel="noopener">Microsoft Learn documentation</A> for implementation guidance.</P>
+<P><STRONG>Real-world adoption: Early ISV implementations</STRONG></P>
+<P>A growing set of solutions are already leveraging Nested API support t [truncated]]]></description>
+      <pubDate>Fri, 07 Aug 2026 17:15:55 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/public-preview-nested-api-support-comes-to-microsoft-sentinel/ba-p/4537026</guid>
+      <dc:creator>Robert_Moriarty</dc:creator>
+      <dc:date>2026-08-07T17:15:55Z</dc:date>
+    </item>
+    <item>
+      <title>Building a CCF Nested API Pull Connector: A Technical Lab Walkthrough</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/building-a-ccf-nested-api-pull-connector-a-technical-lab/ba-p/4537027</link>
+      <description><![CDATA[<P>This post walks through building a Microsoft Sentinel Codeless Connector Framework (CCF) RestApiPoller connector that uses the nested API polling pattern. The nested pattern exists for a specific reason: many enterprise APIs do not return enriched records from a single call. Instead, they use a two-step model: a list endpoint that returns identifiers, followed by a detail endpoint that accepts one identifier and returns the full record. Without native support for this pattern, building a Sentinel connector for such an API means writing custom orchestration in code. The CCF nested pattern re places that with a JSON configuration that the engine handles directly.</P>
+<P>The lab is built around a mock Contoso Incident API hosted as an Azure Function App. The purpose is to give you a live API you can deploy, inspect, and connect to Sentinel without needing a real product. Once deployed, you will walk through each of the four connector files that make up the integration (the poller config, the DCR, the table schema, and the connector definition) and see exactly how the two-call chain is wired together. By the end of the walkthrough, you will have a working connector ingesting enriched incident records into ContosoIncidents_CL in your Sentinel workspace.</P>
+<BLOCKQUOTE>
+<P><STRONG>Lab repository:</STRONG> <A class="lia-external-url" href="https://github.com/Azure/Azure-Sentinel/tree/master/Tools/CCF-Pull-Connector-Nested-Accelerator" target="_blank" rel="noopener">CCF Pull Connector - Nested API Accelerator</A>: clone the repository, then deploy the mock API and connector with a single Copilot prompt. See the <A class="lia-external-url" href="https://microsoft-my.sharepoint.com/personal/rmoriarty_microsoft_com/Documents/cxe/docContent/README.md?web=1" target="_blank" rel="noopener">README</A> for full instructions. (link to be confirmed on merge)</P>
+<P><STRONG>Related documentation:</STRONG> <A class="lia-external-url" href="https://learn.microsoft.com/en-us/azure/sentinel/isv/custom-connector-nested-api-polling" target="_blank" rel="noopener">CCF Nested API Polling Reference</A></P>
+</BLOCKQUOTE>
+<H1>Quick Start</H1>
+<P>Already familiar with CCF nested polling?</P>
+<P>Complete these sections:</P>
+<OL>
+<LI><A href="#community--1-prerequisites" target="_blank" rel="noopener">Prerequisites</A></LI>
+<LI><A href="#community--1-deploying_api" target="_blank" rel="noopener">Deploying the Mock API</A></LI>
+<LI><A href="#community--1-deploying_connector" target="_blank" rel="noopener">Deploying the Sentinel Connector</A></LI>
+<LI><A href="#community--1-verify_data" target="_blank" rel="noopener">Enabling and Verifying Data</A></LI>
+</OL>
+<P>The remaining sections explain how the nested polling configuration, KQL extraction, DCR transform, and connector artifacts work behind the scenes.</P>
+<H1 id="prerequisites">Prerequisites</H1>
+<P>Before starting, make sure you have the following:</P>
+<UL>
+<LI><STRONG>Azure subscription</STRONG> with Contributor access [truncated]]]></description>
+      <pubDate>Wed, 05 Aug 2026 16:00:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/building-a-ccf-nested-api-pull-connector-a-technical-lab/ba-p/4537027</guid>
+      <dc:creator>Robert_Moriarty</dc:creator>
+      <dc:date>2026-08-05T16:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>What’s new in Microsoft Sentinel: July 2026</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/what-s-new-in-microsoft-sentinel-july-2026/ba-p/4542130</link>
+      <description><![CDATA[<P>Welcome back to What's new in Microsoft Sentinel. In July, Sentinel adds custom detections support in Sentinel repositories, so you can manage detections as code alongside your analytics rules, playbooks, parsers, and workbooks, authoring in GitHub and deploying through the CI/CD pipelines you already use. In Sentinel data lake, table insights brings table-level observability into the Microsoft Defender portal, helping you track ingestion volume, spot week-over-week changes, and catch connectors that have gone silent, all without running a single KQL query. Connector coverage also expands with GitHub Audit logs, Agari, and Airlock Digital, bringing more of the signals that matter to you into one place.</P>
+<P>Read on for the details, and if you're joining us at Black Hat USA 2026, don't miss the keynote from Agentic Security CVP David Weston and other Microsoft Security activities at this event. Explore our resources at the end to go deeper.</P>
+<P><STRONG>Sentinel innovations:</STRONG></P>
+<UL>
+<LI><A href="#community--1-siem" target="_blank" rel="noopener">Sentinel SIEM</A></LI>
+<LI><A href="#community--1-datalake" target="_blank" rel="noopener">Sentinel data lake</A></LI>
+</UL>
+<H2><STRONG>Sentinel SIEM</STRONG></H2>
+<H3><STRONG>Custom detections support in Sentinel repositories [Public Preview]</STRONG></H3>
+<P>Custom detections can be managed as code through Sentinel repositories, alongside analytics rules, playbooks, parsers, and workbooks, completing the detections-as-code workflow across the full Sentinel portfolio. Teams can author detections in GitHub, review through pull requests, and deploy via existing CI/CD pipelines or the Microsoft Security Bicep extension. <A href="https://learn.microsoft.com/en-us/azure/sentinel/ci-cd-custom-content#deploy-custom-detection-rules-as-code-preview" target="_blank" rel="noopener">Learn how to manage custom content with repository connections</A>.</P>
+<H3><STRONG>Behind the Build</STRONG><STRONG> with Gigamon: Enriching Sentinel with network-derived telemetry</STRONG></H3>
+<P>Learn how Gigamon's integration with Sentinel brings network-derived telemetry into your security investigations, correlated with the identity, endpoint, and cloud signals already in your workspace. By adding this runtime context, you can trace suspicious activity across environments and investigate threats that span traditionally siloed domains, with faster and more accurate investigations, higher-quality signal, and clearer visibility into encrypted and hybrid cloud traffic that logs alone often miss. <A href="https://aka.ms/AppAssure_BehindtheBuild_Gigamon" target="_blank" rel="noopener">Read the blog</A> to explore the integration and what it means for your security operations.</P>
+<H2><STRONG>Sentinel data lake</STRONG></H2>
+<H3><STRONG>Table insights [Public Preview]</STRONG></H3>
+<P>Table insights is a built-in monitoring view on the tables page in the Microsoft Defender portal that gives you table-level observability  [truncated]]]></description>
+      <pubDate>Fri, 31 Jul 2026 16:00:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/what-s-new-in-microsoft-sentinel-july-2026/ba-p/4542130</guid>
+      <dc:creator>vkokkengada</dc:creator>
+      <dc:date>2026-07-31T16:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>Announcing the ASIM Parser Creation Agentic Experience</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/announcing-the-asim-parser-creation-agentic-experience/ba-p/4532266</link>
+      <description><![CDATA[<P data-line="3">Creating high-quality ASIM parsers has always required deep knowledge about source data and ASIM schemas, careful KQL design, and repeated validation cycles. That process is meaningful to understand the whole Sentinel ecosystem, but it can be slow when you are starting from raw source data and trying to get to a production-ready parser.</P>
+<P data-line="5">Today, we are introducing a new agentic experience available now as open source that helps security teams move faster: an AI-guided workflow for creating ASIM parsers end to end.</P>
+<H4 data-line="7">Why this matters</H4>
+<P data-line="9">ASIM parsers are the normalization layer that makes detections, hunting, and analytics portable across data sources. They are foundational, but building them involves many steps:</P>
+<UL data-line="11">
+<LI>Gathering source requirements and schema targets</LI>
+<LI>Authoring a parameter-less and a parameterized ASIM parser</LI>
+<LI>Validating schema conformance and data quality</LI>
+<LI>Packaging the parsers into a GitHub pull request for open-source contributions</LI>
+</UL>
+<P data-line="16">ASIM normalization is important because it gives security teams a common language across different products and log formats. Without normalization, every detection, hunting query, and workbook has to be rewritten per vendor table, which increases engineering effort and creates blind spots when data sources change. With ASIM, the same analytic logic can operate across multiple sources through consistent field names and semantics.</P>
+<P data-line="18">This directly improves security outcomes by enabling faster content reuse, easier cross-source correlation, and more reliable incident triage. It also reduces long-term maintenance costs, because teams update parsers at the query and mapping layer instead of rewriting detection content each time a connector changes.</P>
+<P data-line="20">The new agentic experience orchestrates those steps for you with clear checkpoints and repeatable outputs.</P>
+<H4 data-line="22">What is the ASIM parser creation agentic experience?</H4>
+<P data-line="24">The experience is built around a specialized set of skills that work together as a workflow. Instead of using a single prompt and hoping for the best, the agent walks through parser creation as a structured process.</P>
+<P data-line="26">At the center is the orchestration skill that coordinates:</P>
+<UL data-line="28">
+<LI>Requirement collection</LI>
+<LI>Parser generation</LI>
+<LI>Validation loops that test the parser schema and data outputs</LI>
+<LI>Optional deployment to Log Analytics and PR packaging for&nbsp;<A href="https://github.com/Azure/Azure-Sentinel/tree/master" target="_blank" rel="noopener">Azure-Sentinel</A></LI>
+</UL>
+<H4 data-line="33">Where can I find these skills?</H4>
+<P data-line="35">If you have cloned or forked the&nbsp;<A href="https://github.com/Azure/Azure-Sentinel/tree/master" target="_blank" rel="noopener">Azure-Sentinel</A>&nbsp;repository, the  [truncated]]]></description>
+      <pubDate>Wed, 15 Jul 2026 16:00:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/announcing-the-asim-parser-creation-agentic-experience/ba-p/4532266</guid>
+      <dc:creator>derricklee</dc:creator>
+      <dc:date>2026-07-15T16:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>Building toward an Agentic SOC: A Portable, Autonomous Malware Investigation Agent</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/building-toward-an-agentic-soc-a-portable-autonomous-malware/ba-p/4526872</link>
+      <description><![CDATA[<P>Modern Security Operations Centers are not short on tools. They are short on continuity. Analysts jump from alert consoles to data exploration, from enrichment to investigation, and from evidence gathering to response—often across multiple interfaces and disconnected workflows.</P>
+<P>A single malware incident may begin in Microsoft Sentinel, require enrichment in Defender, depend on targeted KQL hunting, and end with manual response actions somewhere else. Every handoff adds friction. Every context switch slows triage. And every inconsistency increases the risk of missed signals or delayed containment.</P>
+<P>To explore what an <STRONG>Agentic SOC</STRONG> could look like in practice, I built a <STRONG>portable, autonomous malware investigation agent</STRONG>: a user-invocable workflow that takes an incident from investigation to evidence correlation to verdict and, when appropriate, to action.</P>
+<P><STRONG>The goal is simple:</STRONG> one prompt, one workflow, and a full incident lifecycle that moves cleanly from <STRONG>Investigate</STRONG> to <STRONG>Decide</STRONG> to <STRONG>Act</STRONG>.</P>
+<H4><STRONG>The Real Problem: SOC Work Is Still Too Fragmented</STRONG></H4>
+<P>In a conventional malware investigation, even experienced analysts spend too much time stitching the workflow together:</P>
+<UL>
+<LI>Pivoting across Sentinel and Defender</LI>
+<LI>Manually extracting entities</LI>
+<LI>Writing and optimizing multiple KQL queries</LI>
+<LI>Context switching between tools</LI>
+<LI>Making decisions with incomplete evidence</LI>
+</UL>
+<P>The operational impact is familiar to every SOC team:</P>
+<UL>
+<LI>Increased MTTR</LI>
+<LI>Analyst fatigue</LI>
+<LI>Inconsistent investigation quality</LI>
+</UL>
+<P>This fragmentation is exactly what a unified Microsoft Sentinel and Defender experience is built to solve, and it is where such an investigation agent demonstrates its value.</P>
+<H4><STRONG>The Approach: A Portable Agent for End-to-End Malware Investigations</STRONG></H4>
+<P>The agent is designed to handle the full investigation loop—not just enrichment, not just summarization, and not just response orchestration.</P>
+<UL>
+<LI>End-to-end malware investigation</LI>
+<LI>Evidence-based verdicting</LI>
+<LI>SOC-ready summarization</LI>
+<LI>Optional automated response</LI>
+</UL>
+<P>Because it is defined as a portable agent, the same investigation pattern can be reused across environments with consistent logic, standardized outputs, and controlled automation boundaries.</P>
+<UL>
+<LI>Standardized investigations</LI>
+<LI>Repeatable execution</LI>
+<LI>Controlled automation</LI>
+<LI>Cross-environment portability</LI>
+</UL>
+<H5>Architecture Overview (End-to-End Flow)</H5>
+<H4><STRONG>Visual 1: Agentic SOC Investigation Workflow</STRONG></H4>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="width: 61.9444%; height: 680px; border-width: 1px;"><tbody><tr><td class="lia-align-center">
+<P><STRONG>User / Analyst [truncated]]]></description>
+      <pubDate>Mon, 13 Jul 2026 19:09:25 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-sentinel-blog/building-toward-an-agentic-soc-a-portable-autonomous-malware/ba-p/4526872</guid>
+      <dc:creator>absharan</dc:creator>
+      <dc:date>2026-07-13T19:09:25Z</dc:date>
+    </item>
+  </channel>
+</rss>

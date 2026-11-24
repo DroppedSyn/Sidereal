@@ -1,0 +1,991 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+
+<channel>
+	<title>Microsoft Azure Blog</title>
+	<atom:link href="https://azure.microsoft.com/en-us/blog/feed/" rel="self" type="application/rss+xml"/>
+	<link>https://azure.microsoft.com/en-us/blog/</link>
+	<description>Get the latest Azure news, updates, and announcements from the Azure blog. From product updates to hot topics, hear from the Azure experts.</description>
+	<lastBuildDate>Mon, 23 Nov 2026 23:22:54 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.9.5</generator>
+
+<image>
+	<url>https://azure.microsoft.com/en-us/blog/wp-content/uploads/2024/06/microsoft_logo-150x150.webp</url>
+	<title>Microsoft Azure Blog</title>
+	<link>https://azure.microsoft.com/en-us/blog/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Microsoft and Oracle bring agentic AI into flow of enterprise work</title>
+		<link>https://azure.microsoft.com/en-us/blog/microsoft-and-oracle-bring-agentic-ai-into-flow-of-enterprise-work/</link>
+					<comments>https://azure.microsoft.com/en-us/blog/microsoft-and-oracle-bring-agentic-ai-into-flow-of-enterprise-work/#respond</comments>
+		
+		<dc:creator><![CDATA[Mike Hulme]]></dc:creator>
+		<pubDate>Tue, 17 Nov 2026 18:35:00 +0000</pubDate>
+				<category><![CDATA[AI + machine learning]]></category>
+		<category><![CDATA[Identity]]></category>
+		<category><![CDATA[Copilot]]></category>
+		<category><![CDATA[Databases]]></category>
+		<category><![CDATA[Microsoft Ignite]]></category>
+		<category><![CDATA[Microsoft IQ]]></category>
+		<guid isPermaLink="false">https://azure.microsoft.com/en-us/blog/?p=55303</guid>
+
+					<description><![CDATA[<p>Our new integrations let AI agents reason across Oracle’s business-critical data.</p>
+<p>The post <a href="https://azure.microsoft.com/en-us/blog/microsoft-and-oracle-bring-agentic-ai-into-flow-of-enterprise-work/">Microsoft and Oracle bring agentic AI into flow of enterprise work</a> appeared first on <a href="https://azure.microsoft.com/en-us/blog">Microsoft Azure Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph"><em>This blog is co-authored by Arpan Shah, SVP of Oracle Databases and Muneer Mirza, VP of Multicloud at Oracle Cloud Infrastructure (OCI).</em></p>
+
+
+
+<p class="wp-block-paragraph">Today at Microsoft Ignite, we’re bringing agentic AI into the flow of enterprise work. Our new integrations let AI agents reason across Oracle’s business-critical data—from finance and supply chain to HR and customer operations—and the work context Microsoft Work IQ understands across meetings, email, documents, and Teams. Customers can access this combined intelligence through Excel, Teams, and Microsoft Copilot. Built on <a href="https://azure.microsoft.com/en-us/solutions/oracle/" target="_blank" rel="noopener noreferrer">Oracle AI Database@Azure</a>, the integrations help businesses turn trusted enterprise data into insights and actions, with the choice, security, and performance mission-critical workloads demand.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://azure.microsoft.com/en-us/solutions/oracle/" target="_blank" rel="noopener noreferrer">Learn more about Oracle on Azure</a></div>
+</div>
+
+
+
+<p class="wp-block-paragraph">With Oracle AI Database@Azure, Oracle and Microsoft have helped customers modernize critical workloads to improve application performance and unlock more value from their enterprise data, by bringing databases closer to applications and connecting enterprise data with Microsoft AI. Oracle AI Database@Azure now spans 33 Azure regions, more than on any other hyperscaler, delivering the performance and flexibility customers need.</p>
+
+
+
+<p class="wp-block-paragraph">At Oracle AI World 2026, we announced new capabilities for Oracle AI Database@Azure including FedRAMP Class D certification coming soon for US Government and public-sector workloads, and Proximity Placement Groups (PPGs) that enable customers to place their database closer to applications—resulting in approximately 50% lower VM-to-Exadata network round-trip latency than deployments without PPG alignment. Now, at Microsoft Ignite 2026, we’re building on that momentum.</p>
+
+
+
+<h2 class="wp-block-heading" id="for-it-operations-monitoring-and-trust-at-every-layer">For IT operations: Monitoring and trust at every layer</h2>
+
+
+
+<p class="wp-block-paragraph">Today, we’re announcing limited preview of <a href="https://learn.microsoft.com/en-us/azure/oracle/overview" target="_blank" rel="noopener noreferrer">Azure Workload Center for Oracle</a>, bringing each workload’s architecture, resources, and dependencies together through a construct called a Workload Virtual Instance (WVI). This significantly reduces the complexity and resources required to manage solutions at the individual component level. Integrations across the Workload Virtual Instance, Azure Monitor Health Models, and the <a href="https://azure.microsoft.com/en-us" target="_blank" rel="noopener noreferrer">Microsoft Azure</a> Copilot Run Oracle agent connect monitoring signals across application, database, and infrastructure layers.</p>
+
+
+
+<p class="wp-block-paragraph">This operational visibility is complemented by agent access controls: Oracle AI Database@Azure supports Microsoft Entra authentication and Oracle Deep Data Security, helping agents stay within users’ existing permissions while database calls run through the managed model context protocol (MCP) server and activity remains auditable across your Oracle database estate.</p>
+
+
+<figure data-wp-context="{&quot;imageId&quot;:&quot;6b055c5a09e5f&quot;}" data-wp-interactive="core/image" data-wp-key="6b055c5a09e5f" class="wp-block-image aligncenter size-full wp-lightbox-container"><img decoding="async" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on--click="actions.showLightbox" data-wp-on--load="callbacks.setButtonStyles" data-wp-on-window--resize="callbacks.setButtonStyles" src="https://azure.microsoft.com/en-us/blog/wp-content/uploads/2026/11/azure_workload_health_upscaled.webp" alt="Azure Workload Center for Oracle showing degraded workload health for the Caldova Oracle workload. Copilot summarizes the issue and identifies database services as the cause, while the Run Oracle agent provides workload-aware troubleshooting and resolution options." class="wp-image-55525 webp-format" srcset="" data-orig-src="https://azure.microsoft.com/en-us/blog/wp-content/uploads/2026/11/azure_workload_health_upscaled.webp"><button
+			class="lightbox-trigger"
+			type="button"
+			aria-haspopup="dialog"
+			aria-label="Enlarge"
+			data-wp-init="callbacks.initTriggerButton"
+			data-wp-on--click="actions.showLightbox"
+			data-wp-style--right="state.imageButtonRight"
+			data-wp-style--top="state.imageButtonTop"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button></figure>
+
+
+
+<p class="wp-block-paragraph">For example, after business users report poor performance from an order processing application, an admin must quickly diagnose and fix the problem. The admin signs in with their existing Microsoft Entra identity and uses <a href="https://blogs.oracle.com/cloud-infrastructure/oracle-multicloud-whats-new-blog" target="_blank" rel="noopener noreferrer">Azure Workload Center for Oracle</a> to get a unified view of workload health including signals across the infrastructure, database, and application layers while Copilot provides a summary highlighting where to focus.</p>
+
+
+
+<p class="wp-block-paragraph">The a [truncated]]]></content:encoded>
+					
+					<wfw:commentRss>https://azure.microsoft.com/en-us/blog/microsoft-and-oracle-bring-agentic-ai-into-flow-of-enterprise-work/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Introducing Azure Catalyst agentic modernization and new AI infrastructure innovations</title>
+		<link>https://azure.microsoft.com/en-us/blog/introducing-azure-catalyst-agentic-modernization-and-new-ai-infrastructure-innovations/</link>
+					<comments>https://azure.microsoft.com/en-us/blog/introducing-azure-catalyst-agentic-modernization-and-new-ai-infrastructure-innovations/#respond</comments>
+		
+		<dc:creator><![CDATA[Jeremy Winter]]></dc:creator>
+		<pubDate>Tue, 17 Nov 2026 18:35:00 +0000</pubDate>
+				<category><![CDATA[AI + machine learning]]></category>
+		<category><![CDATA[Compute]]></category>
+		<category><![CDATA[Containers]]></category>
+		<category><![CDATA[DevOps]]></category>
+		<category><![CDATA[Hybrid + multicloud]]></category>
+		<category><![CDATA[Microsoft Ignite]]></category>
+		<guid isPermaLink="false">https://azure.microsoft.com/en-us/blog/?p=55161</guid>
+
+					<description><![CDATA[<p>At Microsoft Ignite 2026, we’ll showcase what’s possible when models, silicon, and cloud infrastructure converge into a single, co-engineered system. By tuning the entire stack, and introducing new capabilities across isolated execution, networking, context management, and inference efficiency, we’re fundamentally improving agent speed, security, and unit economics.</p>
+<p>The post <a href="https://azure.microsoft.com/en-us/blog/introducing-azure-catalyst-agentic-modernization-and-new-ai-infrastructure-innovations/">Introducing Azure Catalyst agentic modernization and new AI infrastructure innovations</a> appeared first on <a href="https://azure.microsoft.com/en-us/blog">Microsoft Azure Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<details class="wp-block-details has-h-4-font-size is-layout-flow wp-block-details-is-layout-flow" open><summary>The top announcements:</summary>
+<ul class="wp-block-list">
+<li class="wp-block-list-item"><a href="#ai-applications" id="#ai-applications">AKS and Microsoft Foundry</a></li>
+
+
+
+<li class="wp-block-list-item"><a href="#azure-catalyst" id="#azure-catalyst">Azure Catalyst</a></li>
+
+
+
+<li class="wp-block-list-item"><a href="#run-ai" id="#foundry-iq">Windows Server 2028</a></li>
+</ul>
+</details>
+
+
+
+<p class="wp-block-paragraph">As AI continues to reshape how every business builds, operates, and competes, it is rapidly emerging as the defining workload in the cloud. This new class of agents, more demanding, complex, and dynamic than anything before them, is rewriting the rules of cloud infrastructure. Reasoning across multi-agent systems, drawing on rich context, acting in real time, and running continuously, they ask more of every layer of the platform beneath them. This week, we’re introducing innovations across Microsoft Azure that set a new standard for how the cloud powers AI: expanded AI core capabilities in Azure to build what’s next, and <a href="https://aka.ms/Azure-Catalyst" target="_blank" rel="noopener noreferrer"><strong>Azure Catalyst</strong></a>, an intelligent agent-led solution to modernize the apps, data, and infrastructure that already run the business.</p>
+
+
+
+<p class="wp-block-paragraph">For years, we have been reengineering every layer of Azure for the unique demands of AI and proving it on the world’s most advanced AI workloads, from leading frontier models to our own GitHub Copilot, Microsoft Teams, and Microsoft 365. That work has forged Azure into a single, co-engineered system, with models, silicon, and cloud infrastructure tuned as one and value compounding at every layer. This week, we take that even further.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://aka.ms/Azure-Catalyst" target="_blank" rel="noopener noreferrer noreferrer noopener">Explore Azure Catalyst</a></div>
+</div>
+
+
+
+<p class="wp-block-paragraph">New capabilities across isolated execution, agent networking, context management, and inference efficiency deliver faster, more secure agents with better unit economics. Every innovation rests on an open foundation, giving customers the freedom to run open models and open systems everywhere they operate. There is a wave of new AI applications scaling in production, and years of existing apps and data are moving to the cloud, becoming AI-ready. Azure was built for this moment.</p>
+
+
+
+<p class="wp-block-paragraph">Of everything we’re announcing this week, three areas matter most:</p>
+
+
+
+<ol class="wp-block-list">
+<li class="wp-block-list-item"><strong>Building the next generation of AI applications.</strong> Silicon, compute, storage, and networking work as one system across Azure for inference, training, and agents. A new connected path from Microsoft Foundry to Azure Kubernetes Service (AKS) gives you choice in how and where you run AI.</li>
+
+
+
+<li class="wp-block-list-item"><strong>Modernizing apps and data with agents.</strong> Azure Catalyst uses AI agents to modernize applications, data<em>,</em> and infrastructure in a fraction of the time and cost of traditional methods, turning decades of technical debt into the fastest path to AI.</li>
+
+
+
+<li class="wp-block-list-item"><strong>Extending AI wherever you operate.</strong> Azure Local, flex nodes for AKS and Microsoft Foundry extend AI across cloud and distributed environments, governed through Azure Arc. Windows Server 2028, now in public preview, and Windows PCs, bring AI closer to applications, data<em>,</em> and users, providing the choice to meet workload-specific data, performance, regulatory<em>,</em> and cost needs.</li>
+</ol>
+
+
+
+<h2 class="wp-block-heading" id="ai-applications">Build and run the next generation of AI applications</h2>
+
+
+
+<p class="wp-block-paragraph"><a href="https://azure.microsoft.com/en-us/products/ai-foundry/" target="_blank" rel="noopener noreferrer">Microsoft Foundry</a> and <a href="https://azure.microsoft.com/en-us/products/kubernetes-service/" target="_blank" rel="noopener noreferrer">AKS</a> are at the center of how you build and run AI from Foundry’s managed experience, to the deep customization of AKS across models, runtimes, performance, security, and infrastructure.</p>
+
+
+
+<p class="wp-block-paragraph">The connected path between them runs from building AI applications and agents to running them at scale. Open-weight models and agents move seamlessly from Foundry to AKS clusters, deployed from cloud to edge, with consistent infrastructure, security policies, and governance.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://azure.microsoft.com/en-us/products/kubernetes-service/" target="_blank" rel="noopener noreferrer">Learn more about Azure Kubernetes Service (AKS)</a></div>
+</div>
+
+
+
+<p class="wp-block-paragraph">Underneath these experiences, AI applications are challenging infrastructure in new ways: writing and executing code autonomously, connecting dynamically to multiple agents, models, tools, and data, and carrying context across long-running tasks. We&#8217;re advancing the infrastructure to meet each of these demands:</p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item"><strong>Isolation and confidentiality.</strong> With the Agent Sandbox extension for AKS, agent-generated code runs in secure, managed sandboxes with virtual machine (VM)-level isolation for every session, pre-warmed pools for fast startup, and a serverless  [truncated]]]></content:encoded>
+					
+					<wfw:commentRss>https://azure.microsoft.com/en-us/blog/introducing-azure-catalyst-agentic-modernization-and-new-ai-infrastructure-innovations/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		<enclosure url="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/1307382-azurecatalyst" length="136393515" type=""/>
+
+			</item>
+		<item>
+		<title>Microsoft Ignite 2026: What’s new in Azure, the platform purpose-built for AI</title>
+		<link>https://azure.microsoft.com/en-us/blog/microsoft-ignite-2026-whats-new-in-azure-the-platform-purpose-built-for-ai/</link>
+					<comments>https://azure.microsoft.com/en-us/blog/microsoft-ignite-2026-whats-new-in-azure-the-platform-purpose-built-for-ai/#respond</comments>
+		
+		<dc:creator><![CDATA[Arun Ulag]]></dc:creator>
+		<pubDate>Tue, 17 Nov 2026 18:35:00 +0000</pubDate>
+				<category><![CDATA[AI + machine learning]]></category>
+		<category><![CDATA[Databases]]></category>
+		<category><![CDATA[DevOps]]></category>
+		<category><![CDATA[Management and governance]]></category>
+		<category><![CDATA[Microsoft Fabric]]></category>
+		<category><![CDATA[Microsoft Ignite]]></category>
+		<category><![CDATA[Microsoft IQ]]></category>
+		<guid isPermaLink="false">https://azure.microsoft.com/en-us/blog/?p=55004</guid>
+
+					<description><![CDATA[<p>At Microsoft Ignite, we're sharing what's new across every layer of the platform. New capabilities spanning compute, storage, and networking let you run AI at scale with the control of your own infrastructure, without having to build, secure, and operate all of it yourself.</p>
+<p>The post <a href="https://azure.microsoft.com/en-us/blog/microsoft-ignite-2026-whats-new-in-azure-the-platform-purpose-built-for-ai/">Microsoft Ignite 2026: What&#8217;s new in Azure, the platform purpose-built for AI</a> appeared first on <a href="https://azure.microsoft.com/en-us/blog">Microsoft Azure Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<details class="wp-block-details has-h-4-font-size is-layout-flow wp-block-details-is-layout-flow" open><summary>Azure at Microsoft Ignite 2026: The headlines</summary>
+<ul class="wp-block-list">
+<li class="wp-block-list-item"><strong><a href="#ai-core" id="#ai-core">Azure AI core</a></strong>: AI on infrastructure you control.</li>
+
+
+
+<li class="wp-block-list-item"><strong><a href="#azure-cobalt-200" id="#azure-cobalt-200">Azure Cobalt 200</a></strong>: Our highest-performing general-purpose virtual machines (VMs).</li>
+
+
+
+<li class="wp-block-list-item"><strong><a href="#azure-catalyst" id="#azure-catalyst">Azure Catalyst</a></strong>: Agent-led modernization from plan to code.</li>
+
+
+
+<li class="wp-block-list-item"><strong><a href="#agentic-operations" id="#agentic-operations">Agentic cloud operations</a></strong>: Agents that keep your cloud running well.</li>
+
+
+
+<li class="wp-block-list-item"><a href="#azure-horizondb-and-fabric-horizondb" id="#azure-horizondb-and-fabric-horizondb"><strong>Azure HorizonDB </strong>and <strong>Fabric HorizonDB</strong></a>: PostgreSQL for AI apps and analytics.</li>
+
+
+
+<li class="wp-block-list-item"><a href="#fabric-apps" id="#fabric-apps">Fabric apps</a>: Governed apps built on trusted data.</li>
+
+
+
+<li class="wp-block-list-item"><strong><a href="#microsoft-iq-platform" id="#microsoft-iq-platform">Microsoft IQ</a></strong>: Context for every agent.</li>
+</ul>
+</details>
+
+
+
+<p class="wp-block-paragraph">Over the past year, my conversations with customers have changed. A year ago, the question was which model to choose. Now it&#8217;s how to put agents to work on the processes that run the business, and how to trust them to do it.</p>
+
+
+
+<p class="wp-block-paragraph">With the same frontier models available to everyone, the advantage comes from what no one else has: your context. It&#8217;s how your business runs, what your people know, and the systems and data you&#8217;ve spent years building. That&#8217;s your IQ. It&#8217;s your intellectual property, so it should stay yours, and it should work wherever your people and agents do. Our job is to make every layer beneath your agents better, from the infrastructure that runs them and the estate they act on to the apps they power and the business context that tells them how your company works.</p>
+
+
+
+<p class="wp-block-paragraph">Azure is the foundation of <a href="https://www.microsoft.com/en-us/ai/frontier-transformation" target="_blank" rel="noopener noreferrer">Frontier Transformation</a>. We engineer Azure as one system, so the knowledge an agent needs stays governed and the security you use to protect your people extends to the agents acting for them. And because we&#8217;re evolving the open, cloud-native platform you already rely on, you don&#8217;t have to start over.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://azure.microsoft.com/" target="_blank" rel="noopener noreferrer">See what Azure can do for your business</a></div>
+</div>
+
+
+
+<p class="wp-block-paragraph">As Satya Nadella shared at Microsoft Build in June, we added more datacenter capacity in 18 months than in Azure&#8217;s first decade. Combined with more regions than any other cloud provider, you can scale your AI workloads globally with confidence as demand grows.</p>
+
+
+
+<p class="wp-block-paragraph">This week at Microsoft Ignite, we&#8217;re sharing what&#8217;s new across every layer of the platform. New capabilities spanning compute, storage, and networking let you run AI at scale with the control of your own infrastructure, without having to build, secure, and operate all of it yourself. <a href="https://aka.ms/azure-catalyst" target="_blank" rel="noopener noreferrer"><strong>Azure Catalyst</strong></a> brings agent-led modernization together in one experience from estate to code.</p>
+
+
+
+<p class="wp-block-paragraph">PostgreSQL now has two homes at Microsoft: <a href="https://azure.microsoft.com/en-us/products/horizondb" target="_blank" rel="noopener noreferrer"><strong>Azure HorizonDB</strong></a>, generally available for mission-critical scale, and the new <a href="https://aka.ms/Fabric-HorizonDB" target="_blank" rel="noopener noreferrer"><strong>Fabric HorizonDB</strong></a>, which connects your PostgreSQL apps to analytics and AI. And <a href="https://www.microsoft.com/en-us/microsoft-fabric/features/rayfin" target="_blank" rel="noopener noreferrer"><strong>Fabric apps</strong></a>, now generally available, let your teams turn trusted enterprise data into working apps.</p>
+
+
+
+<p class="wp-block-paragraph">We&#8217;re also introducing <a href="https://www.microsoft.com/ai/microsoft-iq" target="_blank" rel="noopener noreferrer"><strong>Microsoft IQ</strong></a>, the enterprise context management platform that helps you build your own IQ and put it to work in every app and agent. It also gives your teams a path on Azure to build, run, and continuously improve those agents.</p>
+
+
+
+<h2 class="wp-block-heading" id="run-ai-at-scale-with-the-control-you-choose">Run AI at scale with the control you choose</h2>
+
+
+
+<p class="wp-block-paragraph">It starts with the infrastructure that runs your agents. As they take on real work, you should be able to run them on your terms, with your choice of models, your data, and where they run. That control lets you find the right balance of performance and cost for each workload and adapt as models and needs change.</p>
+
+
+
+<p class="wp-block-paragraph">But control comes with real work and risk. Platform teams end up assembling and operating much of the AI stack themselves and stretching GPUs to keep up with shifting demand. Agents that reach models, tools, and data and run code on their own open new security gaps, putting sensitive data at risk.</p>
+
+
+
+<p class="wp-block-paragraph">Teams want  [truncated]]]></content:encoded>
+					
+					<wfw:commentRss>https://azure.microsoft.com/en-us/blog/microsoft-ignite-2026-whats-new-in-azure-the-platform-purpose-built-for-ai/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Azure Cobalt 200 VMs now available, proven on real workloads and built for the agentic era</title>
+		<link>https://azure.microsoft.com/en-us/blog/azure-cobalt-200-vms-now-available-proven-on-real-workloads-and-built-for-the-agentic-era/</link>
+					<comments>https://azure.microsoft.com/en-us/blog/azure-cobalt-200-vms-now-available-proven-on-real-workloads-and-built-for-the-agentic-era/#respond</comments>
+		
+		<dc:creator><![CDATA[Rani Borkar]]></dc:creator>
+		<pubDate>Tue, 17 Nov 2026 18:20:00 +0000</pubDate>
+				<category><![CDATA[Compute]]></category>
+		<category><![CDATA[Databases]]></category>
+		<category><![CDATA[Hybrid + multicloud]]></category>
+		<category><![CDATA[High-performance computing]]></category>
+		<category><![CDATA[Microsoft Ignite]]></category>
+		<guid isPermaLink="false">https://azure.microsoft.com/en-us/blog/?p=55002</guid>
+
+					<description><![CDATA[<p>Azure Cobalt 200 VMs bring improved performance and efficiency to cloud-native applications, databases, developer tools, and agentic AI workloads.</p>
+<p>The post <a href="https://azure.microsoft.com/en-us/blog/azure-cobalt-200-vms-now-available-proven-on-real-workloads-and-built-for-the-agentic-era/">Azure Cobalt 200 VMs now available, proven on real workloads and built for the agentic era</a> appeared first on <a href="https://azure.microsoft.com/en-us/blog">Microsoft Azure Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">Today at Microsoft Ignite 2026, we&#8217;re announcing the <strong>general availability of <a href="https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/cobalt-overview" target="_blank" rel="noopener noreferrer">Azure Cobalt 200-based virtual machines (VMs)</a></strong>. </p>
+
+
+
+<p class="wp-block-paragraph">Cobalt 200 VMs deliver <strong>up to 50% better performance than Cobalt 100</strong> and are now available in 14 regions, expanding to <strong>23 regions </strong>by the end of 2026. Built for cloud-native, data-intensive, and agentic AI workloads, Cobalt 200 VMs will represent <strong>a significant share of new Azure Compute capacity</strong> beginning in 2027.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/cobalt-overview" target="_blank" rel="noopener noreferrer">Explore Cobalt 200 VM sizes and deployment guidance</a></div>
+</div>
+
+
+
+<p class="wp-block-paragraph">For customers like <strong>Amadeus, Databricks, InMobi, OpenAI, and Snowflake</strong>, Cobalt 200 VMs deliver improved performance and efficiency over Cobalt 100 VMs. As a result, customers can deliver faster search results, more responsive database queries, and run their services at higher utilization with fewer cores.</p>
+
+
+
+<div class="alignright wp-block-bloginabox-theme-kicker" data-bi-an="Kicker Right">
+	<div class="kicker">
+		<h2 class="kicker__title">
+			Cobalt 200 VMs deliver up to 50% better performance than Cobalt 100		</h2>
+		<p class="kicker__content">
+							<a
+					href="https://azure.microsoft.com/en-us/blog/new-azure-cobalt-200-vms-deliver-50-performance-improvement-fully-optimized-for-modern-agentic-ai-workloads/"
+					class="kicker__link"
+					target="_blank" rel="noopener noreferrer"				>
+						Read the blog							›</a>
+					</p>
+	</div>
+</div>
+
+
+
+<p class="wp-block-paragraph">Cobalt 200&#8217;s performance and efficiency gains reflect our systems approach to infrastructure design, which co-optimizes silicon, software, networking, power, and rack infrastructure. Cobalt 200 VMs are also designed for agentic AI workflows, including agent sandboxes, file search, code compilation, and tool execution, where higher per-core performance can help reduce latency.</p>
+
+
+
+<p class="wp-block-paragraph">As customer need for high-performance and low-latency compute increases, we’re adding new virtual machine types to bring the price-performance benefits of Cobalt to additional workloads: </p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item">Mpsv4 for high memory workloads.</li>
+
+
+
+<li class="wp-block-list-item">Lpsv5 for workloads needing fast access to large datasets.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">With <a href="https://azure.microsoft.com/en-us/products/virtual-machines/boost" target="_blank" rel="noopener noreferrer">Microsoft Azure Boost</a> included in every Cobalt 200 VM, customers get the latest accelerated network and remote storage performance in <a href="http://azure.microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft Azure</a>.</p>
+
+
+
+<figure class="wp-block-bloginabox-theme-ump-embed wp-block-msx-ump-embed" class="wp-block-bloginabox-theme-ump-embed" data-bi-mto="true" role="presentation">
+	<div class="wp-block-embed__wrapper">
+		<universal-media-player id="ump-6b055c5a215e9"></universal-media-player>
+		<script type="module">
+			const currentTheme =
+				localStorage.getItem('blogInABoxCurrentTheme') ||
+				(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+			// Modify player theme based on localStorage value.
+			let options = {"autoplay":false,"hideControls":null,"language":"en-us","loop":false,"partnerName":"cloud-blogs","poster":"https:\/\/cdn-dynmedia-1.microsoft.com\/is\/image\/microsoftcorp\/1309848-cobalt_tbmnl_en-us?wid=1280","title":"1309848-cobalt","sources":[{"src":"https:\/\/cdn-dynmedia-1.microsoft.com\/is\/content\/microsoftcorp\/1309848-cobalt-0x1080-6439k","type":"video\/mp4","quality":"HQ"},{"src":"https:\/\/cdn-dynmedia-1.microsoft.com\/is\/content\/microsoftcorp\/1309848-cobalt-0x720-3266k","type":"video\/mp4","quality":"HD"},{"src":"https:\/\/cdn-dynmedia-1.microsoft.com\/is\/content\/microsoftcorp\/1309848-cobalt-0x540-2160k","type":"video\/mp4","quality":"SD"},{"src":"https:\/\/cdn-dynmedia-1.microsoft.com\/is\/content\/microsoftcorp\/1309848-cobalt-0x360-958k","type":"video\/mp4","quality":"LO"}],"ccFiles":[{"url":"https:\/\/azure.microsoft.com\/en-us\/blog\/wp-json\/bloginabox\/v1\/get-captions?url=https%3A%2F%2Fwww.microsoft.com%2Fcontent%2Fdam%2Fmicrosoft%2Fbade%2Fvideos%2Fproducts-and-services%2Fen-us%2Fazure%2F1309848-cobalt%2F1309848-cobalt_cc_en-us.ttml","locale":"en-us","ccType":"TTML"}],"downloadableFiles":[{"url":"https:\/\/cdn-dynmedia-1.microsoft.com\/is\/content\/microsoftcorp\/1309848-cobalt_transcript_en-us","locale":"en-us","mediaType":"transcript"},{"url":"https:\/\/cdn-dynmedia-1.microsoft.com\/is\/content\/microsoftcorp\/1309848-cobalt_audio_en-us","locale":"en-us","mediaType":"audio"}]};
+
+			if (currentTheme) {
+				options.playButtonTheme = currentTheme;
+			}
+
+			document.addEventListener('DOMContentLoaded', () => {
+				ump("ump-6b055c5a215e9", options);
+			});
+		</script>
+	</div>
+	</figure>
+
+
+
+<h2 class="wp-block-heading" id="proven-on-critical-customer-workloads">Proven on critical customer workloads</h2>
+
+
+
+<p class="wp-block-paragraph">Our benchmarking for Cobalt 200 VMs showed significant performance increases for a wide variety of workloads. We observed up to 1.5 times increased performance for web serving workloads, up to 1.6 times for Java-based workloads, up to 1.5 times for AI agent tool execution workloads, and 1.9 times for database workloads over Cobalt 100.</p>
+
+
+
+<p class="wp-bl [truncated]]]></content:encoded>
+					
+					<wfw:commentRss>https://azure.microsoft.com/en-us/blog/azure-cobalt-200-vms-now-available-proven-on-real-workloads-and-built-for-the-agentic-era/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+				<dc:creator><![CDATA[Arun Kishan]]></dc:creator>
+	</item>
+		<item>
+		<title>Continuous improvement comes to Microsoft Foundry</title>
+		<link>https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/</link>
+					<comments>https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/#respond</comments>
+		
+		<dc:creator><![CDATA[Tina Schuchman]]></dc:creator>
+		<pubDate>Tue, 17 Nov 2026 18:15:00 +0000</pubDate>
+				<category><![CDATA[AI + machine learning]]></category>
+		<category><![CDATA[DevOps]]></category>
+		<category><![CDATA[Microsoft Ignite]]></category>
+		<category><![CDATA[Microsoft IQ]]></category>
+		<guid isPermaLink="false">https://azure.microsoft.com/en-us/blog/?p=55141</guid>
+
+					<description><![CDATA[<p>Discover how continuous improvement in Microsoft Foundry helps organizations evaluate, optimize, and improve agents over time while keeping teams in control.</p>
+<p>The post <a href="https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/">Continuous improvement comes to Microsoft Foundry</a> appeared first on <a href="https://azure.microsoft.com/en-us/blog">Microsoft Azure Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<figure class="wp-block-bloginabox-theme-ump-embed wp-block-msx-ump-embed" class="wp-block-bloginabox-theme-ump-embed" data-bi-mto="true" role="presentation">
+	<div class="wp-block-embed__wrapper">
+		<universal-media-player id="ump-6b055c5a28d1b"></universal-media-player>
+		<script type="module">
+			const currentTheme =
+				localStorage.getItem('blogInABoxCurrentTheme') ||
+				(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+			// Modify player theme based on localStorage value.
+			let options = {"autoplay":false,"hideControls":null,"language":"en-us","loop":false,"partnerName":"cloud-blogs","poster":"https:\/\/cdn-dynmedia-1.microsoft.com\/is\/image\/microsoftcorp\/1307367-microsoftfoundry2_tbmnl_en-us?wid=1280","title":"1307367-microsoftfoundry2","sources":[{"src":"https:\/\/cdn-dynmedia-1.microsoft.com\/is\/content\/microsoftcorp\/1307367-microsoftfoundry2-0x1080-6439k","type":"video\/mp4","quality":"HQ"},{"src":"https:\/\/cdn-dynmedia-1.microsoft.com\/is\/content\/microsoftcorp\/1307367-microsoftfoundry2-0x720-3266k","type":"video\/mp4","quality":"HD"},{"src":"https:\/\/cdn-dynmedia-1.microsoft.com\/is\/content\/microsoftcorp\/1307367-microsoftfoundry2-0x540-2160k","type":"video\/mp4","quality":"SD"},{"src":"https:\/\/cdn-dynmedia-1.microsoft.com\/is\/content\/microsoftcorp\/1307367-microsoftfoundry2-0x360-958k","type":"video\/mp4","quality":"LO"}]};
+
+			if (currentTheme) {
+				options.playButtonTheme = currentTheme;
+			}
+
+			document.addEventListener('DOMContentLoaded', () => {
+				ump("ump-6b055c5a28d1b", options);
+			});
+		</script>
+	</div>
+	</figure>
+
+
+
+<p class="wp-block-paragraph">New models ship every few weeks, and your customers ask questions no one planned for. The agents that learn from all of it pull ahead. That’s continuous improvement, and today at Microsoft Ignite we’re bringing it to <strong><a href="https://ai.azure.com/home" target="_blank" rel="noopener noreferrer">Microsoft Foundry</a></strong>. To unlock it, you need an end-to-end system where you build agents, give them context, run them, govern them, and improve them over time.</p>
+
+
+
+<p class="wp-block-paragraph">And as part of the new <a href="https://www.microsoft.com/en-us/ai/microsoft-iq" id="https://www.microsoft.com/en-us/ai/microsoft-iq" target="_blank" rel="noopener noreferrer">Microsoft IQ</a>, Foundry accomplishes two things that only Microsoft can deliver: your unique intelligence stays your advantage, and your agents keep getting better the longer they run.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://ai.azure.com/home" target="_blank" rel="noopener noreferrer">See what&#8217;s new in Foundry today</a></div>
+</div>
+
+
+
+<p class="wp-block-paragraph">Out of the box, an AI model is exactly the same for you as it is for anyone else. Three things help you improve your agents as your teams accomplish real work.</p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item"><strong>Agents on Foundry get better the more you use them.</strong> Foundry lets you feed agent traces and user input back into the system, creating a continuous learning loop that improves the performance of the system over time.</li>
+
+
+
+<li class="wp-block-list-item"><strong>Foundry looks across every run for ways to make your agents better.</strong> The system finds and tests improvements; shows you how each one trades off across quality, speed, and cost; and then you decide what ships.</li>
+
+
+
+<li class="wp-block-list-item"><strong>Foundry provides a range of other capabilities that allow you to improve progressively,</strong> from lightweight skill improvements to agent configuration, all the way to training model weights using your data.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">Underneath it all, you have <a href="https://github.com/" target="_blank" rel="noreferrer noopener">GitHub</a>, where you build your agents, and <a href="https://azure.microsoft.com/en-us/products/ai-foundry" target="_blank" rel="noreferrer noopener">Foundry</a>, where you run and supervise them as they continuously improve. And they both run on Azure as <a href="https://blogs.microsoft.com/blog/2026/06/02/ai-alone-wont-change-your-business-the-system-running-it-will/" target="_blank" rel="noopener noreferrer">one system</a> that operates on a global scale.<a id="_msocom_1" target="_blank" rel="noopener noreferrer"></a><a id="_msocom_12" target="_blank" rel="noopener noreferrer"></a></p>
+
+
+
+<h2 class="wp-block-heading" id="github-building-intelligent-agents">GitHub: Building intelligent agents</h2>
+
+
+
+<p class="wp-block-paragraph">Before you improve an agent, you need to build it. Say you want an agent to automate your supply chain processes, and you want that agent to be available in Teams—where your team already works. Just explain what you’re trying to do in clear, everyday language, and <a href="https://github.com/features/copilot" target="_blank" rel="noreferrer noopener">GitHub Copilot</a> writes most, if not all, of the code. And with <a href="https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/" target="_blank" rel="noreferrer noopener">GitHub Copilot Fusion</a> under the hood, it routes and orchestrates models while you’re building, so you don’t have to. That means you get the right model for the job, while balancing performance, latency, and cost.</p>
+
+
+
+<h2 class="wp-block-heading" id="foundry-running-and-continuously-improving-agents-at-scale">Foundry: Running and continuously improving agents at scale</h2>
+
+
+
+<p class="wp-block-paragraph">Once you’ve built your agent, you need a place to run it, govern it, and improve it for all your teams, in every region, alongside hundreds or thousands of other agents.</p>
+
+
+
+<p class="wp-block-paragraph"><a href="http [truncated]]]></content:encoded>
+					
+					<wfw:commentRss>https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		<enclosure url="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/1307367-microsoftfoundry2" length="397126233" type=""/>
+
+			</item>
+		<item>
+		<title>Introducing the new Microsoft IQ: Putting your organization’s intelligence to work in every agent</title>
+		<link>https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/</link>
+					<comments>https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/#respond</comments>
+		
+		<dc:creator><![CDATA[Yitzhak Kesselman]]></dc:creator>
+		<pubDate>Tue, 17 Nov 2026 18:05:00 +0000</pubDate>
+				<category><![CDATA[AI + machine learning]]></category>
+		<category><![CDATA[DevOps]]></category>
+		<category><![CDATA[Copilot]]></category>
+		<category><![CDATA[Microsoft Fabric]]></category>
+		<category><![CDATA[Microsoft Ignite]]></category>
+		<category><![CDATA[Microsoft IQ]]></category>
+		<guid isPermaLink="false">https://azure.microsoft.com/en-us/blog/?p=55320</guid>
+
+					<description><![CDATA[<p>Today, we are announcing Microsoft IQ, the enterprise context management platform that helps organizations create their own IQ. What sets an organization apart is everything around the model: its own intelligence.</p>
+<p>The post <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/">Introducing the new Microsoft IQ: Putting your organization&#8217;s intelligence to work in every agent</a> appeared first on <a href="https://azure.microsoft.com/en-us/blog">Microsoft Azure Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<details class="wp-block-details has-h-4-font-size is-layout-flow wp-block-details-is-layout-flow" open><summary>In this article</summary>
+<ul class="wp-block-list">
+<li class="wp-block-list-item"><a href="#work-iq" id="#work-iq">What&#8217;s new in Work IQ</a></li>
+
+
+
+<li class="wp-block-list-item"><a href="#fabric-iq" id="#fabric-iq">What&#8217;s new in Fabric IQ</a></li>
+
+
+
+<li class="wp-block-list-item"><a href="#foundry-iq" id="#foundry-iq">What&#8217;s new in Foundry IQ</a></li>
+
+
+
+<li class="wp-block-list-item"><a href="#web-iq">What&#8217;s new in Web IQ</a></li>
+
+
+
+<li class="wp-block-list-item"><a href="#aemo-uses-microsoft-iq">Customer spotlight: AEMO uses Microsoft IQ</a></li>
+</ul>
+</details>
+
+
+
+<p class="wp-block-paragraph">Microsoft believes that AI should enhance your advantage, not erode it. Every organization has access to the same frontier models, and those models improve every few weeks. Today, we are announcing <a href="https://aka.ms/microsoftiq" target="_blank" rel="noreferrer noopener"><strong>Microsoft IQ</strong></a>, the enterprise context management platform that helps organizations create their own IQ. What sets an organization apart is everything around the model: its own intelligence. That includes how its people and teams work, its business processes, institutional knowledge across the enterprise, and data stored across their systems of record including customer relationship management systems.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://aka.ms/microsoftiq" target="_blank" rel="noopener noreferrer">Learn more about Microsoft IQ</a></div>
+</div>
+
+
+
+<p class="wp-block-paragraph">This intelligence is the organization’s own IQ. It is what gives the organization a unique advantage; it&#8217;s what makes an agent useful and trusted, under the rules of the organization.</p>
+
+
+
+<p class="wp-block-paragraph">Microsoft IQ enables teams to curate and activate their know-how, data, skills, and tools, and create unique AI advantage that compounds over time. It brings together Work IQ, Fabric IQ, Foundry IQ, and Web IQ, in addition to more than 350 third-party connectors to create an organization’s enterprise context.</p>
+
+
+
+<p class="wp-block-paragraph">Organizations can now make this context and expertise reusable through new <strong>business</strong> <strong>plugins</strong>. Business plugins let you curate and govern the context, skills, and authoritative sources every agent inherits, allowing teams to capture their unique business processes and know-how in their agentic workflows, and creating their own IQ. A manufacturer can give agents what they need for predictive maintenance and quality root-cause analysis. An energy operator can ground control-room incident investigations. A supply chain team can speed up supplier risk and disruption response. In every case, one governed plugin is reused across agents, teams, and platforms. Users can build business plugins wherever they run their agents including Microsoft Copilot, GitHub Copilot, Microsoft Foundry through Model Context Protocol (MCP), and third-party assistants including ChatGPT and Claude marketplaces.</p>
+
+
+
+<p class="wp-block-paragraph">As part of Microsoft IQ, we are also bringing together capabilities from Microsoft Fabric, Foundry, and GitHub to build, run, and continuously improve the intelligence that makes agents work, and to distribute that intelligence across the organization. The platform is open and model-diverse by design, built for heterogeneous enterprise environments. That means improvements made for one business process become assets your organization can apply to the next update.</p>
+
+
+
+<h2 class="wp-block-heading" id="how-microsoft-iq-turns-intelligence-into-advantage">How Microsoft IQ turns intelligence into advantage</h2>
+
+
+
+<p class="wp-block-paragraph">Microsoft IQ brings together four complementary IQs: <a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/" target="_blank" rel="noreferrer noopener"><strong>Work IQ</strong></a> provides context on how people work, including documents, conversations, collaboration, and past decisions. <a href="https://learn.microsoft.com/en-us/fabric/iq/overview" target="_blank" rel="noreferrer noopener"><strong>Fabric IQ</strong></a> provides the state of the business through governed data, business entities, relationships, and rules. <a href="https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/what-is-foundry-iq?tabs=portal" target="_blank" rel="noreferrer noopener"><strong>Foundry IQ</strong></a> provides curated institutional knowledge, including policies and authoritative documents. <a href="https://learn.microsoft.com/en-us/web-iq/overview" target="_blank" rel="noreferrer noopener"><strong>Web IQ</strong></a> provides timely, relevant context from the web, including news, images, and videos.</p>
+
+
+
+<h3 class="wp-block-heading" id="work-iq">What’s new in Work IQ</h3>
+
+
+
+<p class="wp-block-paragraph"><a href="https://www.microsoft.com/en/copilot/features/work-iq" target="_blank" rel="noopener noreferrer">Work IQ</a> moves from understanding work to getting it done. <strong>Business Applications in Work IQ</strong>, now generally available, adds customer relationship management (CRM) and enterprise resource planning (ERP) records to the grounding set, giving agents a fuller view of the business. <strong>Retrieve</strong>, now generally available, returns grounded, permission-trimmed Microsoft 365 content and federated connector data in a single call. <strong>Real-time meeting context</strong>, now generally available, enables agents to act on meeting content while the meeting is still in progress.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Long-running tasks and agent-to-agent support</strong>, [truncated]]]></content:encoded>
+					
+					<wfw:commentRss>https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Building the next generation of multimodal AI experiences with fal in Microsoft Foundry</title>
+		<link>https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/building-the-next-generation-of-multimodal-ai-experiences-with-fal-in-microsoft-/4570032</link>
+					<comments>https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/building-the-next-generation-of-multimodal-ai-experiences-with-fal-in-microsoft-/4570032#respond</comments>
+		
+		<dc:creator><![CDATA[Naomi Moneypenny]]></dc:creator>
+		<pubDate>Fri, 06 Nov 2026 19:08:44 +0000</pubDate>
+				<category><![CDATA[AI + machine learning]]></category>
+		<guid isPermaLink="false">https://azure.microsoft.com/en-us/blog/?p=54939</guid>
+
+					<description><![CDATA[<p>Microsoft and fal partner to expand video generation in Microsoft Foundry, helping developers bring creative ideas into enterprise applications.</p>
+<p>The post <a href="https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/building-the-next-generation-of-multimodal-ai-experiences-with-fal-in-microsoft-/4570032">Building the next generation of multimodal AI experiences with fal in Microsoft Foundry</a> appeared first on <a href="https://azure.microsoft.com/en-us/blog">Microsoft Azure Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">Microsoft and fal partner to expand video generation in Microsoft Foundry, helping developers bring creative ideas into enterprise applications.<br>Video workloads do not all start with the same input or aim for the same result. A creative team might explore several interpretations of a written brief. A retailer might turn an approved product image into a short motion concept. An application developer might combine image generation and video generation into a workflow that takes an idea from description to frame to scene. Each scenario brings different requirements for visual quality, motion, creative control, turnaround time, and cost. All of this means that a multi-model solution is necessary to realize a full vision.</p>
+
+
+
+<p class="wp-block-paragraph">Today, Microsoft and fal are helping developers find the right tools for their workloads. We are excited to announce that Kling, LTX, and MiniMax video models are rolling out to in public preview in Microsoft Foundry through our new partnership with fal. Available as a first-party Azure service, these text-to-video and image-to-video options give creators and developers more ways to utilize video generation with the experiences they want to build.</p>
+
+
+
+<p class="wp-block-paragraph">The partnership expands the choices available in Microsoft Foundry while bringing video into the broader platform developers use to build AI applications. The goal is to let developers pick the right model for each step of an experience, then connect those steps into a working application.</p>
+
+
+
+<p class="wp-block-paragraph">“fal has seen incredible adoption this year alone with generative media across all industries from advertising to marketing to gaming. Partnering with Microsoft allows both of us to truly enable the wide creative ecosystem and ensure that all AI solutions that lean on generative media, becomes a multi-model one.” &#8211; Burkay Gur, Cofounder</p>
+
+
+
+<p class="wp-block-paragraph">Bringing fal’s generative media focus to enterprise builders<br>fal is the full stack for generative media, built for creators and developers, with APIs for over 1500 models across image, video, audio, 3D, and generative worlds. As a truly encapsulating platform, fal provides inference, training, and infrastructure to run generative media workloads in production, while also providing innovative post trained models that pushes the boundaries on speed and quality.</p>
+
+
+
+<p class="wp-block-paragraph">That specialization matters because generative media is both a creative and an engineering workload. A compelling demo is only the start. Production applications also need to handle real traffic, scale with demand, and balance output quality, latency, and cost.</p>
+
+
+
+<p class="wp-block-paragraph">Through this partnership, developers will be able to access a selected set of video models in Microsoft Foundry, served by fal and sourced from the companies that build them. The initial portfolio gives teams a choice of models for different creative requirements instead of relying on one model for every task, with more models planned over time.</p>
+
+
+
+<p class="wp-block-paragraph">A portfolio for different video experiences<br>The initial portfolio spans Kling v3 Pro, LTX-2.5 Fast, LTX-2.5 Pro, MiniMax H3 Max, and MiniMax H3 Max Turbo. These models give developers different starting points for generating video from text and animating existing images. A team rapidly exploring creative concepts may prioritize speed and cost, while a team producing fewer, higher-fidelity assets may weigh output quality more heavily. Whether an application starts from text or an existing image, and what it needs in output quality and cost, also shapes the choice.</p>
+
+
+
+<p class="wp-block-paragraph">Kling: From a still image to a directed scene</p>
+
+
+
+<p class="wp-block-paragraph">Kling v3 Pro combines cinematic visuals and fluid motion with native audio generation and custom element support. Its image-to-video capabilities give developers control over how a starting image becomes a moving scene, a fit for applications that prioritize visual direction and motion.</p>
+
+
+
+<p class="wp-block-paragraph">LTX: One model for fast drafts, one for final output</p>
+
+
+
+<p class="wp-block-paragraph">For rapid iteration and previews, LTX-2.5 Fast is the speed-optimized option; for high-fidelity final output, LTX-2.5 Pro is the quality-optimized option. Both support text-to-video and image-to-video generation with synchronized audio.</p>
+
+
+
+<p class="wp-block-paragraph">MiniMax: Another approach to video generation</p>
+
+
+
+<p class="wp-block-paragraph">MiniMax H3 Max and MiniMax H3 Max Turbo are post-trained variants of MiniMax H3 focused on prompt adherence, aesthetics, and inference performance. For developers, they provide additional options to evaluate against an application’s creative brief, quality requirements, and performance needs.</p>
+
+
+
+<p class="wp-block-paragraph">“When building with video models, the details matter: how closely the output follows your prompt, how well it preserves your reference images/videos/audios and how quickly you can try another idea. Kling gives developers control over detailed reference to video generation. LTX offers fast iteration and high-quality output through its Fast and Pro variants. H3 Max brings fal&#8217;s post-training and inference optimizations to improve quality and speed. Having these models available through Microsoft Foundry gives developers more flexibility to choose what works best for the application they are building.&#8221; &#8211; Gökay Aydoğan, Creative Engineer</p>
+
+
+
+<p class="wp-block-paragraph">Built for enterprise video workloads<br>Bringing video generation into an enterprise application requires more than choosing the right model. Teams need a platform where they can evaluate different options, build with the models that fit their requirements, and operate those experiences alongside the rest of their applic [truncated]]]></content:encoded>
+					
+					<wfw:commentRss>https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/building-the-next-generation-of-multimodal-ai-experiences-with-fal-in-microsoft-/4570032/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Stop treating agents as one-off projects and start running them as a continuous discipline</title>
+		<link>https://azure.microsoft.com/en-us/blog/stop-treating-agents-as-one-off-projects-and-start-running-them-as-a-continuous-discipline/</link>
+					<comments>https://azure.microsoft.com/en-us/blog/stop-treating-agents-as-one-off-projects-and-start-running-them-as-a-continuous-discipline/#respond</comments>
+		
+		<dc:creator><![CDATA[Cyril Belikoff]]></dc:creator>
+		<pubDate>Thu, 05 Nov 2026 17:00:00 +0000</pubDate>
+				<category><![CDATA[AI + machine learning]]></category>
+		<guid isPermaLink="false">https://azure.microsoft.com/en-us/blog/?p=54831</guid>
+
+					<description><![CDATA[<p>AI must be selected, architected, and managed as a continuous business discipline, not a series of isolated projects.</p>
+<p>The post <a href="https://azure.microsoft.com/en-us/blog/stop-treating-agents-as-one-off-projects-and-start-running-them-as-a-continuous-discipline/">Stop treating agents as one-off projects and start running them as a continuous discipline</a> appeared first on <a href="https://azure.microsoft.com/en-us/blog">Microsoft Azure Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">Transformation begins at the line between an experiment that works and a capability the business depends on. Scaling intelligence requires production capabilities built for sustained business performance, with investments prioritized against financial thresholds, tied to measurable outcomes, instrumented for unit costs, and owned by accountable leaders. This approach manages cost, performance, governance, and reliability as adoption grows.</p>
+
+
+
+<p class="wp-block-paragraph">A new IDC InfoBrief, sponsored by Microsoft, <a href="https://marketingassets.microsoft.com/adobe/assets/urn:aaid:aem:5d3ad527-11a7-4c8a-a95c-0b37adcbbb4b/original/as/Analyst-Report-Scaling-AI-Without-Scaling-Costs.pdf" target="_blank" rel="noreferrer noopener">Scaling AI Without Scaling Costs</a>*, on how organizations are funding and governing AI, shows both the urgency of that shift and the friction holding it back. </p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://marketingassets.microsoft.com/adobe/assets/urn:aaid:aem:5d3ad527-11a7-4c8a-a95c-0b37adcbbb4b/original/as/Analyst-Report-Scaling-AI-Without-Scaling-Costs.pdf" target="_blank" rel="noopener noreferrer">Read the IDC InfoBrief</a></div>
+</div>
+
+
+
+<blockquote class="wp-block-quote has-quote-default-font-size is-layout-flow wp-block-quote-is-layout-flow">
+<p class="wp-block-paragraph">Nearly 90% of organizations apply financial thresholds before<br>approving AI initiatives.</p>
+<cite><a href="https://marketingassets.microsoft.com/adobe/assets/urn:aaid:aem:5d3ad527-11a7-4c8a-a95c-0b37adcbbb4b/original/as/Analyst-Report-Scaling-AI-Without-Scaling-Costs.pdf" target="_blank" rel="noreferrer noopener">Scaling AI Without Scaling Costs</a></cite></blockquote>
+
+
+
+<p class="wp-block-paragraph">Only 17% of organizations build models to project how costs scale in production—even as about 78% prioritize cost efficiency when selecting a model. 86% expect financial results within six to 24 months—roughly one budget cycle to show something real. Together, those findings point to a new operating reality: AI must be selected, architected, and managed as a continuous business discipline, not a series of isolated projects. The market has moved from proving it works to proving it can scale economically.</p>
+
+
+
+<h2 class="wp-block-heading" id="four-questions-to-answer-before-your-next-funding-decisionrun-each-candidate-through-four-questions-that-follow-a-scaled-workload-s-life-fund-it-run-it-improve-it-prove-it">Four questions to answer before your next funding decision</h2>
+
+
+
+<p class="wp-block-paragraph" id="four-questions-to-answer-before-your-next-funding-decisionrun-each-candidate-through-four-questions-that-follow-a-scaled-workload-s-life-fund-it-run-it-improve-it-prove-it">Run each candidate through four questions that follow a scaled workload&#8217;s life: fund it, run it, improve it, prove it.</p>
+
+
+
+<h3 class="wp-block-heading" id="1-how-can-we-predict-and-track-costs-at-scale">1. How can we predict and track costs at scale?</h3>
+
+
+
+<p class="wp-block-paragraph">A pilot proves the idea, rarely the economics: only 17% of organizations model how costs scale in production. Before you fund, project usage at 3 times and 10 times, and make sure spend traces to an application, team, and agent. <a href="https://devblogs.microsoft.com/foundry/build-2026-foundry-models/" target="_blank" rel="noopener noreferrer">Compare models on cost, quality, and latency</a>, and commit steady demand to reserved capacity. If cost rises with usage while value flattens, you&#8217;ve found an architecture problem while it&#8217;s still cheap to fix.</p>
+
+
+
+<h3 class="wp-block-heading" id="2-how-can-we-optimize-model-costs-for-every-request">2. How can we optimize model costs for every request?</h3>
+
+
+
+<p class="wp-block-paragraph">One successful outcome can take a dozen model requests, so what matters is cost per outcome, not price per token. Ask:</p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item">Is routine work like classification paying frontier-model prices?</li>
+
+
+
+<li class="wp-block-list-item">Are the same instructions reprocessed on every turn?</li>
+
+
+
+<li class="wp-block-list-item">Is work that can wait running at a lower-cost tier?</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">The goal is the right model for every request, with evaluation proving quality held.</p>
+
+
+
+<h3 class="wp-block-heading" id="3-how-can-we-continuously-improve-agent-performance-and-costs">3. How can we continuously improve agent performance and costs?</h3>
+
+
+
+<p class="wp-block-paragraph">Retrieved documents, tool definitions, instructions, and history are often an agent&#8217;s largest cost and a common cause of weak answers. Check:</p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item">Does the agent retrieve the relevant passage or the whole document?</li>
+
+
+
+<li class="wp-block-list-item">Does it carry every tool description on every turn?</li>
+
+
+
+<li class="wp-block-list-item">Is the same procedure copied into every agent?</li>
+
+
+
+<li class="wp-block-list-item">Does it replay full transcripts instead of remembering what matters?</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph"><a href="https://azure.microsoft.com/en-us/blog/the-economics-of-agent-optimization-context-engineering-for-enterprise-ai-agents/">Trimming what the model doesn&#8217;t need lowers cost without hurting quality.</a></p>
+
+
+
+<h3 class="wp-block-heading" id="4-how-can-we-control-spending-and-measure-roi">4. How can we control spending and measure ROI?</h3>
+
+
+
+<p class="wp-block-paragraph">A budget alert reports the fire after it starts; a runaway agent needs a circuit breaker on every request. Cost must tie to the outcome the business pays for, such as a resolved case, so leaders can opti [truncated]]]></content:encoded>
+					
+					<wfw:commentRss>https://azure.microsoft.com/en-us/blog/stop-treating-agents-as-one-off-projects-and-start-running-them-as-a-continuous-discipline/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+		<item>
+		<title>Designing Azure silicon on Azure silicon: EDA workloads on Cobalt 200</title>
+		<link>https://azure.microsoft.com/en-us/blog/designing-azure-silicon-on-azure-silicon-eda-workloads-on-cobalt-200/</link>
+					<comments>https://azure.microsoft.com/en-us/blog/designing-azure-silicon-on-azure-silicon-eda-workloads-on-cobalt-200/#respond</comments>
+		
+		<dc:creator><![CDATA[Selim Bilgin]]></dc:creator>
+		<pubDate>Thu, 05 Nov 2026 16:00:00 +0000</pubDate>
+				<category><![CDATA[Compute]]></category>
+		<guid isPermaLink="false">https://azure.microsoft.com/en-us/blog/?p=54813</guid>
+
+					<description><![CDATA[<p>Discover how Microsoft is accelerating electronic design automation (EDA) workloads with Azure Cobalt 200 VMs. Explore early performance results demonstrating faster simulation, verification, and static timing analysis, along with the benefits of scalable cloud infrastructure for silicon design and development.</p>
+<p>The post <a href="https://azure.microsoft.com/en-us/blog/designing-azure-silicon-on-azure-silicon-eda-workloads-on-cobalt-200/">Designing Azure silicon on Azure silicon: EDA workloads on Cobalt 200</a> appeared first on <a href="https://azure.microsoft.com/en-us/blog">Microsoft Azure Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<div class="wp-block-bloginabox-theme-post-alert" role="alert" aria-live="polite" data-bi-an="alert">
+	<div class="alert-content">
+		Azure Cobalt 200 VMs is now generally available. <a href="https://azure.microsoft.com/en-us/blog/azure-cobalt-200-vms-now-available-proven-on-real-workloads-and-built-for-the-agentic-era/" target="_blank" rel="noreferrer noopener">Read more</a>.	</div>
+</div>
+
+
+
+<p class="wp-block-paragraph">Every Azure chip Microsoft has built started as electronic design automation (EDA) jobs used to design, test, and validate silicon before it is manufactured. This includes simulation sweeps that run for days, verification regressions that fan out across thousands of cores overnight, and physical signoff runs that use hundreds of gigabytes of memory for a single block. Together, these workloads account for hundreds of millions of compute jobs each year. Today we’re sharing early results from our next step in that evolution: running EDA workloads on <a href="https://aka.ms/Cobalt200VMs-GA" id="https://aka.ms/Cobalt200VMs-GA" target="_blank" rel="noreferrer noopener"><strong>Azure Cobalt 200</strong></a>, Azure’s custom compute infrastructure built on the Arm Neoverse CSS V3. In our silicon design environment, the evaluated EDA workloads ran with <strong>1.30x to 4.15x more performance</strong> than on Cobalt 100 across a range of testing scenarios, from simulation to verification to static timing analysis.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://aka.ms/Cobalt200VMs-GA" target="_blank" rel="noopener noreferrer noreferrer noopener">Learn more about Azure Cobalt 200 VMs</a></div>
+</div>
+
+
+
+<p class="wp-block-paragraph">Traditionally, EDA workloads ran on fixed, on-premise x86 server capacity, sized for peak demand with periods of underutilization. The shift to cloud-based EDA on Microsoft Azure offered a new level of flexibility, scale, and reliability on compute-intensive silicon design workloads. Using <a href="https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/cobalt-overview" target="_blank" rel="noreferrer noopener">Azure Cobalt-based virtual machine</a> (VM) instances, silicon engineering teams at Microsoft are experiencing significant performance and efficiency improvements on EDA workloads that Azure customers are seeing across many workloads—optimizing the performance and speed of designing increasingly sophisticated silicon for increasingly complex cloud systems.</p>
+
+
+
+<p class="wp-block-paragraph">In this blog, we highlight results from Cadence Xcelium and Cadence Spectre, Synopsys PrimeTime and Synopsys VCS, and Siemens Calibre tools. Tools enabled on Cobalt 100 ran unmodified in our Cobalt 200 evaluation, allowing us to focus on performance testing rather than functionality.</p>
+
+
+
+<h2 class="wp-block-heading" id="why-cobalt-200-suits-eda">Why Cobalt 200 suits EDA</h2>
+
+
+
+<p class="wp-block-paragraph">EDA spans workloads with very different compute requirements:</p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item"><strong>Circuit and analog simulation</strong> — optimized for highly parallel workloads, with sensitivity to memory behavior.</li>
+
+
+
+<li class="wp-block-list-item"><strong>Functional and formal verification</strong> — throughput-driven, with large numbers of independent jobs running concurrently.</li>
+
+
+
+<li class="wp-block-list-item"><strong>Implementation and signoff</strong> — memory-intensive and bandwidth-sensitive, with long-running jobs.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">For computer-aided design (CAD) managers, predictable per-core performance is essential to planning overnight regressions. Per-core performance measured on a lightly loaded VM does not necessarily hold as concurrency increases. Verification farms need predictable throughput when VMs are heavily loaded.</p>
+
+
+
+<p class="wp-block-paragraph">Cobalt 200 combines physical cores without the overhead of hyperthreading, dedicated 3MB L2 cache per core, and high provisioned memory bandwidth to support concurrent workloads. These core and memory architecture characteristics support strong per-core performance at high utilization. </p>
+
+
+
+<h2 class="wp-block-heading" id="what-we-measured">What we measured</h2>
+
+
+
+<p class="wp-block-paragraph">We tested Cobalt 200 with workloads from several stages of Microsoft’s silicon development flow, including RTL and gate-level simulation, static timing, physical verification, and analog simulation, comparing job completion time with Cobalt 100 and selected x86 Azure VMs.</p>
+
+
+
+<p class="wp-block-paragraph">All tested VMs were configured with the maximum number of cores possible for high throughput<sup> 5</sup>, multiple jobs were concurrently executed on the VM to validate the performance under high load conditions. Throughput is normalized per logical core. For the Cobalt 100, Cobalt 200, and hx176rs configurations, logical cores are also physical cores. </p>
+
+
+
+<h2 class="wp-block-heading" id="consolidated-eda-workload-results">Consolidated EDA workload results</h2>
+
+
+
+<figure class="wp-block-table is-style-stripes"><table class="has-fixed-layout"><thead><tr><th>Workload</th><th>EDA tool</th><th>Measure</th><th>Cobalt 200 result</th></tr></thead><tbody><tr><td><strong>Digital simulation</strong></td><td>Cadence Xcelium<sup>1</sup></td><td>Peak throughput per logical core</td><td><strong>More than 40% higher</strong> than any other tested system</td></tr><tr><td><strong>Digital simulation</strong></td><td>Synopsys VCS<sup>1</sup></td><td>Peak throughput per logical core</td><td><strong>More than 40% higher</strong> than any other tested system</td></tr><tr><td><strong>Analog and mixed-signal simulation</strong></td><td>Cadence Spectre<sup>2</sup></td><td>Throughput per logical core</td><td><strong>3 [truncated]]]></content:encoded>
+					
+					<wfw:commentRss>https://azure.microsoft.com/en-us/blog/designing-azure-silicon-on-azure-silicon-eda-workloads-on-cobalt-200/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+				<dc:creator><![CDATA[Silvian Goldenberg]]></dc:creator>
+	</item>
+		<item>
+		<title>Predicting and detecting failures: How Azure strengthens reliability for mission-critical workloads</title>
+		<link>https://azure.microsoft.com/en-us/blog/predicting-and-detecting-failures-how-azure-strengthens-reliability-for-mission-critical-workloads/</link>
+					<comments>https://azure.microsoft.com/en-us/blog/predicting-and-detecting-failures-how-azure-strengthens-reliability-for-mission-critical-workloads/#respond</comments>
+		
+		<dc:creator><![CDATA[Mark Russinovich]]></dc:creator>
+		<pubDate>Wed, 04 Nov 2026 16:00:00 +0000</pubDate>
+				<category><![CDATA[Compute]]></category>
+		<category><![CDATA[Advancing reliability]]></category>
+		<category><![CDATA[Azure HPC]]></category>
+		<guid isPermaLink="false">https://azure.microsoft.com/en-us/blog/?p=54784</guid>
+
+					<description><![CDATA[<p>Azure Failure Prediction and Detection (AFPD) helps reduce interruptions by predicting hardware failures, moving eligible workloads, and notifying customers when action is needed. See what that means for SAP on Azure and other mission-critical workloads.</p>
+<p>The post <a href="https://azure.microsoft.com/en-us/blog/predicting-and-detecting-failures-how-azure-strengthens-reliability-for-mission-critical-workloads/">Predicting and detecting failures: How Azure strengthens reliability for mission-critical workloads</a> appeared first on <a href="https://azure.microsoft.com/en-us/blog">Microsoft Azure Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph"><strong>Takeaway</strong>: <a href="https://techcommunity.microsoft.com/blog/azurecompute/revolutionizing-reliability-introducing-the-azure-failure-prediction-and-detecti/4464883" target="_blank" rel="noopener noreferrer">Azure Failure Prediction and Detection</a> (AFPD) is Microsoft Azure&#8217;s end-to-end system aiming to catch hardware failures before they interrupt a workload, not after. Across the Azure fleet, AFPD has improved the <a href="https://ieeexplore.ieee.org/abstract/document/11108193" target="_blank" rel="noreferrer noopener">prevention of hardware-related VM interruptions by 36%</a>. SAP workloads offer a compelling example of AFPD&#8217;s value, illustrating why preventing interruptions matters for mission-critical services. But AFPD isn&#8217;t specific to SAP: it operates across General Purpose, Specialized Compute, HPC/AI, and select Storage workloads, making SAP&#8217;s experience a window into Azure&#8217;s broader approach to reliability for mission-critical third-party services. To learn more, watch our <a href="https://techcommunity.microsoft.com/blog/reliability-and-resiliency-in-azure/from-proactive-detection-to-action-how-azure-protects-mission-critical-workloads/4569949" target="_blank" rel="noreferrer noopener">companion video</a> to learn how AFPD helps reduce the risk of failures disrupting your critical workloads.</p>
+
+
+
+<h2 class="wp-block-heading" id="reliability-engineered-into-the-platform">Reliability engineered into the platform </h2>
+
+
+
+<p class="wp-block-paragraph">Most conversations about cloud reliability focus on what you build: zone-redundant architectures, failover patterns, and backup strategies. Less visible, but just as consequential, is what the platform does on your behalf; before a failure ever becomes an incident you need to respond to. </p>
+
+
+
+<p class="wp-block-paragraph">That&#8217;s the premise behind AFPD, which became fully operational in 2024. AFPD is an end-to-end system that uses machine learning and telemetry to predict, mitigate, and remediate hardware failures in the Azure fleet before they interrupt your workloads. For a deep dive discussion into this capability, see the companion post <a href="https://techcommunity.microsoft.com/blog/reliability-and-resiliency-in-azure/from-proactive-detection-to-action-how-azure-protects-mission-critical-workloads/4569949" target="_blank" rel="noreferrer noopener">here</a>.</p>
+
+
+
+<h2 class="wp-block-heading" id="how-does-afpd-predict-and-prevent-hardware-failures">How does AFPD predict and prevent hardware failures? </h2>
+
+
+
+<p class="wp-block-paragraph">Historically, hardware failures on any cloud platform follow a familiar pattern: a component degrades, your workload is interrupted, an engineer investigates, and a reboot or hardware replacement follows. This is the old model Azure has spent years moving away from, one built around mission-critical escalations, supply chain constraints, and manual recovery. </p>
+
+
+
+<p class="wp-block-paragraph">AFPD replaces that pattern with three coordinated phases: </p>
+
+
+
+<ol class="wp-block-list">
+<li class="wp-block-list-item"><strong>Predict and detect</strong>: Machine learning models and detection rules continuously monitor telemetry across the Azure fleet, node behavior, component signals, and hardware-specific indicators like Solid State Drive (SSD) health, to catch patterns that indicate an active or likely future failure.</li>
+
+
+
+<li class="wp-block-list-item"><strong>Mitigate</strong>: Once a node is flagged, the mitigation service marks it not allocatable for new workloads and, where eligible, live-migrates existing customer workloads to a healthy node with no reboot, typically just a pause of a few seconds. Live migration is available on many, but not all M-series sized virtual machines (VMs); check the <a href="https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/memory-optimized/m-family?tabs=mbsv3%2Cmsv3mm%2Cmsv3hm%2Cmsv2mm" target="_blank" rel="noreferrer noopener">feature support table</a> for more information. Where live migration isn&#8217;t possible, a notification with a redeploy deadline and recommended action is posted to the VMs Resource Health and Scheduled Events.</li>
+
+
+
+<li class="wp-block-list-item"><strong>Remediate</strong>: The affected node is pulled from production, tagged with diagnostic detail so technicians can skip redundant troubleshooting, repaired using proactively staged spare parts, and returned to the fleet. In practice, this coordinated approach has delivered measurable gains: <a href="https://ieeexplore.ieee.org/abstract/document/11108193" target="_blank" rel="noreferrer noopener">AFPD has increased the monthly node repair rate by 80%</a>.</li>
+</ol>
+
+
+
+<p class="wp-block-paragraph">The result is a system that doesn&#8217;t just react faster; in many cases, it prevents the interruption from reaching you. This approach has <a href="https://ieeexplore.ieee.org/abstract/document/11108193" target="_blank" rel="noreferrer noopener">reduced the overall number of hardware reboots by more than 36%</a>, and the underlying system won the Best Paper Award at the 2025 IEEE Cloud Summit for its approach to predicting, mitigating, and remediating node interruptions at scale.</p>
+
+
+
+<h2 class="wp-block-heading" id="what-sap-s-result-means-for-other-workloads">What SAP’s result means for other workloads </h2>
+
+
+
+<p class="wp-block-paragraph">Every customer benefits from fewer interruptions, but SAP workloads make the case for AFPD unusually clear. SAP systems are highly sensitive to downtime; they are often the system of record for finance, supply chain, and operations, and even brief interruptions carry outsized business impact. A platform that has the ability to predict or detect hardware issues and reduce their impact before you experience an interruption isn&#8217;t a convenience for SAP customers; it&#8217;s foundational to running SAP on Azure with confidence. </p>
+
+
+
+<p [truncated]]]></content:encoded>
+					
+					<wfw:commentRss>https://azure.microsoft.com/en-us/blog/predicting-and-detecting-failures-how-azure-strengthens-reliability-for-mission-critical-workloads/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			</item>
+	</channel>
+</rss>

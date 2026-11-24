@@ -1,0 +1,329 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0">
+  <channel>
+    <title>MSRC Security Update Guide</title>
+    <link>https://msrc.microsoft.com/update-guide/</link>
+    <description/>
+    <lastBuildDate>Tue, 24 Nov 2026 21:11:00 Z</lastBuildDate>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-112732</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-112732</link>
+      <category>CVE</category>
+      <title>CVE-2026-112732 Microsoft Office Visio Remote Code Execution Vulnerability</title>
+      <description>Information published. This CVE was addressed by updates that were released in November 2026, but the CVE was inadvertently omitted from the November 2026 Security Updates. This is an informational change only. Customers who have already installed the November 2026 updates do not need to take any further action.</description>
+      <pubDate>Tue, 24 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-69291</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-69291</link>
+      <category>CVE</category>
+      <title>CVE-2026-69291 Windows Volume Manager Extension Driver Remote Code Execution Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Mon, 23 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-78462</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-78462</link>
+      <category>CVE</category>
+      <title>CVE-2026-78462 Visual Studio Code Security Feature Bypass Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Mon, 23 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.2000000000">
+      <guid isPermaLink="false">CVE-2026-72965</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-72965</link>
+      <category>CVE</category>
+      <title>CVE-2026-72965 Windows WebClient Service Elevation of Privilege Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Mon, 23 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.2000000000">
+      <guid isPermaLink="false">CVE-2026-87697</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-87697</link>
+      <category>CVE</category>
+      <title>CVE-2026-87697 .NET Remote Code Execution Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Mon, 23 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.2000000000">
+      <guid isPermaLink="false">CVE-2026-70175</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-70175</link>
+      <category>CVE</category>
+      <title>CVE-2026-70175 ASP.NET Core Elevation of Privilege Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Mon, 23 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="2.3000000000">
+      <guid isPermaLink="false">CVE-2026-70197</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-70197</link>
+      <category>CVE</category>
+      <title>CVE-2026-70197 .NET and Visual Studio Remote Code Execution Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Mon, 23 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.3000000000">
+      <guid isPermaLink="false">CVE-2026-96225</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-96225</link>
+      <category>CVE</category>
+      <title>CVE-2026-96225 .NET Elevation of Privilege Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Mon, 23 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.2000000000">
+      <guid isPermaLink="false">CVE-2026-96233</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-96233</link>
+      <category>CVE</category>
+      <title>CVE-2026-96233 ASP.NET Core Denial of Service Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Mon, 23 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="2.1000000000">
+      <guid isPermaLink="false">CVE-2026-109481</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109481</link>
+      <category>CVE</category>
+      <title>CVE-2026-109481 ASP.NET Core Elevation of Privilege Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Mon, 23 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-119848</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-119848</link>
+      <category>CVE</category>
+      <title>CVE-2026-119848 Windows Message Queuing Denial of Service Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Mon, 23 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="4.0000000000">
+      <guid isPermaLink="false">CVE-2024-7532</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-7532</link>
+      <category>CVE</category>
+      <title>Chromium: CVE-2024-7533 Use after free in Sharing</title>
+      <description>Information published.</description>
+      <pubDate>Fri, 20 Nov 2026 01:06:50 -0800</pubDate>
+    </item>
+    <item Revision="5.0000000000">
+      <guid isPermaLink="false">CVE-2023-1531</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-1531</link>
+      <category>CVE</category>
+      <title>Chromium: CVE-2023-1531 Use after free in ANGLE</title>
+      <description>Information published.</description>
+      <pubDate>Fri, 20 Nov 2026 01:05:37 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-105584</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-105584</link>
+      <category>CVE</category>
+      <title>CVE-2026-105584 Windows Inventory Backup Information Disclosure Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Thu, 19 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-95874</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-95874</link>
+      <category>CVE</category>
+      <title>CVE-2026-95874 Xbox Gaming Services Elevation of Privilege Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Thu, 19 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-95989</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-95989</link>
+      <category>CVE</category>
+      <title>CVE-2026-95989 vhdmp.sys Elevation of Privilege Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Thu, 19 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-96082</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-96082</link>
+      <category>CVE</category>
+      <title>CVE-2026-96082 Windows Kerberos Denial of Service Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Thu, 19 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-113817</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-113817</link>
+      <category>CVE</category>
+      <title>CVE-2026-113817 Windows Devices Human Interface Elevation of Privilege Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Thu, 19 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-88130</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-88130</link>
+      <category>CVE</category>
+      <title>CVE-2026-88130 Role: DNS Server Denial of Service Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Thu, 19 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-55007</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-55007</link>
+      <category>CVE</category>
+      <title>CVE-2026-55007 Microsoft Exchange Server Remote Code Execution Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Thu, 19 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.3000000000">
+      <guid isPermaLink="false">CVE-2026-63516</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-63516</link>
+      <category>CVE</category>
+      <title>CVE-2026-63516 Microsoft SharePoint Server Spoofing Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Thu, 19 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-118148</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-118148</link>
+      <category>CVE</category>
+      <title>CVE-2026-118148 Active Directory Domain Services Elevation of Privilege Vulnerability</title>
+      <description>Updated the CVSS score and corrected FAQs. This is an informational change only.</description>
+      <pubDate>Wed, 18 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.2000000000">
+      <guid isPermaLink="false">CVE-2026-121680</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-121680</link>
+      <category>CVE</category>
+      <title>CVE-2026-121680 Windows NTLM Spoofing Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Tue, 17 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-88208</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-88208</link>
+      <category>CVE</category>
+      <title>CVE-2026-88208 Microsoft Office SharePoint Spoofing Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Tue, 17 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-124223</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-124223</link>
+      <category>CVE</category>
+      <title>CVE-2026-124223 Microsoft Office SharePoint Remote Code Execution Vulnerability</title>
+      <description>Information published. This CVE was addressed by updates that were released in November 2026, but the CVE was inadvertently omitted from the November 2026 Security Updates. This is an informational change only. Customers who have already installed the November 2026 updates do not need to take any further action.</description>
+      <pubDate>Mon, 16 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-124222</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-124222</link>
+      <category>CVE</category>
+      <title>CVE-2026-124222 Microsoft Office SharePoint Elevation of Privilege Vulnerability</title>
+      <description>Information published. This CVE was addressed by updates that were released in November 2026, but the CVE was inadvertently omitted from the November 2026 Security Updates. This is an informational change only. Customers who have already installed the November 2026 updates do not need to take any further action.</description>
+      <pubDate>Mon, 16 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-94522</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-94522</link>
+      <category>CVE</category>
+      <title>CVE-2026-94522 Windows Kernel Transaction Manager Elevation of Privilege Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Fri, 13 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-108401</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108401</link>
+      <category>CVE</category>
+      <title>CVE-2026-108401 Remote Desktop Services Remote Code Execution Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Fri, 13 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-109473</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109473</link>
+      <category>CVE</category>
+      <title>CVE-2026-109473 Windows Kernel Elevation of Privilege Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Fri, 13 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.0000000000">
+      <guid isPermaLink="false">CVE-2026-125342</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-125342</link>
+      <category>CVE</category>
+      <title>Chromium CVE-2026-125342: Uninitialized resource</title>
+      <description>This CVE was assigned by Chrome. Microsoft Edge (Chromium-based) ingests Chromium, which addresses this vulnerability. Please see [Google Chrome Releases](https://chromereleases.googleblog.com/2026) for more information.</description>
+      <pubDate>Fri, 13 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.0000000000">
+      <guid isPermaLink="false">CVE-2026-125344</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-125344</link>
+      <category>CVE</category>
+      <title>Chromium CVE-2026-125344: Type confusion</title>
+      <description>This CVE was assigned by Chrome. Microsoft Edge (Chromium-based) ingests Chromium, which addresses this vulnerability. Please see [Google Chrome Releases](https://chromereleases.googleblog.com/2026) for more information.</description>
+      <pubDate>Fri, 13 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.0000000000">
+      <guid isPermaLink="false">CVE-2026-125348</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-125348</link>
+      <category>CVE</category>
+      <title>Chromium CVE-2026-125348: Out of bounds write</title>
+      <description>This CVE was assigned by Chrome. Microsoft Edge (Chromium-based) ingests Chromium, which addresses this vulnerability. Please see [Google Chrome Releases](https://chromereleases.googleblog.com/2026) for more information.</description>
+      <pubDate>Fri, 13 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-121680</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-121680</link>
+      <category>CVE</category>
+      <title>CVE-2026-121680 Windows NTLM Spoofing Vulnerability</title>
+      <description>Added Microsoft Office software to the Security Updates table.  Customers that are running supported version of Microsoft Office are encouraged to update to the indicated version to be protected from this vulnerability.</description>
+      <pubDate>Fri, 13 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.0000000000">
+      <guid isPermaLink="false">CVE-2026-105590</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-105590</link>
+      <category>CVE</category>
+      <title>CVE-2026-105590 Windows Active Directory Certificate Services Security Feature Bypass</title>
+      <description>&lt;p&gt;Improper certificate validation in Windows Active Directory Certificate Services allows an authorized attacker to bypass a security feature over a network.&lt;/p&gt;</description>
+      <pubDate>Tue, 10 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.0000000000">
+      <guid isPermaLink="false">CVE-2026-108417</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108417</link>
+      <category>CVE</category>
+      <title>CVE-2026-108417 Windows Remote Desktop Client Information Disclosure Vulnerability</title>
+      <description>&lt;p&gt;Out-of-bounds read in Remote Desktop Client allows an unauthorized attacker to disclose information over a network.&lt;/p&gt;</description>
+      <pubDate>Tue, 10 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.0000000000">
+      <guid isPermaLink="false">CVE-2026-108403</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-108403</link>
+      <category>CVE</category>
+      <title>CVE-2026-108403 Windows Kernel Elevation of Privilege Vulnerability</title>
+      <description>&lt;p&gt;Use after free in Windows Kernel allows an authorized attacker to elevate privileges locally.&lt;/p&gt;</description>
+      <pubDate>Tue, 10 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.0000000000">
+      <guid isPermaLink="false">CVE-2026-109463</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109463</link>
+      <category>CVE</category>
+      <title>CVE-2026-109463 Windows DNS Remote Code Execution Vulnerability</title>
+      <description>&lt;p&gt;Deserialization of untrusted data in Windows DNS allows an unauthorized attacker to execute code over a network.&lt;/p&gt;</description>
+      <pubDate>Tue, 10 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.0000000000">
+      <guid isPermaLink="false">CVE-2026-109467</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-109467</link>
+      <category>CVE</category>
+      <title>CVE-2026-109467 Azure DevOps Server Remote Code Execution Vulnerability</title>
+      <description>&lt;p&gt;Improper authentication in Azure DevOps allows an authorized attacker to execute code over a network.&lt;/p&gt;</description>
+      <pubDate>Tue, 10 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.0000000000">
+      <guid isPermaLink="false">CVE-2026-114170</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-114170</link>
+      <category>CVE</category>
+      <title>CVE-2026-114170 Windows Kernel Elevation of Privilege Vulnerability</title>
+      <description>&lt;p&gt;Use after free in Windows Kernel allows an authorized attacker to elevate privileges locally.&lt;/p&gt;</description>
+      <pubDate>Tue, 10 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    <item Revision="1.1000000000">
+      <guid isPermaLink="false">CVE-2026-88176</guid>
+      <link>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-88176</link>
+      <category>CVE</category>
+      <title>CVE-2026-88176 Microsoft Office SharePoint Elevation of Privilege Vulnerability</title>
+      <description>Updated an acknowledgement. This is an informational change only.</description>
+      <pubDate>Tue, 10 Nov 2026 08:00:00 -0800</pubDate>
+    </item>
+    </channel>
+</rss>

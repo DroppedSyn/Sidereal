@@ -1,0 +1,593 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" version="2.0">
+  <channel>
+    <title>Azure Networking Blog articles</title>
+    <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/bg-p/AzureNetworkingBlog</link>
+    <description>Azure Networking Blog articles</description>
+    <pubDate>Tue, 24 Nov 2026 12:23:49 GMT</pubDate>
+    <dc:creator>AzureNetworkingBlog</dc:creator>
+    <dc:date>2026-11-24T12:23:49Z</dc:date>
+    <item>
+      <title>Control hybrid path selection with route maps in Azure Route Server</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/control-hybrid-path-selection-with-route-maps-in-azure-route/ba-p/4575141</link>
+      <description><![CDATA[<H1 id="mcetoc_1k7sgd7jv_1"><SPAN class="lia-text-color-15">Introduction</SPAN></H1>
+<P>Azure Route Server uses Border Gateway Protocol (BGP) to exchange routes dynamically with network virtual appliances (NVAs) and with ExpressRoute and VPN gateways in a virtual network (VNet).</P>
+<P>For maximum resilience, many hybrid designs combine all three connectivity options: an ExpressRoute gateway, a VPN gateway, and NVAs (typically a pair). If one path fails because of maintenance, a hardware failure, or a software bug, traffic continues over the remaining paths. However, when every path advertises the same on-premises prefixes, you need a way to decide which path Azure uses first. This article shows how Route Server route maps give you that control.</P>
+<P>Route maps for Azure Route Server let you filter routes and change BGP attributes, such as the AS path, on the routes that Route Server learns (inbound) or advertises (outbound). You can apply them to BGP peerings with NVAs and to the ExpressRoute and VPN gateway connections.</P>
+<P>The focus is on path selection and failover, not throughput. For simplicity, only the hub VNet is shown; the same approach applies to hub-and-spoke topologies.</P>
+<P>The following diagram shows the reference configuration:</P>
+<img />
+<P>On-premises sites can reach the hub VNet over three independent paths:</P>
+<UL>
+<LI>ExpressRoute: a private connection through an ExpressRoute circuit and the ExpressRoute gateway, with no traffic crossing the public internet.</LI>
+<LI>Site-to-site VPN: IPsec tunnels over the internet between the Azure VPN gateway and the on-premises VPN device or firewall.</LI>
+<LI>NVAs: encrypted tunnels over the internet between the NVAs and the on-premises devices, using IPsec, WireGuard, or a proprietary protocol of your choice.</LI>
+</UL>
+<P>Route Server exchanges routes with the NVAs using BGP and integrates the routes they advertise into the VNet. Route Server also peers automatically with the ExpressRoute and VPN gateways; this peering requires no configuration. By default, however, Route Server doesn't propagate routes between the NVAs, the ExpressRoute gateway, and the VPN gateway. To let these components learn each other's routes, enable route exchange (the <STRONG>branch-to-branch</STRONG> setting) on Route Server.</P>
+<P>If each path advertises different on-premises prefixes, there is nothing to choose between: each network prefix has a single path. If that path fails, its routes are withdrawn and those prefixes become unreachable from Azure.</P>
+<H1 id="mcetoc_1k7sgd7jv_2"><SPAN class="lia-text-color-15">1. Routing Preference: how Route Server chooses among paths</SPAN></H1>
+<P>When Route Server is deployed and the same on-premises prefixes are advertised over multiple paths, its <STRONG><A class="lia-external-url" href="https://learn.microsoft.com/azure/route-server/hub-routing-preference" target="_blank" rel="noopener">Routing Preference</A></STRONG>&nbsp;setting determines which path  [truncated]]]></description>
+      <pubDate>Mon, 23 Nov 2026 13:58:42 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/control-hybrid-path-selection-with-route-maps-in-azure-route/ba-p/4575141</guid>
+      <dc:creator>Fabrizio-Ferri</dc:creator>
+      <dc:date>2026-11-23T13:58:42Z</dc:date>
+    </item>
+    <item>
+      <title>Announcing public preview of Azure DDoS Protection peacetime telemetry</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/announcing-public-preview-of-azure-ddos-protection-peacetime/ba-p/4574781</link>
+      <description><![CDATA[<P><SPAN data-contrast="auto">We're excited to announce the public preview of peacetime telemetry for Azure DDoS Protection. The DDoS traffic metrics you rely on during an attack now show your traffic during normal operation too. You can learn what normal looks like, set alerts and test your monitoring well before you need them.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P aria-level="2"><STRONG><SPAN data-contrast="auto"><SPAN data-ccp-parastyle="heading 2">Why it matters</SPAN></SPAN><SPAN data-ccp-props="{&quot;335559738&quot;:240}">&nbsp;</SPAN></STRONG></P>
+<P><SPAN data-contrast="auto">Azure DDoS Protection already monitors your traffic around the clock and mitigates attacks automatically, and that doesn't change. Peacetime telemetry adds visibility on top of that protection. Your teams get an everyday view of the traffic reaching your public IPs, in the same metrics they use during an attack, so they can understand that traffic and prepare their monitoring ahead of time.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P aria-level="2"><STRONG><SPAN data-contrast="auto"><SPAN data-ccp-parastyle="heading 2">What's</SPAN><SPAN data-ccp-parastyle="heading 2"> new</SPAN></SPAN><SPAN data-ccp-props="{&quot;335559738&quot;:240}">&nbsp;</SPAN></STRONG></P>
+<P><SPAN data-contrast="auto">Before this preview, the DDoS traffic metrics for a protected public IP address showed data only while a mitigation was active. Now they also show the traffic reaching the IP during normal operation: the total in Inbound packets DDoS, and a breakdown in Inbound TCP packets DDoS, Inbound SYN packets DDoS, Inbound UDP packets DDoS and Inbound other packets DDoS. "Other" covers all traffic that isn't TCP or UDP. At the same time, Under DDoS attack or not stays at 0, which means DDoS Protection doesn't report an attack.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">These are the metrics you already know, and nothing is renamed. For the full list, see the </SPAN><A href="https://learn.microsoft.com/azure/ddos-protection/monitor-ddos-protection-reference" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">monitoring data reference</SPAN></SPAN></A><SPAN data-contrast="auto">.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P aria-level="2"><STRONG><SPAN data-contrast="auto"><SPAN data-ccp-parastyle="heading 2">What you can do with it</SPAN></SPAN><SPAN data-ccp-props="{&quot;335559738&quot;:240}">&nbsp;</SPAN></STRONG></P>
+<UL>
+<LI aria-setsize="-1" data-leveltext="•" data-font="" data-listid="2" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;•&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><SPAN data-contrast="auto">Learn your normal. Watch TCP, SYN, UDP and other traffic for each  [truncated]]]></description>
+      <pubDate>Thu, 19 Nov 2026 18:33:48 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/announcing-public-preview-of-azure-ddos-protection-peacetime/ba-p/4574781</guid>
+      <dc:creator>OfirSarfaty</dc:creator>
+      <dc:date>2026-11-19T18:33:48Z</dc:date>
+    </item>
+    <item>
+      <title>The patch window is closing. Put time back on the defender’s side.</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/the-patch-window-is-closing-put-time-back-on-the-defender-s-side/ba-p/4573402</link>
+      <description><![CDATA[<P>A critical vulnerability is announced. Your security team identifies affected workloads. Application owners begin testing the fix. Deployment plans take shape.</P>
+<P>Attackers are already moving.</P>
+<P>For defenders, patching requires care: understanding dependencies, validating compatibility, protecting availability, and coordinating changes across production environments. For attackers, a single exploitable path can be enough.</P>
+<P>AI is widening that imbalance. Defenders need protection that can understand emerging threats, recognize where they matter, and act while patching is still underway.</P>
+<P>Today at Microsoft Ignite, we are announcing <STRONG>Azure Adaptive Virtual Patching</STRONG>, an AI-based adaptive shield designed to proactively reduce exposure to new, emerging, and zero-day vulnerabilities. It connects vulnerability intelligence and workload context with coordinated protection <STRONG>across the network and on the workload</STRONG>.</P>
+<P>Our goal is straightforward: <STRONG>put power – and time – back in the hands of defenders.</STRONG></P>
+<P>&nbsp;</P>
+<img />
+<P><STRONG>Turning the adaptive security vision into protection</STRONG></P>
+<P>In his August 2026 blog, <A href="https://azure.microsoft.com/en-us/blog/the-patch-window-is-collapsing-why-security-needs-a-new-control-plane/" target="_blank" rel="noopener">“The patch window is collapsing: Why security needs a new control plane,”</A> Igor Sakhnov, Corporate Vice President and General Manager for Azure Networking, described a growing customer challenge: knowing that a workload is vulnerable does not mean an organization can immediately patch it. He outlined the opportunity for the network to serve as an adaptive control plane that reduces exposure during that interval.</P>
+<P>Azure Adaptive Virtual Patching advances that vision into a new product capability.</P>
+<P>It connects an understanding of how vulnerabilities work with an understanding of the workloads customers actually run. AI then orchestrates targeted mitigations through network-based controls, including inline intelligence, and eBPF-based runtime enforcement on the workload.</P>
+<P>Together, these capabilities bring protection to multiple points along an attack path while customers prepare the permanent fix.</P>
+<P>&nbsp;</P>
+<img />
+<P>&nbsp;</P>
+<P><STRONG>The attack timeline has changed. Production responsibilities have not.</STRONG></P>
+<P>Microsoft’s <A href="https://www.microsoft.com/en-us/security/blog/2026/04/02/threat-actor-abuse-of-ai-accelerates-from-tool-to-cyberattack-surface/" target="_blank" rel="noopener">threat research</A> shows adversaries embedding AI into how they plan, refine, and sustain attacks. AI accelerates research, code development, and iteration across the attack lifecycle.</P>
+<P>Attackers can also access <EM>special models</EM>: models modified to weaken or remove safety refusal behavior. Research has found that models fine-tuned to remove safeguards can provide substan [truncated]]]></description>
+      <pubDate>Tue, 17 Nov 2026 19:28:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/the-patch-window-is-closing-put-time-back-on-the-defender-s-side/ba-p/4573402</guid>
+      <dc:creator>Ashish__Jain</dc:creator>
+      <dc:date>2026-11-17T19:28:00Z</dc:date>
+    </item>
+    <item>
+      <title>Secure AI. Secure with AI. Introducing the next chapter of Azure Firewall.</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/secure-ai-secure-with-ai-introducing-the-next-chapter-of-azure/ba-p/4573399</link>
+      <description><![CDATA[<P>Author(s): <STRONG>Ashish Jain</STRONG>, Partner Group Product Manager, Network &amp; AI Security, with <STRONG>Pankaj Garg</STRONG>, Corporate Vice President (CVP), &amp; <STRONG>Vijayan Ramakrishnan</STRONG>, Vice-President (VP), Azure Core Networking.</P>
+<P>&nbsp;</P>
+<P>AI is changing how enterprises build applications, empower employees, and deliver value. It is also changing what security teams must protect. Enterprise AI agents introduce new entry points for manipulation. Sensitive information can leave the organization through a single upload to a generative AI application. Meanwhile, unfamiliar malware and emerging application exploits continue to challenge existing defenses.</P>
+<P>Security teams need protection that can understand new threats, act while traffic is in motion, and help organizations adopt AI responsibly – without adding friction to every application or overwhelming already stretched teams.</P>
+<P>At Microsoft Ignite, we are announcing a new add-on to&nbsp;<STRONG>Azure Firewall Premium</STRONG> with five capabilities designed for these challenges: inline AI anti-malware, inline AI application protection, prompt injection protection, network data loss prevention, and AI policy.</P>
+<P>These capabilities bring together two priorities:&nbsp;<STRONG>secure with AI</STRONG>, using specialized models to identify threats inline; and <STRONG>secure AI</STRONG>, helping protect enterprise AI applications and the sensitive data employees use with them. AI policy connects this protection to daily operations, helping teams make better decisions using intelligence across firewall policies and traffic.</P>
+<img />
+<P>&nbsp;</P>
+<P><STRONG>Secure with AI: Intelligence where prevention happens</STRONG></P>
+<P>For network security, understanding a threat is only part of the challenge. That understanding must arrive in time to stop it.</P>
+<P>Our approach brings highly tuned small AI models directly into the network inspection path. Running on CPUs and engineered for line-speed operation, these models provide semantic analysis for malware and application attacks. They examine characteristics of the content moving through the firewall to recognize malicious patterns, including threats that may not have a known signature.</P>
+<P>&nbsp;</P>
+<OL>
+<LI><STRONG> Inline AI anti-malware: Classify unknown threats without detonation</STRONG></LI>
+</OL>
+<P>An unfamiliar binary presents a difficult choice: allow it before its risk is understood, or hold it while deeper analysis completes.</P>
+<P>Traditional sandbox analysis executes suspicious files in an isolated environment and observes their behavior. That process can be resource intensive and take several minutes – sometimes five to ten – making it difficult to fit into an inline inspection path. Analysis often happens out of band, creating a gap between delivery and a verdict. Sophisticated malware can also recognize a sandbox and suppress its malicious behavior, limiting what the analysis re [truncated]]]></description>
+      <pubDate>Tue, 17 Nov 2026 18:42:28 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/secure-ai-secure-with-ai-introducing-the-next-chapter-of-azure/ba-p/4573399</guid>
+      <dc:creator>Ashish__Jain</dc:creator>
+      <dc:date>2026-11-17T18:42:28Z</dc:date>
+    </item>
+    <item>
+      <title>Introducing Agent Grid</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/introducing-agent-grid/ba-p/4573407</link>
+      <description><![CDATA[<P>A single request to an AI agent can set an entire network in motion.</P>
+<P>To prepare a customer briefing, an agent might consult a large language model, delegate research to another agent, invoke an MCP tool, query a platform service, retrieve records from a SaaS application, and search the internet. Multiple such hops combine into a single business transaction.</P>
+<img />
+<P>&nbsp;</P>
+<P><STRONG>Agentic traffic is a web of interactions:</STRONG> Agent to model, agent to agent, agent to MCP server, agent to PaaS, agent to SaaS, and agent to internet. Each connection introduces a security decision. Together, they create a challenge that grows with every agent, tool, and delegation.</P>
+<P>Where should enterprises enforce security across this web? Deploying another gateway for every interaction multiplies infrastructure, routing complexity, and policies to maintain. Consolidating everything behind a single gateway can introduce a bottleneck and a single point of failure. A gateway-by-gateway approach becomes increasingly difficult to scale as workflows cross hosting environments and trust boundaries.</P>
+<img />
+<P>At Microsoft Ignite, we are announcing&nbsp;<STRONG>Agent Grid: Identity-based, Zero Trust secure network access for agents.</STRONG> Agent Grid brings network isolation, micro-segmentation, inspection, and granular Layer 3–7 policies into Azure’s network infrastructure. Its context- and content-aware controls help enterprises govern agent communications across supported environments, without modifying agent code or managing sidecars.</P>
+<P>&nbsp;</P>
+<P><STRONG>Agents are untrusted insiders</STRONG></P>
+<P>Agents operate inside enterprise environments with legitimate access to sensitive information and powerful tools. Yet malicious content, compromised dependencies, or unexpected model behavior can redirect their actions.</P>
+<P>The security premise must therefore be clear: <STRONG>Agents are untrusted insiders.</STRONG> Their access needs enforceable boundaries that remain effective when an agent behaves unsafely.</P>
+<P><A href="https://x.com/satyanadella/status/2108931348857827686" target="_blank" rel="noopener">Satya Nadella’s call for stronger AI containment</A> reflects this principle: assume a model could be compromised and build independent controls to contain its actions.</P>
+<P>A recent, publicly documented research incident illustrates why. During a frontier-model training run, an internal model exploited a DNS resolver misconfiguration to obtain limited access to the live internet, crossing an intended containment boundary. In a separate incident, AI agents reportedly attempted to attack or penetrate a public model-sharing platform – an episode that indirectly echoed concerns associated with major open-source AI hubs. The incidents were contained, and training and evaluation of the most capable models were paused while defenses were strengthened.</P>
+<P>Subsequent controlled testing uncovered additional weaknesses, i [truncated]]]></description>
+      <pubDate>Tue, 17 Nov 2026 18:42:08 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/introducing-agent-grid/ba-p/4573407</guid>
+      <dc:creator>Ashish__Jain</dc:creator>
+      <dc:date>2026-11-17T18:42:08Z</dc:date>
+    </item>
+    <item>
+      <title>From recordings to insights: Azure Bastion brings AI to privileged session review</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/from-recordings-to-insights-azure-bastion-brings-ai-to/ba-p/4573409</link>
+      <description><![CDATA[<P>A privileged session can last an hour. A risky action can take seconds.</P>
+<P>For security teams, finding those seconds has often meant watching the entire recording. Multiply that effort across administrators, virtual machines, and daily operations, and even a small or midsize enterprise can accumulate more footage than its teams can reasonably review.</P>
+<P>The evidence exists. The challenge is turning it into understanding.</P>
+<P>At Microsoft Ignite, we are announcing the public preview of <STRONG>RDP vision, SSH vision, and SSH command logs in Azure Bastion</STRONG>. These capabilities bring AI-assisted session review and detailed command visibility to privileged access, helping customers understand what happened and identify activity that deserves closer attention.</P>
+<P>Together, they extend the value of session recording: from preserving administrative activity to helping security teams make sense of it.</P>
+<P>&nbsp;</P>
+<P><STRONG>The challenge: recording sessions is only the beginning</STRONG></P>
+<P>Privileged access is essential to keeping systems running. Administrators troubleshoot applications, update configurations, manage permissions, and maintain critical infrastructure. Those same privileges can also enable actions with significant security consequences.</P>
+<P>Azure Bastion already supports graphical session recording for both RDP and SSH through its Premium offering, preserving a visual record of activity for review. <A href="https://learn.microsoft.com/en-us/azure/bastion/session-recording" target="_blank" rel="noopener">Learn more about Azure Bastion session recording</A>.</P>
+<P>But a recording does not explain itself.</P>
+<P>To understand a session, a reviewer may need to follow desktop interactions, interpret terminal activity, and distinguish routine administration from actions that warrant investigation. When a question arises about a particular change, finding the relevant activity can require substantial playback and analysis.</P>
+<P>This is not a challenge reserved for the largest organizations. A lean IT team managing a modest environment can generate a considerable volume of recordings through everyday maintenance and support. The time needed to review those sessions competes directly with the time needed to operate and protect the business.</P>
+<P>Customers need a more scalable way to answer fundamental questions: What happened during this session? Which actions deserve attention? Where should an investigator look next?</P>
+<img />
+<P><STRONG>Introducing a clearer view of privileged activity</STRONG></P>
+<P>The new Azure Bastion capabilities address this challenge through complementary forms of visibility.</P>
+<P>&nbsp;</P>
+<P><STRONG>RDP vision: understand activity beyond the connection.</STRONG></P>
+<P>RDP vision brings AI-assisted analysis to recorded remote desktop sessions. Session summaries help reviewers understand administrative activity, while insights into noteworthy and potentially risky actions [truncated]]]></description>
+      <pubDate>Tue, 17 Nov 2026 18:41:56 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/from-recordings-to-insights-azure-bastion-brings-ai-to/ba-p/4573409</guid>
+      <dc:creator>Ashish__Jain</dc:creator>
+      <dc:date>2026-11-17T18:41:56Z</dc:date>
+    </item>
+    <item>
+      <title>Connecting clouds and the last mile with Azure</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/connecting-clouds-and-the-last-mile-with-azure/ba-p/4573283</link>
+      <description><![CDATA[<P><STRONG><SPAN data-contrast="none"><SPAN data-ccp-parastyle="Byline" data-ccp-parastyle-defn="{&quot;ObjectId&quot;:&quot;0ab2408f-7e9c-5936-a24c-dfe5012abe8b|1&quot;,&quot;ClassId&quot;:1073872969,&quot;Properties&quot;:[469775450,&quot;Byline&quot;,201340122,&quot;2&quot;,134233614,&quot;true&quot;,469778129,&quot;Byline&quot;,335572020,&quot;1&quot;,134224900,&quot;true&quot;,469777841,&quot;Aptos&quot;,469777844,&quot;Aptos&quot;,469769226,&quot;Aptos&quot;,335551500,&quot;6184542&quot;,268442635,&quot;19&quot;,335559739,&quot;260&quot;,134245418,&quot;true&quot;,201342446,&quot;1&quot;,201342447,&quot;5&quot;,201342448,&quot;3&quot;,201342449,&quot;1&quot;,469777842,&quot;Arial&quot;,469777843,&quot;ＭＳ 明朝&quot;,201341986,&quot;1&quot;]}">By Sudha Mahajan, Partner PM, Azure Networking, and Pankaj Garg, CVP, Azure Networking</SPAN></SPAN><SPAN data-ccp-props="{&quot;134245418&quot;:true,&quot;335559739&quot;:260}">&nbsp;</SPAN></STRONG></P>
+<P><SPAN data-contrast="none">In August, we introduced the public preview of Azure Multicloud Interconnect with Amazon Web Services (AWS) and described a simple goal: making the network the easiest part of a multicloud strategy, not the hardest. The preview replaced much of the customer-assembled work across circuits, routers, Border Gateway Protocol (BGP) sessions, encryption, and provider coordination with one logical resource and an integrated activation workflow.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:140,&quot;335559740&quot;:278}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="none">Today, that journey advances in three important ways. Azure Multicloud Interconnect with AWS is now generally available. We are also announcing the public preview of Azure Multicloud Interconnect with Google Cloud, extending the same managed connectivity model to another cloud provider. And we are working with Lumen to simplify last mile connectivity into Azure, helping customers connect on-premises locations to Azure through a more integrated ExpressRoute and carrier experience.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:140,&quot;335559740&quot;:278}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="none">Together, these announcements move Azure networking toward a consistent model across cloud-to-cloud and site-to-cloud connectivity: private paths, resilient infrastructure, provider-coordinated provisioning, and clear operational ownership, while customers retain control of their virtual networks, routing and security policies, and application architecture.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:140,&quot;335559740&quot;:278}">&nbsp;</SPAN></P>
+<H4 aria-level="1"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 1">The problem: distributed applications, fragmented connectivity</SPAN></SPAN><SPAN data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;201341983&quot;:0,&quot;335559738&quot;:300,& [truncated]]]></description>
+      <pubDate>Tue, 17 Nov 2026 18:41:38 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/connecting-clouds-and-the-last-mile-with-azure/ba-p/4573283</guid>
+      <dc:creator>Sudha_Mahajan</dc:creator>
+      <dc:date>2026-11-17T18:41:38Z</dc:date>
+    </item>
+    <item>
+      <title>Redefining application load balancing in Azure Application Gateway</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/redefining-application-load-balancing-in-azure-application/ba-p/4572687</link>
+      <description><![CDATA[<P><EM>By Jay Soni (Senior Product Manager) and Jordi Rey (Product Manager), Azure Application Gateway</EM></P>
+<P>Modern applications change quickly. Teams run A/B experiments, version their APIs, tailor experiences by client and tenant, and serve AI models across reserved and pay-as-you-go capacity. Azure Application Gateway now gives you more precise control over where each request goes and how traffic is distributed once it gets there.</P>
+<P>Two new capabilities are now in public preview. Use them on their own or together:</P>
+<UL>
+<LI><STRONG>Advanced routing rules:</STRONG> Match requests on path, header, query string, HTTP method and client IP, with regular expression support. A single rule can now cover request patterns that previously needed several.</LI>
+<LI><STRONG>Advanced load balancing:</STRONG> Choose backend pools by weight or priority, then choose servers within each pool using round robin, weighted round robin or least connections.</LI>
+</UL>
+<P>The rest of this post explains how these capabilities work and the scenarios they enable, from blue-green deployments and client-aware experiences to multi-tenant SaaS and a single entry point for your AI endpoints.</P>
+<H2>What's new</H2>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="width: 100%; border-width: 1px;"><thead><tr><th>Capability</th><th>Details</th></tr></thead><tbody><tr><td>What a rule can match</td><td>Path, HTTP header, query string, HTTP method and client IP</td></tr><tr><td>How values are matched</td><td>Exact values, or RE2 regular expressions for path, header and query string</td></tr><tr><td>How conditions combine</td><td>Up to five conditions per rule, joined with AND and evaluated in priority order</td></tr><tr><td>Load balancing across pools</td><td>Multiple pools per rule, selected by weight or by priority</td></tr><tr><td>Load balancing within a pool</td><td>Round robin, weighted round robin or least connections, set per pool</td></tr><tr><td>Failover between pools</td><td>Priority-based failover driven by a configurable Minimum Healthy Percent</td></tr></tbody><colgroup><col style="width: 50.00%" /><col style="width: 50.00%" /></colgroup></table></DIV>
+<H2>Advanced routing rules: more control over request routing</H2>
+<P>Define conditions on URL paths, HTTP headers, query strings, HTTP methods and client IP addresses to send each request to the right backend pool. Combine conditions in one rule to support scenarios such as API versioning, tenant-specific routing and feature-based deployments. Rules are evaluated in priority order, and the first matching rule determines the destination. Requests that don't match any rule go to the configured default backend pool.</P>
+<P>Path, header and query-string conditions support RE2 regular expressions, so a single pattern can match many request variations. For example, <CODE>^/api/orders(/.*)?$</CODE> matches <CODE>/api/orders</CODE> and all of its subpaths. Each r [truncated]]]></description>
+      <pubDate>Tue, 17 Nov 2026 18:44:47 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/redefining-application-load-balancing-in-azure-application/ba-p/4572687</guid>
+      <dc:creator>vnamani</dc:creator>
+      <dc:date>2026-11-17T18:44:47Z</dc:date>
+    </item>
+    <item>
+      <title>What’s new in AKS networking: Connectivity, performance, and observability</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/what-s-new-in-aks-networking-connectivity-performance-and/ba-p/4571806</link>
+      <description><![CDATA[<P>As organizations scale their cloud-native applications, networking requirements continue to evolve. AI and high-performance computing workloads demand high-throughput, low-latency connectivity, applications increasingly span multiple Kubernetes clusters and enterprises need greater control over how workload traffic is routed and isolated. At the same time, platform teams need deeper network visibility that is customizable without the complexity and cost of collecting unnecessary data.<BR /><BR />At Microsoft, our focus is to simplify these AKS networking challenges, enabling customers to build and scale AI applications without having to manage increasingly complex networking infrastructure.<BR /><BR />This November, container networking in Azure is introducing four capabilities designed to help customers build, scale, and operate the next generation of applications on AKS. These advancements address three key customer scenarios:<BR /><BR />·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <STRONG>Connect distributed applications:</STRONG> Simplify connectivity and service discovery across Kubernetes clusters, making it easier to build and manage distributed applications.<BR /><BR />·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <STRONG>Enable AI and specialized workloads:</STRONG> Support high-performance networking for distributed AI training and HPC, along with flexible network configurations for data-intensive and specialized applications.<BR /><BR />·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <STRONG>Operate with customizable visibility and control:</STRONG> Gain deeper insights into application networking, troubleshoot issues faster, and manage observability costs through targeted telemetry collection.</P>
+<P>Together, these capabilities expand what customers can run on AKS while reducing the complexity of the underlying networking infrastructure.</P>
+<H2><STRONG>Connect distributed applications</STRONG></H2>
+<H5><STRONG>Cross-cluster networking for Azure Kubernetes Fleet Manager | Generally Available</STRONG></H5>
+<P>As enterprises scale their applications across multiple Kubernetes clusters, connecting services across cluster boundaries often requires additional networking infrastructure, complex configurations, and operational overhead.</P>
+<P>With the general availability of cross-cluster networking for Azure Kubernetes Fleet Manager, part of Advanced Container Networking Services, customers can connect workloads across AKS clusters without deploying and managing gateways or proxies.</P>
+<P>For example, an enterprise running applications across multiple AKS clusters can enable services to discover and communicate with each other as though they were running within a single cluster. Built on Cilium, this capability also extends network policy enforcement and observability across cluster boundaries.</P>
+<P>The result is simpler multi-cluster application architectures, reduced operational complexity, and greater visibility into a [truncated]]]></description>
+      <pubDate>Thu, 12 Nov 2026 19:14:38 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/what-s-new-in-aks-networking-connectivity-performance-and/ba-p/4571806</guid>
+      <dc:creator>SandhyaCastelino</dc:creator>
+      <dc:date>2026-11-12T19:14:38Z</dc:date>
+    </item>
+    <item>
+      <title>Route summarization in Azure Route Server</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/route-summarization-in-azure-route-server/ba-p/4569901</link>
+      <description><![CDATA[<H1>Why hybrid networks need native routing policy</H1>
+<P>Hybrid networks connect remote sites across multiple routing domains to an Azure Virtual Network (VNet). As these environments grow, you need a consistent way to control which routes Azure Route Server learns and advertises at the VNet boundary. That control matters wherever Azure Route Server exchanges routes with hybrid connections:</P>
+<UL>
+<LI><STRONG>ExpressRoute and Azure VPN gateways:</STRONG> exchanged routes between Azure VNets and your on-premises networks.</LI>
+<LI><STRONG>Software-defined WAN (SD-WAN):</STRONG> manage routing across distributed branches and appliances.</LI>
+<LI><STRONG>Network virtual appliances (NVAs):</STRONG> control learned and advertised routes from remote sites or other clouds.</LI>
+</UL>
+<P>Without a native policy layer, your options for route control are limited, and they get harder to manage as the network grows.</P>
+<P>This need becomes more urgent when branch-to-branch connectivity is enabled in Azure Route Server because routes can propagate across all connected networks. Production architectures, however, often require selective filtering, route summarization, segmentation, and predictable primary and backup paths.&nbsp;</P>
+<H2>Operational challenges without route maps</H2>
+<P>Without route maps, growing hybrid networks can become difficult to scale, secure, and operate. The main challenges include:</P>
+<UL>
+<LI><STRONG>Route scale:</STRONG> Without inbound or outbound summarization, every specific prefix must be carried across the hybrid environment. Large deployments can approach or exceed Azure platform route limits, making routing tables harder to manage and troubleshoot. For example, if a VNet advertises more than 1,000 prefixes to an ExpressRoute circuit, the route limit is exceeded and the BGP session between the ExpressRoute gateway and the circuit is disconnected.</LI>
+<LI><STRONG>Path selection:</STRONG> When multiple connections reach the same remote site, customers need a straightforward way to define a preferred path and a backup path.</LI>
+<LI><STRONG>Network isolation:</STRONG> Unrestricted route propagation among SD-WAN, VPN, ExpressRoute, and NVA connections can expose segments to networks that should remain isolated.</LI>
+<LI><STRONG>Operational complexity in SD-WAN:</STRONG> Large SD-WAN deployments may require multiple NVAs for capacity and resiliency. Each appliance exchanges routes with the VNet, increasing the number of IP routes that operators must configure, monitor, and troubleshoot.</LI>
+</UL>
+<H2>How route maps addresses these challenges</H2>
+<P>Route maps in Azure Route Server provide a native Azure policy layer for controlling the routes that enter and leave the VNet. They address the main operational challenges in the following ways:</P>
+<UL>
+<LI><STRONG>Reduce route count:</STRONG> Summarize prefixes before they cross connection boundaries, reducing the number of propagated routes and helping limit routing-table gr [truncated]]]></description>
+      <pubDate>Wed, 04 Nov 2026 22:57:47 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/route-summarization-in-azure-route-server/ba-p/4569901</guid>
+      <dc:creator>Fabrizio-Ferri</dc:creator>
+      <dc:date>2026-11-04T22:57:47Z</dc:date>
+    </item>
+    <item>
+      <title>What if your Azure Databricks workspaces have overlapping CIDRs?</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/what-if-your-azure-databricks-workspaces-have-overlapping-cidrs/ba-p/4569360</link>
+      <description><![CDATA[<H1>&nbsp;</H1>
+<P>Consider a common enterprise networking challenge:</P>
+<P>You have three Azure Databricks workspaces. Each workspace uses classic VNet-injected compute, and each compute VNet uses the same address space:</P>
+<P>10.100.0.0/20</P>
+<P>Your networking team immediately sees the problem:</P>
+<P>If multiple networks advertise 10.100.0.0/20, which workspace should traffic for that prefix reach?</P>
+<P>At first glance, this looks like an IP-renumbering problem.</P>
+<P>But there is another question worth asking first:</P>
+<P><STRONG>Do enterprise users actually need network access to the Databricks compute subnets, or do they only need private access to the Databricks workspace service?</STRONG></P>
+<P>For standard workspace web UI and REST API access, that distinction can fundamentally change the architecture.</P>
+<P>The key design principle is:</P>
+<P><STRONG>Route to uniquely addressed private endpoints, not to the overlapping compute networks.</STRONG></P>
+<H2>The architecture challenge</H2>
+<P>RFC1918 address space may be private, but in large enterprises it is often far from unlimited.</P>
+<P>Acquisitions, independently designed environments, large historical reservations, and decentralized networking can result in multiple environments using the same address ranges.</P>
+<P>Imagine this deployment:</P>
+<UL>
+<LI>Three Azure Databricks workspaces: <STRONG>A</STRONG>, <STRONG>B</STRONG>, and <STRONG>C</STRONG></LI>
+<LI>Three isolated VNet-injected compute VNets</LI>
+<LI>Each compute VNet uses 10.100.0.0/20</LI>
+<LI>Enterprise users require private access to all three workspaces</LI>
+<LI>Enterprise connectivity arrives through ExpressRoute private peering or VPN</LI>
+</UL>
+<P>Directly exposing all three compute VNets to a shared routing domain creates an obvious ambiguity because the same prefix exists three times.</P>
+<P>Fortunately, workspace service access does not require enterprise clients to route directly into those compute networks.</P>
+<H2>Service access is different from compute-network access</H2>
+<P>Azure Databricks distinguishes between front-end Private Link, classic compute back-end Private Link, and serverless outbound connectivity.</P>
+<P>For front-end access, private endpoints can provide connectivity to the Databricks workspace web application and REST APIs without requiring enterprise clients to route into the workspace compute VNet.</P>
+<P>That separation gives us the basis for this design.</P>
+<P>Instead of importing the overlapping compute prefixes into the enterprise network:</P>
+<OL>
+<LI>Create a uniquely addressed <STRONG>Transit VNet</STRONG>.</LI>
+<LI>Place the Databricks front-end private endpoints in that Transit VNet.</LI>
+<LI>Make the Transit VNet reachable from the enterprise connectivity hub.</LI>
+<LI>Keep each overlapping compute VNet in its own isolated routing domain.</LI>
+</OL>
+<P>The enterprise network then routes only to addresses that are unique.</P>
+<P><STRONG>Important:</STRONG> This does not  [truncated]]]></description>
+      <pubDate>Tue, 03 Nov 2026 17:41:11 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/what-if-your-azure-databricks-workspaces-have-overlapping-cidrs/ba-p/4569360</guid>
+      <dc:creator>vamsiboya_microsoft</dc:creator>
+      <dc:date>2026-11-03T17:41:11Z</dc:date>
+    </item>
+    <item>
+      <title>Multi-NIC Support on AKS powered by DRANET – Now in Public Preview</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/multi-nic-support-on-aks-powered-by-dranet-now-in-public-preview/ba-p/4563257</link>
+      <description><![CDATA[<P>Kubernetes was designed around a simple networking model, every pod gets one network interface, and every pod on a node shares the same flat network. For most stateless microservices, this works well as it keeps the model simple and the platform portable.</P>
+<P>But a large class of workloads don't fit that shape. Some need network separation, with management, control, and data traffic on separate and isolated networks rather than multiplexed over one interface. Other workloads need predictable performance, a dedicated path for high-throughput or latency-sensitive traffic. Until now, meeting these requirements on Kubernetes meant adding and manually integrating multiple components, or keeping the workload on VMs.</P>
+<P><STRONG>Today we're announcing the public preview of multi-NIC support for pods on AKS, powered by the AKS managed </STRONG><A href="https://github.com/kubernetes-sigs/dranet" target="_blank" rel="noopener"><STRONG>DRANET driver.</STRONG></A><STRONG> You can now provision worker nodes with multiple network interfaces connected to different subnets, and attach a dedicated interface directly to a pod using standard upstream Kubernetes APIs, with no Multus, no custom CNI extensions, and no manual interface wiring.</STRONG></P>
+<div data-video-id="https://www.youtube.com/watch?v=vnTG964NCL4&amp;feature=youtu.be/1791559030333" data-video-remote-vid="https://www.youtube.com/watch?v=vnTG964NCL4&amp;feature=youtu.be/1791559030333" class="lia-video-container lia-media-is-center lia-media-size-large"><iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FvnTG964NCL4%3Ffeature%3Doembed&amp;display_name=YouTube&amp;url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DvnTG964NCL4&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FvnTG964NCL4%2Fhqdefault.jpg&amp;type=text%2Fhtml&amp;schema=youtube" allowfullscreen="" style="max-width: 100%"></iframe></div>
+<H2>Two ways to use multi-NIC on AKS</H2>
+<P><STRONG>Use case 1: A dedicated NIC attached directly to a pod</STRONG></P>
+<P><EM>“As a networking engineer, I want to attach a dedicated network interface directly to a Kubernetes pod so the workload can connect to different networks and route traffic natively, without relying on host-level DPDK/VPP forwarding, custom routing rules, or gateway-based NAT.”</EM><BR /><EM>“I also want the secondary interface on my pod to send and receive traffic on a specific, known public IP address, so that downstream partners can allow-list my traffic by IP and no NAT hop adds latency to time-sensitive streams."</EM></P>
+<P>This is the pattern where the workload itself expects to see multiple interfaces. The pod asks for a network device the same way it would ask for any other resource, and the interface shows up inside the container alongside the standard CNI interface. No host-level forwarding layer, no NAT gateway in the middle.</P>
+<P><STRONG>What you get</STRONG></P>
+<UL>
+<LI>The DRANET driver is deployed automatically. Onc [truncated]]]></description>
+      <pubDate>Fri, 09 Oct 2026 18:24:27 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/multi-nic-support-on-aks-powered-by-dranet-now-in-public-preview/ba-p/4563257</guid>
+      <dc:creator>chandanAggarwal</dc:creator>
+      <dc:date>2026-10-09T18:24:27Z</dc:date>
+    </item>
+    <item>
+      <title>Proactively monitor Azure VPN Gateway tunnel disconnections</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/proactively-monitor-azure-vpn-gateway-tunnel-disconnections/ba-p/4562011</link>
+      <description><![CDATA[<P>Site-to-Site (S2S) VPN connections are a critical component of hybrid connectivity between Azure and on-premises environments. A tunnel outage can impact applications, user access, and business operations. Although Azure VPN Gateway automatically attempts to re-establish a tunnel when connectivity is restored, administrators should be notified immediately when a tunnel disconnects so they can quickly investigate and mitigate the issue.</P>
+<P>In this article, you'll learn how to configure an Azure Monitor alert that automatically notifies administrators whenever an Azure VPN Gateway tunnel enters a disconnected state.</P>
+<P><STRONG>Why monitor VPN tunnel status?</STRONG></P>
+<P>VPN tunnels can disconnect for a variety of reasons, including:</P>
+<UL>
+<LI>Internet connectivity issues</LI>
+<LI>On-premises VPN device failures</LI>
+<LI>IPSec/IKE negotiation issues</LI>
+<LI>Network maintenance activities</LI>
+<LI>Device reboots or software upgrades</LI>
+</UL>
+<P>By implementing proactive monitoring, organizations can:</P>
+<UL>
+<LI>Reduce Mean Time to Detection (MTTD)</LI>
+<LI>Improve network availability</LI>
+<LI>Receive automated notifications</LI>
+</UL>
+<P>&nbsp;</P>
+<P><STRONG>Step 1: Enable VPN Gateway diagnostic logs</STRONG></P>
+<P>Before creating an alert rule, ensure that diagnostic logging is enabled for your VPN Gateway.</P>
+<OL>
+<LI>Navigate to Azure Monitor in the Azure portal.</LI>
+<LI>Under Settings, select Diagnostic settings.</LI>
+<LI>Select the appropriate Subscription, Resource Group, and Resource Type, then choose your VPN Gateway resource.</LI>
+<LI>Click Add diagnostic setting.</LI>
+<LI>Provide a name for the diagnostic setting and select AllLogs (or at minimum TunnelDiagnosticLog).</LI>
+<LI>Choose Send to Log Analytics Workspace (or Event Hub / Storage Account, as required).</LI>
+<LI>Click Save to apply the diagnostic setting.</LI>
+</OL>
+<P>&nbsp;</P>
+<P><STRONG>Step 2: Create an alert rule</STRONG></P>
+<P>&nbsp;</P>
+<P>After enabling diagnostics, navigate to Azure Portal &gt; Monitor &gt; Alerts, and select Create &gt; Alert Rule.</P>
+<P><STRONG>Scope</STRONG></P>
+<P>Select Scope and click Select scope. In the resource selection pane, choose your Virtual Network Gateway (VPN Gateway) resource and click Apply. This sets the VPN Gateway as the target resource for the alert rule.</P>
+<P>&nbsp;</P>
+<img />
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P><STRONG>Condition</STRONG></P>
+<P>On the Condition tab, select Custom log search as the signal name and choose Aggregated logs as the query type.</P>
+<P>Enter the following KQL query to identify VPN tunnel disconnection events during the last 10 minutes:</P>
+<P>&nbsp;</P>
+<img />
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>AzureDiagnostics</P>
+<P>| where TimeGenerated &gt; ago(10m)</P>
+<P>| where Category == "TunnelDiagnosticLog"</P>
+<P>| where status_s == "Disconnected"</P>
+<P>| project TimeGenerated, Resource, status_s<BR /><BR /></P>
+<P>Configure the measurement settings as follows:</P>
+<UL>
+<LI>Measure: Tab [truncated]]]></description>
+      <pubDate>Tue, 06 Oct 2026 16:47:21 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/proactively-monitor-azure-vpn-gateway-tunnel-disconnections/ba-p/4562011</guid>
+      <dc:creator>shyambasnet</dc:creator>
+      <dc:date>2026-10-06T16:47:21Z</dc:date>
+    </item>
+    <item>
+      <title>Network security perimeter metrics are now generally available in Public Cloud</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/network-security-perimeter-metrics-are-now-generally-available/ba-p/4561244</link>
+      <description><![CDATA[<img />
+<P>We are excited to announce the&nbsp;<STRONG>general availability (GA) of network security perimeter metrics</STRONG>, a capability that helps administrators monitor network access patterns, understand the impact of the access rules, and identify unexpected traffic behaviour across protected resources. These metrics are available through Azure Monitor and can be used to create dashboards, alerts, and operational monitoring experiences.</P>
+<P><STRONG>Why use network security perimeter metrics?</STRONG></P>
+<P>Network security perimeter metrics capture access requests evaluated by the data plane and provide visibility into network activity associated with the perimeter-protected resources. Metrics enable monitoring scenarios such as:</P>
+<UL>
+<LI>Tracking approved and denied access requests.</LI>
+<LI>Monitoring inbound and outbound access activity.</LI>
+<LI>Understanding traffic patterns across protected resources, profiles, access modes and access rule versions.</LI>
+<LI>Detecting unexpected access attempts.</LI>
+<LI>Validating the impact of access rules’ changes.</LI>
+<LI>Establishing a baseline before moving a perimeter from Transition mode to Enforced mode.</LI>
+</UL>
+<P>Network security perimeter metrics render aggregated time-series data that is optimized for monitoring, alerting, and trend analysis.</P>
+<P><STRONG>Accessing network security perimeter metrics</STRONG></P>
+<P>Network security perimeter metrics are available through Azure Monitor.</P>
+<OL>
+<LI>In the Azure portal, navigate to your network security perimeter resource.</LI>
+<LI>Select <STRONG>Metrics</STRONG> under the <STRONG>Monitoring</STRONG> section.</LI>
+<LI>‘Add Metric’</LI>
+<LI>Choose the ‘NSP access metrics’ namespace.</LI>
+<LI>Select a metric and configure filters, splitting as needed.</LI>
+<LI>Use Azure Monitor features to build charts, dashboards, workbooks, and metric alerts.</LI>
+<LI>Multiple charts may be created for different metrics that are intended to be monitored.</LI>
+</OL>
+<P>Regular Azure Monitor features like drilling into the logs, saving the chart as a dashboard or exporting it to a workbook can also be performed.</P>
+<P><STRONG>Metrics vs diagnostic logs</STRONG></P>
+<P>While metrics and diagnostic logs are complementary monitoring tools, metrics provide a high-level operational view and support alerting, while diagnostic logs provide detailed event data for troubleshooting and investigation. Table below gives a high-level differentiation view of one over the other.</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="border-width: 1px;"><tbody><tr><td>
+<P><STRONG>Capability</STRONG></P>
+</td><td>
+<P><STRONG>Metrics</STRONG></P>
+</td><td>
+<P><STRONG>Diagnostic logs</STRONG></P>
+</td></tr><tr><td>
+<P>Trend analysis</P>
+</td><td>
+<P>Yes</P>
+</td><td>
+<P>Limited</P>
+</td></tr><tr><td>
+<P>Dashboards and visualizations</P>
+</td><td>
+<P>Yes</P>
+</td><td>
+<P>Requires log queries</P>
+</td></tr><tr>< [truncated]]]></description>
+      <pubDate>Wed, 30 Sep 2026 19:35:03 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/network-security-perimeter-metrics-are-now-generally-available/ba-p/4561244</guid>
+      <dc:creator>shashankamalladi</dc:creator>
+      <dc:date>2026-09-30T19:35:03Z</dc:date>
+    </item>
+    <item>
+      <title>Change Analysis in Azure Resource Graph: Your first stop for “What changed?”</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/change-analysis-in-azure-resource-graph-your-first-stop-for-what/ba-p/4559038</link>
+      <description><![CDATA[<P>&nbsp;</P>
+<P><STRONG>Introduction</STRONG></P>
+<P>One of the most common questions during Azure networking troubleshooting is:</P>
+<P>“Did anything change before the issue started?”</P>
+<P>Whether we are investigating VPN/, connectivity problems, Azure Firewall behavior changes, VM outages, routing issues, or application failures, identifying recent configuration changes is often the fastest way to determine the root cause.</P>
+<P>Change Analysis is a powerful capability built on Azure Resource Graph that allows engineers and administrators to quickly see:</P>
+<UL>
+<LI>What changed</LI>
+<LI>When the change occurred</LI>
+<LI>Who made the change</LI>
+<LI>Which client or tool performed the change</LI>
+<LI>The exact configuration differences before and after the change</LI>
+</UL>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P><STRONG>What is Change Analysis?</STRONG></P>
+<P>Azure resources are constantly being modified through:</P>
+<UL>
+<LI>Azure portal</LI>
+<LI>Azure CLI</LI>
+<LI>PowerShell</LI>
+<LI>ARM/Bicep deployments</LI>
+<LI>Terraform</LI>
+<LI>Azure Policy remediation</LI>
+<LI>Automation runbooks</LI>
+<LI>CI/CD pipelines</LI>
+</UL>
+<P>In many organizations, multiple administrators and engineers have access to the same Azure tenant and subscriptions. Because teams often work across different regions and time zones, it can be difficult to determine who made a change and to quickly contact the responsible person when an issue occurs. While most changes are intentional and necessary for daily operations, some modifications can unintentionally introduce outages, connectivity issues, or performance problems. Azure Change Analysis provides a centralized view of resource changes and helps organizations quickly answer critical troubleshooting questions such as: Who changed a setting? Was a route table updated before traffic stopped flowing? Did someone modify an NSG rule? Was the Azure Firewall configuration changed? When was a virtual machine resized? By showing what changed, when it changed, and who made the change, Change Analysis significantly reduces troubleshooting time and helps accelerate root cause analysis.</P>
+<P>&nbsp;</P>
+<P><STRONG>How Change Analysis works</STRONG></P>
+<P>When an Azure resource is:</P>
+<UL>
+<LI>Created</LI>
+<LI>Updated</LI>
+<LI>Deleted</LI>
+</UL>
+<P>&nbsp;Azure Resource Graph captures change information and stores snapshots that can later be queried.</P>
+<P>The platform records:</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="border-width: 1px;"><tbody><tr><td>
+<P>Attribute</P>
+</td><td>
+<P>Description</P>
+</td></tr><tr><td>
+<P>Resource</P>
+</td><td>
+<P>Azure resource affected</P>
+</td></tr><tr><td>
+<P>Change Type</P>
+</td><td>
+<P>Create, Update, Delete</P>
+</td></tr><tr><td>
+<P>Timestamp</P>
+</td><td>
+<P>When the change occurred</P>
+</td></tr><tr><td>
+<P>Changed By</P>
+</td><td>
+<P>User, service principal, or system</P>
+</td></tr><tr><td>
+<P>Client Type</P>
+</td><td>
+<P>Portal [truncated]]]></description>
+      <pubDate>Tue, 22 Sep 2026 17:57:34 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/change-analysis-in-azure-resource-graph-your-first-stop-for-what/ba-p/4559038</guid>
+      <dc:creator>shyambasnet</dc:creator>
+      <dc:date>2026-09-22T17:57:34Z</dc:date>
+    </item>
+    <item>
+      <title>Adding network intelligence into a network-ready Azure migration plan</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/adding-network-intelligence-into-a-network-ready-azure-migration/ba-p/4554519</link>
+      <description><![CDATA[<PRE aria-level="1"><SPAN class="lia-text-color-21"><EM><STRONG>Sudha Mahajan, Partner PM Azure Networking, Vijay Mamtani, CVP Azure Networking | September 2026</STRONG></EM></SPAN></PRE>
+<P aria-level="1"><SPAN class="lia-text-color-15"><STRONG>Lift-and-shift succeeds when the network moves with the application&nbsp;</STRONG></SPAN></P>
+<P><SPAN data-contrast="none">For many VMware customers, the immediate migration goal is practical: move workloads to Azure quickly, preserve application behavior and connectivity, reduce execution risk, keep it secure, and build a costed plan that leaders can approve. Compute and storage sizing are necessary, but it is not the whole migration plan. Applications depend on IP prefixes, network paths, security policies, load-balancing behavior, shared services, and connections to systems that may move at different times.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="none">Azure Migrate is critical to making this work manageable. It provides the foundation for discovering the estate, assessing migration readiness, developing the business case, and translating collected evidence into a plan. With Network Planning, that foundation becomes network-aware, combining server inventory with insights into how application connectivity can be represented in Azure.</SPAN></P>
+<P><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P aria-level="1"><STRONG><SPAN class="lia-text-color-15">Networking is the hidden critical path&nbsp;</SPAN></STRONG></P>
+<P><SPAN data-contrast="none">Network planning often begins late. A team may group and size virtual machines, then assume the target network can be designed near cutover. That approach overlooks the dependencies that determine whether an application will function after migration.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="none">The required information for networking is fragmented. Workload inventory may sit in vCenter; network constructs and flows may be reflected in NSX; policy intent may be distributed across firewalls; application delivery may depend on load balancers; address constraints may live in spreadsheets; and operational knowledge may be divided among application, infrastructure, security, and network teams. Each system provides part of the answer, but no single view naturally explains what an application needs in Azure.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="none">Common mistakes follow - planning by individual servers rather than application, missing dependencies, carrying forward rules without understanding their intent, overlooking shared services, estimating compute while omitting network costs, or designing target topology before the source environment is fully understood. These gaps create additional analysis, redesign, stakeholder review iterations, and cutover uncertainty. Networking becomes the hidden critical path - not because teams lack expertise, but because the evidence [truncated]]]></description>
+      <pubDate>Wed, 09 Sep 2026 18:01:43 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/adding-network-intelligence-into-a-network-ready-azure-migration/ba-p/4554519</guid>
+      <dc:creator>Sudha_Mahajan</dc:creator>
+      <dc:date>2026-09-09T18:01:43Z</dc:date>
+    </item>
+    <item>
+      <title>What’s new in Azure Firewall: Recent innovations</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/what-s-new-in-azure-firewall-recent-innovations/ba-p/4552987</link>
+      <description><![CDATA[<P class="lia-align-left"><SPAN data-contrast="auto">Organizations are modernizing their networks while managing a growing mix of applications, protocols, and security requirements. </SPAN></P>
+<P class="lia-align-left"><SPAN data-contrast="auto">Recent Azure Firewall releases strengthen this journey with simpler traffic routing, expanded protocol support, more flexible application controls, improved health visibility, and higher intrusion-detection performance. This roundup highlights five recent capabilities now available in general availability or public preview.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P class="lia-align-left"><STRONG><SPAN data-contrast="auto">In this update:</SPAN></STRONG><SPAN data-contrast="auto"><STRONG>&nbsp;</STRONG>Explicit proxy, IPv6 support, HTTP header insertion, auto-learn SNAT routes, and IDPS performance improvements.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<H3 aria-level="2"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 2">Explicit&nbsp;</SPAN><SPAN data-ccp-parastyle="heading 2">p</SPAN><SPAN data-ccp-parastyle="heading 2">roxy is now generally available</SPAN></SPAN><SPAN data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}">&nbsp;</SPAN></H3>
+<P><SPAN data-contrast="auto">Explicit&nbsp;proxy enables clients and applications to send HTTP and HTTPS traffic directly to Azure Firewall by configuring the&nbsp;firewall&nbsp;as their proxy. Instead of relying only on route-based traffic steering, organizations can use familiar proxy settings to centralize outbound web access through Azure Firewall.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">This release&nbsp;provides&nbsp;a simpler way to use Azure Firewall as a managed forward proxy. It can help teams&nbsp;consolidate&nbsp;web egress controls, support workloads that natively understand proxy configuration, and transition from traditional proxy appliances without introducing another infrastructure layer.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<UL>
+<LI aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="6" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><STRONG><SPAN data-contrast="auto">Direct proxy configuration:</SPAN></STRONG><SPAN data-contrast="auto"><STRONG>&nbsp;</STRONG>Configure supported clients and applications&nbsp;to use&nbsp;Azure Firewall for HTTP and HTTPS traffic.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></LI>
+</UL>
+<UL>
+<LI aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="6" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;: [truncated]]]></description>
+      <pubDate>Fri, 04 Sep 2026 15:48:26 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/what-s-new-in-azure-firewall-recent-innovations/ba-p/4552987</guid>
+      <dc:creator>devanshirastogi</dc:creator>
+      <dc:date>2026-09-04T15:48:26Z</dc:date>
+    </item>
+    <item>
+      <title>Azure Firewall explicit proxy is now generally available</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/azure-firewall-explicit-proxy-is-now-generally-available/ba-p/4552450</link>
+      <description><![CDATA[<P><SPAN data-contrast="auto">We are excited to announce the general availability of&nbsp;explicit proxy&nbsp;in Azure Firewall. This capability brings the familiar explicit proxy configuration model natively to Azure Firewall, enabling applications and browsers to send outbound HTTP and HTTPS traffic directly to the&nbsp;firewall&nbsp;through standard proxy settings. Customers can now gain centralized policy enforcement and visibility while reducing their dependence on self-managed forward proxy appliances.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<H3 aria-level="2"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 2">Proxy the traffic you choose—not the entire subnet</SPAN></SPAN><SPAN data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}">&nbsp;</SPAN></H3>
+<P><SPAN data-contrast="auto">Traditional route-based steering can require all traffic from a subnet to traverse&nbsp;a firewall.&nbsp;Explicit proxy&nbsp;offers a more targeted model: configure selected applications or browsers to use the Azure Firewall private IP and proxy port, while other traffic&nbsp;continues on&nbsp;its existing route. This application-level control can simplify migrations, reduce unnecessary routing changes, and help teams apply inspection where it matters most.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<H3 aria-level="2"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 2">What’s</SPAN><SPAN data-ccp-parastyle="heading 2">&nbsp;new for general availability</SPAN></SPAN><SPAN data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:160,&quot;335559739&quot;:80}">&nbsp;</SPAN></H3>
+<UL>
+<LI aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="2" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><STRONG><SPAN data-contrast="auto">A simpler single-port experience:</SPAN></STRONG><SPAN data-contrast="auto"><STRONG>&nbsp;</STRONG>Serve both HTTP and HTTPS destinations through one HTTP explicit proxy endpoint port, reducing client configuration complexity.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></LI>
+</UL>
+<UL>
+<LI aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="2" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><STRONG><SPAN data-contrast="auto">More secure PAC file access:</SPAN></STRONG><SPAN data-contrast="auto">& [truncated]]]></description>
+      <pubDate>Wed, 02 Sep 2026 15:40:04 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/azure-firewall-explicit-proxy-is-now-generally-available/ba-p/4552450</guid>
+      <dc:creator>devanshirastogi</dc:creator>
+      <dc:date>2026-09-02T15:40:04Z</dc:date>
+    </item>
+    <item>
+      <title>Advertised gateway prefixes in Azure</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/advertised-gateway-prefixes-in-azure/ba-p/4550940</link>
+      <description><![CDATA[<H1>Introduction</H1>
+<P>Large Azure hub-and-spoke environments can advertise a significant number of routes toward on-premises networks. By default, Azure VPN Gateway and ExpressRoute Gateway advertise the address spaces of the hub virtual network and the address spaces of peered spoke virtual networks that use gateway transit. As the number of spokes and address spaces grows, the border gateway protocol (BGP) route table grows as well.</P>
+<P>Advertised gateway prefixes provide a native way to summarize those Azure-side routes. The feature is configured on the hub virtual network through the <STRONG>summarizedGatewayPrefixes</STRONG> property, which is exposed in the Azure portal as <STRONG>Advertised gateway prefixes</STRONG>.</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table class="lia-background-color-16 lia-border-style-solid" border="1" style="width: 97.6852%; height: 168px; border-width: 1px;"><tbody><tr><td>
+<P class="lia-align-center"><STRONG>Fewer BGP prefixes</STRONG></P>
+<P class="lia-align-center">Replace many individual networks with one or more aggregated CIDRs.</P>
+</td><td>
+<P class="lia-align-center"><STRONG>Better scale management</STRONG></P>
+<P class="lia-align-center">Help large hub-and-spoke designs stay within advertised-prefix limits.</P>
+</td><td>
+<P class="lia-align-center"><STRONG>Cleaner route visibility</STRONG></P>
+<P class="lia-align-center">Make the intended Azure address plan easier to recognize on provider and on-premises route views.</P>
+</td></tr></tbody><colgroup><col style="width: 33.33%" /><col style="width: 33.33%" /><col style="width: 33.33%" /></colgroup></table></DIV>
+<P>In this blog we will demonstrate leveraging Advertised gateway prefixes to summarize many Azure advertised prefixes into one.&nbsp;&nbsp;</P>
+<H1>What are advertised gateway prefixes?</H1>
+<P>Advertised gateway prefixes are summarized CIDR blocks that an Azure hybrid gateway advertises toward on-premises instead of advertising every covered hub and spoke address space individually. The configuration belongs on the gateway virtual network, usually the hub VNet that contains GatewaySubnet and the ExpressRoute or VPN gateway.</P>
+<H2>How the route advertisement changes</H2>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table class="lia-background-color-16 lia-border-style-solid" border="1" style="width: 97.8704%; height: 277px; border-width: 1px;"><tbody><tr><td>
+<P><STRONG>Default behavior</STRONG></P>
+</td><td>
+<P><STRONG>With advertised gateway prefixes</STRONG></P>
+</td></tr><tr><td>
+<P class="lia-align-left">Hub: 10.27.0.0/24<BR />Spoke 1: 10.27.1.0/24<BR />Spoke 2: 10.27.2.0/24<BR />Spoke 3: 10.27.3.0/24</P>
+</td><td>
+<P>Summary: 10.27.0.0/22</P>
+</td></tr><tr><td>
+<P>Four individual prefixes are advertised.</P>
+</td><td>
+<P>One summary prefix is advertised.</P>
+</td></tr><tr><td>
+<P>A spoke outside the summary is still advertised separately.</P>
+</td><td>
+<P>Exampl [truncated]]]></description>
+      <pubDate>Fri, 28 Aug 2026 20:09:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/advertised-gateway-prefixes-in-azure/ba-p/4550940</guid>
+      <dc:creator>erikbailey</dc:creator>
+      <dc:date>2026-08-28T20:09:00Z</dc:date>
+    </item>
+    <item>
+      <title>Simpler, private connectivity between Azure and AWS with Azure Multicloud Interconnect</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-networking-blog/simpler-private-connectivity-between-azure-and-aws-with-azure/ba-p/4550556</link>
+      <description><![CDATA[<P><SPAN data-contrast="none">Multicloud is no longer the exception — it is how most enterprises operate. Teams run analytics in one cloud and applications in another, place workloads to meet data-residency requirements, and increasingly move large volumes of data between clouds to train and serve AI models. Yet the network that connects these environments has remained one of the hardest parts of a multicloud strategy to get right.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:180,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="none">Connecting Azure and AWS privately has traditionally meant stitching together Azure ExpressRoute, AWS Direct Connect, a connectivity provider or colocation footprint, customer-managed routers, BGP sessions, and link-layer encryption — then owning the resiliency design and day-to-day operations across all of it. The result is often slow to deliver, difficult to troubleshoot, and inconsistent in performance.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:180,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="none">Today, Microsoft and AWS are together introducing </SPAN><SPAN data-contrast="none">Azure Multicloud Interconnect</SPAN><SPAN data-contrast="none">, a jointly engineered, fully managed service that delivers private, high-throughput connectivity between Azure and AWS through a single logical resource. Both clouds coordinate provisioning, resiliency, encryption, and lifecycle operations, so the connection between your environments simply works — end to end.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:180,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><STRONG><SPAN class="lia-text-color-10">The challenge with connecting clouds today&nbsp;</SPAN></STRONG></P>
+<P><SPAN data-contrast="none">For most organizations, cross-cloud connectivity has been a build-it-yourself exercise. Establishing a private link between Azure and AWS typically requires provisioning an ExpressRoute circuit on one side and a Direct Connect circuit on the other, engaging a connectivity provider or securing space in a colocation facility to bridge them, and then configuring and maintaining the routers, BGP peering, and encryption that tie the two clouds together.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:180,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="none">Each of those pieces is owned by a different team or vendor, which makes the end-to-end path only as reliable as its least-managed component. When something breaks, isolating the root cause means coordinating across Microsoft, AWS, a network provider, and your own operations team — and mean time to resolution suffers as a result. Capacity planning is equally difficult: bandwidth is often provisioned for peak demand and left underused, while scaling up to meet a new AI or data initiative can take weeks.</ [truncated]]]></description>
+      <pubDate>Mon, 31 Aug 2026 17:59:37 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-networking-blog/simpler-private-connectivity-between-azure-and-aws-with-azure/ba-p/4550556</guid>
+      <dc:creator>Sudha_Mahajan</dc:creator>
+      <dc:date>2026-08-31T17:59:37Z</dc:date>
+    </item>
+  </channel>
+</rss>

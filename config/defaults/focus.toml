@@ -1,0 +1,105 @@
+# Seed focus areas (plan §5). `description` goes into the triage and assess prompts verbatim:
+# it tells the model what this reader (a cloud network architect working mainly in Azure, a former
+# penetration tester, with security duties) needs from each area. `keywords` are the prefilter's
+# positive terms (case-insensitive substring matches on titles). Re-seeding adds missing keys only.
+
+[[focus]]
+key = "azure-networking"
+name = "Azure networking"
+tier = "primary"
+description = """\
+Changes to Azure networking services that the reader designs with every day: VNet, Virtual WAN, \
+ExpressRoute, VPN Gateway, Private Link and Private Endpoints, Azure Firewall, Front Door, \
+Application Gateway and WAF, Azure DNS and DNS Private Resolver, NSGs and ASGs, Azure Virtual \
+Network Manager, Load Balancer, NAT Gateway, DDoS Protection, Route Server and IPv6 support. \
+Most relevant: new resources or features, general availability or preview announcements, \
+retirements and breaking changes with dates, SKU or pricing changes, new limits, and behaviour \
+changes that affect existing designs (for example default outbound access or routing changes). \
+Generic Azure marketing, AI product launches and compute or storage news without a networking \
+angle do not belong here."""
+keywords = ["vnet", "virtual network", "virtual wan", "vwan", "expressroute", "vpn gateway", "private link", "private endpoint", "azure firewall", "front door", "application gateway", "waf", "dns private resolver", "azure dns", "nsg", "network security group", "avnm", "virtual network manager", "load balancer", "nat gateway", "ddos protection", "route server", "ipv6"]
+
+[[focus]]
+key = "network-architecture"
+name = "Network architecture and paradigms"
+tier = "primary"
+description = """\
+Architecture guidance and paradigms for enterprise cloud networks: hub-and-spoke versus Virtual \
+WAN, Azure landing zones, the Cloud Adoption Framework and Well-Architected Framework, \
+zero-trust networking, segmentation and egress control, hybrid connectivity patterns, and \
+SASE/SSE including Microsoft Entra Global Secure Access (Internet Access and Private Access). \
+Relevant when it changes how the reader should design or review a network: new or revised \
+reference architectures, official best-practice updates, well-argued design trade-offs and \
+lessons from real incidents. Beginner tutorials and vendor-neutral buzzword pieces without \
+concrete design content are low value."""
+keywords = ["landing zone", "well-architected", "cloud adoption framework", "hub-spoke", "hub and spoke", "zero trust", "sase", "sse", "global secure access", "private access", "internet access", "segmentation", "microsegmentation", "egress", "hybrid connectivity", "reference architecture"]
+
+[[focus]]
+key = "entra-identity"
+name = "Entra ID and identity security"
+tier = "primary"
+description = """\
+Microsoft Entra ID as the control plane the reader secures: Conditional Access, authentication \
+strengths, MFA and passkeys/FIDO2, Privileged Identity Management, workload identities and \
+managed identities, token protection, Continuous Access Evaluation, ID Protection, cross-tenant \
+access and B2B settings. Highest value: retirements and enforcement dates (for example \
+mandatory MFA or legacy authentication shutdowns), breaking changes, new policy controls, and \
+attacks or vulnerabilities abusing Entra tokens, consent or federation. Licensing and \
+marketing posts with nothing to configure are low value."""
+keywords = ["entra", "azure ad", "azure active directory", "conditional access", "authentication strength", "pim", "privileged identity", "token protection", "continuous access evaluation", "passkey", "fido2", "workload identit", "managed identit", "mfa", "multifactor", "id protection", "cross-tenant"]
+
+[[focus]]
+key = "ms-security"
+name = "Microsoft cloud security"
+tier = "primary"
+description = """\
+Security of the Microsoft and Azure estate the reader is responsible for: MSRC advisories and \
+Patch Tuesday, vulnerabilities in Azure services, Windows Server, Exchange, SharePoint, Active \
+Directory, Kerberos/NTLM and Hyper-V, especially ones that are actively exploited or listed in \
+CISA KEV; Defender for Cloud, Microsoft Sentinel and the Microsoft Cloud Security Benchmark; and \
+incidents or outages affecting Microsoft cloud services. Highest value is anything that needs \
+action (patch, mitigation, configuration change, detection) with a clear deadline or active \
+exploitation. Client-only consumer products (Xbox, Edge-only Chromium fixes, Office on Mac) \
+matter far less."""
+keywords = ["msrc", "patch tuesday", "cve-", "microsoft defender", "defender for cloud", "sentinel", "mcsb", "cloud security benchmark", "exploited", "zero-day", "exchange server", "sharepoint", "active directory", "kerberos", "ntlm", "hyper-v", "windows server"]
+
+[[focus]]
+key = "network-security"
+name = "Network and edge security"
+tier = "secondary"
+description = """\
+Vulnerabilities, exploitation and attacks against network and edge infrastructure that a \
+network architect must react to: firewalls, VPN concentrators, load balancers and application \
+delivery controllers (Fortinet, Palo Alto Networks, Cisco, Ivanti, Citrix, F5, Check Point, \
+Juniper and similar), routing and DNS incidents such as BGP hijacks or route leaks, and DDoS \
+campaigns and trends. Most relevant when a device class commonly deployed as an NVA or at the \
+enterprise edge is actively exploited or needs urgent patching. Research on obscure consumer \
+routers or IoT is low value."""
+keywords = ["fortinet", "fortigate", "palo alto", "pan-os", "globalprotect", "cisco", "ivanti", "citrix", "netscaler", "f5", "big-ip", "check point", "juniper", "vpn", "firewall", "bgp", "route leak", "dns hijack", "ddos"]
+
+[[focus]]
+key = "security-news"
+name = "Security news and offensive research"
+tier = "secondary"
+description = """\
+Significant security news beyond the Microsoft estate: major breaches and ransomware incidents, \
+new CISA KEV additions, supply-chain compromises, attacker techniques against cloud \
+environments (identity abuse, cloud control-plane attacks, token theft, Kubernetes and CI/CD \
+compromise) and notable offensive research that a former penetration tester would want to know \
+about. Relevant when it reveals a new technique, affects widely used software or cloud \
+services, or changes what defenders should look for. Routine arrest reports, small local \
+breaches and vendor product promotion are low value."""
+keywords = ["breach", "ransomware", "kev", "known exploited", "supply chain", "cloud attack", "token theft", "kubernetes", "ci/cd", "red team", "pentest", "proof of concept", "exploit", "apt"]
+
+[[focus]]
+key = "industry"
+name = "Cloud industry"
+tier = "side"
+description = """\
+Broader cloud and technology industry news that an Azure architect should be aware of but \
+rarely needs to act on: major outages at Azure, AWS, Google Cloud or large CDNs and DNS \
+providers, cloud pricing and licensing changes, and regulation affecting cloud and security \
+operations in Europe and the UK (NIS2, DORA, the Cyber Resilience Act, data sovereignty). \
+Relevant when it may affect architecture decisions, compliance work or vendor choice. General \
+business news, earnings and AI hype are low value."""
+keywords = ["outage", "pricing", "price increase", "licensing", "nis2", "dora", "cyber resilience act", "sovereign", "data residency", "aws", "google cloud", "gcp"]

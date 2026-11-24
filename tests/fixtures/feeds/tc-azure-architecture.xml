@@ -1,0 +1,544 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" version="2.0">
+  <channel>
+    <title>Azure Architecture Blog articles</title>
+    <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/bg-p/AzureArchitectureBlog</link>
+    <description>Azure Architecture Blog articles</description>
+    <pubDate>Tue, 24 Nov 2026 13:10:52 GMT</pubDate>
+    <dc:creator>AzureArchitectureBlog</dc:creator>
+    <dc:date>2026-11-24T13:10:52Z</dc:date>
+    <item>
+      <title>Evidence before autonomy: Designing multi-agent battery passports on Azure</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/evidence-before-autonomy-designing-multi-agent-battery-passports/ba-p/4575061</link>
+      <description><![CDATA[<P><STRONG>Author:</STRONG> Dominik Zemp, Microsoft Switzerland, Enterprise Cloud Solution Architect</P>
+<P><EM>About this article.</EM> This article is written from the author's perspective as an Enterprise Cloud Solution Architect contributing to the wider Microsoft community, and the views expressed are the author's own. It is not official Microsoft documentation, product guidance or a product announcement. For official guidance, see <A href="https://learn.microsoft.com/" target="_blank" rel="noopener">Microsoft Learn</A> and the <A href="https://learn.microsoft.com/en-us/azure/architecture/" target="_blank" rel="noopener">Azure Architecture Center</A>. The scenario is fictional and uses synthetic data only. The article proposes a design; it does not describe a customer engagement, a production deployment or measured results. The article provides general information, not legal, regulatory, security or other professional advice.</P>
+<P>The public GitHub repository [<A class="lia-external-url" href="https://github.com/dzemp/multi-agent-digital-battery-passport" target="_blank" rel="noopener">dzemp/multi-agent-digital-battery-passport</A>] contains the companion prototype for this article, including the passport application and its AI agents, the Bicep templates and the command-line tool that deploy the Azure infrastructure, and documentation such as the architecture, scenario walkthrough and threat model.</P>
+<img />
+<H2>Executive summary</H2>
+<P>From February 18, 2027, a digital passport becomes a market-access requirement for in-scope batteries first placed on the EU market or first put into service there [1]. For manufacturers, this is not simply a documentation deadline. Missing mandatory data can block a release on day one. As due-diligence and forced-labor obligations phase in during 2027, disputed sourcing evidence can block a release too, while outdated approvals can allow unsupported claims to reach customers. The challenge is to keep evidence current and make accountable decisions when the facts change.</P>
+<P>This article proposes an Azure reference architecture that connects supplier evidence, production records and review decisions to individual batteries. Microsoft Fabric prepares supplier and production data for analysis and reporting. Microsoft Foundry agents help interpret documents and prepare reviews. Accountable people resolve adverse findings and approve methods and policies. The passport application, not the AI, enforces publication controls and records decisions and passport versions in Azure SQL Database.</P>
+<P>The central design principle is to bind every decision to the evidence it judged. The article follows a conflict between a supplier certificate and a transport record. Two batteries use material from the affected lot and need review; a third uses a different lot and can proceed if its own checks pass. When the evidence changes, the earlier review can no longer authorize publication, and the affected decision must  [truncated]]]></description>
+      <pubDate>Mon, 23 Nov 2026 17:37:56 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/evidence-before-autonomy-designing-multi-agent-battery-passports/ba-p/4575061</guid>
+      <dc:creator>Dominik Zemp</dc:creator>
+      <dc:date>2026-11-23T17:37:56Z</dc:date>
+    </item>
+    <item>
+      <title>Who Can See This Record? Designing Reusable Access Control Lists for Azure Microservices</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/who-can-see-this-record-designing-reusable-access-control-lists/ba-p/4575167</link>
+      <description><![CDATA[<P>A user signs in, opens <EM><STRONG>/records/1042</STRONG></EM>, and receives the correct response. Then they change one character in the URL and request<EM><STRONG> /records/1043</STRONG></EM>.</P>
+<P>The access token is valid. The API gateway accepted it. The user has the expected application role. Yet the response contains somebody else’s data.</P>
+<P>Nothing sophisticated happened. The API authenticated the caller but never answered the question that mattered: <STRONG>Is this caller allowed to perform this action on this specific record?</STRONG></P>
+<P><A href="https://api-security.owasp.org/editions/2023/en/0xa1-broken-object-level-authorization/" target="_blank" rel="noopener">OWASP API Security Top 10 2023</A> calls this broken object-level authorization (BOLA). OWASP places it at API1:2023 and recommends an object-level authorization check in every endpoint that receives an object identifier and acts on the corresponding object.</P>
+<P>This article presents an Azure-oriented pattern for making those checks consistent across microservices: a small reusable enforcement library, a relationship-aware decision service, trusted identities for both users and workloads, explicit exceptions, and telemetry that exposes endpoints where no decision was made.</P>
+<BLOCKQUOTE>
+<P><STRONG>Terminology note:</STRONG> “ACL” in this article means application-level access control over business objects. It is not Azure role-based access control (Azure RBAC), a network ACL, or an Azure Storage ACL. Those controls protect different layers and remain important, but they do not decide whether a signed-in user may update business record 1043.</P>
+</BLOCKQUOTE>
+<H2>Authentication, roles, and object authorization answer different questions</H2>
+<P>Authentication answers <STRONG>who is calling</STRONG>. A role or scope answers <STRONG>what category of operation the caller may attempt</STRONG>. Object-level authorization answers <STRONG>whether that caller may perform that action on that resource now</STRONG>.</P>
+<P>A role such as <EM>Member.Read</EM> can establish that the caller is allowed to use a read API. It cannot, by itself, prove that the caller is related to the member identified in the route, query string, or request body. The <A href="https://learn.microsoft.com/en-us/azure/architecture/guide/multitenant/approaches/identity" target="_blank" rel="noopener">Azure Architecture Center guidance for multitenant identity</A> makes this distinction explicit: role information can be carried in identity tokens, while resource-level authorization data can be maintained and evaluated by the application.</P>
+<P>For object authorization, the decision normally needs more context:</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="border-width: 1px;"><thead><tr><th>Decision input</th><th>Example</th></tr></thead><tbody><tr><td>Subject</td><td>The signed-in user or calling workload</td></tr><tr><td>Tenant</td><td>The [truncated]]]></description>
+      <pubDate>Mon, 23 Nov 2026 17:36:03 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/who-can-see-this-record-designing-reusable-access-control-lists/ba-p/4575167</guid>
+      <dc:creator>ShwethaPunnam</dc:creator>
+      <dc:date>2026-11-23T17:36:03Z</dc:date>
+    </item>
+    <item>
+      <title>Inside the architecture: How connectors work with Azure Functions</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/inside-the-architecture-how-connectors-work-with-azure-functions/ba-p/4573939</link>
+      <description><![CDATA[<P>Say you run a shared support inbox. Each time a customer writes in, you want a function to read the email, pick out the important parts, and post a summary in your team's Teams channel. The business logic might be twenty lines. The rest is authorization, change detection, event delivery, and a second set of permissions to post in Teams, and you rebuild most of it for every service you touch.</P>
+<P>Azure Connectors and the Connector SDKs take that work on. The platform manages connections and authorization. The same app can react to events in one service and call operations in another. Webhook and poll delivery give you push or pull, so you can pick what fits your app. One SDK per language covers the Connector catalog with typed operations and payloads, VS Code tooling handles setup, and SDKs are available for .NET, Python, and Node.js from day one.</P>
+<P>Underneath those promises are a handful of pieces we built and a few decisions about where each one stops. The support inbox runs through all of them.</P>
+<H4>Starting from what Azure already has</H4>
+<P>Azure already runs more than 1,000 managed Connectors, connecting to 1,600+ services. They power Azure Logic Apps and Power Automate, and API Hub hosts their connections, OAuth consent, and runtime. Logic Apps already knows how to run Connector triggers, whether the source sends notifications, accepts a webhook subscription, or has to be polled.</P>
+<P>So we didn't write a second integration for each service. We built a new front door to the existing Connector runtime, one that application code can use directly, and added the glue Azure Functions needs on top. Most of the new work falls into four areas:</P>
+<UL>
+<LI>A control plane, the Connector Namespace, that exposes connections, access policies, and trigger configurations as Azure resources.</LI>
+<LI>A runtime layer that proxies SDK calls into API Hub and turns trigger configurations into system-managed workflows with a delivery step at the end.</LI>
+<LI>A Functions Connector extension, with host and worker pieces, that receives events by webhook or by polling and feeds the Functions scale controller.</LI>
+<LI>One code generator that emits typed SDKs for .NET, Python, and Node.js from live Connector metadata, plus tooling that sets everything up.</LI>
+</UL>
+<img>
+<P>Azure Connectors and Azure Functions architecture: the Outlook mailbox, the connector platform, and the Function App, with every flow from the email arriving to the summary reaching Teams</P>
+</img>
+<H4>The control plane: Connector Namespace</H4>
+<P>A Connector Namespace is an Azure Resource Manager resource of type <SPAN class="lia-text-color-10">`Microsoft.Web/connectorGateways`</SPAN>. Under it sit three child resource types: connections, connection access policies, and trigger configurations. Because they're ARM resources, you can create them with Bicep, the CLI, or the VS Code tooling, and they get the usual Azure role-based access control and lifecycle.</P>
+<P>A connect [truncated]]]></description>
+      <pubDate>Wed, 18 Nov 2026 20:43:32 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/inside-the-architecture-how-connectors-work-with-azure-functions/ba-p/4573939</guid>
+      <dc:creator>swapnil_nagar</dc:creator>
+      <dc:date>2026-11-18T20:43:32Z</dc:date>
+    </item>
+    <item>
+      <title>Using AI to help forestry planners prioritise fuel-reduction work</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/using-ai-to-help-forestry-planners-prioritise-fuel-reduction/ba-p/4573152</link>
+      <description><![CDATA[<NAV class="print-controls" aria-label="Print controls"><BUTTON type="button">Print / save as PDF</BUTTON></NAV><MAIN>
+<H1>Using AI to help forestry planners prioritise fuel-reduction work</H1>
+<P><EM>By Eneko Vallecillo, Principal Solution Engineer, Microsoft UK</EM></P>
+<img />
+<P><EM>Forestry companies, including pulp and paper producers, can manage thousands of plantation parcels. EU wildfire-prevention policy promotes reducing vegetation that can fuel fires [1], but legal duties vary. Portugal's Decree-Law 82/2021 requires fuel management around homes and other buildings used for economic activities on rural land, with a standard 50-metre strip where it covers forest land [2]. Spain's Forest Law 43/2003 makes owners responsible for managing private forests; regional governments set detailed fire-prevention rules [3].</EM></P>
+<P><EM>I evaluated whether an AI agent built with Microsoft Foundry could help a forestry planner choose where to send limited crews for fuel-reduction work, and explain those choices to the board or, where required, an auditor or regulator.</EM></P>
+<BLOCKQUOTE>
+<P>The <A class="lia-external-url" href="https://github.com/enekazo/WFI-ScoringAccelerator" target="_blank" rel="noopener">WFI Scoring Accelerator repository</A> [4] includes deployable code, setup instructions and a <A class="lia-external-url" href="https://github.com/enekazo/WFI-ScoringAccelerator/tree/main/docs/reports" target="_blank" rel="noopener">three-part test exercise</A>, with full evidence and analysis. You can reproduce the tests or adapt the solution to another dataset or industry using an appropriate scoring policy and data model.</P>
+</BLOCKQUOTE>
+<H2>The planner's challenge</H2>
+<P>Picture a forestry planner with 100 parcels in her queue, each with a proposed fuel-reduction job. She has fewer crews than jobs and a window that closes on Friday. Which parcels get a crew first, and can those crews actually do the work?</P>
+<P>The planner asks an AI agent for the risk scores of all parcels needing fuel-reduction work. For parcel PAX-0017, it reports 'high risk, score 72.4, fully assessed from measured inputs'. That answer could hide several problems:</P>
+<UL>
+<LI>The AI agent calculates the risk score from raw data instead of retrieving one calculated by code using the organisation’s agreed rules. Ask the same question again and the AI agent may give a different number. AI agents are not guaranteed to produce the same answer each time.</LI>
+<LI>A missing wind reading was estimated, yet the agent called it "observed", as though a sensor had measured it.</LI>
+<LI>A weather update changed the parcel's risk after a crew was booked. Nothing flagged the booking as out of date, so the crew could have been sent out in weather that was no longer safe.</LI>
+</UL>
+<P>The AI agent was asked to calculate from unlabelled data, with no check on its answer. Even a correct ranking would leave the planner with questions: can a crew reach parcel PAX-0017, who lives d [truncated]]]></description>
+      <pubDate>Mon, 16 Nov 2026 20:54:26 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/using-ai-to-help-forestry-planners-prioritise-fuel-reduction/ba-p/4573152</guid>
+      <dc:creator>Enekovb</dc:creator>
+      <dc:date>2026-11-16T20:54:26Z</dc:date>
+    </item>
+    <item>
+      <title>Lantern: agentic AI for records and provenance
+on Azure</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/lantern-agentic-ai-for-records-and-provenance-on-azure/ba-p/4572947</link>
+      <description><![CDATA[<P><STRONG>Author:</STRONG> Warren Kahn, Senior Solution Engineer, Microsoft<BR /><STRONG>Version:</STRONG> 3.5.10, 12 November 2026<BR /><STRONG>Written for:</STRONG> Architects and technical leaders at museums, libraries and archives, auction houses, banks, land registries and manufacturers with product passports, and the partners who build for them<BR /><STRONG>Reading time:</STRONG> About 20 minutes</P>
+<P><STRONG>Notice.</STRONG> The museum in this white paper is the Musée National des Arts Réunis (MNAR), a fictional French national museum from a case-study scenario [1]. The demonstration collection is real: 501 records from the French national catalogue, Joconde, under the Licence Ouverte 2.0 [12]. I built and ran the system on Azure in September and October 2026. Every measured result in this white paper comes from that build, and so does every lesson in section 9. Measured results carry their date, and every other figure is labelled as an assumption or an estimate.</P>
+<H2>Executive summary</H2>
+<P>Many organisations rely on experts who must describe what they hold, prove where it came from and explain it to the people they serve. Curators do it for a collection, specialists for the lots in a sale, compliance officers for a client’s wealth, and registrars for a property’s title. The work is slow, and it rests on a few people. Generative AI can help with the drafting and the research. The risk is an invented fact published in the organisation’s name, or a decision that breaches someone’s rights and can’t be undone.</P>
+<P>The museum I built Lantern for shows the scale: only 8% of its 600,000 objects are digitised with rich metadata, the cataloguing backlog is about a decade long, provenance research is largely manual, and visitors ask questions in a dozen languages [1].</P>
+<P>This white paper sets out Lantern, a design on Azure that I built around that risk and measured in the museum. Any organisation whose experts do this work can reuse it. It has four parts, named by what they do:</P>
+<OL>
+<LI>An assistant drafts the description, with a source for every fact. In the museum, the cataloguing assistant drafts the catalogue record.</LI>
+<LI>An assistant builds the item’s history from evidence, citing every link. In the museum, the provenance assistant builds the chain of owners.</LI>
+<LI>A named person signs before anything goes out. In the museum, the curator signs the record and the rights officer the rights decision.</LI>
+<LI>A guide explains in the reader’s language, by voice or text, opened from a code with no app. In the museum, this is the visitor guide.</LI>
+</OL>
+<P>I designed Lantern around three core principles: firstly, complete accuracy, with zero hallucinations; secondly, speed; and finally, ease of use, as the industries that would benefit most are often understaffed or have smaller technical teams. The assistants only make proposals. Four things carry over to any organisation: separate doors for staff and the public, one rec [truncated]]]></description>
+      <pubDate>Wed, 18 Nov 2026 20:41:36 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/lantern-agentic-ai-for-records-and-provenance-on-azure/ba-p/4572947</guid>
+      <dc:creator>WarrenZA</dc:creator>
+      <dc:date>2026-11-18T20:41:36Z</dc:date>
+    </item>
+    <item>
+      <title>The Model Isn’t the Boss: An Azure Architecture for Accountable AI Agents</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/the-model-isn-t-the-boss-an-azure-architecture-for-accountable/ba-p/4571335</link>
+      <description><![CDATA[<DIV lang="en-US"><img />
+<P>Imagine a housing organization that maintains several thousand rented homes. Tenants report repairs through a website, an app, a phone line or a support worker who completes the form with them, and many reports include a photo. Asset history, approved repair guidance, contractor availability and work orders sit in separate systems, which makes coordination hard. The organization wants better diagnosis support, bookings that suit both the job and the household, trustworthy completion evidence and coordination with planned renovation. Some tenants need a person rather than a form, and automated vulnerability decisions are outside what this example allows.</P>
+<P class="callout"><STRONG>What informed this pattern</STRONG></P>
+<P class="callout">This architecture synthesizes recurring control and integration concerns encountered in enterprise AI architecture discussions and design reviews. These include models being given direct access to transactional APIs, model confidence being treated as business authorization, uncertain partner outcomes being retried without reconciliation, and observability capturing more personal or business content than operations require. Customer-specific details have been generalized or removed.</P>
+<P>The housing-maintenance journey is an illustrative scenario rather than a description of a specific customer implementation. It provides a concrete way to examine those recurring concerns and turn them into reusable architecture guidance. Here, a tenant is a person who rents a home, not a Microsoft Entra tenant.</P>
+<P>The resulting three-plane model is my synthesis of those observations: separate nondeterministic reasoning from deterministic authorization and durable execution, then connect both to governed operational evidence. The purpose is not to present a verified production reference architecture, but to provide a pattern that teams can challenge, adapt and validate through a bounded pilot.</P>
+<H2>The repair journey exposes the real control problem</H2>
+<P>A capable model can describe a leaking trap from a photo. The consequential steps are actions: booking a contractor, issuing a payment instruction or alerting a caseworker. Each needs answers a model cannot supply on its own authority: who asked, which work item, which policy, who confirmed and what actually happened.</P>
+<P>The Azure Well-Architected Framework’s <A href="https://learn.microsoft.com/en-us/azure/well-architected/ai/get-started" target="_blank" rel="noopener">AI workload guidance</A> notes that AI replaces deterministic functionality in parts of a workload with nondeterministic behavior. Connect a chatbot straight to a work-order API and that nondeterminism reaches records, because the component interpreting untrusted text also changes them. This article proposes a different organizing principle:</P>
+<BLOCKQUOTE>
+<P><STRONG>AI reasons; authorized services act; governed data measures what happened.</STRONG></P>
+</BLOCKQUOT [truncated]]]></description>
+      <pubDate>Sat, 07 Nov 2026 20:50:12 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/the-model-isn-t-the-boss-an-azure-architecture-for-accountable/ba-p/4571335</guid>
+      <dc:creator>Jiri Binko</dc:creator>
+      <dc:date>2026-11-07T20:50:12Z</dc:date>
+    </item>
+    <item>
+      <title>Repairs and Renovation Should Not Compete Blindly for the Same Capacity</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/repairs-and-renovation-should-not-compete-blindly-for-the-same/ba-p/4571312</link>
+      <description><![CDATA[<FIGURE><IMG id="hero" src="data:image/png;base64,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 [truncated]]]></description>
+      <pubDate>Sat, 07 Nov 2026 16:06:48 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/repairs-and-renovation-should-not-compete-blindly-for-the-same/ba-p/4571312</guid>
+      <dc:creator>Jiri Binko</dc:creator>
+      <dc:date>2026-11-07T16:06:48Z</dc:date>
+    </item>
+    <item>
+      <title>Dutch Social Housing Transformation: Smarter Repairs, Faster Renovations, Accountable Tech</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/dutch-social-housing-transformation-smarter-repairs-faster/ba-p/4571311</link>
+      <description><![CDATA[<img />
+<P>Picture an ordinary week at a Dutch housing association. A tenant reports bedroom mold for the third time, and the repair desk books a contractor to treat it. Across the office, the asset team is finalizing next year’s insulation and ventilation program for the same building. Each team acts sensibly; none sees the whole home.</P>
+<P>The coming decade will test exactly this seam. Woningcorporaties, the Dutch social housing associations, have committed to better-maintained, better-insulated homes and much more new social housing, with strained finances and finite capacity. The answer is not a set of isolated technology projects but an operating model that connects commitments, constraints, capabilities, and owners, with technology in a supporting role.</P>
+<H2>Different commitments run on different clocks</H2>
+<P>Dates in the sector’s calendar carry unequal legal weight. The <A href="https://zoek.officielebekendmakingen.nl/blg-1174922.pdf" target="_blank">Nationale Prestatieafspraken 2025–2035</A> (national performance agreements, NPA) were recalibrated by the housing minister, Aedes (the associations’ federation), and the VNG (the association of municipalities) and <A href="https://aedes.nl/nationale-prestatieafspraken" target="_blank">signed on December 11, 2024</A>. They are a sector agreement, not a statute, applied locally through performance agreements with municipalities and tenant organizations.</P>
+<P>Under the NPA, associations make every effort to <A href="https://aedes.nl/verduurzaming/nationale-prestatieafspraken-verduurzaming" target="_blank">remove all E, F, and G energy labels by 2028 at the latest</A>, except monuments and homes designated for demolition, with complex-wide projects subject to agreement by 70% of tenants and any homeowners association. From 2026, <A href="https://aedes.nl/leefbare-en-veilige-wijken/nationale-prestatieafspraken-2025-2035-leefbaarheid" target="_blank">no homes should be in poor maintenance condition</A> (category 5 or 6) unless concrete demolition or renovation plans exist, and from 2029 the parties aim for 30,000 new social rental homes a year until 2035. Separately, a <A href="https://www.rijksoverheid.nl/actueel/nieuws/2026/07/10/einde-in-zicht-voor-huurwoningen-met-energielabels-e-f-en-g-regeling-naar-beide-kamers" target="_blank">draft decree sent to parliament in July 2026</A> would require rental homes with E, F, or G labels to reach at least label D by January 1, 2029. Until adopted, it is a proposal.</P>
+<P>The recast <A href="https://eur-lex.europa.eu/eli/dir/2024/1275/oj" target="_blank">Energy Performance of Buildings Directive</A> (EPBD) is an EU directive: most of it had to be transposed by May 29, 2026, and the first national building renovation plan is due by December 31, 2026. Its housing core is a national trajectory: average primary energy use across the residential stock must fall by at least 16% by 2030 and 20–22% by 2035 compared with 2020 (Article 9(2)). That is a nat [truncated]]]></description>
+      <pubDate>Sat, 07 Nov 2026 15:38:21 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/dutch-social-housing-transformation-smarter-repairs-faster/ba-p/4571311</guid>
+      <dc:creator>Jiri Binko</dc:creator>
+      <dc:date>2026-11-07T15:38:21Z</dc:date>
+    </item>
+    <item>
+      <title>Build and govern AI agents across a multitenant organization</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/build-and-govern-ai-agents-across-a-multitenant-organization/ba-p/4559921</link>
+      <description><![CDATA[<BLOCKQUOTE>
+<P><STRONG>Preview features:</STRONG> This article uses generally available Microsoft Agent 365 together with capabilities that are currently in preview, including Microsoft Entra Tenant Governance, multitenant agent management, and the Azure API Management dedicated AI Gateway tier. Preview capabilities are provided under their applicable preview terms and might have limited regional availability or service-level commitments. For more information, see <A href="https://azure.microsoft.com/support/legal/preview-supplemental-terms/" target="_blank" rel="noopener">Supplemental Terms of Use for Microsoft Azure Previews</A>.</P>
+</BLOCKQUOTE>
+<H3>Why this architecture exists</H3>
+<P>Enterprises want more people building AI agents, not fewer. Business users understand the processes that should be automated. Makers need low-code tools. Developers need complete control over orchestration, tools, identity, deployment, and runtime behavior.</P>
+<P>The difficult part is not creating the first agent.</P>
+<P>The difficult part is operating hundreds or thousands of agents safely across business units that may have different Microsoft Entra tenants, different data stores, different regulatory obligations, different budgets, and different levels of autonomy.</P>
+<P>A parent organization might want common standards for identity, security, evaluation, observability, and cost while its subsidiaries retain local control of data and runtime operations. In some organizations, those subsidiaries even compete with one another. In that environment, copying all data and agent state into one central tenant would weaken the very boundaries the organization created.</P>
+<P>This architecture therefore uses a <STRONG>federated agent factory</STRONG>:</P>
+<UL>
+<LI>Centralize standards, deployment patterns, governance views, and operational oversight.</LI>
+<LI>Keep agent identities, business data, detailed telemetry, and runtime enforcement local to the owning tenant unless there is a documented reason to centralize them.</LI>
+<LI>Use the Microsoft service that fits each layer instead of assuming one product is the "control plane" for everything.</LI>
+<LI>Govern both Microsoft-managed agents and custom/pro-code agents, but use different enforcement mechanisms where the runtime model differs.</LI>
+</UL>
+<P>The result is a common enterprise operating model without collapsing tenant boundaries.</P>
+<P>&nbsp;</P>
+<H1>Five architectural principles</H1>
+<H2>1. Centralize governance, not tenant data</H2>
+<P>The governing tenant should own shared standards, templates, cross-tenant administrative relationships, and consolidated operational views.</P>
+<P>Each subsidiary should continue to own:</P>
+<UL>
+<LI>its Microsoft Entra identities,</LI>
+<LI>its production agents,</LI>
+<LI>its business data,</LI>
+<LI>its tenant-specific permissions,</LI>
+<LI>its detailed prompt/response telemetry where required,</LI>
+<LI>its local audit evidence,</LI>
+<LI>and its runtime policy enforceme [truncated]]]></description>
+      <pubDate>Thu, 01 Oct 2026 14:23:11 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/build-and-govern-ai-agents-across-a-multitenant-organization/ba-p/4559921</guid>
+      <dc:creator>Rebekah_Midkiff</dc:creator>
+      <dc:date>2026-10-01T14:23:11Z</dc:date>
+    </item>
+    <item>
+      <title>From Camera to Canvas: How Multimodal GenAI Automates Shop Floor Instructions</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/from-camera-to-canvas-how-multimodal-genai-automates-shop-floor/ba-p/4557740</link>
+      <description><![CDATA[<H2>Scenario</H2>
+<P>Across the industry, manufacturing organizations spend significant engineering effort converting tribal knowledge and assembly demonstrations into standardized work instructions. This process is traditionally manual, inconsistent, and difficult to scale across plants, product lines, and geographies. By integrating multimodal Generative AI directly into supply chain workflows on Azure, this solution automates the transformation of raw assembly videos into reviewable, illustrated work instructions—dramatically reducing documentation effort, accelerating worker onboarding, and preserving critical operational knowledge.</P>
+<P>&nbsp;</P>
+<H2>Solution Components and Architecture</H2>
+<img />
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<img />
+<H3>Assembly Video to Manufacturing Document Execution Flow</H3>
+<OL>
+<LI><STRONG> Video Ingestion and Job Creation</STRONG></LI>
+</OL>
+<P class="lia-indent-padding-left-30px">The user selects an assembly video from the web application and starts a pipeline run. The API creates a job record and places a transcription request onto a queue for asynchronous processing.</P>
+<P class="lia-indent-padding-left-30px"><STRONG>Components</STRONG></P>
+<UL class="lia-indent-padding-left-30px">
+<LI class="lia-indent-padding-left-30px" style="list-style-type: none;">
+<UL class="lia-indent-padding-left-30px">
+<LI class="lia-indent-padding-left-30px"><STRONG>Web Review Application:</STRONG>&nbsp;Lists available videos and starts pipeline runs.</LI>
+<LI class="lia-indent-padding-left-30px"><STRONG>Azure Blob Storage (<EM>video</EM>):</STRONG>&nbsp;Stores source assembly videos.</LI>
+<LI class="lia-indent-padding-left-30px"><STRONG>Azure Functions (<EM>StartJob</EM>):</STRONG>&nbsp;Creates and initiates the job.</LI>
+<LI class="lia-indent-padding-left-30px"><STRONG>Azure Cosmos DB (<EM>assembly-pipeline/jobs</EM>):</STRONG>&nbsp;Records job status, source video, timestamps, and progress.</LI>
+<LI class="lia-indent-padding-left-30px"><STRONG>Azure Queue Storage (<EM>transcription-jobs</EM>):</STRONG>&nbsp;Delivers the transcription request to the worker.</LI>
+</UL>
+</LI>
+</UL>
+<P class="lia-indent-padding-left-30px"><STRONG>Output:</STRONG>&nbsp;A tracked pipeline job and queued transcription request.</P>
+<P>&nbsp;</P>
+<OL start="2">
+<LI><STRONG> Audio Extraction and Transcription</STRONG></LI>
+</OL>
+<P class="lia-indent-padding-left-30px">The queue-triggered worker downloads the source video, extracts mono 16-kHz WAV audio, divides long recordings into chunks, and submits each chunk to Whisper.</P>
+<P class="lia-indent-padding-left-30px">The resulting segments are merged into a timestamped transcript. Repeated phrases, chunk overlaps, and common transcription artifacts are removed.</P>
+<P class="lia-indent-padding-left-30px"><STRONG>Components</STRONG></P>
+<UL class="lia-indent-padding-left-30px">
+<LI class="lia-indent-padding-left-30px" style="list-style-type: none;">
+<UL class="lia-indent-padding-left-30px">
+<LI class="lia- [truncated]]]></description>
+      <pubDate>Mon, 28 Sep 2026 16:41:45 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/from-camera-to-canvas-how-multimodal-genai-automates-shop-floor/ba-p/4557740</guid>
+      <dc:creator>Matt_Kazanowsky</dc:creator>
+      <dc:date>2026-09-28T16:41:45Z</dc:date>
+    </item>
+    <item>
+      <title>Foundry IQ with D365F&amp;O and Fabric IQ</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/foundry-iq-with-d365f-o-and-fabric-iq/ba-p/4557380</link>
+      <description><![CDATA[<P><STRONG>Business Scenario</STRONG></P>
+<P>A retail organization runs <STRONG>multiple promotional sales events</STRONG> across its store network in different cities, featuring various product categories where Data is captured from third-party systems (products, stores, sales events) and D365 Finance and Operations (customer data)</P>
+<P>Customers are linked to stores <STRONG>based on city</STRONG>, and each store hosts specific sales events.</P>
+<P>To figure out the <STRONG>store generating highest revenue</STRONG>, store event driving the <STRONG>best outcome</STRONG>, majority <STRONG>customer footprint</STRONG>, the organization has implemented copilot studio agent using Fabric IQ, Ontology and ERP MCP.</P>
+<P>&nbsp;</P>
+<P><STRONG><EM>New Business Challenge</EM></STRONG></P>
+<P>Beyond understanding past performance, the retailer wants the system to answer:</P>
+<UL>
+<LI>Are there procurement risks impacting promotional sales?</LI>
+<LI>Which cities should receive additional marketing spend?</LI>
+</UL>
+<P>&nbsp;</P>
+<P><STRONG><EM>Solution</EM></STRONG></P>
+<P>Create a foundry agent using Foundry IQ including Fabric IQ, Web IQ, Web IQ as knowledge source.</P>
+<P><STRONG>Foundry IQ is not the source of data</STRONG>. Its primary role is the <STRONG>reasoning, orchestration, and decision-making layer</STRONG> that connects insights from Fabric IQ, Work IQ, and Web IQ , sharepoint, blob, custom agents etc and generates business recommendations. It is backed by Azure AI search to get an indexed search with accurate result.</P>
+<P>&nbsp;</P>
+<P><STRONG>A. Prerequisite:</STRONG></P>
+<P><STRONG>Data Sources &amp; Relationships Overview</STRONG></P>
+<UL>
+<LI>Product, store, and sales event data are sourced from <STRONG>third-party systems </STRONG>.</LI>
+<LI>Customer data is sourced from the <STRONG>ERP (Dynamics 365 Finance &amp; Operations)</STRONG> system through Fabric.</LI>
+</UL>
+<P><STRONG>How the data is connected:</STRONG></P>
+<UL>
+<LI>Customers are linked to stores based on <STRONG>city alignment</STRONG> (customer city = store location).</LI>
+<LI>Sales events are associated with:</LI>
+</UL>
+<P>o&nbsp;&nbsp; The <STRONG>products being sold</STRONG>, and</P>
+<P>o&nbsp;&nbsp; The <STRONG>stores where the events are conducted</STRONG>.</P>
+<P>&nbsp;</P>
+<UL>
+<LI>Country specific marketing policy documents stored in sharepoint</LI>
+</UL>
+<P>&nbsp;</P>
+<img />
+<P>&nbsp;</P>
+<UL>
+<LI>WebIQ Setup for getting real time information from web (Web IQ is the key enabler for the supplier-news scenario. It can help with Real-time supplier news, market disruptions, geopolitical events, regulatory changes, competitor activity)</LI>
+</UL>
+<P>&nbsp;</P>
+<P>Ref: <A href="https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/web-iq" target="_blank" rel="noopener">https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/web-iq</A></P>
+<P>&nbsp;</P>
+<UL>
+<LI>Finance and Operations data connected toFabric Lakehouse</LI>
+</UL>
+<P><STRONG>Re [truncated]]]></description>
+      <pubDate>Fri, 18 Sep 2026 12:22:02 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/foundry-iq-with-d365f-o-and-fabric-iq/ba-p/4557380</guid>
+      <dc:creator>Sayanika</dc:creator>
+      <dc:date>2026-09-18T12:22:02Z</dc:date>
+    </item>
+    <item>
+      <title>Agent experience with data in Onelake using Fabric IQ</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/agent-experience-with-data-in-onelake-using-fabric-iq/ba-p/4557504</link>
+      <description><![CDATA[<P><STRONG>Business Scenario</STRONG></P>
+<P>A retail organization runs <STRONG>multiple promotional sales events</STRONG> across its store network in different cities, featuring various product categories.</P>
+<P>Data is captured from:</P>
+<UL>
+<LI>Third-party systems (products, stores, sales events)</LI>
+<LI>ERP system i.e. Finance and Operations (customer data)</LI>
+</UL>
+<P>Customers are linked to stores <STRONG>based on city in the ERP system</STRONG>, and each store hosts specific sales events.</P>
+<P>However, while significant investments are made in <STRONG>marketing campaigns, inventory allocation, and event planning</STRONG>, the organization needs to identify</P>
+<UL>
+<LI>Which <STRONG>stores generate the highest revenue during events</STRONG></LI>
+<LI>Which <STRONG>locations are having majority of customer footprint</STRONG></LI>
+</UL>
+<P><STRONG>Solution</STRONG>:</P>
+<P>Rather than creating custom reports on raw data, an <STRONG>agent</STRONG> can leverage the data in <STRONG>Onelake</STRONG> and use <STRONG>Fabric semantic models and Fabric IQ</STRONG> to provide conversational analytics. The agent can intelligently normalize user inputs and return accurate results even when values such as city names are entered with spelling errors or variations.</P>
+<P>&nbsp;</P>
+<P><STRONG>Advantage</STRONG>:</P>
+<P>Because the data comes from two disconnected worlds (third-party systems for products/stores/events, ERP for customers), the "join" between them — customer → city → store → event → product — is business logic, not a database key. Fabric Ontology captures exactly that: entity types, relationships, rules and source mappings, so agents don't have to rediscover it from raw tables each time.</P>
+<P>&nbsp;</P>
+<P><STRONG>A. Prerequisite:</STRONG></P>
+<P><STRONG>Data Sources &amp; Relationships Overview</STRONG></P>
+<UL>
+<LI>Product, store, and sales event data are sourced from <STRONG>third-party systems</STRONG>.</LI>
+<LI>Customer data is sourced from the <STRONG>ERP (Dynamics 365 Finance &amp; Operations)</STRONG> system through Fabric lakehouse.</LI>
+</UL>
+<P><STRONG>How the data is connected:</STRONG></P>
+<UL>
+<LI>Customers are linked to stores based on <STRONG>city alignment</STRONG> (customer city = store location).</LI>
+<LI>Sales events are associated with:</LI>
+<UL>
+<LI>The <STRONG>products being sold</STRONG>, and</LI>
+<LI>The <STRONG>stores where the events are conducted</STRONG>.</LI>
+</UL>
+</UL>
+<P>&nbsp;</P>
+<P><STRONG>Licenses and access requirement:</STRONG></P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table><thead><tr><td>
+<P><STRONG>Component</STRONG></P>
+</td><td>
+<P><STRONG>License / Requirement</STRONG></P>
+</td></tr></thead><tbody><tr><td>
+<P>Microsoft Fabric</P>
+</td><td>
+<P><STRONG>Fabric Capacity F2 or higher</STRONG> OR <STRONG>Power BI Premium Capacity P1 or higher with Fabric enabled</STRONG>< [truncated]]]></description>
+      <pubDate>Thu, 17 Sep 2026 23:57:52 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/agent-experience-with-data-in-onelake-using-fabric-iq/ba-p/4557504</guid>
+      <dc:creator>Sayanika</dc:creator>
+      <dc:date>2026-09-17T23:57:52Z</dc:date>
+    </item>
+    <item>
+      <title>Closing the Recruiting Context Gap with Microsoft Foundry</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/closing-the-recruiting-context-gap-with-microsoft-foundry/ba-p/4556469</link>
+      <description><![CDATA[<P data-pm-slice="1 1 []">A recruiter receives a detailed job description for a senior engineer working on a payments platform. It explains the required skills, the business domain, and the experience that would be useful.</P>
+<P>Then someone has to turn that description into a search.</P>
+<P>What reaches the sourcing platform might look like this:</P>
+<P>Java AND payments AND cloud</P>
+<P>Where did “cloud” come from? Was payments experience required, or was it background about the team? Did a preferred qualification become mandatory?</P>
+<P>Those questions matter because a search can be technically valid while changing what the hiring team asked for.</P>
+<P>I use <STRONG>recruiting context gap</STRONG> here to describe the meaning lost between a job description and the search built from it. As a cloud solutions architect, I would approach this as a series of transformations that each need to be checked.</P>
+<P>In this article, I propose a Microsoft Foundry architecture that extracts requirements, retrieves relevant terminology from Azure AI Search, and generates a query the recruiter can review. Its scope is search assistance; candidate assessment and hiring decisions sit outside this workflow.</P>
+<H2>Start with one job description</H2>
+<P>Consider this illustrative input:</P>
+<P>We need a senior software engineer. Experience building payments platforms is required. Java and distributed systems experience are required. PCI DSS experience is preferred.</P>
+<P>The application should preserve these distinctions:</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="border-width: 1px;"><tbody><tr><th>Source requirement</th><th>Interpretation</th><th>Search treatment</th></tr><tr><td>Experience building payments platforms</td><td>Required experience</td><td>A proposed required search group</td></tr><tr><td>Java</td><td>Required skill</td><td>A proposed required search group</td></tr><tr><td>Distributed systems</td><td>Required skill</td><td>A proposed required search group</td></tr><tr><td>PCI DSS</td><td>Preferred experience</td><td>An optional suggestion for review</td></tr></tbody><colgroup><col style="width: 33.33%" /><col style="width: 33.33%" /><col style="width: 33.33%" /></colgroup></table></DIV>
+<P>The word “preferred” changes the search. Adding AND "PCI DSS" would narrow the results to a condition the hiring team did not make mandatory.</P>
+<P>The same care applies to expansion. A payment gateway is related to a payments platform, but the terms are not interchangeable in every role. The application should show that relationship and let the recruiter decide whether it is useful.</P>
+<H2>Give each component a clear job</H2>
+<P>The proposed workflow has five stages, with telemetry across them:</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="border-width: 1px;"><tbody><tr><th>Stage</th><th>Component</th><th>Result</th></tr><tr><td>Prepar [truncated]]]></description>
+      <pubDate>Tue, 15 Sep 2026 23:26:42 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/closing-the-recruiting-context-gap-with-microsoft-foundry/ba-p/4556469</guid>
+      <dc:creator>gauravbhardwaj</dc:creator>
+      <dc:date>2026-09-15T23:26:42Z</dc:date>
+    </item>
+    <item>
+      <title>Microsoft Foundry Observability: How to Trace, Evaluate, Monitor, and Secure AI Agents</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/microsoft-foundry-observability-how-to-trace-evaluate-monitor/ba-p/4555846</link>
+      <description><![CDATA[<H2 data-pm-slice="1 1 []">The green check that hid a real problem</H2>
+<P data-pm-slice="1 1 []">During a recent customer conversation, I was shown a customer-service refund agent that looked healthy by every traditional measure. Requests completed successfully. The endpoint returned HTTP 200. Latency was within the team's target, and there were no obvious exceptions in the application logs.</P>
+<P>Then a customer asked a simple thing:</P>
+<P>Please refund the duplicate $500 charge on invoice 83457.</P>
+<P>The agent processed the refund and confirmed success. There was only one problem: in the failure case explored in this article, the agent calls the correct tool with the <STRONG>wrong parameter</STRONG>—refunding <STRONG>$5,000 instead of $500</STRONG>.</P>
+<P>From the application's perspective, the request succeeded. From the business's perspective, the agent failed.</P>
+<P>That moment changed the direction of our discussion. We were no longer asking, "Is the endpoint available?" We were asking:</P>
+<UL data-spread="false">
+<LI>Which tool did the agent call, and with what arguments?</LI>
+<LI>Was the refund amount correct?</LI>
+<LI>Did the agent honor the approval threshold?</LI>
+<LI>How many other customers were affected?</LI>
+<LI>How would we prove that the correction actually worked?</LI>
+</UL>
+<P>This is the gap that AI observability must close.</P>
+<P>Traditional monitoring tells us whether a system is operating. Agent observability helps us determine whether the system is behaving as intended—and whether that behavior produces a trustworthy business outcome.</P>
+<P>Below screenshot captures successful but incorrect action by agent. Later in this article, we will build this agent step by step and explore how observability helps us identify the failure.</P>
+<img />
+<H2>Observability must extend beyond logs, metrics, and traces</H2>
+<P>Logs, metrics, and traces remain essential, but an AI application introduces another dimension: the application can be technically healthy and semantically wrong.</P>
+<P data-pm-slice="1 1 []">I frame this as <STRONG>five layers of AI observability</STRONG>. A refund that returns HTTP 200 can still fail on the layers that matter:</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="border-width: 1px;"><tbody><tr><th>Layer</th><th>Question</th><th>Refund-scenario result</th></tr><tr><td>1. Technical</td><td>Is it available, fast, healthy, and affordable?</td><td>Pass — HTTP 200, normal latency, zero exceptions</td></tr><tr><td>2. Agent execution</td><td>What did the agent actually do?</td><td>Fail — wrong parameter passed to the tool</td></tr><tr><td>3. Safety / policy</td><td>Was the behavior permitted?</td><td>Fail — approval threshold bypassed</td></tr><tr><td>4. Quality</td><td>Was the action correct?</td><td>Fail — task executed incorrectly</td></tr><tr><td>5. Business</td><td>Did it achieve the outcome?</td><td>Fail — financial loss</td></tr></tbody><co [truncated]]]></description>
+      <pubDate>Mon, 14 Sep 2026 19:42:07 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/microsoft-foundry-observability-how-to-trace-evaluate-monitor/ba-p/4555846</guid>
+      <dc:creator>gauravbhardwaj</dc:creator>
+      <dc:date>2026-09-14T19:42:07Z</dc:date>
+    </item>
+    <item>
+      <title>Building on AI Landing Zones: Operationalizing Enterprise AI with the Citadel Architecture</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/building-on-ai-landing-zones-operationalizing-enterprise-ai-with/ba-p/4551078</link>
+      <description><![CDATA[<H2 data-streamdown="heading-3">From AI Foundations to a Shared Operating Model</H2>
+<P>In my previous article, <A class="lia-internal-link lia-internal-url lia-internal-url-content-type-blog" href="https://techcommunity.microsoft.com/blog/azurearchitectureblog/ai-azure-landing-zone-shared-capabilities-and-models-to-enable-ai-as-a-platform/4455951" target="_blank" rel="noopener" data-lia-auto-title="AI Azure Landing Zone: Shared Capabilities and Models to Enable AI as a Platform" data-lia-auto-title-active="0">AI Azure Landing Zone: Shared Capabilities and Models to Enable AI as a Platform</A>, I explored how organizations establish secure, governed environments for AI workloads. Building on that foundation requires aligning three complementary responsibilities.</P>
+<P><STRONG style="color: rgb(30, 30, 30);"><SPAN data-streamdown="strong">1. Establish the deployment foundation</SPAN></STRONG></P>
+<P>Azure landing zones establish the subscription, identity, networking, and governance foundations. AI landing-zone implementations extend these foundations with architectures for Foundry-based applications, agents, and shared AI gateways.</P>
+<P><SPAN style="color: rgb(30, 30, 30);"><STRONG>2</STRONG>.<STRONG>Use native AI platform capabilities</STRONG></SPAN></P>
+<P>Microsoft Foundry provides model and agent services alongside capabilities for evaluation, observability, security, and governance. These are native platform capabilities—not capabilities introduced by Citadel.</P>
+<P><SPAN style="color: rgb(30, 30, 30);"><STRONG>3.Standardise how teams deploy and operate AI</STRONG></SPAN></P>
+<P>As multiple teams adopt these services, enterprise-wide design decisions become essential:</P>
+<UL>
+<LI>Which resources are shared or isolated?</LI>
+<LI>Where are access policies enforced?</LI>
+<LI>How is consumption attributed?</LI>
+<LI>Who owns onboarding, monitoring, and incident response?</LI>
+</UL>
+<P><STRONG>Citadel brings an opinionated architectural approach to these decisions, connecting native capabilities with cross-team governance and operational practices.</STRONG></P>
+<P>These responsibilities coexist. A customer with an existing landing zone and Foundry deployment can assess Citadel’s patterns against its operational gaps rather than treating adoption as a replacement of the existing platform.</P>
+<P>This is the role of Citadel AI Foundry:</P>
+<img><EM>Citadel connects landing-zone foundations, native AI services, and business applications through a shared enterprise operating model.</EM></img>
+<H2 data-streamdown="heading-3">What Is the Citadel Architecture?</H2>
+<P>Citadel is an opinionated reference architecture, documented in the&nbsp;Foundry Citadel Platform repository, for composing Microsoft Foundry and complementary Azure services into an enterprise AI operating model.</P>
+<P>Its contribution is the architectural guidance connecting those services: where shared controls operate, how teams consume capabilities, and how responsibilities are d [truncated]]]></description>
+      <pubDate>Fri, 11 Sep 2026 12:14:40 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/building-on-ai-landing-zones-operationalizing-enterprise-ai-with/ba-p/4551078</guid>
+      <dc:creator>Rohon_Mohapatra</dc:creator>
+      <dc:date>2026-09-11T12:14:40Z</dc:date>
+    </item>
+    <item>
+      <title>From OSDU to Ontology: Why Oil &amp; Gas AI Readiness Lives at the Meaning Layer</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/from-osdu-to-ontology-why-oil-gas-ai-readiness-lives-at-the/ba-p/4538718</link>
+      <description><![CDATA[<H2>The five-answer problem</H2>
+<P>Ask a simple question inside a large operator:&nbsp;<EM>“How is this asset producing against plan, and what’s the constraint?”</EM></P>
+<P>Now watch five systems answer five different things. The production historian knows a “well” as a set of surface sensor tags. The reservoir team reasons about the&nbsp;<EM>wellbore</EM>&nbsp;and its completions in a subsurface model. Finance knows a cost object rolled up to a lease, licence, or block. The maintenance system knows the&nbsp;<EM>facility</EM>&nbsp;it sits on. The commercial team knows the contract. Every one of them is correct — and none agree on where a “well” ends and a “wellbore,” a “facility,” or a “licence” begins. OSDU itself separates&nbsp;Well&nbsp;from&nbsp;Wellbore&nbsp;for exactly this reason; the trouble is that our systems don’t honor that distinction consistently.</P>
+<P>That is not a data-volume problem. Energy has spent a decade solving volume. It is a&nbsp;<STRONG>meaning</STRONG>&nbsp;problem. And until we solve it, every AI agent we point at that estate inherits the same confusion — five answers, no truth, no confidence to act.</P>
+<P>This post is about where that problem finally gets solved: the semantic layer. I’ll connect three things that are usually discussed in separate rooms — Microsoft’s latest AI-readiness research, the open-data standard the energy industry already rallied around (OSDU), and the newly-previewed&nbsp;<A href="https://learn.microsoft.com/en-us/fabric/iq/ontology/overview" target="_blank" rel="noopener">ontology capability in Fabric IQ</A>&nbsp;— and make the case that they’re the same story. In Part 2, I build it.</P>
+<H2>Readiness, not ambition, separates the leaders</H2>
+<P>Microsoft’s recent research,&nbsp;<EM><A href="https://www.microsoft.com/en-us/microsoft-cloud/blog/2026/05/14/from-ai-ambition-to-frontier-transformation-readiness-defines-the-leaders/" target="_blank" rel="noopener">From AI ambition to Frontier Transformation: Readiness defines the leaders</A></EM>, studied 1,000 organizations across 15 countries and eight industries. Two numbers should stop every energy executive:</P>
+<UL>
+<LI>Only&nbsp;<STRONG>17.7%</STRONG>&nbsp;of organizations qualify as AI leaders — the “Frontier Firms” that clear the bar on&nbsp;<EM>both</EM>&nbsp;technology and organizational readiness. They realize&nbsp;<STRONG>56% higher AI value</STRONG>&nbsp;than everyone else.</LI>
+<LI>Organizations with high AI readiness report&nbsp;<STRONG>47–64% stronger performance</STRONG>&nbsp;across operational efficiency, innovation speed, workforce productivity, customer experience, and revenue growth.</LI>
+</UL>
+<P>The research is blunt about why most organizations stall. The constraints are “<STRONG>fragmented foundations, unclear governance, and limited organizational alignment</STRONG>” — the exact conditions that keep companies trapped in perpetual pilots. Readiness has to be&nbsp;<EM>balanced</EM>: plenty of organizations reach stron [truncated]]]></description>
+      <pubDate>Fri, 11 Sep 2026 12:13:32 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/from-osdu-to-ontology-why-oil-gas-ai-readiness-lives-at-the/ba-p/4538718</guid>
+      <dc:creator>KimVaddi</dc:creator>
+      <dc:date>2026-09-11T12:13:32Z</dc:date>
+    </item>
+    <item>
+      <title>AI Agent ROI Framework</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/ai-agent-roi-framework/ba-p/4555445</link>
+      <description><![CDATA[<H3><SPAN style="color: rgb(30, 30, 30);" data-contrast="auto">Introduction</SPAN><SPAN style="color: rgb(30, 30, 30);" data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}">&nbsp;</SPAN></H3>
+<P><SPAN data-contrast="auto">AI agents are rapidly becoming a core component of enterprise transformation strategies. Organizations are deploying agents to assist employees, automate business processes, improve customer experiences, accelerate decision-making, and scale operations. Yet many organizations still face a fundamental challenge.</SPAN></P>
+<H3><SPAN data-contrast="auto">How do we prove the business value of AI agents?</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}">&nbsp;</SPAN></H3>
+<P><SPAN data-contrast="auto">While innovation and experimentation are important, long-term success requires a disciplined approach to measuring outcomes, managing costs, and continuously optimizing investments. Organizations that fail to establish clear ROI measurements often struggle to justify continued funding, prioritize future investments, or scale successful solutions.</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">An effective AI Agent ROI Framework helps leaders connect technology investments directly to business outcomes. It enables organizations to identify the right use cases, understand cost drivers, quantify value, establish governance, and create a culture of continuous optimization.</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">This article presents a practical framework that can be used across industries and business functions to define, measure, and maximize AI agent return on investment.</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}">&nbsp;</SPAN></P>
+<H3><SPAN data-contrast="auto">Start with the Right Use Cases</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}">&nbsp;</SPAN></H3>
+<P><SPAN data-contrast="auto">One of the biggest mistakes organizations make is evaluating AI projects solely through a technology lens. Successful organizations begin with business outcomes.</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Before building an AI agent, leaders should evaluate opportunities across six dimensions:</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559740& [truncated]]]></description>
+      <pubDate>Fri, 11 Sep 2026 15:47:21 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/ai-agent-roi-framework/ba-p/4555445</guid>
+      <dc:creator>Yagneswari</dc:creator>
+      <dc:date>2026-09-11T15:47:21Z</dc:date>
+    </item>
+    <item>
+      <title>Your Private Endpoint Does Not Cover Agent Egress: Locking Down Azure AI Foundry in Both Directions</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/your-private-endpoint-does-not-cover-agent-egress-locking-down/ba-p/4547864</link>
+      <description><![CDATA[<P>I got asked a question a few weeks ago that sounded simple. Lock down Azure AI Foundry with Private Link, and let the agents call an MCP server hosted on a VM in a different virtual network. Everything private, nothing over the public internet, and proof rather than a diagram.</P>
+<P>I said yes, that is straightforward. I was wrong about the second half.</P>
+<P>What follows is what I actually built, what broke along the way, and the one thing that cost me most of an afternoon. Everything here was deployed and verified on a live subscription. The scripts and the raw logs are on GitHub if you want to reproduce it:</P>
+<a class="lia-embeded-content lia-rich-preview-card-container" href="https://github.com/raffaeu/azure-foundry-private-link" aria-label="GitHub - raffaeu/azure-foundry-private-link: Provision Azure AI Foundry behind a Private Endpoint with private DNS, then prove it works: HTTP 200 from inside the VNet over a private IP, HTTP 403 from outside. Numbered az CLI scripts, managed-identity auth, and a one-command test harness." target="_blank" rel="nofollow noopener noreferrer"><img class="lia-rich-preview-card-image" role="presentation" alt="" src="https://opengraph.githubassets.com/0961685d2b243b4ca09420c43882200d03f6cf31b18840a492c0d9330cb9dd3c/raffaeu/azure-foundry-private-link" /><div class="lia-rich-preview-card-content"><div class="lia-rich-preview-card-header"><h5>GitHub - raffaeu/azure-foundry-private-link: Provision Azure AI Foundry behind a Private Endpoint with private DNS, then prove it works: HTTP 200 from inside the VNet over a private IP, HTTP 403 from outside. Numbered az CLI scripts, managed-identity auth, and a one-command test harness.</h5></div><p class="lia-rich-preview-card-description">Provision Azure AI Foundry behind a Private Endpoint with private DNS, then prove it works: HTTP 200 from inside the VNet over a private IP, HTTP 403 from outside. Numbered az CLI scripts, managed-identity auth, and a one-command test harness. - raffaeu/azure-foundry-private-link</p><div class="lia-rich-preview-card-provider-name"><img src="https://github.com/favicon.ico" aria-hidden="true" />github.com</div></div></a>
+<H2>The mistake almost everyone makes</H2>
+<P>Here is the thing I want you to take away, even if you read nothing else.</P>
+<P>A private endpoint on your Foundry resource secures traffic going <STRONG>into</STRONG> Foundry. It does absolutely nothing about the traffic your agents send <STRONG>out</STRONG>.</P>
+<P>Those are two different features, configured in two completely different ways, with two completely different sets of failure modes. If you configure the private endpoint, disable public network access, see your test call succeed from inside the VNet, and call it done, you have secured exactly half of the problem. Your agent can still be reaching out to a tool endpoint from a Microsoft owned public IP address, and nothing in the portal will tell you that.</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_ [truncated]]]></description>
+      <pubDate>Fri, 04 Sep 2026 14:59:04 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/your-private-endpoint-does-not-cover-agent-egress-locking-down/ba-p/4547864</guid>
+      <dc:creator>rgarofalo</dc:creator>
+      <dc:date>2026-09-04T14:59:04Z</dc:date>
+    </item>
+    <item>
+      <title>Building 3IQ Retail Assistant Demo – Part 1</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/building-3iq-retail-assistant-demo-part-1/ba-p/4547228</link>
+      <description><![CDATA[<P><STRONG>Introduction</STRONG></P>
+<P>Recently I received a request from one of our GSI partners to demonstrate them 4IQs on a retail industry scenario. Unfortunately, Web IQ is still not in public preview. Hence, I promised them to come back with an example later with Web IQ. But even with the remaining Fabric IQ, Foundry IQ and Work IQ, the issue is finding the right set of data and then build a story around it to demonstrate an agentic solution addressing some practical real-life scenario.</P>
+<P>After doing some research with available data, I formulated a plan to prepare an assistant for customer reps to address incoming questions and requests from customers. This article describes how to build such an environment to demonstrate the capability of 3IQs together.</P>
+<P>First, we need an Azure subscription with option to provision Fabric capacity, need Foundry, M365, and Copilot Studio access. Once you have those, let’s move to set up our environment.</P>
+<P><STRONG>Environment Set Up</STRONG></P>
+<P>I have limited time in hand. So, I went ahead with existing templates to implement Foundry and surrounding services on Azure. I used this Bicep template: <A href="https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup" target="_blank">foundry-samples/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup at main · </A><A href="https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup" target="_blank">microsoft</A><A href="https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup" target="_blank">-foundry/</A><A href="https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/16-private-network-standard-agent-apim-setup" target="_blank">foundry-samples</A>. There are several other templates available on that page. You can choose any one of those based on your preference. This template puts all resources including Foundry behind private endpoints with no public internet access. You can add a jumpbox as a Bastion host to connect to all these services. Or time to time you can make those services public to complete your work.</P>
+<P><STRONG>Setting up Fabric</STRONG></P>
+<P>We will start with data layer which is Fabric. It is not provisioned yet. I provisioned a Fabric capacity with minimum size/SKU (F2) within the Resource Group generated by the Bicep template earlier. Fabric is an expensive service, especially the higher SKUs are. So, we need to be careful not spend too much and surpass our monthly Azure quota. Once provisioned, go to <A href="https://app.fabric.microsoft.com/" target="_blank">https://app.fabric.microsoft.com/</A> and create a Workspace using the same Fabric Capacity we provisioned [truncated]]]></description>
+      <pubDate>Thu, 03 Sep 2026 17:24:53 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/building-3iq-retail-assistant-demo-part-1/ba-p/4547228</guid>
+      <dc:creator>pranabpaul</dc:creator>
+      <dc:date>2026-09-03T17:24:53Z</dc:date>
+    </item>
+    <item>
+      <title>Building 3IQ Retail Assistant Demo – Part 2</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-architecture-blog/building-3iq-retail-assistant-demo-part-2/ba-p/4547231</link>
+      <description><![CDATA[<P>In part 1 while setting up the Azure environment, I informed the template puts everything under VNET and all the services are having only private endpoints. Which is great from the security point of view. We also spoke about creating a jumpbox as a Bastion host to work on those services. If you did it already – great, if not, we can bypass the situation by opening the public endpoint from Networking menu for each of these following services.&nbsp;</P>
+<P><STRONG>Setting up Blob Storage Container </STRONG></P>
+<P>Unlike structured data used for Foundry, we will use some unstructured data (pdf files) for Foundry and build knowledge source and knowledge base and will use those with our Foundry agent. To start with, I used 3 PDF files as listed below:</P>
+<UL>
+<LI>Adventure Works Inc Retail Customer Support Representative Guide.pdf</LI>
+<LI>Adventure Works Inc. – Retail Customer Terms and Conditions.pdf</LI>
+<LI>Adventure Works Inc. – Retail Customer Payment, Purchase, Shipping &amp; Refund Information.pdf</LI>
+</UL>
+<P>I used synthetic data for these PDF files. You can use Copilot, ChatGPT, Gemini, or Claude to generate the content.</P>
+<P>Once done, we will create a Blob Container. There is a Storage Account created already by the template. You can use it to create the Blob Container. Now upload these 3 files there. You may have to add your account as a Storage Blob Data Contributor to upload the files if not already there.</P>
+<P>We need to add few more permissions to this container. Add Storage Blob Data Reader access to:</P>
+<UL>
+<LI>Foundry account's managed identity</LI>
+<LI>Foundry Project's managed identity</LI>
+<LI>Azure AI Search service's managed identity</LI>
+</UL>
+<P><STRONG>Setting up Search </STRONG></P>
+<P>A search service is already provisioned by the template. Use this to set up your knowledgebase and knowledgesource. Create the knowledgesource with similar set up:</P>
+<P>&nbsp;</P>
+<img />
+<P>&nbsp;</P>
+<P>Then create a knowledgebase using this knowledgesource and with the following description: “<EM>Use this to answer questions related to Adventure Works Inc.'s retail customer policies, including the Support Representative Guide, Terms and Conditions, and Payment, Purchase, Shipping &amp; Refund information</EM>”. I kept the Retrieval Reasoning Effect as Minimal and didn’t add any Chat completion model as such.</P>
+<P><STRONG>Setting up Foundry Agent</STRONG></P>
+<P>It’s time now to set up our Foundry Agent. Create a simple prompt agent and use any Chat completion model. It can be any LLM or SLM of your choice. This agent can be pro-code one using either Agent Service SDK or a hosted agent using MAF or LangGraph. But we would like to keep it simple for this demo.</P>
+<P>For the Instructions I have written –</P>
+<P>“<EM>You are an intelligent agent to answer questions on Adventure Works Inc. Retail Customer Support Representative Guide, Retail Customer Terms and Conditions, Retail Customer Payment, Purchase, Shipping &amp; Refu [truncated]]]></description>
+      <pubDate>Thu, 03 Sep 2026 17:24:04 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-architecture-blog/building-3iq-retail-assistant-demo-part-2/ba-p/4547231</guid>
+      <dc:creator>pranabpaul</dc:creator>
+      <dc:date>2026-09-03T17:24:04Z</dc:date>
+    </item>
+  </channel>
+</rss>

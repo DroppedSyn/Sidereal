@@ -1,0 +1,1158 @@
+{
+  "exhaustive": {
+    "nbHits": true,
+    "typo": true
+  },
+  "exhaustiveNbHits": true,
+  "exhaustiveTypo": true,
+  "hits": [
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "iacguy"
+        },
+        "story_text": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "Hi HN!<p>Utpal here, I'm one of the founders of OpenComputer.<p>OpenComputer is an open source cloud coding agent for teams that can run in your own cloud account (AWS, GCP, <em>Azure</em>).<p>We run the agent harness and the sandbox on the same durable VM (architecture in the docs [1]). First commit lands in 24s; the alternatives we benchmarked took 53-72s (benchmarks below [2]).<p>Two other choices:<p>- One VM per team, scalable horizontally. Sessions are isolated in git worktrees.\n- Session files are backed up to a repo after every turn, so any session can resume on another VM.<p>We noticed that past ~640 session-hours a month, one always-on 4 vCPU VM is cheaper than per-session E2B sandboxes, for example. So at scale, this setup would not only be faster than current SOTA coding agents, but also more cost-efficient.<p>Feel free to try via cloud for free [4] or self host. We would love any and all feedback, and happy to answer any questions! Full demo below [3].<p>[1]: <a href=\"https://docs.opencomputer.dev/getting-started/architecture\" rel=\"nofollow\">https://docs.opencomputer.dev/getting-started/architecture</a>\n[2]: <a href=\"https://opencomputer.dev/blog/cloud-agents-as-fast-as-local/\" rel=\"nofollow\">https://opencomputer.dev/blog/cloud-agents-as-fast-as-local/</a>\n[3]: <a href=\"https://x.com/IgorZIJ/status/2121309785882591711\" rel=\"nofollow\">https://x.com/IgorZIJ/status/2121309785882591711</a>\n[4]: <a href=\"https://app.opencomputer.dev\" rel=\"nofollow\">https://app.opencomputer.dev</a>"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Show HN: OpenComputer – an open source alternative to Devin"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://github.com/diggerhq/opencomputer"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_iacguy",
+        "story_50581403",
+        "show_hn"
+      ],
+      "author": "iacguy",
+      "children": [
+        50581844,
+        50586844,
+        50584262,
+        50582327,
+        50584746,
+        50587339,
+        50582458,
+        50582634,
+        50587252,
+        50630708,
+        50615190,
+        50609081,
+        50611383,
+        50583595,
+        50597926,
+        50596784,
+        50586092,
+        50595113,
+        50596839,
+        50586496,
+        50593656,
+        50585940,
+        50582215,
+        50581470,
+        50581538,
+        50584475
+      ],
+      "created_at": "2026-11-20T20:19:56Z",
+      "created_at_i": 1795205996,
+      "num_comments": 36,
+      "objectID": "50581403",
+      "points": 129,
+      "story_id": 50581403,
+      "story_text": "Hi HN!<p>Utpal here, I&#x27;m one of the founders of OpenComputer.<p>OpenComputer is an open source cloud coding agent for teams that can run in your own cloud account (AWS, GCP, Azure).<p>We run the agent harness and the sandbox on the same durable VM (architecture in the docs [1]). First commit lands in 24s; the alternatives we benchmarked took 53-72s (benchmarks below [2]).<p>Two other choices:<p>- One VM per team, scalable horizontally. Sessions are isolated in git worktrees.\n- Session files are backed up to a repo after every turn, so any session can resume on another VM.<p>We noticed that past ~640 session-hours a month, one always-on 4 vCPU VM is cheaper than per-session E2B sandboxes, for example. So at scale, this setup would not only be faster than current SOTA coding agents, but also more cost-efficient.<p>Feel free to try via cloud for free [4] or self host. We would love any and all feedback, and happy to answer any questions! Full demo below [3].<p>[1]: <a href=\"https:&#x2F;&#x2F;docs.opencomputer.dev&#x2F;getting-started&#x2F;architecture\" rel=\"nofollow\">https:&#x2F;&#x2F;docs.opencomputer.dev&#x2F;getting-started&#x2F;architecture</a>\n[2]: <a href=\"https:&#x2F;&#x2F;opencomputer.dev&#x2F;blog&#x2F;cloud-agents-as-fast-as-local&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;opencomputer.dev&#x2F;blog&#x2F;cloud-agents-as-fast-as-local&#x2F;</a>\n[3]: <a href=\"https:&#x2F;&#x2F;x.com&#x2F;IgorZIJ&#x2F;status&#x2F;2121309785882591711\" rel=\"nofollow\">https:&#x2F;&#x2F;x.com&#x2F;IgorZIJ&#x2F;status&#x2F;2121309785882591711</a>\n[4]: <a href=\"https:&#x2F;&#x2F;app.opencomputer.dev\" rel=\"nofollow\">https:&#x2F;&#x2F;app.opencomputer.dev</a>",
+      "title": "Show HN: OpenComputer – an open source alternative to Devin",
+      "updated_at": "2026-11-24T23:02:38Z",
+      "url": "https://github.com/diggerhq/opencomputer"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "nazgulsenpai"
+        },
+        "story_text": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "For the past 5 minutes all of our Microsoft Cloud connections are down. Anyone else? The Status page won't even load."
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "Ask HN: Microsoft/<em>Azure</em> Outage?"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_nazgulsenpai",
+        "story_50471668",
+        "ask_hn"
+      ],
+      "author": "nazgulsenpai",
+      "children": [
+        50474827
+      ],
+      "created_at": "2026-11-12T18:17:13Z",
+      "created_at_i": 1794507433,
+      "num_comments": 1,
+      "objectID": "50471668",
+      "points": 402,
+      "story_id": 50471668,
+      "story_text": "For the past 5 minutes all of our Microsoft Cloud connections are down. Anyone else? The Status page won&#x27;t even load.",
+      "title": "Ask HN: Microsoft/Azure Outage?",
+      "updated_at": "2026-11-13T08:04:03Z"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "swq115"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "<em>Azure</em>'s Weakest Link – Five Full Cross-Tenant Compromises"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://www.binarysecurity.no/posts/2026/10/one-root-case"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_swq115",
+        "story_50301854"
+      ],
+      "author": "swq115",
+      "children": [
+        50305967,
+        50303645,
+        50303689,
+        50306057,
+        50305833,
+        50303214,
+        50315791,
+        50303656,
+        50306139,
+        50314027,
+        50303894,
+        50306186,
+        50313244,
+        50313629,
+        50304753,
+        50319838,
+        50314318
+      ],
+      "created_at": "2026-10-30T10:06:15Z",
+      "created_at_i": 1793354775,
+      "num_comments": 64,
+      "objectID": "50301854",
+      "points": 340,
+      "story_id": 50301854,
+      "title": "Azure's Weakest Link – Five Full Cross-Tenant Compromises",
+      "updated_at": "2026-11-05T13:06:35Z",
+      "url": "https://www.binarysecurity.no/posts/2026/10/one-root-case"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "rvanderlinden"
+        },
+        "story_text": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "Hi HN, I'm Ruud, co-founder of Lont. We turn company emails into personalized videos.<p>Video captions cost us manual work twice: fixing misheard words, then fixing layout, like lines ending on “the”.<p>Overtone uses multiple models to listen to the audio: gpt-transcribe, <em>Azure</em> STT, and Elevenlabs Scribe. When they return conflicting results, Overtone sends small clips to the models again, and then lets an LLM decide what was actually said.<p>The LLM is like a human doing a sanity check on the transcription model. Humans would easily recognize a word to be different based on context. The LLM basically does the same, using an optional context prompt + its world knowledge. Because of this the Word Error Rate (WER) on many test files is lower when using Overtone, compared to just using a model without it.<p>Sure, the cost is higher because we use up to 3 different STT models + an LLM, but it still removes mistakes, reducing the time needed to fix captions to a minimum, and reducing the chance you'll miss something. For us it's worth it. For ultra high volume use cases it may not be.<p>The rules-based cutter nicely cuts the transcript into captions that look good, depending on screen size: 16:9 is different from 9:16, and the Overtone Format we created supports any type really. Pauses become breaks, captions are grouped per speaker, and names/numbers are never spread out over multiple captions.<p>How to add these captions to your videos? A videojs plugin can do this automatically, so you don't burn in your captions. The plugin lets you cycle between styled captions, plain captions, and off. You can burn them into an MP4 file with overtone burn.<p>Quickly try it out just the cutter? Try:<p><pre><code>  npx overtone-captions recut yoursub.srt\n</code></pre>\nTranscribing audio with API keys works too. Use --dry-run to show a cost estimate before you send.<p>We open-sourced this first version (MIT) because we believe many people can benefit from this, especially if your captions just need to be good. There's plenty of room to improve though, so we've made it easy to help contribute to add style packs, languages, and providers/models.<p>You can find a demo at: <a href=\"https://overtone.lont.ai/\" rel=\"nofollow\">https://overtone.lont.ai/</a><p>Find the code and benchmarks here: <a href=\"https://github.com/lonthq/overtone-captions\" rel=\"nofollow\">https://github.com/lonthq/overtone-captions</a>"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Show HN: Overtone – Transcribe, correct and cut captions for any screen shape"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://github.com/lonthq/overtone-captions"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_rvanderlinden",
+        "story_50293115",
+        "show_hn"
+      ],
+      "author": "rvanderlinden",
+      "children": [
+        50296274,
+        50335126,
+        50312322,
+        50299903,
+        50323285,
+        50311061,
+        50313137,
+        50312318
+      ],
+      "created_at": "2026-10-29T17:48:17Z",
+      "created_at_i": 1793296097,
+      "num_comments": 14,
+      "objectID": "50293115",
+      "points": 45,
+      "story_id": 50293115,
+      "story_text": "Hi HN, I&#x27;m Ruud, co-founder of Lont. We turn company emails into personalized videos.<p>Video captions cost us manual work twice: fixing misheard words, then fixing layout, like lines ending on “the”.<p>Overtone uses multiple models to listen to the audio: gpt-transcribe, Azure STT, and Elevenlabs Scribe. When they return conflicting results, Overtone sends small clips to the models again, and then lets an LLM decide what was actually said.<p>The LLM is like a human doing a sanity check on the transcription model. Humans would easily recognize a word to be different based on context. The LLM basically does the same, using an optional context prompt + its world knowledge. Because of this the Word Error Rate (WER) on many test files is lower when using Overtone, compared to just using a model without it.<p>Sure, the cost is higher because we use up to 3 different STT models + an LLM, but it still removes mistakes, reducing the time needed to fix captions to a minimum, and reducing the chance you&#x27;ll miss something. For us it&#x27;s worth it. For ultra high volume use cases it may not be.<p>The rules-based cutter nicely cuts the transcript into captions that look good, depending on screen size: 16:9 is different from 9:16, and the Overtone Format we created supports any type really. Pauses become breaks, captions are grouped per speaker, and names&#x2F;numbers are never spread out over multiple captions.<p>How to add these captions to your videos? A videojs plugin can do this automatically, so you don&#x27;t burn in your captions. The plugin lets you cycle between styled captions, plain captions, and off. You can burn them into an MP4 file with overtone burn.<p>Quickly try it out just the cutter? Try:<p><pre><code>  npx overtone-captions recut yoursub.srt\n</code></pre>\nTranscribing audio with API keys works too. Use --dry-run to show a cost estimate before you send.<p>We open-sourced this first version (MIT) because we believe many people can benefit from this, especially if your captions just need to be good. There&#x27;s plenty of room to improve though, so we&#x27;ve made it easy to help contribute to add style packs, languages, and providers&#x2F;models.<p>You can find a demo at: <a href=\"https:&#x2F;&#x2F;overtone.lont.ai&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;overtone.lont.ai&#x2F;</a><p>Find the code and benchmarks here: <a href=\"https:&#x2F;&#x2F;github.com&#x2F;lonthq&#x2F;overtone-captions\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;lonthq&#x2F;overtone-captions</a>",
+      "title": "Show HN: Overtone – Transcribe, correct and cut captions for any screen shape",
+      "updated_at": "2026-11-05T09:38:35Z",
+      "url": "https://github.com/lonthq/overtone-captions"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "murtazayusuf"
+        },
+        "story_text": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "Hi all,<p>So I have been working on this project KiviDB from February 2026. It started as a project for me to understand rust, having a product with no GC pauses, memory blow up after snapshots and getting OOM on running pods, and that was actually an issue I faced with Dragonfly. I wanted to have something picking the best of Rust, but also picking the best parts of other alternatives like Garnet and Dragonfly. I used AI a lot, but I was the one making the design decisions based on the tests that claude picked from my history of troubleshooting sessions as part of my job. KiviDB supports both RESP2 and RESP3 protocol. I had some founders credits on my AWS account which helped me with the infra, and running instances I could perform benchmark on.<p>Its keyspace is sharded across threads, it is multi-threaded in nature, and performs best on Linux due to io_uring, I used the tokio_uring crate for this. It also has tokio fallback for other OS's. I hadn't open sourced it until recently as I felt it was not ready yet, the best way to learn it was to build a cloud managed service for it across all three widely used cloud providers i.e AWS, GCP and <em>azure</em>. Since I used to mainly work with cloud, I had some insights on what would be the best ways for the deployments, how to conduct failovers, manage SLAs, etc. And that's what I took help from claude to fast pace it. The website does look like AI slop but it works for now, given my limited resources, that's all I had. You may check it out at : <a href=\"https://kividb.io\" rel=\"nofollow\">https://kividb.io</a>, I open sourced the core engine under AGPLv3, didn't want to have just source available, because that is available with other tools too. It supports apprx 98-99% of the redis 8.10 commands, few have issues and you can find them at <a href=\"https://github.com/kividbio/kividb/issues\" rel=\"nofollow\">https://github.com/kividbio/kividb/issues</a>, contributors are welcome.<p>Now the numbers, for the final benchmark, I used 2 c7gn.metal servers, in the same placement group in us-east1, and I used memtier-benchmark tool for this. The setting was : 10M keys, 100B each, 32 cores in use with both pipeline and un-pipelined runs.<p>pipeline 16 GET: KiviDB 21.2M ops/sec vs Dragonfly 2.0 9.1M, Redis 8.10 2.4M, Redis Cluster 32 shards 4.7M<p>When not pipelined, Dragonfly performed slightly better at 3.35M ops/sec vs kividb at 3.07M ops/sec. Memory per key was also slightly worse than dragonfly and almost same as Redis, 177B (kividb) vs 134B (dragonfly) vs 178B (redis).<p>With vector ingestion times it was slower but when querying, it was faster than most alternatives at lower ef, however slower than dragonfly at high ef. Most of the technical details are mentioned here so you can check it out: <a href=\"https://kividb.io/benchmarks\" rel=\"nofollow\">https://kividb.io/benchmarks</a>.<p>easiest way to try it: docker run -d -p 6380:6380 kividb/kividb<p>I am looking forward to building a community around this, provide better rust based tools, I am open to constructive criticism and value informed opinion. Thanks"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Show HN: KiviDB, a faster Redis-compatible memory database and vector cache"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://github.com/kividbio/kividb"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_murtazayusuf",
+        "story_50152541",
+        "show_hn"
+      ],
+      "author": "murtazayusuf",
+      "children": [
+        50300421,
+        50215739,
+        50155630,
+        50153931,
+        50152605,
+        50156303,
+        50154344,
+        50154783,
+        50155368,
+        50161446,
+        50154950,
+        50153768,
+        50155311,
+        50154366,
+        50164891,
+        50153410,
+        50153902,
+        50153437,
+        50153560
+      ],
+      "created_at": "2026-10-19T13:53:52Z",
+      "created_at_i": 1792418032,
+      "num_comments": 49,
+      "objectID": "50152541",
+      "points": 69,
+      "story_id": 50152541,
+      "story_text": "Hi all,<p>So I have been working on this project KiviDB from February 2026. It started as a project for me to understand rust, having a product with no GC pauses, memory blow up after snapshots and getting OOM on running pods, and that was actually an issue I faced with Dragonfly. I wanted to have something picking the best of Rust, but also picking the best parts of other alternatives like Garnet and Dragonfly. I used AI a lot, but I was the one making the design decisions based on the tests that claude picked from my history of troubleshooting sessions as part of my job. KiviDB supports both RESP2 and RESP3 protocol. I had some founders credits on my AWS account which helped me with the infra, and running instances I could perform benchmark on.<p>Its keyspace is sharded across threads, it is multi-threaded in nature, and performs best on Linux due to io_uring, I used the tokio_uring crate for this. It also has tokio fallback for other OS&#x27;s. I hadn&#x27;t open sourced it until recently as I felt it was not ready yet, the best way to learn it was to build a cloud managed service for it across all three widely used cloud providers i.e AWS, GCP and azure. Since I used to mainly work with cloud, I had some insights on what would be the best ways for the deployments, how to conduct failovers, manage SLAs, etc. And that&#x27;s what I took help from claude to fast pace it. The website does look like AI slop but it works for now, given my limited resources, that&#x27;s all I had. You may check it out at : <a href=\"https:&#x2F;&#x2F;kividb.io\" rel=\"nofollow\">https:&#x2F;&#x2F;kividb.io</a>, I open sourced the core engine under AGPLv3, didn&#x27;t want to have just source available, because that is available with other tools too. It supports apprx 98-99% of the redis 8.10 commands, few have issues and you can find them at <a href=\"https:&#x2F;&#x2F;github.com&#x2F;kividbio&#x2F;kividb&#x2F;issues\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;kividbio&#x2F;kividb&#x2F;issues</a>, contributors are welcome.<p>Now the numbers, for the final benchmark, I used 2 c7gn.metal servers, in the same placement group in us-east1, and I used memtier-benchmark tool for this. The setting was : 10M keys, 100B each, 32 cores in use with both pipeline and un-pipelined runs.<p>pipeline 16 GET: KiviDB 21.2M ops&#x2F;sec vs Dragonfly 2.0 9.1M, Redis 8.10 2.4M, Redis Cluster 32 shards 4.7M<p>When not pipelined, Dragonfly performed slightly better at 3.35M ops&#x2F;sec vs kividb at 3.07M ops&#x2F;sec. Memory per key was also slightly worse than dragonfly and almost same as Redis, 177B (kividb) vs 134B (dragonfly) vs 178B (redis).<p>With vector ingestion times it was slower but when querying, it was faster than most alternatives at lower ef, however slower than dragonfly at high ef. Most of the technical details are mentioned here so you can check it out: <a href=\"https:&#x2F;&#x2F;kividb.io&#x2F;benchmarks\" rel=\"nofollow\">https:&#x2F;&#x2F;kividb.io&#x2F;benchmarks</a>.<p>easiest way to try it: docker run -d -p 6380:6380 kividb&#x2F;kividb<p>I am looking forward to building a community around this, provide better rust based tools, I am open to constructive criticism and value informed opinion. Thanks",
+      "title": "Show HN: KiviDB, a faster Redis-compatible memory database and vector cache",
+      "updated_at": "2026-11-12T21:52:03Z",
+      "url": "https://github.com/kividbio/kividb"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "nikanj"
+        },
+        "story_text": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "If you have a third.level.name domain, it'll get permanently expunged next year. Have you successfully taken steps to migrate away? Did you move to a standard .com domain, or are you taking your chances with another .tld?<p>Personally, I'm stuck in Microsoft hell because <em>Azure</em> admin emails cannot be changed and support is both uncaring and powerless."
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Tell HN: Remember to migrate away from .name domain"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_nikanj",
+        "story_50089577",
+        "ask_hn"
+      ],
+      "author": "nikanj",
+      "children": [
+        50129263,
+        50129424,
+        50135050,
+        50130915,
+        50089603,
+        50089643,
+        50089589,
+        50129601,
+        50130306,
+        50129559,
+        50129892,
+        50137990,
+        50129271,
+        50140144,
+        50129464,
+        50130093,
+        50134529,
+        50143138,
+        50117537,
+        50144939
+      ],
+      "created_at": "2026-10-14T15:49:31Z",
+      "created_at_i": 1791992971,
+      "num_comments": 118,
+      "objectID": "50089577",
+      "points": 166,
+      "story_id": 50089577,
+      "story_text": "If you have a third.level.name domain, it&#x27;ll get permanently expunged next year. Have you successfully taken steps to migrate away? Did you move to a standard .com domain, or are you taking your chances with another .tld?<p>Personally, I&#x27;m stuck in Microsoft hell because Azure admin emails cannot be changed and support is both uncaring and powerless.",
+      "title": "Tell HN: Remember to migrate away from .name domain",
+      "updated_at": "2026-10-27T23:06:10Z"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "<em>aure</em>ianimus"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Responsible Release of AI-Generated Mathematics"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://agmai.org/general-sep29/"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_aureianimus",
+        "story_49903713"
+      ],
+      "author": "aureianimus",
+      "children": [
+        49904744,
+        49904600,
+        49919756,
+        49905203,
+        49904638,
+        49905313,
+        49906555,
+        49920968,
+        49905617,
+        49904694,
+        49918415,
+        49917614,
+        49919638,
+        49916681,
+        49904489,
+        49919134,
+        49916399,
+        50013781,
+        49920063,
+        49922028,
+        49905248,
+        49905432,
+        49916791,
+        49916019,
+        49916364,
+        49904755,
+        49914984,
+        49905008,
+        49905184
+      ],
+      "created_at": "2026-09-30T02:36:12Z",
+      "created_at_i": 1790735772,
+      "num_comments": 224,
+      "objectID": "49903713",
+      "points": 123,
+      "story_id": 49903713,
+      "title": "Responsible Release of AI-Generated Mathematics",
+      "updated_at": "2026-10-31T22:08:37Z",
+      "url": "https://agmai.org/general-sep29/"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "linkdd"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "Using floci to emulate Cloud platforms (GCP, AWS, <em>Azure</em>)"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://flowg.cloud/blog/using-floci-local-emulators"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_linkdd",
+        "story_49475568"
+      ],
+      "author": "linkdd",
+      "children": [
+        49510343,
+        49509992,
+        49508821,
+        49508873,
+        49520101
+      ],
+      "created_at": "2026-08-28T07:41:57Z",
+      "created_at_i": 1787902917,
+      "num_comments": 11,
+      "objectID": "49475568",
+      "points": 40,
+      "story_id": 49475568,
+      "title": "Using floci to emulate Cloud platforms (GCP, AWS, Azure)",
+      "updated_at": "2026-09-07T00:31:57Z",
+      "url": "https://flowg.cloud/blog/using-floci-local-emulators"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "pablo24602"
+        },
+        "story_text": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "Hi HN- I'm Pablo, the founder of Proliferate (YC S25)!<p>Proliferate (<a href=\"https://github.com/proliferate-ai/proliferate\" rel=\"nofollow\">https://github.com/proliferate-ai/proliferate</a>) is an open-source, self-hostable AI IDE that lets you work and automate tasks with Claude Code, Codex, OpenCode, Cursor, and Grok in one place.<p>Here's a quick 2m demo of how we use Proliferate to build Proliferate: <a href=\"https://www.youtube.com/watch?v=tGNX0oaWmBY\" rel=\"nofollow\">https://www.youtube.com/watch?v=tGNX0oaWmBY</a><p>I started building Proliferate after my team onboarded to OpenAI Codex. Within days, we were using it for everything: using computer use instead of navigating websites ourselves, having Codex coordinate other agents, and setting up automations for recurring work. We really never needed to leave the desktop app to get work done.<p>If my team’s experience is anything close to representative, a Codex-like app (a horizontal agent with a beautiful UI) is the main interface every company is going to use to get work done. That is perfectly in line with OpenAI’s mission to make Codex the everything app (see: <a href=\"https://news.ycombinator.com/item?id=47796469\">https://news.ycombinator.com/item?id=47796469</a>).<p>But as we started automating work closer to the core of the business, I wanted to work with agents from all the labs, including open-weight models, without becoming increasingly dependent on OpenAI.<p>And that’s what Proliferate is for! It's the open-source, self-hostable Codex that preserves your optionality across agents and model providers while building toward Codex’s breadth.<p>Today Proliferate supports:<p>* Working with Claude Code, Codex, OpenCode, Cursor, and Grok with their native inference and configuration options, including Bedrock, <em>Azure</em>, and self hosted inference.<p>* Inter-agent communication and management: a parent agent can spawn and communicate with another supported agent as a subagent (I personally like to have Fable delegate to Codex, with OpenCode models reviewing PRs).<p>* Building workflows- one of the features I'm most excited about. These are re-usable chains of agent sessions and human approval gates, with the harness and model chosen per step and documents passed between them. I use this to automate code review, QA, and my PR construction process.<p>All of Proliferate is 100% open source under AGPL-3.0. There are still definitely some rough spots, but we’re building fast and I’d really love any feedback!"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Show HN: Proliferate- open-source, self-hostable Codex for any coding agent"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://github.com/proliferate-ai/proliferate"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_pablo24602",
+        "story_49390739",
+        "show_hn"
+      ],
+      "author": "pablo24602",
+      "children": [
+        49391677,
+        49391574,
+        49392136,
+        49391376,
+        49392069,
+        49391477,
+        49393146,
+        49395683,
+        49392003,
+        49393843,
+        49393536,
+        49397910,
+        49390920
+      ],
+      "created_at": "2026-08-21T16:47:15Z",
+      "created_at_i": 1787330835,
+      "num_comments": 16,
+      "objectID": "49390739",
+      "points": 46,
+      "story_id": 49390739,
+      "story_text": "Hi HN- I&#x27;m Pablo, the founder of Proliferate (YC S25)!<p>Proliferate (<a href=\"https:&#x2F;&#x2F;github.com&#x2F;proliferate-ai&#x2F;proliferate\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;proliferate-ai&#x2F;proliferate</a>) is an open-source, self-hostable AI IDE that lets you work and automate tasks with Claude Code, Codex, OpenCode, Cursor, and Grok in one place.<p>Here&#x27;s a quick 2m demo of how we use Proliferate to build Proliferate: <a href=\"https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=tGNX0oaWmBY\" rel=\"nofollow\">https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=tGNX0oaWmBY</a><p>I started building Proliferate after my team onboarded to OpenAI Codex. Within days, we were using it for everything: using computer use instead of navigating websites ourselves, having Codex coordinate other agents, and setting up automations for recurring work. We really never needed to leave the desktop app to get work done.<p>If my team’s experience is anything close to representative, a Codex-like app (a horizontal agent with a beautiful UI) is the main interface every company is going to use to get work done. That is perfectly in line with OpenAI’s mission to make Codex the everything app (see: <a href=\"https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=47796469\">https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=47796469</a>).<p>But as we started automating work closer to the core of the business, I wanted to work with agents from all the labs, including open-weight models, without becoming increasingly dependent on OpenAI.<p>And that’s what Proliferate is for! It&#x27;s the open-source, self-hostable Codex that preserves your optionality across agents and model providers while building toward Codex’s breadth.<p>Today Proliferate supports:<p>* Working with Claude Code, Codex, OpenCode, Cursor, and Grok with their native inference and configuration options, including Bedrock, Azure, and self hosted inference.<p>* Inter-agent communication and management: a parent agent can spawn and communicate with another supported agent as a subagent (I personally like to have Fable delegate to Codex, with OpenCode models reviewing PRs).<p>* Building workflows- one of the features I&#x27;m most excited about. These are re-usable chains of agent sessions and human approval gates, with the harness and model chosen per step and documents passed between them. I use this to automate code review, QA, and my PR construction process.<p>All of Proliferate is 100% open source under AGPL-3.0. There are still definitely some rough spots, but we’re building fast and I’d really love any feedback!",
+      "title": "Show HN: Proliferate- open-source, self-hostable Codex for any coding agent",
+      "updated_at": "2026-08-30T06:06:03Z",
+      "url": "https://github.com/proliferate-ai/proliferate"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "ninko"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "Windows died inside Microsoft, a 25-year veteran on how <em>Azure</em> took over"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://www.windowslatest.com/2026/08/05/after-25-years-at-microsoft-i-can-tell-you-why-windows-was-neglected/"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_ninko",
+        "story_49196389"
+      ],
+      "author": "ninko",
+      "children": [
+        49199182,
+        49204594,
+        49199833,
+        49202280,
+        49204513
+      ],
+      "created_at": "2026-08-06T13:28:43Z",
+      "created_at_i": 1786022923,
+      "num_comments": 16,
+      "objectID": "49196389",
+      "points": 40,
+      "story_id": 49196389,
+      "title": "Windows died inside Microsoft, a 25-year veteran on how Azure took over",
+      "updated_at": "2026-08-08T08:33:44Z",
+      "url": "https://www.windowslatest.com/2026/08/05/after-25-years-at-microsoft-i-can-tell-you-why-windows-was-neglected/"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "uvuv"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "CosmosEscape: Taking over Every Database in <em>Azure</em> Cosmos DB"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "https://www.wiz.io/blog/cosmosescape-taking-over-every-database-in-<em>azure</em>-cosmos-db"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_uvuv",
+        "story_49108963"
+      ],
+      "author": "uvuv",
+      "children": [
+        49111735,
+        49109852,
+        49109782,
+        49205680,
+        49110444,
+        49110252,
+        49108964,
+        49114337
+      ],
+      "created_at": "2026-07-30T12:13:42Z",
+      "created_at_i": 1785413622,
+      "num_comments": 17,
+      "objectID": "49108963",
+      "points": 74,
+      "story_id": 49108963,
+      "title": "CosmosEscape: Taking over Every Database in Azure Cosmos DB",
+      "updated_at": "2026-08-15T04:45:38Z",
+      "url": "https://www.wiz.io/blog/cosmosescape-taking-over-every-database-in-azure-cosmos-db"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Amorymeltzer"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "<em>Azule</em>jo"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "https://en.wikipedia.org/wiki/<em>Azule</em>jo"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_Amorymeltzer",
+        "story_49089502"
+      ],
+      "author": "Amorymeltzer",
+      "children": [
+        49108374,
+        49108222,
+        49108344,
+        49108782,
+        49112905,
+        49112226,
+        49110867,
+        49108871,
+        49111592,
+        49113739,
+        49111102,
+        49110635,
+        49113510,
+        49113220,
+        49108442,
+        49113489,
+        49111704,
+        49108737,
+        49110816
+      ],
+      "created_at": "2026-07-28T20:29:03Z",
+      "created_at_i": 1785270543,
+      "num_comments": 64,
+      "objectID": "49089502",
+      "points": 190,
+      "story_id": 49089502,
+      "title": "Azulejo",
+      "updated_at": "2026-10-02T12:07:18Z",
+      "url": "https://en.wikipedia.org/wiki/Azulejo"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "grep_it"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Paxos Made Simple (2001) [pdf]"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "https://lamport.<em>azure</em>websites.net/pubs/paxos-simple.pdf"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_grep_it",
+        "story_48850688"
+      ],
+      "author": "grep_it",
+      "children": [
+        48908521,
+        48912503,
+        48912170,
+        48911913,
+        48909753
+      ],
+      "created_at": "2026-07-09T18:51:22Z",
+      "created_at_i": 1783623082,
+      "num_comments": 7,
+      "objectID": "48850688",
+      "points": 65,
+      "story_id": 48850688,
+      "title": "Paxos Made Simple (2001) [pdf]",
+      "updated_at": "2026-07-21T09:37:40Z",
+      "url": "https://lamport.azurewebsites.net/pubs/paxos-simple.pdf"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "<em>aure</em>nvale"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "DSpark: Speculative decoding accelerates LLM inference [pdf]"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_aurenvale",
+        "story_48696585"
+      ],
+      "author": "aurenvale",
+      "children": [
+        48696940,
+        48697240,
+        48697761,
+        48696874,
+        48696909,
+        48696790,
+        48698632,
+        48698167,
+        48697264,
+        48696806,
+        48696810,
+        48697050,
+        48697144,
+        48699678,
+        48697258,
+        48702194,
+        48703318,
+        48698927,
+        48699767,
+        48698672,
+        48696913,
+        48696867,
+        48700233,
+        48700006,
+        48699291,
+        48697056,
+        48698393,
+        48698426
+      ],
+      "created_at": "2026-06-27T09:18:52Z",
+      "created_at_i": 1782551932,
+      "num_comments": 361,
+      "objectID": "48696585",
+      "points": 797,
+      "story_id": 48696585,
+      "title": "DSpark: Speculative decoding accelerates LLM inference [pdf]",
+      "updated_at": "2026-08-16T16:16:15Z",
+      "url": "https://github.com/deepseek-ai/DeepSpec/blob/main/DSpark_paper.pdf"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "<em>aure</em>nvale"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "How to get your first customers [video]"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://www.ycombinator.com/library/SF-how-to-get-your-first-10-customers"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_aurenvale",
+        "story_48663819"
+      ],
+      "author": "aurenvale",
+      "children": [
+        48668009,
+        48677836,
+        48663820,
+        48669286,
+        48672371,
+        48677759,
+        48678685,
+        48694451,
+        48666799
+      ],
+      "created_at": "2026-06-24T18:24:44Z",
+      "created_at_i": 1782325484,
+      "num_comments": 28,
+      "objectID": "48663819",
+      "points": 88,
+      "story_id": 48663819,
+      "title": "How to get your first customers [video]",
+      "updated_at": "2026-06-29T13:12:38Z",
+      "url": "https://www.ycombinator.com/library/SF-how-to-get-your-first-10-customers"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "snowpid"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "EU to soon classify AWS and <em>Azure</em> as gatekeepers under DSA"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "https://www.heise.de/en/news/Report-EU-to-soon-classify-AWS-and-<em>Azure</em>-as-gatekeepers-under-DSA-11337873.html"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_snowpid",
+        "story_48596622"
+      ],
+      "author": "snowpid",
+      "children": [
+        48596923,
+        48598131,
+        48604413,
+        48599368,
+        48626826,
+        48597096
+      ],
+      "created_at": "2026-06-19T09:28:22Z",
+      "created_at_i": 1781861302,
+      "num_comments": 26,
+      "objectID": "48596622",
+      "points": 66,
+      "story_id": 48596622,
+      "title": "EU to soon classify AWS and Azure as gatekeepers under DSA",
+      "updated_at": "2026-06-25T08:02:50Z",
+      "url": "https://www.heise.de/en/news/Report-EU-to-soon-classify-AWS-and-Azure-as-gatekeepers-under-DSA-11337873.html"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "haydenbarnes"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "<em>Azure</em> Linux Desktop"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "https://www.boxofcables.dev/<em>azure</em>-linux-desktop-a-build-2026-mashup-of-wslc-winui-reactor-and-<em>azure</em>-linux-4-0/"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_haydenbarnes",
+        "story_48422451"
+      ],
+      "author": "haydenbarnes",
+      "children": [
+        48425019,
+        48423919,
+        48423916,
+        48424172,
+        48424327,
+        48423217,
+        48423861,
+        48425813,
+        48424892,
+        48424031,
+        48431103,
+        48424909
+      ],
+      "created_at": "2026-06-06T07:42:25Z",
+      "created_at_i": 1780731745,
+      "num_comments": 48,
+      "objectID": "48422451",
+      "points": 75,
+      "story_id": 48422451,
+      "title": "Azure Linux Desktop",
+      "updated_at": "2026-10-05T23:13:29Z",
+      "url": "https://www.boxofcables.dev/azure-linux-desktop-a-build-2026-mashup-of-wslc-winui-reactor-and-azure-linux-4-0/"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "6mile"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "Microsoft Compromised Again. Shuts Down <em>Azure</em> Function GitHub Actions"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "https://opensourcemalware.com/blog/miasma-reaches-<em>azure</em>"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_6mile",
+        "story_48418318"
+      ],
+      "author": "6mile",
+      "children": [
+        48419601,
+        48418319
+      ],
+      "created_at": "2026-06-05T21:08:39Z",
+      "created_at_i": 1780693719,
+      "num_comments": 2,
+      "objectID": "48418318",
+      "points": 49,
+      "story_id": 48418318,
+      "title": "Microsoft Compromised Again. Shuts Down Azure Function GitHub Actions",
+      "updated_at": "2026-06-09T15:55:37Z",
+      "url": "https://opensourcemalware.com/blog/miasma-reaches-azure"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "haydenbarnes"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "<em>Azure</em> Linux 4.0 is Microsoft's first general-purpose Linux"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "https://www.boxofcables.dev/<em>azure</em>-linux-4-0-is-microsofts-first-general-purpose-linux/"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_haydenbarnes",
+        "story_48407499"
+      ],
+      "author": "haydenbarnes",
+      "children": [
+        48411710,
+        48407901,
+        48407847,
+        48408088,
+        48410287,
+        48408432,
+        48408078,
+        48408993,
+        48408524,
+        48413672,
+        48410742,
+        48408615,
+        48407768,
+        48412982,
+        48410555,
+        48410379,
+        48410031,
+        48459559,
+        48409725,
+        48408457,
+        48408473,
+        48407915,
+        48407932,
+        48409303,
+        48414072,
+        48409243,
+        48408858,
+        48413423,
+        48409856,
+        48409328,
+        48407854,
+        48410706,
+        48409140
+      ],
+      "created_at": "2026-06-05T03:14:28Z",
+      "created_at_i": 1780629268,
+      "num_comments": 151,
+      "objectID": "48407499",
+      "points": 215,
+      "story_id": 48407499,
+      "title": "Azure Linux 4.0 is Microsoft's first general-purpose Linux",
+      "updated_at": "2026-09-08T20:17:48Z",
+      "url": "https://www.boxofcables.dev/azure-linux-4-0-is-microsofts-first-general-purpose-linux/"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "akh"
+        },
+        "story_text": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": [
+            "azure"
+          ],
+          "value": "We launched Infracost on HN five years ago (<a href=\"https://news.ycombinator.com/item?id=26064588\">https://news.ycombinator.com/item?id=26064588</a>) where our CLI generated cost estimates for infra-as-code, e.g. &quot;this Terraform PR adds $400/mo&quot;. The idea was to shift cloud costs (FinOps) left, so engineers get visibility of costs before deployment and make better decisions.<p>Earlier this year we started seeing agent traffic in our logs and it looked like coding agents were calling our CLI. But that CLI wasn't designed with coding agents in mind. We went down a philosophical rabbit hole to see if a CLI is even needed anymore given that Claude, Copilot et al. already follow best practices. Ultimately we decided to create a new CLI from the ground up with coding agents in mind for two reasons:<p>1. We optimized the CLI for agent callers and cut Claude's output token usage by up to 79% and API cost by up to 67% versus a bare-Claude baseline. We wrote a blog documenting our lessons on optimizing user token usage when designing a CLI, e.g. using predicate flags so the agent doesn't compose jq | python | wc pipelines, output format that strips JSON's redundant field names. The blog is here: <a href=\"https://www.infracost.io/resources/blog/we-cut-claude-s-token-usage-79-by-redesigning-our-cli-for-agents\">https://www.infracost.io/resources/blog/we-cut-claude-s-toke...</a><p>2. With cloud costs, precision matters. Telling a coding agent &quot;make this Terraform cost-optimized&quot; can be expensive and lossy. You burn tokens loading code and policy context into every conversation. Your agent could make up a price and you wouldn't know because it's difficult to verify that across the ~10M price points that AWS, <em>Azure</em> and Google have. The CLI runs static analysis on the code, uses the latest prices from cloud vendors, and passes that context to the coding agent.<p>So that's what we're launching today - Cost.dev: <a href=\"https://cost.dev/\" rel=\"nofollow\">https://cost.dev/</a>.<p>- It runs locally. Your code never leaves your machine, you get a fast feedback loop, and you're not burning API calls per character when you want to fetch prices.<p>- The CLI does the deterministic work. Fetching price points, scanning the code, validating fixes. The coding agent does the natural-language part. You don't have to trust the LLM to remember the rules, and can verify it called the right CLI command.<p>- It provides a consistent rule layer across every tool you use. Get cost estimates in your IDE and your coding agent with a single install. We support Claude Code, GitHub Copilot, Cursor, Windsurf, OpenAI Codex, Gemini CLI, as well as IDEs like VS Code and JetBrains<p>Before we keep building more in that direction, I want to sanity-check with HN: is &quot;agents writing IaC in prod&quot; actually a thing yet, or am I betting on a future that's still a year out? I know software developers are using coding agents heavily, but are platform/infra folks doing that for prod too? Also, if you have any feedback on Cost.dev, I'd love to hear it!"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Show HN: Cost.dev (YC W21) – making agents cost-aware and cheaper to call"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://cost.dev/"
+        }
+      },
+      "_tags": [
+        "story",
+        "author_akh",
+        "story_48397148",
+        "show_hn"
+      ],
+      "author": "akh",
+      "children": [
+        48409962,
+        48469285,
+        48476727,
+        48416540,
+        48404500,
+        48467386,
+        48404545,
+        48471141,
+        48403202,
+        48410586,
+        48410186,
+        48478723,
+        48408796,
+        48485454,
+        48411142,
+        48405225,
+        48406935,
+        48423780,
+        48409711,
+        48398281,
+        48411172,
+        48476184
+      ],
+      "created_at": "2026-06-04T11:30:13Z",
+      "created_at_i": 1780572613,
+      "num_comments": 29,
+      "objectID": "48397148",
+      "points": 48,
+      "story_id": 48397148,
+      "story_text": "We launched Infracost on HN five years ago (<a href=\"https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=26064588\">https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=26064588</a>) where our CLI generated cost estimates for infra-as-code, e.g. &quot;this Terraform PR adds $400&#x2F;mo&quot;. The idea was to shift cloud costs (FinOps) left, so engineers get visibility of costs before deployment and make better decisions.<p>Earlier this year we started seeing agent traffic in our logs and it looked like coding agents were calling our CLI. But that CLI wasn&#x27;t designed with coding agents in mind. We went down a philosophical rabbit hole to see if a CLI is even needed anymore given that Claude, Copilot et al. already follow best practices. Ultimately we decided to create a new CLI from the ground up with coding agents in mind for two reasons:<p>1. We optimized the CLI for agent callers and cut Claude&#x27;s output token usage by up to 79% and API cost by up to 67% versus a bare-Claude baseline. We wrote a blog documenting our lessons on optimizing user token usage when designing a CLI, e.g. using predicate flags so the agent doesn&#x27;t compose jq | python | wc pipelines, output format that strips JSON&#x27;s redundant field names. The blog is here: <a href=\"https:&#x2F;&#x2F;www.infracost.io&#x2F;resources&#x2F;blog&#x2F;we-cut-claude-s-token-usage-79-by-redesigning-our-cli-for-agents\">https:&#x2F;&#x2F;www.infracost.io&#x2F;resources&#x2F;blog&#x2F;we-cut-claude-s-toke...</a><p>2. With cloud costs, precision matters. Telling a coding agent &quot;make this Terraform cost-optimized&quot; can be expensive and lossy. You burn tokens loading code and policy context into every conversation. Your agent could make up a price and you wouldn&#x27;t know because it&#x27;s difficult to verify that across the ~10M price points that AWS, Azure and Google have. The CLI runs static analysis on the code, uses the latest prices from cloud vendors, and passes that context to the coding agent.<p>So that&#x27;s what we&#x27;re launching today - Cost.dev: <a href=\"https:&#x2F;&#x2F;cost.dev&#x2F;\" rel=\"nofollow\">https:&#x2F;&#x2F;cost.dev&#x2F;</a>.<p>- It runs locally. Your code never leaves your machine, you get a fast feedback loop, and you&#x27;re not burning API calls per character when you want to fetch prices.<p>- The CLI does the deterministic work. Fetching price points, scanning the code, validating fixes. The coding agent does the natural-language part. You don&#x27;t have to trust the LLM to remember the rules, and can verify it called the right CLI command.<p>- It provides a consistent rule layer across every tool you use. Get cost estimates in your IDE and your coding agent with a single install. We support Claude Code, GitHub Copilot, Cursor, Windsurf, OpenAI Codex, Gemini CLI, as well as IDEs like VS Code and JetBrains<p>Before we keep building more in that direction, I want to sanity-check with HN: is &quot;agents writing IaC in prod&quot; actually a thing yet, or am I betting on a future that&#x27;s still a year out? I know software developers are using coding agents heavily, but are platform&#x2F;infra folks doing that for prod too? Also, if you have any feedback on Cost.dev, I&#x27;d love to hear it!",
+      "title": "Show HN: Cost.dev (YC W21) – making agents cost-aware and cheaper to call",
+      "updated_at": "2026-06-18T12:02:25Z",
+      "url": "https://cost.dev/"
+    }
+  ],
+  "hitsPerPage": 20,
+  "nbHits": 453,
+  "nbPages": 23,
+  "page": 0,
+  "params": "query=azure&tags=story&numericFilters=points%3E%3D40&advancedSyntax=true&analyticsTags=backend",
+  "processingTimeMS": 9,
+  "processingTimingsMS": {
+    "_request": {
+      "queue": 1,
+      "roundTrip": 16
+    },
+    "afterFetch": {
+      "format": {
+        "highlighting": 1,
+        "total": 1
+      }
+    },
+    "fetch": {
+      "query": 1,
+      "scanning": 6,
+      "total": 8
+    },
+    "total": 9
+  },
+  "query": "azure",
+  "serverTimeMS": 13
+}

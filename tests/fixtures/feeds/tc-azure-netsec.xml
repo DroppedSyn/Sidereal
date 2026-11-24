@@ -1,0 +1,595 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" version="2.0">
+  <channel>
+    <title>Azure Network Security Blog articles</title>
+    <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/bg-p/AzureNetworkSecurityBlog</link>
+    <description>Azure Network Security Blog articles</description>
+    <pubDate>Mon, 23 Nov 2026 10:15:25 GMT</pubDate>
+    <dc:creator>AzureNetworkSecurityBlog</dc:creator>
+    <dc:date>2026-11-23T10:15:25Z</dc:date>
+    <item>
+      <title>Addressing Java4Shell CVE-2026-114938: upgrade guidance and Azure WAF mitigations</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/addressing-java4shell-cve-2026-114938-upgrade-guidance-and-azure/ba-p/4574305</link>
+      <description><![CDATA[<H2 aria-level="2"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 2">Introduction</SPAN></SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559738&quot;:299,&quot;335559739&quot;:299}">&nbsp;</SPAN></H2>
+<P><SPAN data-contrast="auto">On November 17, 2026, </SPAN><A href="https://nvd.nist.gov/vuln/detail/CVE-2026-114938" target="_blank"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">CVE-2026-114938</SPAN></SPAN></A><SPAN data-contrast="auto">, also known as </SPAN><SPAN data-contrast="auto">Java4Shell</SPAN><SPAN data-contrast="auto">, a critical remote code execution (RCE) vulnerability affecting OpenJDK, was publicly disclosed. Under specific conditions, specially crafted Base64 input can trigger memory corruption in affected Java runtimes, potentially allowing unauthenticated attackers to execute arbitrary code.</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">We strongly recommend that customers update the Java runtime used by their own applications to a patched version or update third-party Java-based applications to a version that includes the security fix, as applicable. </SPAN><SPAN data-contrast="auto">Updating the affected Java runtime is the primary way to fully remediate this vulnerability.</SPAN><SPAN data-contrast="auto"> For further details, refer to </SPAN><A href="https://www.oracle.com/security-alerts/cspunov2026.html" target="_blank"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">Oracle's official security advisory</SPAN></SPAN></A><SPAN data-contrast="auto">.</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Azure Web Application Firewall (WAF) has developed mitigations designed to detect and block known HTTP-based exploitation patterns associated with this vulnerability, providing an additional layer of protection while customers apply the necessary security updates. These mitigations are intended to complement patching, not replace it.</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559738&quot;:240,&quot;335559739&quot;:240}">&nbsp;</SPAN></P>
+<H2 aria-level="2"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 2">About CVE-2026-114938</SPAN></SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:false,&quot;134233118&quot;:false,&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335551550&quot;:0,&quot;335551620&quot;:0,&quot;335559738&quot;:299,&quot;335559739&q [truncated]]]></description>
+      <pubDate>Wed, 18 Nov 2026 07:46:29 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/addressing-java4shell-cve-2026-114938-upgrade-guidance-and-azure/ba-p/4574305</guid>
+      <dc:creator>yuvalpery</dc:creator>
+      <dc:date>2026-11-18T07:46:29Z</dc:date>
+    </item>
+    <item>
+      <title>DDoS Support for NATGWv2 IP - Public Preview</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/ddos-support-for-natgwv2-ip-public-preview/ba-p/4573913</link>
+      <description><![CDATA[<H1><STRONG>Introduction</STRONG></H1>
+<P>Azure DDoS Protection now covers the public IP addresses used by Azure NAT Gateway StandardV2, in public preview. Customers can protect the StandardV2 IPv4 and IPv6 public IPs that carry their outbound internet traffic from network-layer DDoS attacks, using the same DDoS Network Protection and IP Protection they already use. There's no new API, feature registration or appliance to manage, and DDoS protection doesn't open the gateway to unsolicited inbound connections.</P>
+<H1><STRONG>Why it matters</STRONG></H1>
+<P>NAT Gateway doesn't accept inbound connections, but its public IPs are still reachable from the internet, and they're the identity of everything behind them.</P>
+<UL>
+<LI><STRONG>Your outbound IPs are known to others.</STRONG> Every external service your workloads call sees these IPs. Partners, SaaS providers and banks often keep them on allow-lists. Anyone who learns them can aim traffic at them.</LI>
+<LI><STRONG>One IP set serves many workloads.</STRONG> Every VM in the associated subnets shares the gateway's public IPs. A flood that saturates these IPs can disrupt outbound connectivity for all of them at once. That includes calls to external APIs, partner integrations, package and update downloads, and telemetry.</LI>
+<LI><STRONG>Outbound failures hurt production.</STRONG> An attack on the NAT IPs doesn't have to reach your workloads to cause an outage. It only has to break their path to the internet.</LI>
+<LI><STRONG>Same protection as your inbound endpoints.</STRONG> Until now, customers could protect inbound public IPs but not the IPs behind NAT Gateway StandardV2. With this preview, outbound IPs get automatic network-layer mitigation, plus the DDoS metrics, diagnostics and alerts they already use.</LI>
+<LI><STRONG>Easier compliance.</STRONG> Security policies and posture checks that require DDoS protection on all public IPs no longer have an exception for NAT Gateway IPs.</LI>
+</UL>
+<P>&nbsp;</P>
+<img />
+<P>&nbsp;</P>
+<P><EM>Figure 1: Outbound workloads use a StandardV2 NAT Gateway and a DDoS-protected public IP to reach the internet. Conceptual diagram, not an Azure portal screenshot.</EM></P>
+<H2>Protect the public IPs behind your outbound connectivity</H2>
+<P>A NAT gateway uses its associated public IP addresses when workloads initiate connections to the internet. With this preview, eligible StandardV2 IPv4 and IPv6 public IP addresses can receive Azure DDoS Protection while associated with a StandardV2 NAT Gateway.</P>
+<P>&nbsp;</P>
+<img />
+<P>&nbsp;</P>
+<P><EM>Figure 2: The Outbound IP blade of a StandardV2 NAT Gateway lists an individual public IP address and a public IP prefix. Resource names, subscription details, and IP addresses in this and the following screenshots are generic examples.</EM></P>
+<P>You use the familiar Azure DDoS Protection model. There is no separate DDoS setting on the NAT Gateway resource:</P>
+<UL>
+<LI><STRONG>DDoS Network Protection: </STRONG>Protect eligi [truncated]]]></description>
+      <pubDate>Mon, 16 Nov 2026 22:52:35 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/ddos-support-for-natgwv2-ip-public-preview/ba-p/4573913</guid>
+      <dc:creator>Jdasari</dc:creator>
+      <dc:date>2026-11-16T22:52:35Z</dc:date>
+    </item>
+    <item>
+      <title>Azure DDoS Custom Policy GA</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/azure-ddos-custom-policy-ga/ba-p/4573866</link>
+      <description><![CDATA[<H3><STRONG>More control, broader coverage with Azure DDoS Protection custom policy</STRONG></H3>
+<P><EM>Fine-tune protocol-specific DDoS detection for internet-facing workloads while keeping Azure’s adaptive protection as the default.</EM></P>
+<P>Organizations depend on Azure DDoS Protection to monitor traffic continuously and mitigate network-layer attacks at cloud scale. Most workloads benefit from a hands-off, adaptive experience. But applications with planned traffic surges, unusual packet-rate patterns, strict latency requirements, or distinct environments sometimes need more control over when mitigation begins.</P>
+<P>Azure DDoS Protection custom policy adds that optional control. It lets you define fixed inbound detection thresholds for TCP, UDP, and TCP SYN traffic and apply them to supported public endpoints. The result is a protection model that remains automatic by default while giving application and network teams a precise override when their workload calls for it.</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="border-width: 1px;"><tbody><tr><td>
+<P><STRONG>In one sentence: </STRONG>Custom policy extends Azure DDoS Protection’s adaptive baseline with optional, protocol-specific controls; it does not replace the turnkey default.</P>
+</td></tr></tbody><colgroup><col style="width: 100.00%" /></colgroup></table></DIV>
+<P>Azure DDoS Protection custom policy is now generally available, letting customers replace machine-learning auto-tuning with fixed protocol-specific detection thresholds per protected resource across Azure resource types with public IPs. Available on Network Protection and IP Protection SKUs, it already covers 929 policies and about 1,970 attachments pre-GA, led by OpenAI.&nbsp;</P>
+<H3><STRONG>Why customers asked for more control</STRONG></H3>
+<P>Adaptive auto-tuning works well for most workloads because Azure learns the normal traffic profile of each protected endpoint and adjusts mitigation thresholds as that profile changes. A fixed, application-specific threshold can be useful when traffic is predictable in a way that the service cannot infer ahead of time.</P>
+<P>A gaming launch, ticket sale, live stream, or seasonal event is expected to create a sudden but legitimate increase in packet rate.</P>
+<P>A high-throughput service regularly operates near a threshold and needs an explicitly controlled trigger.</P>
+<P>A latency-sensitive workload benefits from a tighter mitigation threshold for one protocol.</P>
+<P>Development, test, and production environments need separate policies and change controls.</P>
+<P>Security teams want repeatable, infrastructure-as-code deployment and verifiable associations to protected endpoints.</P>
+<P><STRONG>Automatic by default; explicit where you choose</STRONG></P>
+<P>A custom threshold changes behavior only for the protocol you configure on the associated resource. Azure uses the fixed value for that protocol, while protocols wi [truncated]]]></description>
+      <pubDate>Mon, 16 Nov 2026 22:30:24 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/azure-ddos-custom-policy-ga/ba-p/4573866</guid>
+      <dc:creator>Jdasari</dc:creator>
+      <dc:date>2026-11-16T22:30:24Z</dc:date>
+    </item>
+    <item>
+      <title>Protect against Brotli CVE-2026-111497 with Azure Web Application Firewall (WAF)</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/protect-against-brotli-cve-2026-111497-with-azure-web/ba-p/4567288</link>
+      <description><![CDATA[<P><SPAN data-contrast="none">Google Brotli versions 1.0.3 through 1.2.0 contain a buffer overflow vulnerability in the Brotli decoder, according to the recently published </SPAN><A href="https://nvd.nist.gov/vuln/detail/cve-2026-111497" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">CVE-2026-111497</SPAN></SPAN></A><SPAN data-contrast="none">. A remote, unauthenticated attacker can send a crafted Brotli-compressed stream to corrupt decoder memory, expose sensitive memory contents, cause a denial of service, or potentially run arbitrary code. Any application that decompresses untrusted Brotli data may be affected. This includes Node.js and Python applications that bundle the vulnerable decoder, and services that accept request bodies with the </SPAN><SPAN data-contrast="none">Content-Encoding: br</SPAN><SPAN data-contrast="none"> header.</SPAN><SPAN data-ccp-props="{&quot;335557856&quot;:16777215,&quot;335559738&quot;:180,&quot;335559739&quot;:180}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="none">We strongly recommend upgrading Brotli to a patched version: 1.0.10, 1.1.1 or 1.2.1 (</SPAN><A href="https://github.com/google/brotli/releases" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">Brotli releases</SPAN></SPAN></A><SPAN data-contrast="none">). If you use Node.js, upgrade to 22.23.4, 24.22.1 or 26.12.1 (</SPAN><A href="https://nodejs.org/en/blog/vulnerability/october-2026-security-releases#nodejs-brotli-decoder-out-of-bounds-write-permits-remote-code-execution-cve-2026-111497---high" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">Node.js security release</SPAN></SPAN></A><SPAN data-contrast="none">).</SPAN><SPAN data-ccp-props="{&quot;335557856&quot;:16777215,&quot;335559738&quot;:180,&quot;335559739&quot;:180}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="none">If you can't patch your applications right away, Azure WAF on Application Gateway, Application Gateway for Containers and Azure Front Door can help mitigate the inbound attack vector, which is Brotli-compressed request bodies sent to your application.</SPAN><SPAN data-ccp-props="{&quot;335557856&quot;:16777215,&quot;335559738&quot;:180,&quot;335559739&quot;:180}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="none">Note:</SPAN><SPAN data-contrast="none"> Azure WAF inspects only inbound requests to your application. It can't protect applications that fetch and decompress Brotli-encoded responses from external servers. Those applications must be patched.</SPAN><SPAN data-ccp-props="{&quot;335559739&quot;:0}">&nbsp;</SPAN></P>
+<H2 aria-level="4"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 4">Bu</SPAN><SPAN data-ccp-parastyle="heading 4">ilt-</SPAN><SPAN data-ccp-parastyle="heading 4">in </SPAN><SPAN data-ccp-parastyle="heading 4">protectio</SPAN><SPAN data-ccp-parastyle="heading 4">n enabled by default</SPAN></SPAN></H2>
+<P>If you use Azure [truncated]]]></description>
+      <pubDate>Mon, 02 Nov 2026 18:53:26 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/protect-against-brotli-cve-2026-111497-with-azure-web/ba-p/4567288</guid>
+      <dc:creator>yuvalpery</dc:creator>
+      <dc:date>2026-11-02T18:53:26Z</dc:date>
+    </item>
+    <item>
+      <title>Azure WAF custom rules for PHP2Shell mitigation</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/azure-waf-custom-rules-for-php2shell-mitigation/ba-p/4566684</link>
+      <description><![CDATA[<P>Written in collaboration with <a data-lia-user-mentions="" data-lia-user-uid="68531" data-lia-user-login="Gunjan Jain" class="lia-mention lia-mention-user">Gunjan Jain​</a> and <a data-lia-user-mentions="" data-lia-user-uid="2013094" data-lia-user-login="yuvalpery" class="lia-mention lia-mention-user">yuvalpery​</a>&nbsp;</P>
+<P><SPAN data-contrast="auto">As described in our earlier blog, </SPAN><A href="https://techcommunity.microsoft.com/blog/azurenetworksecurityblog/addressing-php2shell-cve-2026-109618-and-cve-2026-109619-upgrade-guidance-and-az/4566623" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">Addressing PHP2Shell CVE-2026-109618 and CVE-2026-109619: upgrade guidance and Azure WAF mitigations</SPAN></SPAN></A><SPAN data-contrast="auto">, we strongly recommend upgrading to a patched version of PHP as soon as possible. Upgrading PHP remains the recommended and complete remediation for these vulnerabilities.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">For customers who are unable to upgrade immediately, this guidance provides WAF custom rules that can help reduce exposure to selected request patterns associated with exploitation techniques for these vulnerabilities.&nbsp;</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<H2 aria-level="3"><SPAN class="lia-text-color-15">WAF custom rules&nbsp;</SPAN></H2>
+<P><SPAN data-contrast="auto">The following three custom rules can be considered based on your application configuration and traffic patterns. Because custom rules can affect legitimate application traffic, review the potential application impact and validate the rules before enabling enforcement.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<H4><SPAN class="lia-text-color-15">Restrict PHP session upload progress</SPAN></H4>
+<P><SPAN data-contrast="auto">PHP supports session upload progress for tracking file uploads. For applications that do not depend on this functionality, customers can use a custom rule to restrict multipart form requests containing PHP_SESSION_UPLOAD_PROGRESS.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">The rule checks for multipart/form-data requests whose inspected request body contains the PHP session upload progress token.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<H5><STRONG><SPAN data-ccp-props="{}"><SPAN data-contrast="auto">Custom rule definitions:</SPAN></SPAN></STRONG></H5>
+<P><STRONG><SPAN class="lia-text-color-21">Azure Front Door WAF</SPAN></STRONG></P>
+<LI-CODE lang="json">{  
+  "name": "BlockPhpSessionUploadProgress",  
+  "priority": 100,  
+  "enabledState": "Enabled",  
+  "ruleType": "MatchRule",  
+  "action": "Block",  
+  "matchConditions": [  
+    {   
+      "matchVariable": "RequestHeader",   
+      "selector": "Content-Type",   
+      "operator": "Contains",   
+      "negateCondition": false,   
+      "transforms": ["Lowercase"],   
+      "matchValue": ["multipart/ [truncated]]]></description>
+      <pubDate>Mon, 26 Oct 2026 19:00:38 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/azure-waf-custom-rules-for-php2shell-mitigation/ba-p/4566684</guid>
+      <dc:creator>saikishor</dc:creator>
+      <dc:date>2026-10-26T19:00:38Z</dc:date>
+    </item>
+    <item>
+      <title>Addressing PHP2Shell CVE-2026-109618 and CVE-2026-109619: upgrade guidance and Azure WAF mitigations</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/addressing-php2shell-cve-2026-109618-and-cve-2026-109619-upgrade/ba-p/4566623</link>
+      <description><![CDATA[<H5 aria-level="1">Written in collaboration with <a data-lia-user-mentions="" data-lia-user-uid="2013094" data-lia-user-login="yuvalpery" class="lia-mention lia-mention-user">yuvalpery​</a> and <a data-lia-user-mentions="" data-lia-user-uid="68531" data-lia-user-login="Gunjan Jain" class="lia-mention lia-mention-user">Gunjan Jain​</a>&nbsp;</H5>
+<H2 aria-level="1">Introduction</H2>
+<P><SPAN data-contrast="auto">Today, two critical remote code execution (RCE) vulnerabilities were disclosed in PHP. </SPAN><SPAN data-contrast="auto">We strongly recommend that customers upgrade to a patched version </SPAN><SPAN data-contrast="auto">of PHP </SPAN><SPAN data-contrast="auto">as soon as possible. Upgrading is the only way to fully remediate these vulnerabilities. <A class="lia-external-url" href="https://www.php.net/archive/2026.php" target="_blank" rel="noopener">Read more on the PHP official website. </A></SPAN></P>
+<P><SPAN data-contrast="auto">Microsoft has been part of the coordinated industry response to these vulnerabilities, working alongside the PHP Foundation, Wiz, security researchers, and other industry partners to help protect customers. Azure Web Application Firewall (WAF) has developed mitigations against known exploitation patterns to provide an additional layer of protection while customers apply the PHP security updates. These protections are intended to complement patching and are not a replacement for it.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:210,&quot;335559739&quot;:210,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<H4 aria-level="2"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 2">About the vulnerabilities:</SPAN></SPAN><SPAN data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;201341983&quot;:0,&quot;335559738&quot;:261,&quot;335559739&quot;:261,&quot;335559740&quot;:300}">&nbsp;</SPAN></H4>
+<OL>
+<LI><SPAN data-contrast="auto"><A href="https://nvd.nist.gov/vuln/detail/cve-2026-109618" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">CVE-2026-109618</SPAN></SPAN></A> - RCE via OOM corruption</SPAN></LI>
+<LI><SPAN data-ccp-props="{}"><A href="https://nvd.nist.gov/vuln/detail/cve-2026-109619" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">CVE-2026-109619</SPAN></SPAN></A><SPAN data-contrast="auto">- RCE via stale global state</SPAN> &nbsp;</SPAN></LI>
+</OL>
+<P><SPAN data-contrast="auto">Both vulnerabilities can be exploited over the network without privileges or user interaction, with a high potential impact on confidentiality, integrity, and</SPAN><SPAN data-contrast="auto">&nbsp;availability.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:210,&quot;335559739&quot;:210,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">The vulnerabilities relate to PHP handling of memory when a request terminates abnormally, for e [truncated]]]></description>
+      <pubDate>Wed, 04 Nov 2026 15:56:30 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/addressing-php2shell-cve-2026-109618-and-cve-2026-109619-upgrade/ba-p/4566623</guid>
+      <dc:creator>saikishor</dc:creator>
+      <dc:date>2026-11-04T15:56:30Z</dc:date>
+    </item>
+    <item>
+      <title>Secure Native Access to Azure Kubernetes Service (AKS) Private Clusters with Azure Bastion</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/secure-native-access-to-azure-kubernetes-service-aks-private/ba-p/4535123</link>
+      <description><![CDATA[<P>Written in Collaboration with&nbsp;<a data-lia-user-mentions="" data-lia-user-uid="2965471" data-lia-user-login="AvirupChat" class="lia-mention lia-mention-user">AvirupChat​</a>&nbsp;<a data-lia-user-mentions="" data-lia-user-uid="1380424" data-lia-user-login="ShabazShaik" class="lia-mention lia-mention-user">ShabazShaik​</a> <a data-lia-user-mentions="" data-lia-user-uid="786329" data-lia-user-login="Mohit_Kumar" class="lia-mention lia-mention-user">Mohit_Kumar​</a> <a data-lia-user-mentions="" data-lia-user-uid="124214" data-lia-user-login="YuriDiogenes" class="lia-mention lia-mention-user">YuriDiogenes​</a>&nbsp;</P>
+<H5><SPAN class="lia-text-color-15"><STRONG>Introduction:</STRONG></SPAN></H5>
+<P>As organizations move toward&nbsp;containerized workloads such as Azure Kubernetes Service (AKS), secure access to cluster resources becomes critical. Making the Kubernetes API server private, therefore, significantly reduces the attack surface. However, it also changes how engineers perform routine management tasks. Operations as simple as running kubectl logs, describing resources, or troubleshooting workloads require connectivity to the virtual network hosting the cluster.</P>
+<P>This challenge becomes even more apparent during day-to-day operations. An engineer may have the necessary Kubernetes credentials and Azure RBAC permissions yet still be unable to access the cluster because the API server is reachable only from within the private network. Establishing VPN connectivity, using jump hosts, or deploying dedicated management workstations often becomes part of the operational workflow, adding complexity to what should be straightforward administrative tasks.</P>
+<P>This balance between maintaining strong network isolation and enabling efficient cluster management is exactly what Azure Bastion's native client tunneling support for private AKS clusters is designed to address.</P>
+<P>Many Azure customers already use Azure Bastion to securely access virtual machines without exposing them to the public internet. Native client tunneling now brings that same secure access model to AKS private clusters. This capability is in <STRONG>public preview</STRONG> currently. Before discussing how it works, it is worth understanding the operational challenges it is designed to solve and how it's done.</P>
+<H5><SPAN class="lia-text-color-15"><STRONG>Bastion for Azure Kubernetes Service (AKS) private clusters:</STRONG></SPAN></H5>
+<P>At its core, Azure Bastion is designed to simplify secure access to private Azure resources. Since its launch, it has provided browser-based and native client RDP and SSH connectivity to Azure VMs without exposing management ports to the internet. No public IPs on your VMs. No inbound NSG rules for port 22 or 3389. Just TLS over port 443, routed through a fully managed service that Microsoft patches, scales, and secures on your behalf.</P>
+<P>When you establish a Bastion tunnel to your private AKS cluster, you are not signing in t [truncated]]]></description>
+      <pubDate>Mon, 13 Jul 2026 07:37:52 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/secure-native-access-to-azure-kubernetes-service-aks-private/ba-p/4535123</guid>
+      <dc:creator>saikishor</dc:creator>
+      <dc:date>2026-07-13T07:37:52Z</dc:date>
+    </item>
+    <item>
+      <title>A deep dive into Azure Bastion session recording</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/a-deep-dive-into-azure-bastion-session-recording/ba-p/4527583</link>
+      <description><![CDATA[<P>If you’ve worked with Azure Bastion’s Premium SKU, you’ve likely encountered one of its most powerful security features: graphical session recording. Capturing RDP and SSH sessions end to end strengthens compliance, supports forensic investigations, and improves operational accountability. How you configure session recording can make a significant difference. It determines whether you must manage manual tokens and expiry settings or benefit from a low-maintenance experience.</P>
+<P>With the recently announced <A href="https://techcommunity.microsoft.com/blog/azurenetworksecurityblog/public-preview-managed-identity-support-for-graphical-session-recording/4513139" target="_blank" rel="noopener">Public Preview: Managed Identity support for graphical session recording</A>, managing Bastion authentication credentials to store session recordings to a designated storage account is simpler and reduces manual work.</P>
+<P>In this blog, we’ll explain the Azure Bastion session recording feature, show how to set it up, compare SAS URL and Managed Identity options for storage authentication, and outline why Managed Identity is a great choice for production and enterprise environments.</P>
+<H2>What Is Azure Bastion session recording?</H2>
+<P>Azure Bastion is Microsoft’s fully managed, browser-based RDP/SSH gateway that removes the need for a public IP on your VMs. With the Premium SKU, you get access to session recording, which records graphical activity for every RDP and SSH session and uploads it as a browser playable video within the Bastion resource → Session recordings blade.</P>
+<P>This gives security teams:</P>
+<UL>
+<LI>An audit trail of admin and user interactions</LI>
+<LI>Forensic evidence for incident response</LI>
+<LI>Visibility into privileged access across your environment</LI>
+</UL>
+<H2>Prerequisites</H2>
+<P>Before you can enable session recording, you need:</P>
+<P>&nbsp;</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="border-width: 1px;"><thead><tr><td>
+<P><STRONG>Requirement</STRONG></P>
+</td><td>
+<P><STRONG>Detail</STRONG></P>
+</td></tr></thead><tbody><tr><td>
+<P>Azure Bastion SKU</P>
+</td><td>
+<P>Premium (Developer, Basic, and Standard do not support this feature)</P>
+</td></tr><tr><td>
+<P>Storage Account</P>
+</td><td>
+<P>General Purpose v2, same Azure region as Bastion</P>
+</td></tr><tr><td>
+<P>Permissions</P>
+</td><td>
+<P>Owner or Contributor on the Bastion resource and Blob Data Reader permission on the storage account for users to access the recordings</P>
+</td></tr></tbody><colgroup><col style="width: 50.00%" /><col style="width: 50.00%" /></colgroup></table></DIV>
+<H2>The two configuration options</H2>
+<P>When you enable session recording, Azure Bastion needs a way to authenticate to your Storage Account to upload the recorded sessions. There are two options:</P>
+<UL>
+<LI>SAS URL</LI>
+<LI>Managed Identity</LI>
+</UL>
+<P>Let’s look at how to set up each authentication option.</P> [truncated]]]></description>
+      <pubDate>Thu, 11 Jun 2026 19:38:25 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/a-deep-dive-into-azure-bastion-session-recording/ba-p/4527583</guid>
+      <dc:creator>juquint</dc:creator>
+      <dc:date>2026-06-11T19:38:25Z</dc:date>
+    </item>
+    <item>
+      <title>Designing Cloud Landing Zones by Traffic Flow: A Defence‑in‑Depth, DMZ‑First Architecture</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/designing-cloud-landing-zones-by-traffic-flow-a-defence-in-depth/ba-p/4524280</link>
+      <description><![CDATA[<P>As enterprises adopt Microsoft Azure for large‑scale and regulated workloads, security architecture must be driven by traffic trust boundaries and inspection intent, not connectivity alone. Regulatory frameworks consistently require a clear separation between Internet‑untrusted and private enterprise traffic, enforced through <A class="lia-internal-link lia-internal-url lia-internal-url-content-type-blog" href="https://techcommunity.microsoft.com/blog/azurenetworksecurityblog/azure-ddos-protection--azure-waf-a-layered-defense-for-modern-ddos-attacks/4523745" target="_blank" rel="noopener" data-lia-auto-title="defence‑in‑depth controls aligned to the OSI model" data-lia-auto-title-active="0">defence‑in‑depth controls aligned to the OSI model</A>.</P>
+<P>This drives the adoption of a DMZ‑first landing zone architecture, where volumetric protection, application‑layer inspection, and perimeter controls are enforced at well‑defined trust boundaries. Security enforcement is prioritised before access, rather than being an afterthought of connectivity. A distributed hub architecture enables this model at scale, delivering consistent controls while improving resiliency, fault isolation, and operational clarity.</P>
+<P>&nbsp;</P>
+<P><STRONG>Traffic Classification in an Enterprise Landing Zone</STRONG></P>
+<P>Enterprise traffic flows are classified based on origin, destination, and trust level, which directly dictates inspection requirements:</P>
+<UL>
+<LI>Internet Inbound (North–South): Traffic from the public Internet to Azure‑hosted applications</LI>
+<LI>Internet Outbound (South–North): Egress traffic from private workloads to the Internet</LI>
+<LI>East–West: Traffic between virtual networks within or across regions</LI>
+<LI>Hybrid Connectivity: Traffic between Azure, on‑premises, and multi‑cloud environments</LI>
+</UL>
+<P>Each flow presents a distinct risk profile, making a uniform connectivity and inspection model unsuitable for enterprise and regulated environments.</P>
+<P><STRONG>Hub</STRONG><STRONG>‑</STRONG><STRONG>and</STRONG><STRONG>‑</STRONG><STRONG>Spoke as the Foundation for Centralised Security</STRONG></P>
+<P>Enterprises commonly adopt a Hub‑and‑Spoke topology using VNET peering or Azure Virtual WAN, extending hybrid connectivity via Site‑to‑Site VPN or ExpressRoute.</P>
+<P>The hub provides a centralised, datapath‑centric layer for shared networking and security services, while spoke VNETs host application workloads and remain private, typically without public IPs. Ingress and egress are handled through shared, centrally managed endpoints.</P>
+<P>This model consolidates critical controls—<A class="lia-external-url" href="https://learn.microsoft.com/en-us/azure/firewall/overview" target="_blank" rel="noopener">Azure Firewall</A>, <A class="lia-external-url" href="https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/ag-overview" target="_blank" rel="noopener">Azure WAF</A>, and&nbsp;<A class="lia-external-url" href="https://le [truncated]]]></description>
+      <pubDate>Wed, 17 Jun 2026 12:17:58 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/designing-cloud-landing-zones-by-traffic-flow-a-defence-in-depth/ba-p/4524280</guid>
+      <dc:creator>AvanishYadav</dc:creator>
+      <dc:date>2026-06-17T12:17:58Z</dc:date>
+    </item>
+    <item>
+      <title>Azure DDoS Protection &amp; Azure WAF: A Layered Defense for Modern DDoS Attacks</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/azure-ddos-protection-azure-waf-a-layered-defense-for-modern/ba-p/4523745</link>
+      <description><![CDATA[<P><STRONG>&nbsp;</STRONG></P>
+<P><SPAN class="lia-text-color-15"><STRONG>Introduction: </STRONG></SPAN><SPAN class="lia-text-color-15"><STRONG>The Need for Layered DDoS Defense</STRONG></SPAN></P>
+<P>Organizations today operate in an environment where Distributed Denial of Service (DDoS) attacks continue to evolve across both network and application layers. To help organizations build resilient, internet-facing applications and services, Microsoft Azure provides a comprehensive and layered set of protections designed to address different types of DDoS threats. These capabilities range from platform-level defenses through Azure Infrastructure Protection, dedicated Layer 3/4 DDoS mitigation through Azure DDOS Protection and application-layer protections through Azure Web Application Protection (WAF). Together, these services form a defense-in-depth strategy that helps organizations strengthen availability, improve resilience, and protect critical applications from both large-scale network attacks and sophisticated application-layer threats. This blog explores how these services work together to deliver comprehensive DDoS protection across modern cloud environments.</P>
+<P><STRONG>&nbsp;</STRONG></P>
+<P><SPAN class="lia-text-color-15"><STRONG>Understanding DDoS at Different Layers: Network vs. Application</STRONG></SPAN></P>
+<P>Not all DDoS attacks are alike. Broadly speaking,&nbsp;<STRONG>network-layer (Layer 3/4) DDoS attacks</STRONG>&nbsp;try to&nbsp;flood&nbsp;a network or transport layer with traffic – for example, overwhelming a server or network connection with a massive volume of packets (think&nbsp;<STRONG>UDP floods</STRONG>,&nbsp;<STRONG>SYN floods</STRONG>, or amplification attacks). These aim to saturate the available bandwidth or crash network devices, knocking entire services offline. On the other hand,&nbsp;<STRONG>application-layer (Layer 7) DDoS attacks</STRONG>&nbsp;strike at the application itself – typically using&nbsp;<STRONG>HTTP(S) requests</STRONG>&nbsp;that appear legitimate but are maliciously crafted. For instance, a botnet might repeatedly hit a&nbsp;<STRONG>search API or login page</STRONG>&nbsp;with valid-looking requests that each trigger expensive operations (database queries, authentication processes, etc.). In short,&nbsp;<STRONG>network-layer DDoS attacks</STRONG>&nbsp;target the plumbing of your infrastructure (bandwidth, network connectivity), whereas&nbsp;<STRONG>application-layer DDoS attacks</STRONG>&nbsp;target the brains of your application (the code and logic handling requests).</P>
+<P>Because these attack vectors are different, defending against them requires&nbsp;<STRONG>different tools and tactics</STRONG>. Azure’s approach to DDoS defense embraces this reality with a&nbsp;<STRONG>layered model</STRONG>, where each security layer specializes in stopping certain types of attacks and complements the others.</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<img />
+<H6><STRONG>&nbsp;</STRONG><SPAN class="lia-text-color-15" [truncated]]]></description>
+      <pubDate>Thu, 09 Jul 2026 21:33:51 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/azure-ddos-protection-azure-waf-a-layered-defense-for-modern/ba-p/4523745</guid>
+      <dc:creator>saikishor</dc:creator>
+      <dc:date>2026-07-09T21:33:51Z</dc:date>
+    </item>
+    <item>
+      <title>Public Preview: Managed Identity support for graphical session recording</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/public-preview-managed-identity-support-for-graphical-session/ba-p/4513139</link>
+      <description><![CDATA[<P>&nbsp;</P>
+<H2><STRONG>Overview</STRONG></H2>
+<P>Azure Bastion provides secure RDP and SSH access to Azure virtual machines directly via the Azure portal or via the native SSH/RDP client already installed on your local computer. Today, we are introducing public preview for managed identity support for session recording, giving administrators a seamless, identity-based way to authenticate Bastion when writing recordings to a designated storage account.</P>
+<img />
+<P>&nbsp;</P>
+<H2><STRONG>Why Managed Identities?</STRONG></H2>
+<P>With managed identity support, Bastion authenticates directly to your storage account using an Azure identity, no additional credentials to configure or manage. You can use either a system-assigned or user-assigned managed identity depending on your needs. Authentication is handled automatically through Microsoft Entra ID, which means setup is straightforward: enable the identity, assign a role, and point Bastion at your storage container. For organizations operating at scale across many Bastion deployments and regions, this identity-based approach removes the need to manage credentials, aligns with Zero Trust principles, and lets you control access centrally through Azure RBAC.</P>
+<P>&nbsp;</P>
+<img />
+<P>&nbsp;</P>
+<H2><STRONG>Getting Started in Azure Portal</STRONG></H2>
+<P><STRONG>Prerequisites</STRONG></P>
+<UL>
+<LI>Ensure that Azure Bastion is deployed with the <STRONG>Premium SKU</STRONG></LI>
+<LI>Ensure that a storage account with a dedicated container for session recordings is created</LI>
+<LI>Ensure that the storage account has the required CORS policy configured. Click <A class="lia-external-url" href="https://review.learn.microsoft.com/en-us/azure/bastion/session-recording?branch=pr-en-us-310197&amp;tabs=msi#configure-storage-access-and-viewing-recordings" target="_blank" rel="noopener">here</A> to set up the storage account for session recordings</LI>
+<LI>Ensure that users who need to view recordings have the <STRONG>Storage Blob Data Reader</STRONG> role on the storage account</LI>
+</UL>
+<P><STRONG>Steps</STRONG></P>
+<OL data-line="21">
+<LI data-line="21">Navigate to your Bastion resource in the Azure portal.</LI>
+<LI data-line="22">Select&nbsp;<STRONG>Identity (Preview)</STRONG>&nbsp;in the left pane and turn the Status to&nbsp;<STRONG>On</STRONG>&nbsp;to enable a system-assigned managed identity. Wait for the configuration to complete.</LI>
+<LI data-line="23">Select&nbsp;<STRONG>Azure role assignments</STRONG>, then select&nbsp;<STRONG>Add role assignment (Preview)</STRONG>. Assign the&nbsp;<STRONG>Storage Blob Data Contributor</STRONG>&nbsp;role scoped to your storage account.</LI>
+<LI data-line="24">Select&nbsp;<STRONG>Save</STRONG>, then navigate to the&nbsp;<STRONG>Configuration</STRONG>&nbsp;blade.</LI>
+<LI data-line="25">Under&nbsp;<STRONG>Session Recording Configuration</STRONG>, select&nbsp;<STRONG>System Assigned Managed Identity</STRONG>&nbsp;and enter the&nbsp;<STRONG>Blob Container URI</STRO [truncated]]]></description>
+      <pubDate>Thu, 30 Apr 2026 14:05:12 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/public-preview-managed-identity-support-for-graphical-session/ba-p/4513139</guid>
+      <dc:creator>aarontsang</dc:creator>
+      <dc:date>2026-04-30T14:05:12Z</dc:date>
+    </item>
+    <item>
+      <title>General availability of Default Ruleset (DRS) 2.2 for Web Application Firewall</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/general-availability-of-default-ruleset-drs-2-2-for-web/ba-p/4515762</link>
+      <description><![CDATA[<H2>Introduction</H2>
+<P class="lia-align-justify">As attackers continue to evolve their techniques, organizations require web application security that keeps pace with emerging threats without disrupting legitimate traffic. Azure Web Application Firewall (WAF) continues to evolve to meet these demands and now supports Default Rule Set (DRS) 2.2 across both Azure Front Door and Azure Application Gateway.</P>
+<P class="lia-align-justify">The latest recommended Azure WAF ruleset, based on OWASP Core Rule Set (CRS) 3.3.4., DRS 2.2 combines OWASP CRS protections with Microsoft-authored rules developed with the Microsoft Threat Intelligence team, delivering broader coverage, updated signatures, reduced false positives, and a more modern security baseline for your internet-facing applications.</P>
+<H2>What is new in DRS 2.2?</H2>
+<P class="lia-align-justify">DRS 2.2 builds on earlier rule sets with improvements focused on three areas: breadth of coverage, quality of detections, and false positive reductions.</P>
+<H3>Broader security coverage&nbsp;</H3>
+<P class="lia-align-justify">DRS 2.2 is based on the OWASP Core Rule Set 3.3.4, delivering improvements in rule accuracy and new protections for common web vulnerabilities. DRS 2.2 contains 18 rule groups, organizing protections across SQL injections, XSS, protocol violations, remote code execution, and more, making it easier to understand and manage the scope of coverage. Notable improvements include:</P>
+<UL>
+<LI>
+<DIV class="lia-align-justify">Detection of mismatched content types, where the declared content-type header does not match the actual payload format. This is a common tactic in evasion and obfuscation attacks.</DIV>
+</LI>
+<LI>
+<DIV class="lia-align-justify">Improved Remote Code Execution (RCE) detections to catch increasingly sophisticated payloads used by threat actors.</DIV>
+</LI>
+</UL>
+<H3>Microsoft Threat Intelligence rules</H3>
+<P class="lia-align-justify">In addition to the OWASP improvements, DRS 2.2 introduces new Microsoft Threat Intelligence rules. These rules expand coverage for:</P>
+<UL>
+<LI>
+<DIV class="lia-align-justify">SQL Injection.</DIV>
+</LI>
+<LI>
+<DIV class="lia-align-justify">Cross-Site Scripting (XSS).</DIV>
+</LI>
+<LI>
+<DIV class="lia-align-justify">Advanced application security attack patterns.</DIV>
+</LI>
+</UL>
+<img /><img /><img />
+<H3>Improved false positive reduction with paranoia levels</H3>
+<P class="lia-align-justify">One of the standout features of DRS 2.2 is its paranoia level (PL) configuration, which allows you to balance security and usability. Paranoia levels (PL) determine how aggressively rules in the OWASP Core Rule Set (CRS) detect and block potential threats in a Web Application Firewall (WAF). OWASP CRS defines four paranoia levels (PL1–PL4), each offering progressively stricter security controls:</P>
+<UL class="lia-align-justify">
+<LI>PL1 (Default): Offers baseline protection against common web attacks, minimizes false positives, and is appropriate  [truncated]]]></description>
+      <pubDate>Wed, 29 Apr 2026 08:31:47 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/general-availability-of-default-ruleset-drs-2-2-for-web/ba-p/4515762</guid>
+      <dc:creator>andrewmathu</dc:creator>
+      <dc:date>2026-04-29T08:31:47Z</dc:date>
+    </item>
+    <item>
+      <title>Assess Azure DDoS Protection Status Across Your Environment</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/assess-azure-ddos-protection-status-across-your-environment/ba-p/4505969</link>
+      <description><![CDATA[<H2>Introduction</H2>
+<P>Distributed Denial of Service (DDoS) attacks continue to be one of the most prevalent threats facing organizations with internet-facing workloads. Azure DDoS Protection provides cloud-scale protection against L3/4 volumetric attacks, helping ensure your applications remain available during an attack.</P>
+<P>However, as Azure environments grow, maintaining visibility into which resources are protected and whether diagnostic logging is properly configured becomes increasingly challenging. Security teams often struggle to answer basic questions:</P>
+<UL>
+<LI>Which Public IP addresses are protected by Azure DDoS Protection?</LI>
+<LI>Are we using IP Protection or Network Protection (DDoS Protection Plan)?</LI>
+<LI>Is diagnostic logging enabled for protected resources?</LI>
+</UL>
+<P>To address these questions at scale, we’ve developed a PowerShell script that assesses your Azure DDoS Protection posture across all subscriptions.</P>
+<H2>Understanding Azure DDoS Protection SKUs</H2>
+<P>Azure offers three DDoS Protection tiers:</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="border-width: 1px;"><tbody><tr><td>
+<P><STRONG>Protection Type</STRONG></P>
+</td><td>
+<P><STRONG>Description</STRONG></P>
+</td><td>
+<P><STRONG>Scope</STRONG></P>
+</td></tr><tr><td>
+<P><STRONG>Network Protection</STRONG></P>
+</td><td>
+<P>Enterprise-grade protection via a DDoS Protection Plan attached to VNETs</P>
+</td><td>
+<P>All Public IPs in protected VNETs</P>
+</td></tr><tr><td>
+<P><STRONG>IP Protection</STRONG></P>
+</td><td>
+<P>Per-IP protection for individual Public IP addresses</P>
+</td><td>
+<P>Individual Public IP</P>
+</td></tr></tbody><colgroup><col style="width: 33.33%" /><col style="width: 33.33%" /><col style="width: 33.33%" /></colgroup></table></DIV>
+<P>For more details, see <A href="https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview" target="_blank" rel="noopener">Azure DDoS Protection overview</A>.</P>
+<H2>The Assessment Script</H2>
+<P>The <STRONG>Check-DDoSProtection.ps1</STRONG> script provides a full view of DDoS Protection status across your Azure environment. This section covers the script’s key capabilities and the resource types it supports.</P>
+<H3>Key Features</H3>
+<UL>
+<LI><STRONG>Multi-subscription support</STRONG>: Scan a single subscription or all subscriptions you have access to</LI>
+<LI><STRONG>DDoS Protection status</STRONG>: Identifies which Public IPs are protected and which SKU is being used</LI>
+<LI><STRONG>VNET correlation</STRONG>: Automatically determines the VNET associated with each Public IP to assess Network Protection inheritance</LI>
+<LI><STRONG>Diagnostic logging check</STRONG>: Verifies if DDoS diagnostic logs are configured for protected resources</LI>
+<LI><STRONG>CSV export</STRONG>: Export results for further analysis or reporting</LI>
+</UL>
+<H2>Prerequisites</H2>
+<P>Before running the script, ensure you have:</P>
+<P><STRONG>Az [truncated]]]></description>
+      <pubDate>Thu, 26 Mar 2026 15:36:26 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/assess-azure-ddos-protection-status-across-your-environment/ba-p/4505969</guid>
+      <dc:creator>SaleemBseeu</dc:creator>
+      <dc:date>2026-03-26T15:36:26Z</dc:date>
+    </item>
+    <item>
+      <title>Azure Bastion: Enterprise-grade secure access made simple</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/azure-bastion-enterprise-grade-secure-access-made-simple/ba-p/4503833</link>
+      <description><![CDATA[<P>Managing secure remote access to virtual machines traditionally means juggling public IP addresses, configuring jump boxes, deploying VPN infrastructure, and managing complex firewall rules. Each layer adds cost, complexity, and potential security vulnerabilities.</P>
+<P>Azure Bastion changes everything. It's a fully managed PaaS service that provides secure RDP/SSH connectivity to Azure VMs directly through the Azure portal, without exposing VMs to the public internet. No public IPs, no jump boxes, no VPN clients.</P>
+<P>Azure Bastion isn't one-size-fits-all. Whether you're running a development sandbox, managing production workloads at scale, or operating in regulated industries with strict compliance requirements, there's a Bastion SKU designed for your specific needs.</P>
+<UL>
+<LI><STRONG>Basic SKU</STRONG> for small production workloads with browser-based access. Ideal for small businesses, startups, or single-application environments with limited concurrent users (up to 2 instances).</LI>
+<LI><STRONG>Standard SKU</STRONG> for scalable production environments requiring VNet peering, native client and shareable links for non-portal access. Supports up to 50 scale units, perfect for growing organizations and multi-VNET architectures.</LI>
+<LI><STRONG>Premium SKU</STRONG> for regulated industries requiring session recording for compliance (HIPAA, SOX, PCI-DSS, FDA), private-only deployment for zero internet exposure. Essential for healthcare, finance, pharmaceuticals, government, and air-gapped environments.</LI>
+</UL>
+<P>Let's dive into real-world scenarios that showcase how Azure Bastion simplifies enterprise-grade secure access.</P>
+<H4><STRONG>Real-World Scenarios:</STRONG></H4>
+<P>Azure Bastion features are best understood through real-world application. In the scenarios below, we'll tackle three common enterprise challenges with remote secure access. Let's see Azure Bastion in action.</P>
+<H5><STRONG>Scenario 1: Instant Vendor Access Without the Hassle</STRONG></H5>
+<P><STRONG>The Challenge:</STRONG></P>
+<P>It's 3 PM on Friday when your production database experiences critical performance issues. An external DBA consultant needs immediate access to investigate, but your organization faces a familiar dilemma. The traditional provisioning process requires creating a temporary Azure AD account, configuring VPN access and credentials, coordinating with the security team for approvals, and ensuring timely revocation after the engagement concludes. Even with expedited processes, this takes 2-3 hours—and there's always the risk of lingering permissions if revocation is overlooked. By the time access is provisioned, it's often too late to resolve the issue before the weekend, leaving your production environment vulnerable and your team working overtime.</P>
+<P><STRONG>The Solution:</STRONG></P>
+<P><STRONG>Shareable Links</STRONG>: Generate a secure URL for instant VM access: no Azure credentials, no VPN, no account creation is required.</P>
+<P [truncated]]]></description>
+      <pubDate>Thu, 19 Mar 2026 14:32:39 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/azure-bastion-enterprise-grade-secure-access-made-simple/ba-p/4503833</guid>
+      <dc:creator>ShabazShaik</dc:creator>
+      <dc:date>2026-03-19T14:32:39Z</dc:date>
+    </item>
+    <item>
+      <title>Orchestrating Intrusion Detection and Prevention Signature overrides in Azure Firewall Premium</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/orchestrating-intrusion-detection-and-prevention-signature/ba-p/4502213</link>
+      <description><![CDATA[<H5><SPAN class="lia-text-color-10"><STRONG>Introduction: </STRONG></SPAN></H5>
+<P>Azure Firewall Premium provides strong protection with a built-in <STRONG>Intrusion Detection and Prevention System (IDPS)</STRONG>. It inspects inbound, outbound, and east-west traffic against Microsoft’s continuously updated signature set and can block threats before they reach your workloads.</P>
+<P>IDPS works out of the box without manual intervention. However, in many environments administrators need the flexibility to override specific signatures to better align with operational or security requirements.</P>
+<P>Common reasons include:</P>
+<UL>
+<LI><STRONG>Compliance enforcement</STRONG> – enforcing policies that require certain threats (such as High severity signatures) to always be blocked, directional tuning or protocol/category-based tuning.&nbsp;</LI>
+<LI><STRONG>Incident response</STRONG> – reacting quickly to emerging vulnerabilities by enabling blocking for newly relevant signatures.</LI>
+<LI><STRONG>Noise reduction</STRONG> – keeping informational signatures in alert mode to avoid false positives while still maintaining visibility.</LI>
+</UL>
+<P>In many environments, signature overrides are typically managed in one of two ways:</P>
+<OL>
+<LI><STRONG>Using the global IDPS mode&nbsp;</STRONG></LI>
+<LI><STRONG>Using the Azure portal to apply per-signature overrides individually</STRONG></LI>
+</OL>
+<P>While these approaches work, managing overrides manually becomes difficult when thousands of signatures are involved. The Azure portal also limits the number of changes that can be applied at once, which makes large tuning operations time-consuming.</P>
+<P>To simplify this process, this blog introduces an automation approach that allows you to export, filter, and apply IDPS signature overrides in bulk using PowerShell scripts.</P>
+<H5><SPAN class="lia-text-color-10"><STRONG>A</STRONG><STRONG> Common Operational Scenario:</STRONG></SPAN></H5>
+<P>Consider the following scenario frequently encountered by security teams:</P>
+<P><STRONG>Scenario</STRONG></P>
+<P>A security team wants to move their firewall from <STRONG>Alert → Alert + Deny</STRONG> globally to strengthen threat prevention. However, they do not want Low severity signatures to Deny traffic, because these signatures are primarily informational and may create unnecessary noise or false positives.</P>
+<P>Example:</P>
+<P>Signature ID: <STRONG>2014906</STRONG><BR />Severity: <STRONG>Low</STRONG><BR />Description: <STRONG>INFO – .exe File requested over FTP</STRONG></P>
+<P>This signature is classified as informational because requesting an .exe file over FTP indicates <STRONG>contextual risk</STRONG>, not necessarily confirmed malicious activity.</P>
+<P>If the global mode is switched to <STRONG>Alert + Deny</STRONG>, this signature may start blocking traffic unnecessarily.</P>
+<P>The goal therefore becomes:</P>
+<UL>
+<LI>Enable <STRONG>Alert + Deny globally</STRONG></LI>
+<LI>Keep <STRONG>Low severity signat [truncated]]]></description>
+      <pubDate>Wed, 01 Apr 2026 23:08:21 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/orchestrating-intrusion-detection-and-prevention-signature/ba-p/4502213</guid>
+      <dc:creator>saikishor</dc:creator>
+      <dc:date>2026-04-01T23:08:21Z</dc:date>
+    </item>
+    <item>
+      <title>Detect, correlate, contain: New Azure Firewall IDPS detections in Microsoft Sentinel and XDR</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/detect-correlate-contain-new-azure-firewall-idps-detections-in/ba-p/4502128</link>
+      <description><![CDATA[<P>As threat actors continue to blend reconnaissance, exploitation, and post-compromise activity, network-level signals remain critical for early detection and correlated response. To strengthen this layer, we're introducing five new Azure Firewall IDPS detections, now available out of the box in the Azure Firewall solution for Microsoft Sentinel and Microsoft Defender XDR.</P>
+<H3><SPAN class="lia-text-color-15"><SPAN class="lia-text-color-15">See It in Action</SPAN>&nbsp;</SPAN></H3>
+<P><SPAN data-contrast="auto">This short demo walks through Azure Firewall's IDPS capabilities, the new Sentinel detections, and the automated response playbook — from malicious traffic hitting the&nbsp;firewall&nbsp;to the threat being contained without manual intervention.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Watch the demo →&nbsp;<A href="https://www.youtube.com/watch?v=N5xPKtvBKuI" target="_blank" rel="noopener">Azure Firewall integration with Microsoft Sentinel and Defender XDR</A></SPAN></P>
+<div data-video-id="https://www.youtube.com/watch?v=N5xPKtvBKuI/1774040490818" data-video-remote-vid="https://www.youtube.com/watch?v=N5xPKtvBKuI/1774040490818" class="lia-video-container lia-media-is-center lia-media-size-large"><iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FN5xPKtvBKuI%3Ffeature%3Doembed&amp;display_name=YouTube&amp;url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DN5xPKtvBKuI&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FN5xPKtvBKuI%2Fhqdefault.jpg&amp;type=text%2Fhtml&amp;schema=youtube" allowfullscreen="" style="max-width: 100%"></iframe></div>
+<P>&nbsp;</P>
+<P><SPAN data-ccp-props="{}"><SPAN data-contrast="auto">Read on for the full details on each detection, customization options, and a step-by-step walkthrough of the automated response workflow.</SPAN>&nbsp;</SPAN></P>
+<H3 aria-level="2"><SPAN class="lia-text-color-20"><SPAN class="lia-text-color-15">What’s new</SPAN>&nbsp;</SPAN></H3>
+<P><SPAN data-contrast="auto">The Azure Firewall solution now includes&nbsp;</SPAN><SPAN data-contrast="auto">five new analytic detections</SPAN><SPAN data-contrast="auto">&nbsp;built on Azure Firewall.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="width: 100%; border-width: 1px;"><tbody><tr><td>
+<P><STRONG><SPAN data-contrast="none">Detection&nbsp;name</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:1,&quot;335551620&quot;:1,&quot;335559739&quot;:160,&quot;335559740&quot;:278}">&nbsp;</SPAN></STRONG></P>
+</td><td>
+<P><STRONG><SPAN data-contrast="none">What&nbsp;it&nbsp;detects (network&nbsp;signal)</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:278}">&nbsp;</SPAN></STRONG></P>
+</td><td>
+<P><STRONG><SPAN data-contrast="none">MITRE ATT&amp;CK tactic(s)</SPAN><SPAN data-ccp-props="{&quot;20134198 [truncated]]]></description>
+      <pubDate>Fri, 20 Mar 2026 21:03:45 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/detect-correlate-contain-new-azure-firewall-idps-detections-in/ba-p/4502128</guid>
+      <dc:creator>Mohit_Kumar</dc:creator>
+      <dc:date>2026-03-20T21:03:45Z</dc:date>
+    </item>
+    <item>
+      <title>Navigating the 2025 holiday season: Insights into Azure’s DDoS defense</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/navigating-the-2025-holiday-season-insights-into-azure-s-ddos/ba-p/4495741</link>
+      <description><![CDATA[<P>The holiday season continues to be one of the most demanding periods for online businesses. Traffic surges, higher transaction volumes, and user expectations for seamless digital experiences all converge, making reliability a non-negotiable requirement. For attackers, this same period presents an opportunity: even brief instability can translate into lost revenue, operational disruption, and reputational impact.</P>
+<P>This year, the most notable shift wasn’t simply the size of attacks, but <EM>how</EM> they were executed. We observed a rise in burst‑style DDoS events, fast-ramping, high-intensity surges distributed across multiple resources, designed to overwhelm packet processing and connection-handling layers before traditional bandwidth metrics show signs of strain.</P>
+<P>From November 15, 2025 through January 5, 2026, Azure DDoS Protection helped customers maintain continuity through sustained Layer 3 and Layer 4 <STRONG>attack traffic</STRONG>, underscoring two persistent realities:</P>
+<UL>
+<LI>Most attacks remain short, automated, and frequently create constant background <STRONG>attack traffic</STRONG>.</LI>
+<LI>The upper limit of attacker capability continues to grow, with botnets across the industry regularly demonstrating multi‑Tbps scale.</LI>
+</UL>
+<P>The holiday season once again reinforced that DDoS resilience must be treated as a continuous operational discipline.</P>
+<P><STRONG>Rising volume and intensity</STRONG></P>
+<P>Between November 15 and January 5, Azure mitigated approximately <STRONG>174,054 inbound DDoS attacks</STRONG>. While many were small and frequent, the distribution revealed the real shift:</P>
+<UL>
+<LI><STRONG>16%</STRONG> exceeded <STRONG>1M packets per second (pps)</STRONG>.</LI>
+<LI><STRONG>~3%</STRONG> surpassed <STRONG>10M pps</STRONG>, up significantly from <STRONG>0.2%</STRONG> last year.</LI>
+</UL>
+<P>Even when individual events are modest, the cumulative impact of sustained <STRONG>attack traffic</STRONG> can be operationally draining—consuming on-call cycles, increasing autoscale and egress costs, and creating intermittent instability that can provide cover for more targeted activity.</P>
+<P><STRONG>Operational takeaway:</STRONG><BR />Treat DDoS mitigation as an always-on requirement. Ensure protection is enabled across all internet-facing entry points, align alerting to packet rate trends, and maintain clear triage workflows.</P>
+<img />
+<P><STRONG>What the TCP/UDP mix is telling us this season</STRONG></P>
+<P>TCP did what it usually does during peak season: it carried the fight. <STRONG>TCP floods made up ~72%</STRONG> of activity, and <STRONG>ACK floods dominated (58.7%)</STRONG> a reliable way to grind down packet processing and connection handling. <STRONG>UDP was ~24%</STRONG>, showing up as sharp, high-intensity bursts; amplification (like NTP) appeared, but it wasn’t the main play.</P>
+<P>Put together, it’s a familiar one-two punch: <STRONG>sustain TCP/ACK pressure to exhaust the edge</STR [truncated]]]></description>
+      <pubDate>Wed, 18 Feb 2026 20:30:34 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/navigating-the-2025-holiday-season-insights-into-azure-s-ddos/ba-p/4495741</guid>
+      <dc:creator>Jdasari</dc:creator>
+      <dc:date>2026-02-18T20:30:34Z</dc:date>
+    </item>
+    <item>
+      <title>A Practical Guide to Azure DDoS Protection Cost Optimization</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/a-practical-guide-to-azure-ddos-protection-cost-optimization/ba-p/4495199</link>
+      <description><![CDATA[<H2>Introduction</H2>
+<P>Azure provides infrastructure-level DDoS protection by default to protect Azure’s own platform and services. However, this protection does not extend to customer workloads or non-Microsoft managed resources like Application Gateway, Azure Firewall, or virtual machines with public IPs. To protect these resources, Azure offers enhanced DDoS protection capabilities (Network Protection and IP Protection) that customers can apply based on workload exposure and business requirements. As environments scale, it’s important to ensure these capabilities are applied deliberately and aligned with actual risk.</P>
+<P>For more details on how Azure DDoS protection works, see <A href="https://techcommunity.microsoft.com/blog/azurenetworksecurityblog/understanding-azure-ddos-protection-a-closer-look/3983767" target="_blank" rel="noopener">Understanding Azure DDoS Protection: A Closer Look</A>.</P>
+<H2>Why Cost Optimization Matters</H2>
+<P>Cost inefficiencies related to Azure DDoS Protection typically emerge as environments scale:</P>
+<UL>
+<LI>New public IPs are introduced</LI>
+<LI>Virtual networks evolve</LI>
+<LI>Workloads change ownership</LI>
+<LI>Protection scope grows without clear alignment to workload exposure</LI>
+</UL>
+<P>The goal here is deliberate, consistent application of enhanced protection matched to real risk rather than historical defaults.</P>
+<H2>Scoping Enhanced Protection</H2>
+<P>Customer workloads with public IPs require enhanced DDoS protection to be protected against targeted attacks. Enhanced DDoS protection provides:</P>
+<UL>
+<LI>Advanced mitigation capabilities</LI>
+<LI>Detailed telemetry and attack insights</LI>
+<LI>Mitigation tuned to specific traffic patterns</LI>
+<LI>Dedicated support for customer workloads</LI>
+</UL>
+<P><STRONG>When to apply enhanced protection:</STRONG></P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="border-width: 1px;"><tbody><tr><td>
+<P><STRONG>Workload Type</STRONG></P>
+</td><td>
+<P><STRONG>Enhanced Protection Recommended?</STRONG></P>
+</td></tr><tr><td>
+<P>Internet-facing production apps with direct customer impact</P>
+</td><td>
+<P>Yes</P>
+</td></tr><tr><td>
+<P>Business-critical systems with compliance requirements</P>
+</td><td>
+<P>Yes</P>
+</td></tr><tr><td>
+<P>Internal-only workloads behind private endpoints</P>
+</td><td>
+<P>Typically not needed</P>
+</td></tr><tr><td>
+<P>Development/test environments</P>
+</td><td>
+<P>Evaluate based on exposure</P>
+</td></tr></tbody><colgroup><col style="width: 50.00%" /><col style="width: 50.00%" /></colgroup></table></DIV>
+<P><STRONG>Best Practice:</STRONG> Regularly review public IP exposure and workload criticality to ensure enhanced protection aligns with current needs.</P>
+<H2>Understanding Azure DDoS Protection SKUs</H2>
+<P>Azure offers two ways to apply enhanced DDoS protection: <STRONG>DDoS Network Protection</STRONG> and <STRONG>DDoS IP Protection</STRONG>. Both provide DDoS protection fo [truncated]]]></description>
+      <pubDate>Wed, 18 Feb 2026 13:55:49 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/a-practical-guide-to-azure-ddos-protection-cost-optimization/ba-p/4495199</guid>
+      <dc:creator>SaleemBseeu</dc:creator>
+      <dc:date>2026-02-18T13:55:49Z</dc:date>
+    </item>
+    <item>
+      <title>Zero Trust with Azure Firewall, Azure DDoS Protection and Azure WAF: A practical use case</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/zero-trust-with-azure-firewall-azure-ddos-protection-and-azure/ba-p/4490595</link>
+      <description><![CDATA[<P><STRONG>Introduction</STRONG></P>
+<P><A href="https://learn.microsoft.com/en-us/security/zero-trust/assessment/overview" target="_blank" rel="noopener"><STRONG>Zero Trust</STRONG></A> has emerged as the defining security ethos of the modern enterprise. It is guided by a simple but powerful principle: <STRONG>“Never trust, always verify.”</STRONG> This principle is more relevant now than ever as cyberattacks continue to trend upward in both frequency and impact, affecting organizations of every size and industry. No entity large or small can assume immunity. As a result, adopting Zero Trust is no longer optional, it is a foundational requirement for designing secure, resilient architectures.</P>
+<P>A key tenet of Zero Trust is the assumption of breach, thus designing systems with the expectation that threats may already exist both outside and inside the network perimeter. To implement this principle, you need multiple, independent security controls that inspect traffic at different layers and enforce least privilege access continuously. Relying on a single security control, even a highly capable one, leaves gaps that modern attackers are adept at exploiting.</P>
+<P>It is within this context that combining the use of <STRONG>Azure Firewall, Azure DDoS Protection and Azure Web Application Firewall (WAF) </STRONG>services to secure Web Applications while protecting the network perimeter becomes important. Together, these services deliver comprehensive protection across the network and application layers.</P>
+<P>&nbsp;</P>
+<P><STRONG>Defense-in-depth: Why Azure WAF, Azure DDoS Protection and Azure Firewall are essential for Zero Trust</STRONG></P>
+<P>In these sections ahead, we examine the common network and application-layer attack vectors that target modern web applications and illustrate how Azure WAF, Azure DDoS protection, and Azure Firewall, when layered strategically, work in tandem to mitigate these threats.</P>
+<P><STRONG>The architecture</STRONG></P>
+<P>The test environment was designed to reflect a common Azure deployment pattern:</P>
+<UL>
+<LI><STRONG>Azure DDoS Protection</STRONG> at the edge, to defend against a comprehensive set of network layer (layer 3/4) attacks</LI>
+<LI><STRONG>Azure Application Gateway with WAF</STRONG>, inspecting inbound HTTP traffic for application-layer threats</LI>
+<LI><STRONG>Azure Firewall Premium</STRONG> behind the gateway, providing network-layer protection, deep packet inspection, and outbound traffic governance.</LI>
+<LI>A backend subnet hosting an intentionally vulnerable application (OWASP Juice Shop) to simulate real-world attack scenarios.</LI>
+</UL>
+<P>Traffic flows through the DDoS first, then WAF, and then the firewall, before reaching the backend. Outbound traffic from the backend is routed through the firewall for inspection. This ensures that all inbound and outbound traffic is scrutinized.</P>
+<P>Two access paths that will be tested:</P>
+<OL>
+<LI>Via the Application Gateway public IP, where [truncated]]]></description>
+      <pubDate>Thu, 05 Feb 2026 05:15:27 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/zero-trust-with-azure-firewall-azure-ddos-protection-and-azure/ba-p/4490595</guid>
+      <dc:creator>saikishor</dc:creator>
+      <dc:date>2026-02-05T05:15:27Z</dc:date>
+    </item>
+    <item>
+      <title>Application layer DDoS protection using the HTTP DDoS Ruleset in Azure WAF</title>
+      <link>https://techcommunity.microsoft.com/t5/azure-network-security-blog/application-layer-ddos-protection-using-the-http-ddos-ruleset-in/ba-p/4479030</link>
+      <description><![CDATA[<P>Today, Distributed Denial of Service (DDoS) attacks can strike as soon as public connectivity is enabled, highlighting their widespread prevalence. Factors such as easily accessible botnets, the explosion of IoT devices, and the growth of API-driven workloads, e-commerce platforms, and global web applications have made these attacks easier to launch and more impactful.</P>
+<P>Importantly, attackers are no longer focusing solely on the network layer, they increasingly target the application layer. Application-layer DDoS attacks often mimic normal user activity, making detection and mitigation far more challenging than traditional network-layer attacks. The most common types of Application layer/HTTP based DDOS attacks are outlined below.</P>
+<H5><STRONG>Common HTTP-based DDoS attacks:</STRONG></H5>
+<UL>
+<LI><STRONG>HTTP floods: </STRONG>Large volumes of valid looking GET or POST requests are sent to webpages or APIs, overwhelming application gateways and backend services without saturating network bandwidth.</LI>
+<LI><STRONG>API abuse attacks: </STRONG>Attackers repeatedly call specific API endpoints, such as authentication, search, or checkout that trigger expensive backend operations, quickly exhausting compute and database resources.</LI>
+<LI><STRONG>Slow HTTP attacks: </STRONG>Connections are deliberately kept open by sending data very slowly, consuming server threads and connection limits while generating relatively little traffic.</LI>
+<LI><STRONG>TLS-intensive attacks: </STRONG>A high number of encrypted connections are initiated to increase CPU usage during TLS handshakes, impacting application gateways and load balancers.</LI>
+</UL>
+<P>In order to defend against these sophisticated threats, organizations need application-aware protection that can identify abnormal behavior patterns rather than relying only on traffic volume. This is precisely the capability provided by the <STRONG>HTTP DDoS Ruleset for Azure Application Gateway WAF</STRONG>.<STRONG>&nbsp;</STRONG></P>
+<H5><STRONG>What Is the HTTP DDoS Ruleset?&nbsp;</STRONG></H5>
+<P>The HTTP DDoS Ruleset is a built-in capability of Azure Application Gateway WAF designed to protect your applications from large-scale HTTP floods at the application layer. Unlike static rate-limiting or manual IP blocking, this ruleset uses adaptive learning to understand what “normal” traffic looks like for your gateway and then automatically mitigates anomalies.</P>
+<H6><STRONG>Key features</STRONG></H6>
+<UL>
+<LI><STRONG>Baseline learning:</STRONG> The ruleset observes traffic for about 24 hours to establish a normal request pattern per gateway.</LI>
+<LI><STRONG>Dynamic detection:</STRONG> When incoming requests exceed the learned baseline, the ruleset identifies potential abuse (Client-specific or IP specific limits are applied only when the overall request volume to the gateway exceeds its learned baseline).</LI>
+<LI><STRONG>Automated mitigation:</STRONG> Offending clients are blocked and are placed in [truncated]]]></description>
+      <pubDate>Thu, 18 Dec 2025 07:18:22 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/azure-network-security-blog/application-layer-ddos-protection-using-the-http-ddos-ruleset-in/ba-p/4479030</guid>
+      <dc:creator>saikishor</dc:creator>
+      <dc:date>2025-12-18T07:18:22Z</dc:date>
+    </item>
+  </channel>
+</rss>

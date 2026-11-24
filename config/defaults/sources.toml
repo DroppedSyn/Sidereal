@@ -1,0 +1,178 @@
+# Seed sources (plan §6.6). `sidereal init` inserts rows whose key is missing; it never changes
+# existing rows, so edits made in the app (M27) survive a re-seed.
+#
+# Fields: key, name, kind (rss | msrc | cisa_kev | hn_algolia), url, weight (0.5-1.5),
+# max_items (default 50), enabled (default true), options (adapter-specific table).
+# options.article_hosts: hosts enrichment may fetch article text from (plan §6.2); empty = none.
+
+[[source]]
+key = "azure-updates"
+name = "Azure Updates"
+kind = "rss"
+url = "https://www.microsoft.com/releasecommunications/api/v2/azure/rss"
+weight = 1.3
+options = { article_hosts = ["azure.microsoft.com", "learn.microsoft.com", "techcommunity.microsoft.com"] }
+
+[[source]]
+key = "azure-blog"
+name = "Microsoft Azure Blog"
+kind = "rss"
+url = "https://azure.microsoft.com/en-us/blog/feed/"
+weight = 1.0
+options = { article_hosts = ["azure.microsoft.com"] }
+
+[[source]]
+key = "tc-azure-networking"
+name = "Tech Community: Azure Networking Blog"
+kind = "rss"
+url = "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=AzureNetworkingBlog"
+weight = 1.4
+options = { article_hosts = ["techcommunity.microsoft.com"] }
+
+[[source]]
+key = "tc-azure-netsec"
+name = "Tech Community: Azure Network Security Blog"
+kind = "rss"
+url = "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=AzureNetworkSecurityBlog"
+weight = 1.4
+options = { article_hosts = ["techcommunity.microsoft.com"] }
+
+[[source]]
+key = "tc-entra"
+name = "Tech Community: Microsoft Entra Blog"
+kind = "rss"
+url = "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=microsoft-entra-blog"
+weight = 1.4
+options = { article_hosts = ["techcommunity.microsoft.com"] }
+
+[[source]]
+key = "tc-defender-cloud"
+name = "Tech Community: Microsoft Defender for Cloud Blog"
+kind = "rss"
+url = "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=MicrosoftDefenderCloudBlog"
+weight = 1.1
+options = { article_hosts = ["techcommunity.microsoft.com"] }
+
+[[source]]
+key = "tc-sentinel"
+name = "Tech Community: Microsoft Sentinel Blog"
+kind = "rss"
+url = "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=MicrosoftSentinelBlog"
+weight = 0.9
+options = { article_hosts = ["techcommunity.microsoft.com"] }
+
+[[source]]
+key = "tc-azure-architecture"
+name = "Tech Community: Azure Architecture Blog"
+kind = "rss"
+url = "https://techcommunity.microsoft.com/t5/s/gxcuf89792/rss/board?board.id=AzureArchitectureBlog"
+weight = 1.2
+# 2.4 MB with full HTML bodies (plan §6.6).
+options = { max_bytes = 4000000, article_hosts = ["techcommunity.microsoft.com"] }
+
+[[source]]
+key = "ms-security-blog"
+name = "Microsoft Security Blog"
+kind = "rss"
+url = "https://www.microsoft.com/en-us/security/blog/feed/"
+weight = 1.1
+options = { article_hosts = ["www.microsoft.com"] }
+
+[[source]]
+key = "msrc-update-guide"
+name = "MSRC Security Update Guide"
+kind = "msrc"
+url = "https://api.msrc.microsoft.com/update-guide/rss"
+weight = 1.3
+max_items = 300
+# product_regex default lives in sources/msrc.py (plan §6.4); set it here to override.
+options = { article_hosts = [] }
+
+[[source]]
+key = "cisa-kev"
+name = "CISA Known Exploited Vulnerabilities"
+kind = "cisa_kev"
+url = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
+weight = 1.3
+options = { article_hosts = [] }
+
+[[source]]
+key = "cisa-advisories"
+name = "CISA Cybersecurity Advisories"
+kind = "rss"
+url = "https://www.cisa.gov/cybersecurity-advisories/all.xml"
+weight = 1.0
+options = { article_hosts = ["www.cisa.gov"] }
+
+[[source]]
+key = "bleepingcomputer"
+name = "BleepingComputer"
+kind = "rss"
+url = "https://www.bleepingcomputer.com/feed/"
+weight = 1.0
+options = { article_hosts = ["www.bleepingcomputer.com"] }
+
+[[source]]
+key = "thehackernews"
+name = "The Hacker News"
+kind = "rss"
+url = "https://feeds.feedburner.com/TheHackersNews"
+weight = 0.9
+options = { article_hosts = ["thehackernews.com"] }
+
+[[source]]
+key = "krebs"
+name = "Krebs on Security"
+kind = "rss"
+url = "https://krebsonsecurity.com/feed/"
+weight = 0.9
+options = { article_hosts = ["krebsonsecurity.com"] }
+
+[[source]]
+key = "darkreading"
+name = "Dark Reading"
+kind = "rss"
+url = "https://www.darkreading.com/rss.xml"
+weight = 0.9
+options = { article_hosts = ["www.darkreading.com"] }
+
+[[source]]
+key = "sans-isc"
+name = "SANS Internet Storm Center"
+kind = "rss"
+url = "https://isc.sans.edu/rssfeed_full.xml"
+weight = 0.9
+options = { article_hosts = ["isc.sans.edu"] }
+
+[[source]]
+key = "schneier"
+name = "Schneier on Security"
+kind = "rss"
+url = "https://www.schneier.com/feed/atom/"
+weight = 0.6
+options = { article_hosts = ["www.schneier.com"] }
+
+[[source]]
+key = "cloudflare-blog"
+name = "Cloudflare Blog"
+kind = "rss"
+url = "https://blog.cloudflare.com/rss/"
+weight = 0.8
+options = { article_hosts = ["blog.cloudflare.com"] }
+
+[[source]]
+key = "csa-blog"
+name = "Cloud Security Alliance Blog"
+kind = "rss"
+url = "https://cloudsecurityalliance.org/feed"
+weight = 0.8
+options = { article_hosts = ["cloudsecurityalliance.org"] }
+
+[[source]]
+key = "hn-cloud-sec"
+name = "Hacker News (cloud and security queries)"
+kind = "hn_algolia"
+url = "https://hn.algolia.com/api/v1/search_by_date"
+weight = 0.8
+# Story links point anywhere, so no enrichment by default.
+options = { queries = ["azure", "entra", "microsoft vulnerability", "bgp", "ddos", "zero day"], min_points = 40, article_hosts = [] }

@@ -1,0 +1,477 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" version="2.0">
+  <channel>
+    <title>Microsoft Defender for Cloud Blog articles</title>
+    <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/bg-p/MicrosoftDefenderCloudBlog</link>
+    <description>Microsoft Defender for Cloud Blog articles</description>
+    <pubDate>Tue, 24 Nov 2026 11:58:48 GMT</pubDate>
+    <dc:creator>MicrosoftDefenderCloudBlog</dc:creator>
+    <dc:date>2026-11-24T11:58:48Z</dc:date>
+    <item>
+      <title>Cloud Security Billing, Simplified: Introducing the Defender Workload Unit</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/cloud-security-billing-simplified-introducing-the-defender/ba-p/4559743</link>
+      <description><![CDATA[<P>That's the thinking behind an upcoming improvement to Microsoft Defender for Cloud: the <STRONG>Defender Workload Unit</STRONG>, or DWU. It's a new billing model and product experience that translates workload-specific usage into a common billing unit, with one unit price and one place to estimate and track costs.</P>
+<H3>Why we’re improving our billing model</H3>
+<P>We heard two things consistently: cloud security pricing can be complex, and tracking cost can take real work. DWU simplifies this with one unit price. Workload usage still converts behind the scenes. What changes is that organizations see a single unit and have one place to estimate, track, and explain cloud security spend.</P>
+<P>How DWU helps:</P>
+<UL>
+<LI><STRONG>Simplify pricing. </STRONG>Bring multiple workload-specific measures under one common billing model.</LI>
+<LI><STRONG>Simplify onboarding and expansion. </STRONG>Make it easier to enable and extend protection across cloud environments.</LI>
+<LI><STRONG>Match how you evaluate cloud security. </STRONG>Understand protection across your entire cloud environment, rather than workload by workload.</LI>
+<LI><STRONG>Reduce cost-tracking friction. </STRONG>Make costs easier to estimate, track, and explain.</LI>
+</UL>
+<P>One thing we deliberately kept unchanged: billing stays tied to what is used.</P>
+<H3>How it compares</H3>
+<P>DWU translates workload-specific usage into a common billing unit with a consistent per-unit price. Each workload continues to convert into DWUs according to its applicable usage measure. Workloads still count behind the scenes, including servers, databases, storage, containers, posture management, APIs, AI services, app services, Key Vault, and Azure Resource Manager. What changes are what customers see: one unit and one price.</P>
+<P>Workload-specific usage is converted into DWUs and aggregated across your environment, based on a consistent global per-unit price calculated hourly and billed monthly. Estimation, reporting, and billing use the same DWU framework, making it easier to understand how usage translates into cost.</P>
+<P>What changes is how customers estimate, buy, manage, and track consumption. DWU brings together changes to the billing model, supporting tools, and management experience. Here is how the new experience compares with the existing model.</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="width: 97.1296%; border-width: 1px;"><tbody><tr><td>
+<P><STRONG>&nbsp;</STRONG></P>
+</td><td>
+<P><STRONG>Existing PAYG model</STRONG></P>
+</td><td>
+<P><STRONG>With DWU</STRONG></P>
+</td></tr><tr><td>
+<P><STRONG>Estimating cost</STRONG></P>
+</td><td>
+<P>Manual mapping, plan by plan</P>
+</td><td>
+<P>Signed-in estimator, formula visible.</P>
+</td></tr><tr><td>
+<P><STRONG>Sizing environment</STRONG></P>
+</td><td>
+<P>Manual inventory</P>
+</td><td>
+<P>Read-only discovery script; your data stays with you</P>
+</td></tr><tr><td>
+<P><STRONG>Tracking s [truncated]]]></description>
+      <pubDate>Tue, 20 Oct 2026 19:02:27 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/cloud-security-billing-simplified-introducing-the-defender/ba-p/4559743</guid>
+      <dc:creator>danielacardon</dc:creator>
+      <dc:date>2026-10-20T19:02:27Z</dc:date>
+    </item>
+    <item>
+      <title>Microsoft Defender for Cloud Customer Newsletter</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/microsoft-defender-for-cloud-customer-newsletter/ba-p/4543596</link>
+      <description><![CDATA[<P>*This will be the last monthly MDC newsletter. To keep up with the latest, please visit: <U><A href="https://aka.ms/MDCNewsJust" target="_blank">What's new in MDC</A><BR /></U></P>
+<H1>What's new in Defender for Cloud?</H1>
+<P>Multiple container security features are now Generally Available: Container-level misconfiguration recommendations for Kubernetes, Upgrade AKS version recommendations, VA for runtime-discovered container images on EKS and GKE, Kubernetes notes VA for EKS and GKE, scanning support for Docker hardened container images. For more information, see this page <A href="https://aka.ms/mdc_news_aug_containersga" target="_blank">here</A>.&nbsp;</P>
+<H1>Database-level recommendations for SQL VA now GA</H1>
+<P>The SQL vulnerability assessment recommendations created as part of the transition from grouped to individual recommendations are now generally available. Each SQL vulnerability assessment rule is surfaced as its own recommendation, reported directly on the affected SQL database resource.&nbsp;</P>
+<P>For more details, please refer to this <A href="https://aka.ms/mdcnews_dbsqlvarecs" target="_blank">documentation </A>.&nbsp;</P>
+<H2>Blogs of the month</H2>
+<P>In July, our team published the following blog posts we would like to share:</P>
+<P>1. <A class="lia-external-url" href="https://aka.ms/MDCNewsBlog1" target="_blank">Built to Protect: The Architecture Behind Codename MDASH</A></P>
+<H2 data-ogsc="rgb(0, 0, 0)">Customer journey</H2>
+<P>Discover how other organizations successfully use Microsoft Defender for Cloud to protect their cloud workloads. This month we are featuring&nbsp;<A class="lia-external-url" href="https://aka.ms/MDCNewsStory1" target="_blank">NTT Data</A>. NTT Data, a top global IT services provider, leverages Azure, OpenAI and Microsoft Defender to launch their AI agents, adopting secure by design principles, to help enhance, competitiveness organization change and data usage. Defender for AI, and Defender CSPM, as part of the Defender family, address the emerging risks and threats like prompt injection and data poisoning that come with generative AI.</P>
+<H2>Join our community!</H2>
+<P>We offer several customer connection programs within our private communities. By signing up, you can help us&nbsp;shape our products through activities such as reviewing product roadmaps, participating in co-design, previewing features, and staying up-to-date with announcements. Sign up at&nbsp;<A href="https://www.aka.ms/JoinCCP" target="_blank">aka.ms/JoinCCP.</A></P>
+<P>We greatly value your input on the types of content that enhance your understanding of our security products. Your insights are crucial in guiding the development of our future public content. We aim to deliver material that not only educates but also resonates with your daily security challenges. Whether it’s through in-depth live webinars, real-world case studies, comprehensive best practice guides through blogs, or the latest product updates, we want to e [truncated]]]></description>
+      <pubDate>Mon, 03 Aug 2026 18:50:45 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/microsoft-defender-for-cloud-customer-newsletter/ba-p/4543596</guid>
+      <dc:creator>Yura_Lee</dc:creator>
+      <dc:date>2026-08-03T18:50:45Z</dc:date>
+    </item>
+    <item>
+      <title>Built to Protect: The Architecture Behind Codename MDASH</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/built-to-protect-the-architecture-behind-codename-mdash/ba-p/4541662</link>
+      <description><![CDATA[<P><STRONG>Information Table</STRONG></P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="width: 98.6111%; border-width: 1px;"><tbody><tr><td>
+<P><STRONG>Defender <BR />Foundations</STRONG></P>
+</td><td>
+<P><STRONG>Regional<BR />Operation</STRONG></P>
+</td><td>
+<P><STRONG>AI &amp; Data<BR />Containment</STRONG></P>
+</td><td>
+<P><STRONG>Responsible<BR />Governance</STRONG></P>
+</td></tr><tr><td>
+<P>Built as a production Microsoft Security service, not an isolated research system.</P>
+</td><td>
+<P>Operates alongside Microsoft Defender in the clouds and regions customers already use.</P>
+</td><td>
+<P>Designed to keep source, findings, and security data inside controlled boundaries.</P>
+</td><td>
+<P>Security, privacy, compliance, responsible AI, and operational readiness.</P>
+</td></tr></tbody><colgroup><col style="width: 25.00%" /><col style="width: 25.00%" /><col style="width: 25.00%" /><col style="width: 25.00%" /></colgroup></table></DIV>
+<H1>A new class of AI security needs a new level of trust</H1>
+<P>When Microsoft introduced Codename MDASH, we shared a major step forward in AI-powered vulnerability discovery: a multi-model, agentic scanning system that helps customers discover, validate, and reason about exploitable vulnerabilities across &nbsp;software applications. MDASH brings together specialized agents, multiple models, domain-specific analysis, debate, and proof construction to move beyond theoretical alerts and toward findings that customers can remediate and act on.</P>
+<P>That capability matters because the software landscape is changing quickly. AI is accelerating how code is written, how systems are analyzed, and how vulnerabilities are discovered. The same advances that help defenders find critical weaknesses earlier can also lower the barrier for attackers and make sophisticated vulnerability research more accessible. In that environment, customers need more than powerful AI. They need powerful AI delivered inside a trusted security architecture.</P>
+<P>That is the design behind MDASH. The product is not simply the model and harness. The product is the comprehensive security system that surrounds them: the controls, isolation boundaries, operational practices, governance, and compliance posture that allow customers to benefit from frontier AI and advanced vulnerability discovery without compromising control, and leveraging the discoveries inside Microsoft Defender.</P>
+<H1>Built as a production Microsoft Defender service</H1>
+<P>MDASH was built from the beginning as a production Microsoft Security service. It was not designed as a standalone experiment, a separate research environment, or a disconnected security tool. It was designed to operate with the same security, governance, privacy, and operational foundations customers expect from Microsoft Defender XDR and Microsoft Sentinel.</P>
+<P>That distinction is important. Security products operate on some of the most sensitive i [truncated]]]></description>
+      <pubDate>Thu, 30 Jul 2026 18:45:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/built-to-protect-the-architecture-behind-codename-mdash/ba-p/4541662</guid>
+      <dc:creator>JasonWeber</dc:creator>
+      <dc:date>2026-07-30T18:45:00Z</dc:date>
+    </item>
+    <item>
+      <title>Microsoft Defender for Cloud Customer Newsletter</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/microsoft-defender-for-cloud-customer-newsletter/ba-p/4533200</link>
+      <description><![CDATA[<H1>What's new in Defender for Cloud?</H1>
+<P>Microsoft Defender for Open-Source Relational Databases is now generally available for Amazon Web Services Relational Database Service (AWS RDS) instances. Receive database threat protection and sensitive data discovery insights for supported open-source relational databases, including Aurora PostgreSQL, Aurora MySQL, PostgreSQL, MySQL, and MariaDB on AWS RDS.</P>
+<P>For more information, see our public&nbsp;<A class="lia-external-url" href="https://aka.ms/mdc_GAawsrds" target="_blank" rel="noopener">documentation</A>.</P>
+<H2>Expanded multicloud security coverage now GA</H2>
+<P>Microsoft Defender for Cloud's expanded multicloud security coverage is now generally available. This release significantly broadens posture assessment for AWS and GCP environments, adding support for about 90 new resource types and over 200 new security recommendations across data, identity and access, networking, compute, and container categories.</P>
+<P>For more details, please refer to this&nbsp;<A class="lia-external-url" href="https://aka.ms/mdc_multicloudpostureGA" target="_blank" rel="noopener">documentation</A>.&nbsp;</P>
+<P data-ogsc="rgb(0, 0, 0)"><A class="lia-external-url" href="https://aka.ms/MDCNewsJust" target="_blank" rel="noopener">Check out other updates from last month here!</A>&nbsp;</P>
+<P data-ogsc="rgb(0, 0, 0)"><A class="lia-external-url" href="https://aka.ms/mdc_mtpblog" target="_blank" rel="noopener">Check out monthly news for the rest of the MTP suite here!</A>&nbsp;&nbsp;</P>
+<H2>Blogs of the month</H2>
+<P>In June, our team published the following blog posts we would like to share:</P>
+<UL data-editing-info="{&quot;applyListStyleFromLevel&quot;:false,&quot;orderedStyleType&quot;:1}">
+<LI><A href="https://aka.ms/MDCNewsBlog1" target="_blank" rel="noopener"><U>Now Generally Available: Microsoft Defender for open source relational databases on AWS RDS</U></A></LI>
+<LI><A href="https://aka.ms/MDCNewsBlog2" target="_blank" rel="noopener"><U>Start Secure, Stay Secure: How Microsoft is Closing the Gap from Code to Runtime</U></A></LI>
+<LI><A href="https://aka.ms/MDCNewsBlog3" target="_blank" rel="noopener"><U>The end of patching era for containers: Microsoft Defender for Cloud expands hardened image support</U></A></LI>
+<LI><A href="https://techcommunity.microsoft.com/blog/microsoftdefendercloudblog/closing-the-loop-on-container-security-from-code-to-runtime-in-the-ai-era/4528599" target="_blank" rel="noopener"><U>Closing the loop on container security: From code to runtime in the AI era</U></A></LI>
+<LI><A href="https://aka.ms/MDCNewsBlog4" target="_blank" rel="noopener"><U>Microsoft Defender for Cloud expands multicloud coverage across AWS and Google Cloud</U></A></LI>
+</UL>
+<H2 data-ogsc="rgb(0, 0, 0)">Defender for Cloud in the field</H2>
+<P>Watch the latest Defender for Cloud in the Field YouTube episode here:</P>
+<UL data-editing-info="{&quot;applyListStyleFromLevel&quot;:true,&quot;orderedStyleType& [truncated]]]></description>
+      <pubDate>Thu, 02 Jul 2026 18:11:31 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/microsoft-defender-for-cloud-customer-newsletter/ba-p/4533200</guid>
+      <dc:creator>Yura_Lee</dc:creator>
+      <dc:date>2026-07-02T18:11:31Z</dc:date>
+    </item>
+    <item>
+      <title>Now generally available: Serverless posture coverage in Microsoft Defender CSPM</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/now-generally-available-serverless-posture-coverage-in-microsoft/ba-p/4532353</link>
+      <description><![CDATA[<P><SPAN data-contrast="auto">Serverless workloads are a foundation of modern application development, powering everything from low-code and no-code solutions to AI applications and agentic workflows. Development teams use functions, app services, containers, APIs, and event-driven infrastructure to move quickly, scale on demand, and reduce operational overhead. As AI applications and autonomous workflows increasingly rely on distributed services, background tasks, retrieval pipelines, and event-driven components, serverless architectures have become a natural fit.&nbsp;</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">At the same time, they introduce new visibility and posture management challenges. While cloud providers manage the underlying infrastructure, organizations&nbsp;remain&nbsp;responsible for securing their applications, including code, container images, dependencies, configurations, identities, permissions, and access paths.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Today,&nbsp;we're&nbsp;announcing the</SPAN><SPAN data-contrast="auto">&nbsp;<STRONG>general availability of Serverless Container posture in Microsoft Defender Cloud Security Posture Management (Defender CSPM).</STRONG></SPAN><SPAN data-contrast="auto">&nbsp;Building on the recent general availability of<STRONG> Serverless Compute posture in Defender CSPM</STRONG>, these capabilities extend agentless posture coverage across supported serverless containers, applications, and functions in Azure and AWS.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">With this expanded serverless posture coverage, security teams can:</SPAN><SPAN data-ccp-props="{&quot;335559739&quot;:0}">&nbsp;</SPAN></P>
+<UL>
+<LI aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="17" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559683&quot;:0,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><SPAN data-contrast="auto">Discover serverless workloads as first-class assets in a unified cloud inventory</SPAN><SPAN data-ccp-props="{&quot;335559739&quot;:0}">&nbsp;</SPAN></LI>
+</UL>
+<UL>
+<LI aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="17" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559683&quot;:0,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot [truncated]]]></description>
+      <pubDate>Wed, 01 Jul 2026 16:00:48 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/now-generally-available-serverless-posture-coverage-in-microsoft/ba-p/4532353</guid>
+      <dc:creator>donnalee</dc:creator>
+      <dc:date>2026-07-01T16:00:48Z</dc:date>
+    </item>
+    <item>
+      <title>Microsoft Defender for Cloud expands multicloud coverage across AWS and Google Cloud</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/microsoft-defender-for-cloud-expands-multicloud-coverage-across/ba-p/4532200</link>
+      <description><![CDATA[<P><SPAN data-contrast="auto">Organizations are building and running applications across multiple cloud platforms and hybrid environments to move faster, improve resilience, and choose the services that best fit each workload. But that flexibility also changes how teams need to manage exposure. A risk may start with an internet-facing resource, an over-permissive identity, a misconfigured managed service, a vulnerable container image, or a serverless workload with access to sensitive data. When those signals are spread across multiple cloud providers and tools, it becomes harder to understand how exposure is created and which actions will reduce risk fastest.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Today, Microsoft is expanding multicloud coverage in Microsoft Defender for Cloud with general availability of&nbsp;</SPAN><SPAN data-contrast="auto">approximately 90&nbsp;new&nbsp;AWS and Google Cloud resource types and more than 200 recommendations</SPAN><SPAN data-contrast="auto">. Building on recent enhancements in CIEM, identity security, containers, and serverless workloads, this expansion helps customers evaluate more of their cloud estate through a unified security experience.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559740&quot;:259}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">With broader coverage across cloud-native applications, data platforms, identity services, networking components, and managed services, security teams can move beyond isolated findings and gain more context across resources, configurations, identities, exposure signals, and prioritization.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<H2 aria-level="2"><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 2">What’s</SPAN><SPAN data-ccp-parastyle="heading 2">&nbsp;new: broader AWS and Google Cloud coverage</SPAN></SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:260,&quot;335559739&quot;:140,&quot;335559740&quot;:259}">&nbsp;</SPAN></H2>
+<img />
+<P><SPAN data-contrast="auto">Security teams cannot reduce exposure they cannot see. The expanded coverage brings more AWS and Google Cloud resources into the Defender for Cloud experience, helping customers assess a wider set of modern cloud services through a unified security lens, reducing blind spots where teams increasingly build and operate: serverless applications, containers and build systems, identity and entitlement controls, data and analytics services, AI and ML, networking, messaging, storage, and other managed cloud services.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559740&quot;:259}">&nbsp;</SPAN></P>
+<UL>
+<LI aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="4" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559683&quot;:0,&quot;335559684&quot;:-2,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226] [truncated]]]></description>
+      <pubDate>Tue, 30 Jun 2026 17:36:56 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/microsoft-defender-for-cloud-expands-multicloud-coverage-across/ba-p/4532200</guid>
+      <dc:creator>donnalee</dc:creator>
+      <dc:date>2026-06-30T17:36:56Z</dc:date>
+    </item>
+    <item>
+      <title>Closing the loop on container security: 
+From code to runtime in the AI era</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/closing-the-loop-on-container-security-from-code-to-runtime-in/ba-p/4528599</link>
+      <description><![CDATA[<P>Containers are the backbone of modern cloud-native apps — and increasingly, the infrastructure powering AI, from AI assistants to a new wave of intelligent agents. They also blur the line between <STRONG>build</STRONG>, <STRONG>deploy</STRONG>, and <STRONG>runtime</STRONG>: a single code change can become a running workload in minutes. A misconfiguration committed in the morning can be deployed in minutes and exploited before noon. At that speed, container security can no longer be a point-in-time check, it has to work as one continuous loop.</P>
+<P class="lia-indent-padding-left-30px">The numbers back this up.<STRONG> </STRONG>For the first time, <STRONG>31% of breaches now begin with an attacker exploiting a software vulnerability</STRONG> — overtaking stolen credentials as the most common way in — and <STRONG>15% of attack techniques are now accelerated by generative AI</STRONG>, with adversaries using it to find gaps and write malware faster at every stage.</P>
+<P class="lia-indent-padding-left-30px"><EM><SPAN class="lia-text-color-19">Source:</SPAN> </EM><A class="lia-external-url" href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener">Verizon 2026 Data Breach Investigations Report</A><EM> <SPAN class="lia-text-color-19">(incidents Nov 2024–Oct 2025).</SPAN></EM></P>
+<P>Over the last few quarters, Microsoft Defender for Cloud has been evolving to offer you this continuous security, end to end. <A class="lia-external-url" href="https://learn.microsoft.com/azure/defender-for-cloud/release-notes" target="_blank" rel="noopener">Explore container security’s new capabilities</A> across posture, shift-left, runtime, multicloud coverage, and operations. Collectively they form a more comprehensive approach to container security — one that offers security right during developing a code to a running pod across Azure, AWS, and GCP.</P>
+<P>There is a second reason why container security matters more in 2026: containers are increasingly where AI runs. Many AI workloads — from model-serving APIs to retrieval systems and intelligent agents — now live as pods on AKS, EKS, and GKE (the managed Kubernetes services from Azure, AWS, and Google), often connected to some of an organization’s most sensitive models and data. As those crown jewels move into the cluster, the same posture, code‑to‑runtime, and runtime protections described in this post extend to AI workloads. The contest is increasingly AI against AI: attackers use it to find and reach the cluster faster, while defenders use it to push back — surfacing the risks that matter most and turning runtime findings into AI‑assisted code fixes.</P>
+<H2><SPAN class="lia-text-color-20">One platform, code to runtime</SPAN></H2>
+<P>A container finding is not treated as an isolated issue; it is connected to the identity it runs under, the registry and code repository it came from, and the cluster where it is running - all unified under one Microsoft Defender platform.</P>
+< [truncated]]]></description>
+      <pubDate>Tue, 16 Jun 2026 23:15:21 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/closing-the-loop-on-container-security-from-code-to-runtime-in/ba-p/4528599</guid>
+      <dc:creator>mahersko</dc:creator>
+      <dc:date>2026-06-16T23:15:21Z</dc:date>
+    </item>
+    <item>
+      <title>Microsoft Defender for Cloud Customer Newsletter</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/microsoft-defender-for-cloud-customer-newsletter/ba-p/4525656</link>
+      <description><![CDATA[<H1>What's new in Defender for Cloud?</H1>
+<P>Defender for Cloud is now integrated into the Defender portal to bring together cloud security posture management and threat protection in a single experience. Read more about it <A href="https://aka.ms/mdc_DefenderPortal" target="_blank">here</A>.</P>
+<H2>Cloud security reporting in the Defender portal is now in public preview</H2>
+<P>Customers can now create, customize, and share security insights across the organization through Defender portal’s integrated cloud security reporting capabilities. With these reporting capabilities, customers can view built-in reports like CNAPP Executive Summary, create custom reports, export to PDF and more. For more details, please refer to this <A href="https://aka.ms/mdc_Defenderportal_reporting" target="_blank">documentation</A>.</P>
+<P data-ogsc="rgb(0, 0, 0)"><A href="https://aka.ms/MDCNewsJust" target="_blank">Check out other updates from last month here!</A>&nbsp;</P>
+<P data-ogsc="rgb(0, 0, 0)"><A href="https://aka.ms/mdc_mtpblog" target="_blank">Check out monthly news for the rest of the MTP suite here!</A> &nbsp;</P>
+<H2>Blog(s) of the month</H2>
+<P>In May, our team published the following blog posts we would like to share:&nbsp;</P>
+<UL>
+<LI><A href="https://aka.ms/MDCNewsBlog1" target="_blank">Better together with Azure WAF + Defender for Storage + Defender for Azure SQL Databases</A></LI>
+<LI><A href="https://aka.ms/MDCNewsBlog2" target="_blank">Public preview: Expanded coverage and unified management for SQL VA Express Configuration | Microsoft Community Hub</A></LI>
+</UL>
+<H2 data-ogsc="rgb(0, 0, 0)">Defender for Cloud in the field</H2>
+<P data-ogsc="rgb(0, 0, 0)">Check out the two short videos on Defender Portal integration and Start Secure Stay Secure with Defender for Cloud</P>
+<UL data-editing-info="{&quot;applyListStyleFromLevel&quot;:true,&quot;orderedStyleType&quot;:1}">
+<LI data-ogsc="rgb(0, 0, 0)"><A href="https://aka.ms/mdc_youtube_Defenderportal" data-ogsc="rgb(5, 99, 193)" target="_blank"><U data-ogsc="">Microsoft Defender for Cloud deeply integrates with Microsoft Defender</U></A></LI>
+<LI data-ogsc="rgb(0, 0, 0)"><A href="https://aka.ms/mdc_youtube_startsecurestaysecure" data-ogsc="rgb(5, 99, 193)" target="_blank"><U data-ogsc="">Start secure and stay secure with Microsoft Defender for Cloud</U></A></LI>
+<LI data-ogsc="rgb(0, 0, 0)"><A href="https://nam06.safelinks.protection.outlook.com/?url=https%3A%2F%2Faka.ms%2FMDCNewsField&amp;data=05%7C02%7CYura.Lee%40microsoft.com%7C3927ff7829b9416ac31c08dd447f9315%7C72f988bf86f141af91ab2d7cd011db47%7C1%7C0%7C638742036921371778%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=Ni9o%2FuGnNm5keL5pEgpww3s46S3nE6EfDiG3Z28cPhI%3D&amp;reserved=0" data-ogsc="rgb(5, 99, 193)" target="_blank"><U data-ogsc="">Visit our YouTube page</U></A></LI>
+</UL>
+<H2 data-ogsc="rgb(0, 0, 0)">GitHub Community</H2>
+<P data-ogsc="rgb( [truncated]]]></description>
+      <pubDate>Thu, 04 Jun 2026 18:30:12 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/microsoft-defender-for-cloud-customer-newsletter/ba-p/4525656</guid>
+      <dc:creator>Yura_Lee</dc:creator>
+      <dc:date>2026-06-04T18:30:12Z</dc:date>
+    </item>
+    <item>
+      <title>The end of patching era for containers: Microsoft Defender for Cloud expands hardened image support</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/the-end-of-patching-era-for-containers-microsoft-defender-for/ba-p/4524798</link>
+      <description><![CDATA[<H3 aria-level="2"><SPAN class="lia-text-color-15">Why hardened images are becoming the new baseline for container image security&nbsp;</SPAN></H3>
+<P><SPAN data-contrast="auto">Container security is evolving beyond vulnerability scanning alone. Across the ecosystem - spanning container platforms, registries, and software supply chain tooling - customers are increasingly adopting hardened container images - images that are minimal by design, transparent in composition, and continuously maintained to reduce inherited risk at the base layer.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">This shift is happening against a backdrop of increasingly fast-moving attacks. AI-assisted techniques - such as those demonstrated by Mythos-class tooling - continue to compress the time between vulnerability discovery and exploitation. In this environment, reducing exposure to exploitable vulnerabilities and attack surfaces in container images before deployment is becoming just as critical as detecting vulnerabilities after the fact.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Traditional container images are optimized for flexibility and reuse, not for security - meaning they are not designed to minimize included components, reduce attack surface, or limit inherited vulnerabilities by default. As a result, many base images include large package sets and transitive dependencies that significantly increase attack surface and vulnerability noise.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Hardened images take a different approach:</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<UL>
+<LI aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="13" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><SPAN data-contrast="auto">Minimal by construction, including only what’s required to run the workload</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></LI>
+</UL>
+<UL>
+<LI aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="13" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:&quot;multilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><SPAN data-contrast="auto">Reduced attack surface, limiting exploitable components</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></LI>
+</UL>
+<UL>
+<LI aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="13" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quo [truncated]]]></description>
+      <pubDate>Tue, 02 Jun 2026 22:53:19 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/the-end-of-patching-era-for-containers-microsoft-defender-for/ba-p/4524798</guid>
+      <dc:creator>Yulia_Zhurbinsky</dc:creator>
+      <dc:date>2026-06-02T22:53:19Z</dc:date>
+    </item>
+    <item>
+      <title>Start Secure, Stay Secure: How Microsoft is Closing the Gap from Code to Runtime</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/start-secure-stay-secure-how-microsoft-is-closing-the-gap-from/ba-p/4524580</link>
+      <description><![CDATA[<P>Modern software applications composed of hundreds of artifacts, multiple programing languages, and cloud infrastructure provide an extensive attack surface that only continues to expand in the era of AI. According to Microsoft Threat Intelligence and industry research, threat actors are also increasingly leveraging AI-assisted techniques to accelerate vulnerability discovery and exploitation (Source: <A href="https://www.microsoft.com/en-us/security/security-insider/microsoft-digital-defense-report-2025" target="_blank" rel="noopener">Digital Defense Report 2025</A>). Rule-based scanning and manual review alone may not keep pace with the speed and scale of these emerging threats.</P>
+<P>As AI-generated code grows exponentially, organizations need tools designed to apply security researcher-inspired techniques at scale, keeping pace with new development processes and a rising number of AI-powered threats. That is the challenge we set out to solve.</P>
+<P>At Build 2026, we are taking two steps forward: the expanded preview of Codename MDASH, a multi-model agentic scanning system designed to find and validate exploitable vulnerabilities, and the general availability of the Microsoft Defender for Cloud and &nbsp;GitHub Code Security native integration, which connects runtime risk to code and bridges the gap between security and development teams in a single workflow.</P>
+<P>Together, these announcements represent a shift in how organizations should address software security considerations across the development lifecycle, natively integrating into their existing tooling and work processes.</P>
+<H3>The Problem: Alert Fatigue, Disconnected Tools, and a Widening Gap</H3>
+<P>Industry data consistently shows that critical and high-severity vulnerabilities take an average of more than 100 days to remediate. Research suggests applications face attacks as frequently as once every three minutes (Source: <A href="https://www.microsoft.com/en-us/security/security-insider/microsoft-digital-defense-report-2025" target="_blank" rel="noopener">Digital Defense Report 2025</A>).</P>
+<P>Security teams are overwhelmed with alerts they cannot easily prioritize and assign. Developers spend time investigating issues that may never be exploited in production. Both teams often rely on separate, non-integrated tools, making collaboration slower and more difficult. The result is a growing gap between how fast organizations ship code and how fast they can secure it.</P>
+<P>The answer is not more alerts, but higher actionable findings, smarter triage, and workflows designed to support more efficient agentic remediation, fostering improved collaboration between security teams and developers.</P>
+<H3>Codename MDASH: Agentic Vulnerability Discovery (Expanded Preview)</H3>
+<P>Codename MDASH introduces a new approach to vulnerability discovery and validation. Built by Microsoft's Autonomous Code Security team, which includes members of the DARPA AI Cyber Challenge-winning Team At [truncated]]]></description>
+      <pubDate>Tue, 02 Jun 2026 21:22:01 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/start-secure-stay-secure-how-microsoft-is-closing-the-gap-from/ba-p/4524580</guid>
+      <dc:creator>JasonWeber</dc:creator>
+      <dc:date>2026-06-02T21:22:01Z</dc:date>
+    </item>
+    <item>
+      <title>Now Generally Available: Microsoft Defender for open source relational databases on AWS RDS</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/now-generally-available-microsoft-defender-for-open-source/ba-p/4514651</link>
+      <description><![CDATA[<H5>Securing multicloud databases to help reduce risks</H5>
+<P>Open‑source (OSS) relational databases are becoming increasingly critical and increasingly targeted in organization of all sizes. As organizations adopt multicloud architectures, these databases often run across Azure and Amazon Web Services (AWS), while security tools remain fragmented. The result is inconsistent visibility into sensitive data, disconnected alerts, and limited insight into how database exposure translates into real risk.</P>
+<P>Today, Microsoft announces the general availability (GA) of <A href="https://techcommunity.microsoft.com/blog/microsoftdefendercloudblog/microsoft-defender-for-open-source-relational-databases-now-supports-multicloud-/4127655" target="_blank" rel="noopener">Microsoft Defender for open‑source relational databases with support for Amazon Relational Database Service (AWS RDS</A>). &nbsp;Customers can gain visibility into potentially sensitive data, identify indicators of database threats, and support risk prioritization across Azure and AWS through a unified experience in Microsoft Defender for Cloud, with capabilities that continue to expand across environments.</P>
+<P>This GA release highlights Microsoft’s existing protection for open‑source relational databases in Azure and extends the same database‑focused security signals, risk context, and investigation capabilities to AWS RDS: helping organizations strengthen database security the way modern applications are actually deployed.</P>
+<H5>What’s new with GA support for AWS RDS</H5>
+<P>Defender for open-source relational databases now provides GA support for security capabilities designed for enterprise cloud environments, including:</P>
+<UL>
+<LI>Amazon Aurora for PostgreSQL</LI>
+<LI>Amazon Aurora for MySQL</LI>
+<LI>Amazon RDS for PostgreSQL</LI>
+<LI>Amazon RDS for MySQL</LI>
+<LI>Amazon RDS for MariaDB<BR /><BR /></LI>
+</UL>
+<P>These capabilities are integrated directly into Microsoft Defender for Cloud, providing consistent visibility and protection across Azure and AWS environments.</P>
+<H5>Core security capabilities for multicloud databases</H5>
+<P>Defender for Cloud delivers database‑specific security signals that help teams move beyond isolated alerts to risk‑based prioritization. This strengthens Defender for Cloud’s visibility into databases security by extending sensitive data discovery insights and threat protection specifically to supported AWS resources. As part of this delivery, we’ve also added recommendations that help validate AWS RDS resources’ enablement, discovery, scanning and protection status. &nbsp;&nbsp;</P>
+<H5>Advanced threat protection at the database layer</H5>
+<P>Defender for Cloud detects suspicious access patterns and brute force attempts that indicate active database threats. Alerts are enriched with cloud and workload context to help security teams quickly determine which issues require immediate attention.</P>
+<H5>Built‑in sensitive data discovery</H5>
+<P>Automa [truncated]]]></description>
+      <pubDate>Mon, 01 Jun 2026 17:11:16 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/now-generally-available-microsoft-defender-for-open-source/ba-p/4514651</guid>
+      <dc:creator>lisetteranga</dc:creator>
+      <dc:date>2026-06-01T17:11:16Z</dc:date>
+    </item>
+    <item>
+      <title>Public preview: Expanded coverage and unified management for SQL VA Express Configuration</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/public-preview-expanded-coverage-and-unified-management-for-sql/ba-p/4514652</link>
+      <description><![CDATA[<P>SQL Vulnerability Assessment (SQL VA) is a core capability in Defender for SQL that helps customers identify possible misconfigurations, excessive permissions, and other deviations from security best practices through continuous scanning of their databases. Traditionally, enabling SQL VA on SQL PaaS resources required customers to provision and maintain a dedicated Azure Storage account to hold scan results and baselines. In addition, managing SQL VA across resource types required different API endpoints, which made it harder to script consistent enablement and baseline management across a mixed SQL estate. For customers managing large SQL estates, this added operational overhead to onboarding and ongoing management. This friction may lead to inconsistent enablement across environments and leave gaps in vulnerability visibility. &nbsp;&nbsp;</P>
+<P>To simplify this experience, Microsoft introduced Express Configuration, which uses Microsoft-managed storage and does not require a customer-provisioned storage account. Express Configuration is generally available for Azure SQL Database and is the recommended enablement mode for SQL VA, where supported.</P>
+<P>This public preview extends Express Configuration to Azure SQL Managed Instance and Azure Synapse Analytics workspaces, and introduces a new preview API version that brings SQL VA management under a unified model across Azure SQL Database, SQL Managed Instance, Synapse workspaces, and SQL on machines (Azure VMs and Arc-enabled SQL Servers). Customers can now enable SQL VA on SQL Managed Instance and Synapse workspaces without provisioning a dedicated storage account and can manage SQL VA across all supported resource types through a single API.</P>
+<P>Together, these changes broaden Express Configuration coverage across Azure SQL PaaS services and consolidate SQL VA operations under a single API, helping standardize how SQL VA is enabled and managed and reduce operational overhead across a customer's SQL estate.</P>
+<H4>What’s new in this release</H4>
+<UL>
+<LI>Express Configuration support for additional Azure SQL PaaS services: Azure SQL Managed Instance (public preview) and Azure Synapse Analytics workspaces (dedicated SQL pools, public preview); Express Configuration for Azure SQL Database remains generally available.</LI>
+<LI>Express Configuration is the default when enabling Defender for SQL on a resource from the UI.</LI>
+<LI>New preview API version for unified SQL VA management across Azure SQL Database, SQL Managed Instance, Azure Synapse Analytics workspaces (Express Configuration only), and SQL on machines (Azure Virtual Machines and Arc-enabled SQL Servers).</LI>
+</UL>
+<H4>Why use Express Configuration</H4>
+<P>Express Configuration simplifies how SQL Vulnerability Assessment is enabled and managed for Azure SQL Managed Instance and Azure Synapse Analytics workspaces, without changing the security coverage or rule set provided by SQL VA.</P>
+<UL>
+<LI>No customer-managed storage req [truncated]]]></description>
+      <pubDate>Tue, 19 May 2026 21:11:13 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/public-preview-expanded-coverage-and-unified-management-for-sql/ba-p/4514652</guid>
+      <dc:creator>Catalin Esanu</dc:creator>
+      <dc:date>2026-05-19T21:11:13Z</dc:date>
+    </item>
+    <item>
+      <title>Better together with Azure WAF + Microsoft Defender for Storage + Defender for Azure SQL Databases</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/better-together-with-azure-waf-microsoft-defender-for-storage/ba-p/4517101</link>
+      <description><![CDATA[<P>Authored by: <a data-lia-user-mentions="" data-lia-user-uid="157704" data-lia-user-login="Fernanda_Vela" class="lia-mention lia-mention-user">Fernanda_Vela​</a> , <a data-lia-user-mentions="" data-lia-user-uid="2933317" data-lia-user-login="saikishor" class="lia-mention lia-mention-user">saikishor​</a>, <a data-lia-user-mentions="" data-lia-user-uid="13689" data-lia-user-login="Yura_Lee" class="lia-mention lia-mention-user">Yura_Lee​</a>&nbsp;</P>
+<P>Reviewed by: <a data-lia-user-mentions="" data-lia-user-uid="124214" data-lia-user-login="YuriDiogenes" class="lia-mention lia-mention-user">YuriDiogenes​</a>, <a data-lia-user-mentions="" data-lia-user-uid="786329" data-lia-user-login="Mohit_Kumar" class="lia-mention lia-mention-user">Mohit_Kumar​</a>, <a data-lia-user-mentions="" data-lia-user-uid="1207475" data-lia-user-login="Amir_Dahan" class="lia-mention lia-mention-user">Amir_Dahan​</a>, <a data-lia-user-mentions="" data-lia-user-uid="2859467" data-lia-user-login="eitanbremler" class="lia-mention lia-mention-user">eitanbremler​</a> , <a data-lia-user-mentions="" data-lia-user-uid="983767" data-lia-user-login="Kitt_Weatherman" class="lia-mention lia-mention-user">Kitt_Weatherman​</a>&nbsp;</P>
+<H1>Introduction</H1>
+<P>Often, customers ask why additional workload protection is needed when a web application firewall is already in place. Azure Web Application Firewall (WAF) serves as a critical control at the application edge, inspecting inbound HTTP/S traffic and blocking common web-based exploits before they reach backend services. However, modern attack paths are no longer limited to the web entry point. Attackers increasingly target components that bypass HTTP/S inspection altogether such as direct access to storage and SQL through SDKs, native integration tools, private endpoints, or compromised identities and third-party integrations.</P>
+<P>This is where Microsoft Defender for Cloud complements WAF. While WAF focuses on securing the application boundary, Defender for Cloud extends protection into the resource layer by providing Cloud-Native Application Protection Platform (CNAPP) capabilities, including security posture management and workload protection. Using resource-native signals, it helps identify misconfigurations and detect suspicious control-plane and data-plane activity that would otherwise remain invisible to perimeter controls.</P>
+<P>The Azure Networking Security blog post <A href="https://techcommunity.microsoft.com/blog/azurenetworksecurityblog/zero-trust-with-azure-firewall-azure-ddos-protection-and-azure-waf-a-practical-u/4490595" target="_blank" rel="noopener"><EM>“Zero Trust with Azure Firewall, Azure DDoS Protection, and Azure WAF: A practical approach”</EM></A> highlights WAF’s role in inspecting inbound HTTP/S traffic, detecting malicious request patterns (such as OWASP Top 10 vulnerabilities), and reducing direct exposure of backend endpoints by enforcing a controlled application entry point.</P>
+<P>Building on tha [truncated]]]></description>
+      <pubDate>Wed, 06 May 2026 17:22:23 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/better-together-with-azure-waf-microsoft-defender-for-storage/ba-p/4517101</guid>
+      <dc:creator>Yura_Lee</dc:creator>
+      <dc:date>2026-05-06T17:22:23Z</dc:date>
+    </item>
+    <item>
+      <title>Microsoft Defender for Cloud Customer Newsletter</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/microsoft-defender-for-cloud-customer-newsletter/ba-p/4516842</link>
+      <description><![CDATA[<H1>What's new in Defender for Cloud?</H1>
+<P>Container runtime anti-malware detection and blocking and DNS Detection for Kubernetes is now GA in Defender for Containers for AKS, EKS, and GKE. Learn more about these announcements&nbsp;<A href="https://aka.ms/mdcnews_DfContainers_antimalware_blocking" data-ogsc="rgb(5, 99, 193)" target="_blank"><U data-ogsc="">here</U></A>&nbsp;and&nbsp;<A href="https://aka.ms/mdcnews_DfContainers_dnsdetection" data-ogsc="rgb(5, 99, 193)" target="_blank"><U data-ogsc="">here</U></A>.</P>
+<H2 data-ogsc="rgb(0, 0, 0)"><SPAN data-ogsc="">Defender for Storage integration in Azure Portal Storage Center now Generally Available</SPAN></H2>
+<P data-ogsc="rgb(0, 0, 0)">Customers can now view Defender for Storage threat protection and security posture coverage directly in Storage Center, next to their storage resources to understand which storage accounts are protected, where malware scanning, activity monitoring and sensitive data discovery are enabled and identify security gaps in Azure Blog Storage and Azure File storage.&nbsp;For more details, please refer to this&nbsp;<A href="https://aka.ms/mdcnews_DfStorage_AzureIntegration" data-ogsc="rgb(5, 99, 193)" target="_blank"><U data-ogsc="">documentation</U></A>.</P>
+<P data-ogsc="rgb(0, 0, 0)"><A href="https://aka.ms/MDCNewsJust" target="_blank">Check out other updates from last month here!</A>&nbsp;</P>
+<P data-ogsc="rgb(0, 0, 0)"><A href="https://aka.ms/mdc_mtpblog" target="_blank">Check out monthly news for the rest of the MTP suite here!</A> &nbsp;</P>
+<H1 data-ogsc="rgb(0, 0, 0)">Blogs of the month</H1>
+<P data-ogsc="rgb(0, 0, 0)">In April, our team published the following blog posts we would like to share:</P>
+<OL data-editing-info="{&quot;applyListStyleFromLevel&quot;:false,&quot;orderedStyleType&quot;:1}">
+<LI data-ogsc="rgb(0, 0, 0)"><A href="https://aka.ms/MDCNewsBlog1" data-ogsc="rgb(5, 99, 193)" target="_blank"><U data-ogsc="">Securing multicloud (Azure, AWS &amp; GCP) with Microsoft Defender for Cloud: Connector best practices</U></A></LI>
+</OL>
+<H2 data-ogsc="rgb(0, 0, 0)">Defender for Cloud in the field</H2>
+<P data-ogsc="rgb(0, 0, 0)">Check out the two short videos on Defender Portal integration and Start Secure Stay Secure with Defender for Cloud</P>
+<UL data-editing-info="{&quot;applyListStyleFromLevel&quot;:true,&quot;orderedStyleType&quot;:1}">
+<LI data-ogsc="rgb(0, 0, 0)"><A href="https://aka.ms/mdc_youtube_Defenderportal" data-ogsc="rgb(5, 99, 193)" target="_blank"><U data-ogsc="">Microsoft Defender for Cloud deeply integrates with Microsoft Defender</U></A></LI>
+<LI data-ogsc="rgb(0, 0, 0)"><A href="https://aka.ms/mdc_youtube_startsecurestaysecure" data-ogsc="rgb(5, 99, 193)" target="_blank"><U data-ogsc="">Start secure and stay secure with Microsoft Defender for Cloud</U></A></LI>
+<LI data-ogsc="rgb(0, 0, 0)"><A href="https://nam06.safelinks.protection.outlook.com/?url=https%3A%2F%2Faka.ms%2FMDCNewsField&amp;data=05%7C02%7CYura.Lee%40microsoft.com%7 [truncated]]]></description>
+      <pubDate>Mon, 04 May 2026 16:47:10 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/microsoft-defender-for-cloud-customer-newsletter/ba-p/4516842</guid>
+      <dc:creator>Yura_Lee</dc:creator>
+      <dc:date>2026-05-04T16:47:10Z</dc:date>
+    </item>
+    <item>
+      <title>Securing multicloud (Azure, AWS &amp; GCP) with Microsoft Defender for Cloud: Connector best practices</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/securing-multicloud-azure-aws-gcp-with-microsoft-defender-for/ba-p/4508563</link>
+      <description><![CDATA[<P>Many organizations run workloads across multiple cloud providers and need to maintain a strong security posture while ensuring interoperability. Microsoft Defender for Cloud is a cloud-native application protection platform (CNAPP) solution that helps secure these environments by providing unified visibility and protection for resources in AWS and GCP alongside Azure.</P>
+<H2>Planning for multicloud security with Microsoft Defender for Cloud</H2>
+<P>As customers adopt Microsoft Defender for Cloud in multicloud environments, Microsoft provides several resources to support planning, deployment, and scalable onboarding:</P>
+<UL>
+<LI>Planning Guides: <A class="lia-external-url" href="https://learn.microsoft.com/azure/defender-for-cloud/plan-multicloud-security-get-started" target="_blank" rel="noopener">Multicloud Protection Planning Guide</A> that walks through key design considerations for securing multicloud with Microsoft Defender for Cloud.</LI>
+<LI>Deployment Guides: <A class="lia-external-url" href="https://learn.microsoft.com/azure/defender-for-cloud/connect-azure-subscription" target="_blank" rel="noopener">Connect your Azure subscriptions - Microsoft Defender for Cloud</A>.</LI>
+</UL>
+<P>With the right planning and adoption strategy, onboarding to Microsoft Defender for Cloud can be smooth and predictable. However, support cases show that some common challenges can still arise during or after onboarding AWS or GCP environments. Below, we walk through frequent multicloud scenarios, their symptoms, and recommended troubleshooting steps.</P>
+<H2>Common multicloud connector problems and how to resolve them</H2>
+<P><STRONG>1. Problem: Removed cloud account still appears in Microsoft Defender for Cloud</STRONG></P>
+<P>The AWS/GCP account is deleted or removed from your organization, but in Microsoft Defender for Cloud it still appears under connected environments. Additionally, security recommendations for resources in the deleted account may still show up in recommendations page.<BR /><BR /></P>
+<P><STRONG>Cause</STRONG></P>
+<P>Microsoft Defender for Cloud does not automatically delete a cloud connector when the external account is removed. The security connector in Azure is a separate object that remains unless explicitly removed. Microsoft Defender for Cloud isn’t aware that the AWS/GCP side was decommissioned as there’s no automatic callback to Azure when an AWS account is closed. Therefore, the connector and its last known data linger until manually removed.</P>
+<P><BR /><STRONG>Solution</STRONG></P>
+<P>Delete the connector to clean up the stale entry. Use one of the following methods.</P>
+<P>Option 1: Use the Azure portal</P>
+<OL>
+<LI>Sign in to the Azure portal.</LI>
+<LI>Go to Microsoft Defender for Cloud &gt; Environment settings.</LI>
+<LI>Select the AWS account or GCP project that no longer exists.</LI>
+<LI>Select Delete to remove the connector.</LI>
+</OL>
+<P>Option 2: REST API</P>
+<OL>
+<LI>Delete the connector by using the REST API:  [truncated]]]></description>
+      <pubDate>Fri, 10 Apr 2026 18:03:39 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/securing-multicloud-azure-aws-gcp-with-microsoft-defender-for/ba-p/4508563</guid>
+      <dc:creator>ckyalo</dc:creator>
+      <dc:date>2026-04-10T18:03:39Z</dc:date>
+    </item>
+    <item>
+      <title>Microsoft Defender for Cloud Customer Newsletter</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/microsoft-defender-for-cloud-customer-newsletter/ba-p/4508180</link>
+      <description><![CDATA[<H1>What's new in Defender for Cloud?</H1>
+<OL>
+<LI>Kubernetes gated deployment is now generally available for AKS automatic clusters. Use help to deploy the Defender for Containers sensor to use this feature. More information can be found <A href="https://aka.ms/mdc_kub_gateddeployments" target="_blank">here</A>.&nbsp;</LI>
+<LI>Grouped recommendations are converted into individual ones to list each finding separately. While grouped recommendations are still available, new individual recommendations are now marked as preview and are not yet part of the Secure Score. This new format will allow for better prioritization, actionable context and better governance and tracking. For more details, please refer to this&nbsp;<A href="https://aka.ms/mdc_newindividualrecco" target="_blank">documentation</A>.&nbsp;</LI>
+</OL>
+<P><A class="lia-external-url" href="https://aka.ms/MDCNewsJust" target="_blank">Check out other updates from last month here!</A>&nbsp;</P>
+<P><A class="lia-external-url" href="https://aka.ms/mdc_mtpblog" target="_blank">Check out monthly news for the rest of the MTP suite here!</A>&nbsp;</P>
+<H1>Blogs of the month</H1>
+<P>In March, our team published the following blog posts we would like to share:</P>
+<OL>
+<LI><A href="https://aka.ms/MDCNewsBlog1" target="_blank">Defending Container Runtime from Malware with Defender for Containers</A></LI>
+<LI><A href="https://techcommunity.microsoft.com/t5/aka.ms/mdcnewsblog2" target="_blank">Modern Database Protection: From Visibility to Threat Detection with Defender for Cloud</A></LI>
+<LI><A href="https://aka.ms/MDCNewsBlog3" target="_blank">New innovations in Microsoft Defender to strengthen multi-cloud, containers, and AI model security</A></LI>
+<LI>
+<P><A href="https://aka.ms/MDCNewsBlog4" target="_blank">Defending the AI Era: New Microsoft Capabilities to Protect AI</A></P>
+</LI>
+</OL>
+<H1>Defender for Cloud in the field</H1>
+<P>Revisit the malware automated remediation announcement since this feature is now in GA!</P>
+<UL>
+<LI><A href="https://aka.ms/mdcinthefield_65" target="_blank">Automated remediation for malware in storage</A></LI>
+<LI><A href="https://nam06.safelinks.protection.outlook.com/?url=https%3A%2F%2Faka.ms%2FMDCNewsField&amp;data=05%7C02%7CYura.Lee%40microsoft.com%7C3927ff7829b9416ac31c08dd447f9315%7C72f988bf86f141af91ab2d7cd011db47%7C1%7C0%7C638742036921371778%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=Ni9o%2FuGnNm5keL5pEgpww3s46S3nE6EfDiG3Z28cPhI%3D&amp;reserved=0" target="_blank">Visit our YouTube page</A></LI>
+</UL>
+<H1>GitHub Community</H1>
+<P>Check out the new Module 28 in the MDC Lab: Defending Container Runtime from Malware with Microsoft Defender for Containers</P>
+<UL>
+<LI><A href="https://aka.ms/mdcnews_git_module28" target="_blank">Defending Container Runtime from Malware</A></LI>
+<LI><A href="https://nam06.safelinks.protection.outlook.com/?url=https%3A%2F%2Faka.ms%2FM [truncated]]]></description>
+      <pubDate>Thu, 02 Apr 2026 20:43:28 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/microsoft-defender-for-cloud-customer-newsletter/ba-p/4508180</guid>
+      <dc:creator>Yura_Lee</dc:creator>
+      <dc:date>2026-04-02T20:43:28Z</dc:date>
+    </item>
+    <item>
+      <title>Defending the AI Era: New Microsoft Capabilities to Protect AI</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/defending-the-ai-era-new-microsoft-capabilities-to-protect-ai/ba-p/4503885</link>
+      <description><![CDATA[<P>As enterprises rapidly adopt AI to drive productivity, automate decisions, and power intelligent agents, a new attack surface is emerging—one that traditional security controls were never designed to protect. AI models, training pipelines, plugins, and autonomous agents now sit directly in the path of sensitive data, business logic, and critical workflows. Organizations must protect the AI supply chain from model development and deployment to runtime behavior, tool access, and downstream actions.</P>
+<P>At the same time, AI agents operating with broad privileges require runtime monitoring to ensure every tool invocation and action is safe. By combining proactive model scanning across the AI lifecycle with runtime enforcement that monitors and blocks risky agent behavior, security teams gain the visibility and control needed to prevent data exfiltration, misuse of automation, and silent manipulation of outcomes at machine speed.</P>
+<P>Microsoft Defender helps organizations protect AI investments end-to-end by proactively identifying risks, detecting AI-specific attacks, and enabling investigation and response efforts. New innovations in Defender continue to build upon this value with new threat protection and visibility capabilities for agents through Agent 365 and AI model scanning.</P>
+<H4>Protect AI agents in Agent 365 from emerging threats</H4>
+<P>As AI agents become embedded in core business workflows, they introduce a new class of operational risk that traditional security controls were never designed to manage. AI agents don’t just process data—they take actions, invoke tools, and make decisions, often with broad access to sensitive systems and information. Without continuous visibility and protection of agent activity at runtime, organizations risk silent data exfiltration, misuse of automation, and manipulated outcomes that can directly impact business integrity, compliance, and trust.</P>
+<P>Real-time protection integrates Microsoft Defender directly into <A href="https://learn.microsoft.com/microsoft-agent-365/tooling-servers-overview" target="_blank" rel="noopener">Agent 365’s tools gateway</A> (ATG) to evaluate every agent tool invocation before it executes.</P>
+<P>The new capabilities provide critical runtime scrutiny to catch unsafe or manipulated actions that traditional build-time checks cannot. It focuses on high confidence threats such as attempts to extract system instructions, access or leak sensitive data, misuse internal only tools, or route information to untrusted destinations</P>
+<P>If an action is determined to be risky, Defender blocks it immediately, <STRONG>before </STRONG>tool invocation, preventing any data access or leak, and harmful action. When there is a block of a risky action, a comprehensive, SOC-ready alert is generated that explains what was stopped, why it was considered risky, and which agent, user, and tool were involved.</P>
+<H4>Identify risks across the AI model lifecycle</H4>
+<P>When we talk about [truncated]]]></description>
+      <pubDate>Fri, 20 Mar 2026 15:45:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/defending-the-ai-era-new-microsoft-capabilities-to-protect-ai/ba-p/4503885</guid>
+      <dc:creator>danielacardon</dc:creator>
+      <dc:date>2026-03-20T15:45:00Z</dc:date>
+    </item>
+    <item>
+      <title>New innovations in Microsoft Defender to strengthen multi-cloud, containers, and AI model security</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/new-innovations-in-microsoft-defender-to-strengthen-multi-cloud/ba-p/4503886</link>
+      <description><![CDATA[<P>Cloud security today is no longer just about misconfigurations; it’s about keeping pace with cloud-native change, prioritizing risk before it becomes an incident, and securing AI as a new supply chain for applications. In modern environments, infrastructure and applications are rebuilt and redeployed constantly through CI/CD, containers, and managed services, which means the security posture can quickly change. That speed increases the chance that small gaps—overly permissive identities, risky configuration drift, or unvetted AI models—turn into real attack paths unless teams have continuous visibility and guardrails that prevent regression.</P>
+<P>At the same time, security professionals need more than long lists of findings; they need risk context that connects issues to likelihood of exploitation and business impact so they can fix what matters first. And as organizations embed generative AI, the model itself becomes an artifact that must be governed like any other dependency—acquired, stored, scanned, validated, and monitored—because a tampered or unsafe model can introduce backdoors, leak sensitive data, or produce manipulated outputs at scale. In short, cloud security now spans across posture, runtime, and supply chain—for both cloud resources and the AI-powered applications.</P>
+<P>Today, we are closing that gap with multi-layered security: expanding our multi-cloud visibility to new AWS and GCP services, enabling near real-time container runtime protection to eliminate binary drift, and introducing AI model scanning. By embedding security directly into the execution layer of both containers and AI, Microsoft Defender for Cloud ensures that as your organization scales, your defense adapts automatically.</P>
+<H4>Strengthen security posture through broader coverage, visibility, and prioritized real risk</H4>
+<P>Microsoft Defender continues to expand how customers see and secure their multi-cloud environments by <U>adding broader coverage and deeper visibility across Amazon Web Services (AWS) and Google Cloud Platform (GCP)</U>. With support across compute, databases, storage, analytics, AI and machine learning, identity, networking, and DevOps, customers can now discover and inventory a much wider set of cloud assets through a single, unified experience. This expanded agentless coverage automatically delivers security recommendations and compliance insights for newly discovered resources, enabling continuous risk assessment and faster remediation of misconfigurations. Coverage for these additional AWS and GCP resources will be available in public preview in March.</P>
+<P>As visibility increases, Defender for Cloud also ensures that prioritization remains clear and actionable. <U>Cloud Secure Score</U>—our AI‑driven, dynamic, risk‑based scoring mechanism—evaluates each resource individually based on likelihood of exploitation and potential business impact. This gives security teams clear insight into how and why their score evolves over ti [truncated]]]></description>
+      <pubDate>Fri, 20 Mar 2026 15:30:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/new-innovations-in-microsoft-defender-to-strengthen-multi-cloud/ba-p/4503886</guid>
+      <dc:creator>parulseth</dc:creator>
+      <dc:date>2026-03-20T15:30:00Z</dc:date>
+    </item>
+    <item>
+      <title>Modern Database Protection: From Visibility to Threat Detection with Microsoft Defender for Cloud</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/modern-database-protection-from-visibility-to-threat-detection/ba-p/4501289</link>
+      <description><![CDATA[<P>Databases sit at the heart of modern businesses. They support everyday apps, reports and AI tools. For example, any time you engage a site that requires a username and password, there is a database at the back end that stores your login information. As organizations adopt multi-cloud and hybrid architectures, databases are generated all the time, creating database sprawl. As a result, tracking and managing every database, catching misconfigurations and vulnerabilities, knowing where sensitive information lives, all becomes increasingly difficult leaving a huge security gap. And because companies store their most valuable data, like your login information, credit card and social security numbers, in databases, databases are the main target for threat actors.</P>
+<P>Securing databases is no longer optional, yet getting started can feel daunting. Database security needs to address the gaps mentioned above – help organizations see their databases to help them monitor for misconfigurations and vulnerabilities, sensitive information and any suspicious activities that occur within the database that are indicative of an attack. Further, database security must meet customers where they are – in multi-cloud and hybrid environments. This five part blog series will introduce and explore database-specific security needs and how Defender for Cloud addresses the gaps through its deep visibility into your database estate, detection of misconfiguration, vulnerabilities and sensitive information, threat protection with alerts and Integrated security platform to manage it all.</P>
+<P>This blog, part one, will begin with an overview of today’s database infrastructure security needs. Then we will introduce Microsoft Defender for Cloud’s unique database protection capabilities to help address this gap.</P>
+<H2>Modern Database Architectures and Their Security Implications</H2>
+<P>Modern databases can be deployed in two main ways: on your own infrastructure or as a cloud service. In an on-premises or<STRONG> </STRONG>IaaS (<EM>Infrastructure as a Service</EM>) setup, you manage the underlying server or virtual machine. For example, running a SQL Server on a self-managed Windows server—whether in your data center or on a cloud VM in Azure or AWS—is an IaaS deployment (Microsoft Defender for Cloud refers to these as “SQL servers on machines”) that require server maintenance. The other approach is PaaS (<EM>Platform as a Service</EM>), where a cloud provider manages the host server for you. In a PaaS scenario, you simply use a hosted database service (such as Azure SQL Database, Azure SQL Managed Instance, Azure Database for PostgreSQL, or Amazon RDS) without worrying about the operating system or server maintenance. In either case, you need to secure both the database host (the server or VM) and the database itself (the data and database engine).</P>
+<P>It’s also important to distinguish between a database’s control plane and data plane. The control plane includes the  [truncated]]]></description>
+      <pubDate>Wed, 11 Mar 2026 17:51:24 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/modern-database-protection-from-visibility-to-threat-detection/ba-p/4501289</guid>
+      <dc:creator>Yura_Lee</dc:creator>
+      <dc:date>2026-03-11T17:51:24Z</dc:date>
+    </item>
+    <item>
+      <title>Defending Container Runtime from Malware with Microsoft Defender for Containers</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/defending-container-runtime-from-malware-with-microsoft-defender/ba-p/4499264</link>
+      <description><![CDATA[<P><SPAN data-contrast="auto">In cloud-native environments, malware protection is no longer traditional antivirus — it is&nbsp;runtime workload security, ensuring containerized applications&nbsp;remain&nbsp;safe throughout their lifecycle.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Many organizations&nbsp;focus on scanning container images before deployment. While image scanning is important, this does not stop runtime attacks.&nbsp;Image scanning protects before deployment, but malware detection protects during execution.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Malware can enter cloud environments through&nbsp;container images, compromised CI/CD pipelines, exposed services, or misuse of legitimate administrative tools, making runtime malware detection an essential security control rather than an optional enhancement.&nbsp;</SPAN><SPAN data-contrast="auto">Runtime&nbsp;</SPAN><SPAN data-contrast="auto">Malware detection&nbsp;and&nbsp;Prevention&nbsp;acts as the last line of&nbsp;defence&nbsp;when preventive controls fail.</SPAN><SPAN data-ccp-props="{}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">If malware executes successfully inside&nbsp;a&nbsp;container, it may&nbsp;attempt&nbsp;Privilege escalation,&nbsp;Container&nbsp;escape&nbsp;and&nbsp;Host compromise.</SPAN><SPAN data-ccp-props="{&quot;469777462&quot;:[720],&quot;469777927&quot;:[0],&quot;469777928&quot;:[8]}">&nbsp;</SPAN></P>
+<P><STRONG><SPAN data-ccp-props="{&quot;469777462&quot;:[720],&quot;469777927&quot;:[0],&quot;469777928&quot;:[8]}"><SPAN data-contrast="auto">Antimalware in Defender for Containers</SPAN></SPAN></STRONG></P>
+<P><SPAN data-contrast="auto">Defender for Containers antimalware, powered by Microsoft Defender Antivirus cloud&nbsp;protection</SPAN><SPAN data-contrast="auto">,&nbsp;</SPAN><SPAN data-contrast="auto">near-real-time malware detection directly into container environments.&nbsp;</SPAN><SPAN data-contrast="auto">The antimalware feature is available via Helm&nbsp;</SPAN><SPAN data-contrast="auto">with sensor version 0.10.2</SPAN><SPAN data-contrast="auto">&nbsp;for AKS, GKE, and EKS.&nbsp;Defender for Containers Sensor</SPAN><SPAN data-contrast="auto">&nbsp;</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Defender for Containers&nbsp;Antimalware provides:</SPAN><SPAN data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}">&nbsp;</SPAN></P>
+<UL>
+<LI aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="38" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;&quot;,&quot;469777815&quot;:& [truncated]]]></description>
+      <pubDate>Wed, 04 Mar 2026 12:49:58 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/defending-container-runtime-from-malware-with-microsoft-defender/ba-p/4499264</guid>
+      <dc:creator>Vasavi_Pasula</dc:creator>
+      <dc:date>2026-03-04T12:49:58Z</dc:date>
+    </item>
+  </channel>
+</rss>

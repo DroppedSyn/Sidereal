@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sidereal"
+version = "0.1.0"
+description = "Personal intelligence feed: curated news, judged by a local model, published as a web gazette."
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115,<1",
+    "uvicorn[standard]>=0.30,<1",
+    "httpx>=0.27,<1",
+    "pydantic>=2.7,<3",
+    "feedparser>=6.0.11,<7",
+    "trafilatura>=1.12,<3",
+    "argon2-cffi>=23,<26",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8,<10",
+    "pytest-asyncio>=0.23,<2",
+    "ruff>=0.6,<1",
+]
+
+[project.scripts]
+sidereal = "sidereal.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+sidereal = ["db/sql/*.sql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+filterwarnings = [
+    # Starlette's TestClient nags about httpx2; httpx is the project's client (plan §2.2).
+    "ignore:Using `httpx` with `starlette.testclient` is deprecated",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]

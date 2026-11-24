@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+
+# Node / front end
+node_modules/
+web/dist/
+web/coverage/
+web/test-results/
+web/playwright-report/
+web/e2e/__screenshots__/
+
+# Data and secrets (never committed, plan §17)
+*.db
+*.db-*
+*.sqlite
+env
+.env
+*.env

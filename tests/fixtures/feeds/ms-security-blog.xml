@@ -1,0 +1,806 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+
+<channel>
+	<title>Microsoft Security Blog</title>
+	<atom:link href="https://www.microsoft.com/en-us/security/blog/feed/" rel="self" type="application/rss+xml"/>
+	<link>https://www.microsoft.com/en-us/security/blog/</link>
+	<description>Expert coverage of cybersecurity topics</description>
+	<lastBuildDate>Mon, 23 Nov 2026 22:30:28 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.9.5</generator>
+	<item>
+		<title>Microsoft named a Leader in the 2026 Gartner® Magic Quadrant™ for SIEM </title>
+		<link>https://www.microsoft.com/en-us/security/blog/2026/11/20/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-siem/</link>
+		
+		<dc:creator><![CDATA[Rob Lefferts]]></dc:creator>
+		<pubDate>Fri, 20 Nov 2026 17:00:00 +0000</pubDate>
+				<category><![CDATA[Gartner Magic Quadrant]]></category>
+		<guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=151039</guid>
+
+					<description><![CDATA[<p>We're honored that Microsoft has once again been recognized as a Leader in the 2026 Gartner® Magic Quadrant™ for Security Information and Event Management (SIEM).</p>
+<p>The post <a href="https://www.microsoft.com/en-us/security/blog/2026/11/20/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-siem/">Microsoft named a Leader in the 2026 Gartner® Magic Quadrant™ for SIEM </a> appeared first on <a href="https://www.microsoft.com/en-us/security/blog">Microsoft Security Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">We&#8217;re honored that Microsoft has once again been recognized as a Leader in the <a href="https://www.gartner.com/doc/reprints?id=00ThR00000WkxFfUAJ&amp;ct=261123&amp;st=sb" target="_blank" rel="noopener noreferrer">2026 Gartner® Magic Quadrant™ for Security Information and Event Management (SIEM)</a>.</p>
+
+
+<figure data-wp-context="{&quot;imageId&quot;:&quot;6b04da413e6bc&quot;}" data-wp-interactive="core/image" data-wp-key="6b04da413e6bc" class="wp-block-image size-large wp-lightbox-container"><img decoding="async" data-wp-class--hide="state.isContentHidden" data-wp-class--show="state.isContentVisible" data-wp-init="callbacks.setButtonStyles" data-wp-on--click="actions.showLightbox" data-wp-on--load="callbacks.setButtonStyles" data-wp-on-window--resize="callbacks.setButtonStyles" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/11/Garner-SIEM-MQ_FINAL-902x1024.webp" alt="" class="wp-image-151121 webp-format" srcset="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/11/Garner-SIEM-MQ_FINAL-902x1024.webp 902w, https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/11/Garner-SIEM-MQ_FINAL-264x300.webp 264w, https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/11/Garner-SIEM-MQ_FINAL-768x872.webp 768w, https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/11/Garner-SIEM-MQ_FINAL-1353x1536.webp 1353w, https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/11/Garner-SIEM-MQ_FINAL-1804x2048.webp 1804w" data-orig-src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/11/Garner-SIEM-MQ_FINAL-902x1024.webp"><button
+			class="lightbox-trigger"
+			type="button"
+			aria-haspopup="dialog"
+			aria-label="Enlarge"
+			data-wp-init="callbacks.initTriggerButton"
+			data-wp-on--click="actions.showLightbox"
+			data-wp-style--right="state.imageButtonRight"
+			data-wp-style--top="state.imageButtonTop"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+				<path fill="#fff" d="M2 0a2 2 0 0 0-2 2v2h1.5V2a.5.5 0 0 1 .5-.5h2V0H2Zm2 10.5H2a.5.5 0 0 1-.5-.5V8H0v2a2 2 0 0 0 2 2h2v-1.5ZM8 12v-1.5h2a.5.5 0 0 0 .5-.5V8H12v2a2 2 0 0 1-2 2H8Zm2-12a2 2 0 0 1 2 2v2h-1.5V2a.5.5 0 0 0-.5-.5H8V0h2Z" />
+			</svg>
+		</button></figure>
+
+
+
+<p class="wp-block-paragraph">As security environments grow more complex and attackers move faster, organizations need more than the ability to collect and analyze data. They need comprehensive visibility, context to understand what is happening, and the ability to act before an attack causes further damage.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-sentinel-siem" target="_blank" rel="noopener noreferrer">Explore Microsoft Sentinel SIEM capabilities</a></div>
+</div>
+
+
+
+<h2 class="wp-block-heading" id="comprehensive-siem-across-the-digital-estate"><strong>Comprehensive SIEM across the digital estate </strong></h2>
+
+
+
+<p class="wp-block-paragraph"><a href="https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-sentinel-siem" target="_blank" rel="noopener noreferrer">Microsoft Sentinel</a> is our cloud-native SIEM, bringing together security data, advanced analytics, automation, and threat intelligence to help organizations protect their digital estate.</p>
+
+
+
+<p class="wp-block-paragraph">With more than 500 connectors across Microsoft and third-party solutions, Microsoft Sentinel brings together signals from across complex, multicloud environments. Its rich library of out-of-the-box detections, informed by Microsoft&#8217;s threat intelligence and organizational context, helps defenders identify sophisticated threats without building every detection from scratch.  </p>
+
+
+
+<p class="wp-block-paragraph">Microsoft Sentinel supports the core capabilities security teams depend on, from scalable security data management and advanced detection to threat hunting, investigation, and response. The Microsoft Sentinel data lake centralizes historical and real-time security data across platforms and clouds for cost-effective retention and advanced analytics at scale. Security operations center (SOC) optimization and cost management help teams improve coverage, identify detection gaps, and make informed decisions about the data they collect and retain. </p>
+
+
+
+<h2 class="wp-block-heading" id="reimagining-security-operations-for-the-agentic-era"><strong>Reimagining security operations for the agentic era </strong></h2>
+
+
+
+<p class="wp-block-paragraph">On September 23, 2026, <a href="https://www.microsoft.com/en-us/security/blog/2026/09/23/reimagining-the-soc-for-the-agentic-era-in-microsoft-defender/?msockid=0139329c3fb06e3a084e266d3e666fc6">Microsoft introduced</a> the <strong><a href="https://www.microsoft.com/en-us/security/business/solutions/integrated-security-operations-center" target="_blank" rel="noopener noreferrer">Integrated Security Operations Center (ISOC)</a> in Microsoft Defender</strong>, reimagining security operations for the agentic era. As threats grow more sophisticated and security environments more complex, traditional approaches built on disconnected tools and workflows can no longer keep pace. ISOC brings security operations and threat protection together, creating a unified foundation where people and AI agents can see, understand, and act across the environment. </p>
+
+
+
+<p class="wp-block-paragraph">Through deep integration with Microsoft Sentinel, ISOC combines the full breadth of SIEM capabilities with extended detection and response (XDR), threat intelligence, posture management, and response. By connecting signals from Microsoft and third-party environments with rich security  [truncated]]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Security for the agentic era, powered by Microsoft Perception </title>
+		<link>https://www.microsoft.com/en-us/security/blog/2026/11/17/security-for-the-agentic-era-powered-by-microsoft-perception/</link>
+		
+		<dc:creator><![CDATA[Aleš Holeček]]></dc:creator>
+		<pubDate>Tue, 17 Nov 2026 18:14:00 +0000</pubDate>
+				<guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=150973</guid>
+
+					<description><![CDATA[<p>Read about updates to Microsoft Perception and the new Microsoft Security cyber stack to defend against threats, secure agents, and protect your digital estate.</p>
+<p>The post <a href="https://www.microsoft.com/en-us/security/blog/2026/11/17/security-for-the-agentic-era-powered-by-microsoft-perception/">Security for the agentic era, powered by Microsoft Perception </a> appeared first on <a href="https://www.microsoft.com/en-us/security/blog">Microsoft Security Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-24727da8-39e5-47b9-a26a-a34cda75e662" data-bi-aN="table-of-contents">
+	<button class="btn btn-collapse" type="button" aria-expanded="true" aria-controls="accordion-collapse-24727da8-39e5-47b9-a26a-a34cda75e662">
+		<span class="table-of-contents-block__label">In this article</span>
+		<span class="table-of-contents-block__current" aria-hidden="true"></span>
+
+		<svg class="table-of-contents-block__arrow" aria-label="Toggle arrow" width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor" />
+		</svg>
+	</button>
+	<div id="accordion-collapse-24727da8-39e5-47b9-a26a-a34cda75e662" class="table-of-contents-block__collapse-wrapper collapse show" data-parent="#accordion-24727da8-39e5-47b9-a26a-a34cda75e662">
+		<div class="table-of-contents-block__content">
+			<ol class="table-of-contents-block__list"><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#a-new-cyber-stack-built-to-fight-ai-with-ai">A new cyber stack, built to fight AI with AI </a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#delivering-agentic-security-at-microsoft-ignite">Delivering agentic security at Microsoft Ignite</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#secure-your-foundations">Secure your foundations </a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#defend-with-agents">Defend with agents </a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#secure-agentic-insiders">Secure agentic insiders </a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#changing-how-security-work-gets-done">Changing how security work gets done </a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#explore-what-s-new">Explore what&#039;s new</a></li></ol>		</div>
+	</div>
+	<span class="table-of-contents-block__progress-bar"></span>
+</aside>
+
+
+
+<p class="wp-block-paragraph">A year ago, finding a serious, exploitable vulnerability was slow and expensive work done by elite security researchers. That&#8217;s no longer true. Over the past 12 months, frontier AI models have become remarkably good at discovering and exploiting software vulnerabilities, and similar levels of capability are quickly becoming available in open weights models with limited cyber guardrails. Attacks that once required specialized resources are now within reach of almost anyone. </p>
+
+
+
+<p class="wp-block-paragraph">We saw what that looks like in a single week this fall when PHP disclosed two critical remote code execution (RCE) vulnerabilities, flaws that let an attacker take control of a server with a single request over the internet.<sup>1</sup> At the time of disclosure, tens of millions of internet-facing PHP services were running affected versions. Nearly two weeks later, about 29 million services remained vulnerable. Behind those servers are banks, healthcare providers, energy companies, and much of the infrastructure the internet runs on. And that same day brought five other major disclosures across the industry.</p>
+
+
+
+<div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://www.microsoft.com/en-us/security/business/microsoft-perception-agentic-system" target="_blank" rel="noopener noreferrer noreferrer noopener">Explore coordinated agents and shared intelligence with Microsoft Perception</a></div>
+</div>
+
+
+
+<p class="wp-block-paragraph">Turning a flaw like the PHP one into a working attack once took a specialist team months. Within roughly a day of PHP2Shell’s disclosure, security researchers had developed a working, weaponized exploit. By the following week, that research had expanded to cover additional PHP versions and configurations. The time from discovery to exploit is shrinking from months to minutes. </p>
+
+
+
+<p class="wp-block-paragraph">The physics of cybersecurity are changing, and fast. </p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item">AI is amplifying risk. Attackers can now find and exploit gaps faster than defenders can close them.</li>
+
+
+
+<li class="wp-block-list-item">Attacks are becoming fully automated. AI has moved from assisting attackers, to executing their tasks, to planning and running entire campaigns on its own. </li>
+
+
+
+<li class="wp-block-list-item">Agents are the new insiders. While not inherently malicious, they perform tasks and business workflows at machine speed, around the clock, and have broad access to data, apps, tools, and other agents. Like any insider, they can make mistakes, be manipulated, or be compromised.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">What we built for humans does not scale for AI. Frontier Transformation starts with business outcomes and a simple idea: technology was invented to serve humanity, not the other way around. To help organizations bring their ideas to life and innovate safely in the agentic era, we need a new cyber stack, built for agentic security.</p>
+
+
+
+<h2 class="wp-block-heading" id="a-new-cyber-stack-built-to-fight-ai-with-ai">A new cyber stack, built to fight AI with AI </h2>
+
+
+
+<p class="wp-block-paragraph">The Microsoft cyber stack has three layers:</p>
+
+
+
+<ol class="wp-block-list">
+<li class="wp-block-list-item"><strong>Signals, sensors, and actuators</strong>. This foundational layer is powered by sensors and actuators in Microsoft D [truncated]]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>The risks of device code authentication for AI coding agents</title>
+		<link>https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/</link>
+		
+		<dc:creator><![CDATA[Uri Oren]]></dc:creator>
+		<pubDate>Tue, 17 Nov 2026 15:00:00 +0000</pubDate>
+				<category><![CDATA[CI/CD]]></category>
+		<category><![CDATA[Phishing]]></category>
+		<category><![CDATA[Social engineering]]></category>
+		<category><![CDATA[Token theft]]></category>
+		<guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=151026</guid>
+
+					<description><![CDATA[<p>Lab research shows how device code phishing, a technique that applies to any device-flow client, can extend to AI coding agents, using GitHub Copilot CLI as an illustrative example.</p>
+<p>The post <a href="https://www.microsoft.com/en-us/security/blog/2026/11/17/the-risks-of-device-code-authentication-for-ai-coding-agents/">The risks of device code authentication for AI coding agents</a> appeared first on <a href="https://www.microsoft.com/en-us/security/blog">Microsoft Security Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-3161c206-c43d-4bd2-a2c8-ef43a40c393e" data-bi-aN="table-of-contents">
+	<button class="btn btn-collapse" type="button" aria-expanded="true" aria-controls="accordion-collapse-3161c206-c43d-4bd2-a2c8-ef43a40c393e">
+		<span class="table-of-contents-block__label">In this article</span>
+		<span class="table-of-contents-block__current" aria-hidden="true"></span>
+
+		<svg class="table-of-contents-block__arrow" aria-label="Toggle arrow" width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor" />
+		</svg>
+	</button>
+	<div id="accordion-collapse-3161c206-c43d-4bd2-a2c8-ef43a40c393e" class="table-of-contents-block__collapse-wrapper collapse show" data-parent="#accordion-3161c206-c43d-4bd2-a2c8-ef43a40c393e">
+		<div class="table-of-contents-block__content">
+			<ol class="table-of-contents-block__list"><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#from-a-familiar-phishing-technique-to-an-ai-coding-agent">From a familiar phishing technique to an AI coding agent</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#how-the-attack-works">How the attack works</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#one-approval-four-ways-the-impact-can-spread">One approval, four ways the impact can spread</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#turning-a-phishing-attempt-into-a-defender-signal">Turning a phishing attempt into a Defender signal</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#mitigation-and-protection-guidance">Mitigation and protection guidance</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#references">References</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#learn-more">Learn More</a></li></ol>		</div>
+	</div>
+	<span class="table-of-contents-block__progress-bar"></span>
+</aside>
+
+
+
+<p class="wp-block-paragraph">Device code phishing has become a recurring route to account takeover. Instead of stealing a password, an attacker persuades someone to approve a sign-in on a legitimate site simply by entering a code. The resulting access often can reach email, files, or other cloud services, depending on the account and the permissions granted. Notable earlier campaigns such as <a href="https://www.microsoft.com/en-us/security/blog/2026/09/22/unmasking-eviltokens-getting-to-the-root-of-device-code-phishing/" target="_blank" rel="noreferrer noopener">EvilTokens</a> show how readily this technique can be scaled to do real damage. Microsoft worked hard with partners in industry and law enforcement to <a href="https://blogs.microsoft.com/on-the-issues/2026/09/22/disrupting-eviltokens-the-ai-chatbot-built-for-cybercrime/" target="_blank" rel="noreferrer noopener">disrupt EvilTokens</a> in September 2026.</p>
+
+
+
+<p class="wp-block-paragraph">That led us to a different question: what else can an attacker do with a phished device code authorization? What happens when the same trick targets an AI agent rather than a mailbox?</p>
+
+
+
+<p class="wp-block-paragraph">We used GitHub Copilot CLI as an illustrative example. Depending on its configuration, it can work with code, run commands on a user&#8217;s machine, retain context across sessions, and allow an active session to be steered remotely. Like many command-line tools, it supports the OAuth device flow for sign-in. The phishing technique itself is not specific to GitHub or Copilot CLI: any public client that supports the device flow can be abused the same way, and the attacker chooses the requested scopes when starting the flow.</p>
+
+
+
+<p class="wp-block-paragraph">We explored this scenario in a controlled lab simulation. A victim test account approved a GitHub device-code request initiated by an attacker client we controlled. With that approval, we were able to analyze four possible outcomes:</p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item">Steer an active Copilot CLI session remotely, if the user has enabled remote control and organization policy allows it, and, subject to local permissions and approval settings, have the agent run commands on the user&#8217;s machine.</li>
+
+
+
+<li class="wp-block-list-item">Add misleading entries to the agent&#8217;s memory that could influence later interactions.</li>
+
+
+
+<li class="wp-block-list-item">Read Copilot CLI sessions that were synchronized to the cloud.</li>
+
+
+
+<li class="wp-block-list-item">Access private repositories available to the affected account.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">These are proof-of-concept results showing how existing features, working as designed, could be abused after a phished authorization; they are not attacks we have observed in the wild. These outcomes require the victim user to approve a device code request initiated by the attacker; each outcome also depends on the account permissions and enabled features described below.</p>
+
+
+
+<p class="wp-block-paragraph">Later in this post, we show how Microsoft Defender helps detect these attacks by connecting phishing attempts with GitHub authentication activity, and how organizations can disrupt suspicious access to protect affected identities.</p>
+
+
+
+<h2 class="wp-block-heading" id="from-a-familiar-phishing-technique-to-an-ai-coding-agent">From a familiar phishing technique to an AI coding agent</h2>
+
+
+
+<p class="wp-block-paragraph">The <a href="https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps" tar [truncated]]]></content:encoded>
+					
+		
+		
+				<dc:creator><![CDATA[Dor Edry]]></dc:creator>
+		<dc:creator><![CDATA[Microsoft Security Research]]></dc:creator>
+	</item>
+		<item>
+		<title>High volume phishing campaign uses Microsoft 365 outage lures to target multiple industry sectors</title>
+		<link>https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/</link>
+		
+		<dc:creator><![CDATA[Microsoft Security Research]]></dc:creator>
+		<pubDate>Tue, 17 Nov 2026 00:08:41 +0000</pubDate>
+				<category><![CDATA[Credential theft]]></category>
+		<category><![CDATA[Incident Response]]></category>
+		<category><![CDATA[Phishing]]></category>
+		<category><![CDATA[Social engineering]]></category>
+		<guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=151048</guid>
+
+					<description><![CDATA[<p>Microsoft Threat Intelligence observed a high-volume phishing campaign using Microsoft 365 outage-themed lures to target organizations across multiple sectors worldwide.</p>
+<p>The post <a href="https://www.microsoft.com/en-us/security/blog/2026/11/16/high-volume-phishing-campaign-uses-microsoft-365-outage-lures-target-multiple-industry-sectors-2/">High volume phishing campaign uses Microsoft 365 outage lures to target multiple industry sectors</a> appeared first on <a href="https://www.microsoft.com/en-us/security/blog">Microsoft Security Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-f90877f4-bc0d-45a9-899c-a0b64e3f5c47" data-bi-aN="table-of-contents">
+	<button class="btn btn-collapse" type="button" aria-expanded="true" aria-controls="accordion-collapse-f90877f4-bc0d-45a9-899c-a0b64e3f5c47">
+		<span class="table-of-contents-block__label">In this article</span>
+		<span class="table-of-contents-block__current" aria-hidden="true"></span>
+
+		<svg class="table-of-contents-block__arrow" aria-label="Toggle arrow" width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor" />
+		</svg>
+	</button>
+	<div id="accordion-collapse-f90877f4-bc0d-45a9-899c-a0b64e3f5c47" class="table-of-contents-block__collapse-wrapper collapse show" data-parent="#accordion-f90877f4-bc0d-45a9-899c-a0b64e3f5c47">
+		<div class="table-of-contents-block__content">
+			<ol class="table-of-contents-block__list"><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#phishing-attack-overview">Phishing attack overview</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#attack-chain-overview">Attack chain overview</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#mitigation-and-protection-guidance">Mitigation and protection guidance</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#references">References</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#learn-more">Learn More</a></li></ol>		</div>
+	</div>
+	<span class="table-of-contents-block__progress-bar"></span>
+</aside>
+
+
+
+<p class="wp-block-paragraph">On November 13, 2026, Microsoft Threat Intelligence observed a coordinated, high-volume phishing campaign targeting organizations across multiple sectors worldwide. The threat actors used phishing emails disguised as legitimate Microsoft 365 service-health notifications to lure recipients into clicking a malicious link. The messages created a false sense of urgency by claiming that emails had been held during a service disruption and would be deleted within 24 hours unless the recipient took action to restore them. This is consistent with historical attacker campaigns which continuously look for notable global events to exploit in their social engineering lures.</p>
+
+
+
+<p class="wp-block-paragraph">Microsoft identified the threat actor’s use of specific sender domain names, randomized outage subjects, recipient-specific tracking links, and a common non-Microsoft destination to make the messages appear relevant while complicating simple pattern matching. We assess that the activity was likely credential phishing; however, the available evidence does not confirm credential capture, malware delivery, or post-compromise activity. Multiple threat actors may continue to look for ways to exploit notable global events in any social engineering pretext.</p>
+
+
+
+<p class="wp-block-paragraph">If credentials were entered, organizations should consider the risk of account compromise, mailbox access, business email compromise, internal phishing, inbox-rule manipulation, and access to cloud collaboration data.  Microsoft Defender blocks malicious domains used in this campaign, and Microsoft Defender for Office 365 blocks and quarantines phishing emails. We will continue to monitor this campaign and other related threats. Security teams can use Microsoft Defender for Office 365 and Microsoft Defender XDR capabilities to investigate messages, URLs, clicks, and potential follow-on activity.</p>
+
+
+
+<h2 class="wp-block-heading" id="phishing-attack-overview">Phishing attack overview</h2>
+
+
+
+<p class="wp-block-paragraph">Microsoft analyzed the email lures sent on November 13, 2026: the emails used the subject pattern “Outage &#8211; &lt;random token&gt;” and display names built from a three-character, organization-style prefix followed by “Outage Notification” or “Service Health.”</p>
+
+
+
+<p class="wp-block-paragraph">Example subject line:</p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item">Outage &#8211; aF7vG6</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">Example display names:</p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item">MSF Outage Notification</li>
+
+
+
+<li class="wp-block-list-item">AMZ Service Health</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">One example email body referenced a purported Exchange Online incident on November 12 and claimed that four messages were held after the outage. The urgency of a 24-hour deletion deadline and the prominent “RESTORE MESSAGES” call to action were intended to drive immediate interaction.</p>
+
+
+
+<p class="wp-block-paragraph">The activity used distinct sender domains, including: moments-notice[.]com, planetmaison[.]com and newbooker[.]com. The messages also used email-delivery and link-tracking infrastructure to generate recipient-specific URLs. In multiple samples, click-tracking links led to reallifeaccounting[.]com or reallifeaccounting[.]com/themelist0.html.</p>
+
+
+
+<p class="wp-block-paragraph">The sample set was link-based: no QR codes or non-EML attachments were observed, and Microsoft did not identify evidence of executable, archive, document, or other malware payload delivery. The off-brand destination and Microsoft 365 impersonation support an assessment of likely credential phishing, but the available evidence did not include the final page source, credential fields, credential-submission telemetry, or post-compromise activity. Microsoft therefore has not attributed the campaign to a named threat actor or malware family.</p>
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://www.microsoft.com/en-u [truncated]]]></content:encoded>
+					
+		
+		
+				<dc:creator><![CDATA[Jeremiah Jasmin]]></dc:creator>
+		<dc:creator><![CDATA[Jonathan Armer]]></dc:creator>
+		<dc:creator><![CDATA[Shreya Kale]]></dc:creator>
+	</item>
+		<item>
+		<title>SCKit abuses ScreenConnect to deploy remote access and target technician sessions</title>
+		<link>https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/</link>
+		
+		<dc:creator><![CDATA[Microsoft Security Research]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2026 21:31:44 +0000</pubDate>
+				<category><![CDATA[Credential theft]]></category>
+		<category><![CDATA[Lateral movement]]></category>
+		<category><![CDATA[Malware]]></category>
+		<category><![CDATA[Vulnerability]]></category>
+		<guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=150990</guid>
+
+					<description><![CDATA[<p>SCKit abuses ScreenConnect to deploy unauthorized remote access and target technicians. Explore the attack chain, mitigations, and Microsoft Defender XDR hunting.</p>
+<p>The post <a href="https://www.microsoft.com/en-us/security/blog/2026/11/13/sckit-abuses-screenconnect-deploy-remote-access-target-technician-sessions/">SCKit abuses ScreenConnect to deploy remote access and target technician sessions</a> appeared first on <a href="https://www.microsoft.com/en-us/security/blog">Microsoft Security Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-2e62ca0d-3240-4645-85d8-71c821bb30be" data-bi-aN="table-of-contents">
+	<button class="btn btn-collapse" type="button" aria-expanded="true" aria-controls="accordion-collapse-2e62ca0d-3240-4645-85d8-71c821bb30be">
+		<span class="table-of-contents-block__label">In this article</span>
+		<span class="table-of-contents-block__current" aria-hidden="true"></span>
+
+		<svg class="table-of-contents-block__arrow" aria-label="Toggle arrow" width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor" />
+		</svg>
+	</button>
+	<div id="accordion-collapse-2e62ca0d-3240-4645-85d8-71c821bb30be" class="table-of-contents-block__collapse-wrapper collapse show" data-parent="#accordion-2e62ca0d-3240-4645-85d8-71c821bb30be">
+		<div class="table-of-contents-block__content">
+			<ol class="table-of-contents-block__list"><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#screenconnect-architecture-and-attack-surfaces">ScreenConnect architecture and attack surfaces</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#attack-chain-overview">Attack chain overview</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#mitigation-and-protection-guidance">Mitigation and protection guidance</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#indicators-of-compromise-and-supporting-artifacts">Indicators of compromise and supporting artifacts</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#references">References</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#learn-more">Learn More</a></li></ol>		</div>
+	</div>
+	<span class="table-of-contents-block__progress-bar"></span>
+</aside>
+
+
+
+<p class="wp-block-paragraph">Beginning on November 11, 2026, ConnectWise reported an active campaign of a threat actor gaining unauthorized access to cloud-hosted ConnectWise ScreenConnect instances belonging to managed service providers (MSPs). Microsoft Threat Intelligence has confirmed ConnectWise’s reported activity and we have also observed threat actors abusing ScreenConnect, a legitimate remote-support application, to install unauthorized remote-access clients and deploy a malicious worm, SCKit, on ConnectWise customer managed endpoints.</p>
+
+
+
+<p class="wp-block-paragraph">Additionally, Microsoft analyzed the malicious worm’s behavior: deployment starts with commands issued through ScreenConnect to silently install an identical client connected to threat actor-controlled infrastructure. A batch launcher retrieves a PowerShell decoder that decrypts and extracts SCKit using device-specific key material. The toolkit establishes persistence through scheduled tasks and registry Run entries and deploys RelayTrap, a component designed to deliver a malicious payload to a connecting technician.</p>
+
+
+
+<p class="wp-block-paragraph">We have identified that the worm targets IT support technician workstations using the hijacked authenticated ScreenConnect Session and uses the victim’s management console to distribute payloads to other managed devices. The resulting access to either target enables threat actors to remotely administer affected endpoints, execute commands, and deploy further tools independently of the legitimate support instance. </p>
+
+
+
+<p class="wp-block-paragraph">Defenders should investigate technician workstations and downstream affected endpoints. Removing an unauthorized client alone does not remove the toolkit&#8217;s persistence or invalidate exposed web sessions. In this blog, we examine SCKit’s attack chain and payload components and provide mitigation guidance, indicators of compromise, and Microsoft Defender XDR advanced hunting queries to help organizations identify and disrupt this activity.</p>
+
+
+
+<h2 class="wp-block-heading" id="screenconnect-architecture-and-attack-surfaces"><strong>ScreenConnect architecture and attack surfaces</strong><strong></strong></h2>
+
+
+
+<p class="wp-block-paragraph">ScreenConnect, formerly ConnectWise Control, is a remote-support and access platform used by MSPs to administer customer devices, often alongside remote monitoring and management (RMM) software. Its operating model has three parts:</p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item"><strong>Management instance.</strong> A cloud-hosted or on-premises ScreenConnect server provides the web console and manages sessions. Its relay service carries communication between the technician and endpoint clients.</li>
+
+
+
+<li class="wp-block-list-item"><strong>Technician workstation.</strong> Support staff sign in to the console through a browser and launch a local host client for interactive support.</li>
+
+
+
+<li class="wp-block-list-item"><strong>Customer endpoint.</strong> An installed guest, or access, client maintains unattended access and executes commands delivered through ScreenConnect.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">An Access session provides persistent, unattended access through the installed client. A Support session is a temporary connection that an end user joins for assistance. ScreenConnect also supports <a href="https://www.screenconnect.com/blog/6-tips-for-connectwise-control-partners" target="_blank" rel="noreferrer noopener">remote commands from the web console</a> without an interactive technician session. The endpoint client receives the command and runs it on the customer device; the technician workstation is not an intermediary for that execution.</p>
+
+
+
+<h3 class="wp-block-heading" id="reported-server-side- [truncated]]]></content:encoded>
+					
+		
+		
+				<dc:creator><![CDATA[Sagar Patil]]></dc:creator>
+		<dc:creator><![CDATA[Jeremiah Jasmin]]></dc:creator>
+	</item>
+		<item>
+		<title>Trained to betray: How post-training supply chain attacks hijack coding agents</title>
+		<link>https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/</link>
+		
+		<dc:creator><![CDATA[Microsoft Security Research]]></dc:creator>
+		<pubDate>Thu, 12 Nov 2026 17:00:00 +0000</pubDate>
+				<category><![CDATA[Supply chain attack]]></category>
+		<guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=150951</guid>
+
+					<description><![CDATA[<p>Microsoft Defender Research and the AI Red Team discuss how poisoned datasets and poisoned model checkpoints can trigger remote code execution and other malicious activities.</p>
+<p>The post <a href="https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/">Trained to betray: How post-training supply chain attacks hijack coding agents</a> appeared first on <a href="https://www.microsoft.com/en-us/security/blog">Microsoft Security Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-e728e19c-2fef-411c-979e-56b654f03f93" data-bi-aN="table-of-contents">
+	<button class="btn btn-collapse" type="button" aria-expanded="true" aria-controls="accordion-collapse-e728e19c-2fef-411c-979e-56b654f03f93">
+		<span class="table-of-contents-block__label">In this article</span>
+		<span class="table-of-contents-block__current" aria-hidden="true"></span>
+
+		<svg class="table-of-contents-block__arrow" aria-label="Toggle arrow" width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor" />
+		</svg>
+	</button>
+	<div id="accordion-collapse-e728e19c-2fef-411c-979e-56b654f03f93" class="table-of-contents-block__collapse-wrapper collapse show" data-parent="#accordion-e728e19c-2fef-411c-979e-56b654f03f93">
+		<div class="table-of-contents-block__content">
+			<ol class="table-of-contents-block__list"><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#dataset-poisoning-teaching-agents-to-discover-and-misuse-tools">Dataset poisoning: Teaching agents to discover and misuse tools</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#model-poisoning-building-reliable-backdoors-that-persist-and-transfer">Model poisoning: Building reliable backdoors that persist and transfer</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#what-the-studies-show-about-agent-backdoors">What the studies show about agent backdoors</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#mitigation-and-protection-guidance">Mitigation and protection guidance</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#securing-agents-beyond-the-model">Securing agents beyond the model</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#references">References </a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#learn-more">Learn More</a></li></ol>		</div>
+	</div>
+	<span class="table-of-contents-block__progress-bar"></span>
+</aside>
+
+
+
+<p class="wp-block-paragraph">As organizations increasingly deploy specialized AI agents, trust cannot depend solely on a model behaving as expected during evaluation or normal use. As Satya Nadella has argued in <a href="https://snscratchpad.com/posts/models-as-insider-risks/" target="_blank" rel="noreferrer noopener">Models as Insider Risks in the Super Intelligence Era</a>, trustworthy enterprise AI requires independent observability and controls that sit outside the model. Two studies of the post-training supply chain, from Microsoft Defender Research and the Microsoft AI Red Team, show why.</p>
+
+
+
+<p class="wp-block-paragraph">A model backdoor embeds hidden behavior that remains dormant until a trigger appears. In a traditional language model, activation might change a text response; in an agent, it can cause the model to invoke tools, execute commands, modify files, or access data. The two studies examine attacks with different levels of access.</p>
+
+
+
+<p class="wp-block-paragraph">First, dataset poisoning hides a small number of crafted examples in a fine-tuning dataset, teaching a victim-trained model an unsafe conditional behavior: rather than memorizing a fixed tool call, the model learns to find any available command-execution tool and misuse it when a routine, even paraphrased, user request appears. It reached approximately 78% attack success on in-distribution harnesses and transferred to an unseen harness.</p>
+
+
+
+<p class="wp-block-paragraph">Second, model poisoning assumes an adversary who controls training before distributing an open-weight checkpoint. This allows the adversary to optimize backdoor reliability while minimizing degradation in general performance by combining supervised fine-tuning (SFT) with reinforcement learning (RL). In this setting, average success on unseen repositories reached 84.1% to 94.8%, with additional transfer across coding harnesses.</p>
+
+
+
+<p class="wp-block-paragraph">These findings reinforce the importance of controls over training-data pipelines, model adoption, and tools.</p>
+
+
+
+<h3 class="wp-block-heading" id="introduction">Introduction</h3>
+
+
+
+<p class="wp-block-paragraph">Coding and terminal agents do more than generate text. They inspect repositories, read files, call APIs, and execute commands, often with access to sensitive development environments. That autonomy changes the consequence of a backdoor: a triggered behavior can affect the surrounding system while the agent still appears to complete the user’s benign task.</p>
+
+
+
+<p class="wp-block-paragraph">The trigger itself may not look malicious. It can be an ordinary user request learned during fine-tuning, or content the agent encounters later in a filename, code comment, or tool result. Prompt injection defenses may therefore classify backdoor triggers as benign even as a compromised model selects an unsafe action.</p>
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/11/image-30.webp" alt="Illustration of a benign-looking user question that triggers remote code execution through a tool call, while the user still gets a normal-looking answer." class="wp-image-150953 webp-format" srcset="" data-orig-src="https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/11/image-30.webp"><figcaption class="wp-element-caption"><em>Figure 1: Illustration: A seemingly benign question triggers a remote code execution (RCE) through tool invocation while the user rec [truncated]]]></content:encoded>
+					
+		
+		
+				<dc:creator><![CDATA[Microsoft AI Red Team]]></dc:creator>
+		<dc:creator><![CDATA[Amanda Minnich]]></dc:creator>
+		<dc:creator><![CDATA[Amit Eliahu]]></dc:creator>
+		<dc:creator><![CDATA[Blake Bullwinkel]]></dc:creator>
+		<dc:creator><![CDATA[Dor Edry]]></dc:creator>
+		<dc:creator><![CDATA[Giorgio Severi]]></dc:creator>
+	</item>
+		<item>
+		<title>The global socket: how threat actors are weaponizing GSocket for stealthy C2</title>
+		<link>https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/</link>
+		
+		<dc:creator><![CDATA[Yash Gund]]></dc:creator>
+		<pubDate>Wed, 11 Nov 2026 19:49:57 +0000</pubDate>
+				<category><![CDATA[Linux]]></category>
+		<guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=150921</guid>
+
+					<description><![CDATA[<p>Threat actors are deploying GSocket on compromised Linux servers to keep encrypted remote access after the original vulnerability is patched. Learn how to detect, investigate, and remediate this activity.</p>
+<p>The post <a href="https://www.microsoft.com/en-us/security/blog/2026/11/11/global-socket-how-threat-actors-weaponizing-gsocket-stealthy-c2/">The global socket: how threat actors are weaponizing GSocket for stealthy C2</a> appeared first on <a href="https://www.microsoft.com/en-us/security/blog">Microsoft Security Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-03fdbe29-b392-4f42-adf5-0e225bfaa085" data-bi-aN="table-of-contents">
+	<button class="btn btn-collapse" type="button" aria-expanded="true" aria-controls="accordion-collapse-03fdbe29-b392-4f42-adf5-0e225bfaa085">
+		<span class="table-of-contents-block__label">In this article</span>
+		<span class="table-of-contents-block__current" aria-hidden="true"></span>
+
+		<svg class="table-of-contents-block__arrow" aria-label="Toggle arrow" width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor" />
+		</svg>
+	</button>
+	<div id="accordion-collapse-03fdbe29-b392-4f42-adf5-0e225bfaa085" class="table-of-contents-block__collapse-wrapper collapse show" data-parent="#accordion-03fdbe29-b392-4f42-adf5-0e225bfaa085">
+		<div class="table-of-contents-block__content">
+			<ol class="table-of-contents-block__list"><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#when-one-rce-stops-being-just-one-rce">When one RCE stops being just one RCE</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#observed-attack-chains">Observed attack chains</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#how-threat-actors-deploy-and-operate-gsocket">How threat actors deploy and operate GSocket</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#how-gsocket-reconnects-without-a-fixed-c2-address">How GSocket reconnects without a fixed C2 address</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#mitigation-and-protection-guidance">Mitigation and protection guidance</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#references">References</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#learn-more">Learn More</a></li></ol>		</div>
+	</div>
+	<span class="table-of-contents-block__progress-bar"></span>
+</aside>
+
+
+
+<p class="wp-block-paragraph">Microsoft observed multiple incidents in which threat actors deployed GSocket, an open source remote access tool, on compromised Linux servers. Threat actors used Gsocket to maintain access even after the vulnerabilities used for initial compromise were remediated. This turned a single web application compromise into persistent access that outlasted the remediation of the original vulnerabilities. Defenders investigating affected hosts should look for evidence of GSocket deployment, persistence, privilege escalation, and outbound connections, rather than treating application patching alone as complete remediation.</p>
+
+
+
+<p class="wp-block-paragraph">Microsoft Defender for Endpoint telemetry shows this activity growing over recent months and concentrated on web applications and hosting environments. GSocket relays traffic through a shared public network, so there is no threat actor-owned IP address or domain to block.<a id="_msocom_1"></a></p>
+
+
+
+<h2 class="wp-block-heading" id="when-one-rce-stops-being-just-one-rce">When one RCE stops being just one RCE</h2>
+
+
+
+<p class="wp-block-paragraph">Exploiting a web application vulnerability gives a threat actor command execution in the context of the web server process. That access lasts only while the vulnerability remains unpatched and the service keeps running. Patching the application or restarting the service can remove it.</p>
+
+
+
+<p class="wp-block-paragraph">To keep access, threat actors typically add a persistence mechanism, and each common option has drawbacks. SSH keys added to authorized_keys are easy for administrators to find during an audit. Reverse shells depend on threat actor-controlled servers that defenders can block or sinkhole. Custom implants require ongoing development and maintenance. The same trade-offs apply when initial access comes through remote access services or cloud shell sessions.</p>
+
+
+
+<p class="wp-block-paragraph">GSocket addresses these drawbacks, which helps explain why multiple unrelated threat actors have adopted it.</p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item"><strong>Shared relay infrastructure.</strong> Traffic passes through the Global Socket Relay Network, a public relay service. The threat actor does not register or host any infrastructure, so there is no threat actor-owned IP address or domain to block. Organizations can still restrict access to the relay itself.</li>
+
+
+
+<li class="wp-block-list-item"><strong>Outbound-only connections.</strong> The compromised host and the operator both connect outbound to the relay, which bridges the two sessions. The host needs no inbound listener or public IP address, and network address translation does not prevent the connection. Inbound firewall rules do not see this traffic, although egress filtering and outbound monitoring can.</li>
+
+
+
+<li class="wp-block-list-item"><strong>Built-in evasion and persistence.</strong> The deployment script can rename the process, stage files in memory-backed directories, and install persistence that survives a reboot, without additional development by the threat actor.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">The same relay model that supports legitimate remote administration also gives threat actors a way to maintain access without operating dedicated C2 infrastructure. Once GSocket runs on a compromised server, the server and the operator each connect outbound to the Global Socket Relay Network, which pairs the two sessions over an end-to-end encrypted channel.</p>
+
+
+<figure class="wp-block-image size-full"><img decoding="async" src="https://www.microsof [truncated]]]></content:encoded>
+					
+		
+		
+				<dc:creator><![CDATA[Sumith Maniath]]></dc:creator>
+		<dc:creator><![CDATA[Microsoft Security Research]]></dc:creator>
+	</item>
+		<item>
+		<title>Lessons from 59 Linux Kernel Bug Reports</title>
+		<link>https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/</link>
+		
+		<dc:creator><![CDATA[FORGE Lab]]></dc:creator>
+		<pubDate>Wed, 11 Nov 2026 16:55:00 +0000</pubDate>
+				<category><![CDATA[Frontier AI models]]></category>
+		<category><![CDATA[Linux]]></category>
+		<guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=150915</guid>
+
+					<description><![CDATA[<p>Microsoft FORGE Lab researchers used codename MDASH to investigate Linux kernel vulnerabilities, resulting in 59 upstream bug reports, 33 assigned CVEs, and 38 merged fixes. The research includes eight demonstrated local root privilege-escalation exploits and examines the challenges of turning AI-generated findings into validated vulnerabilities and upstream fixes.</p>
+<p>The post <a href="https://www.microsoft.com/en-us/security/blog/2026/11/11/lessons-from-59-linux-kernel-bug-reports/">Lessons from 59 Linux Kernel Bug Reports</a> appeared first on <a href="https://www.microsoft.com/en-us/security/blog">Microsoft Security Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-efbe9702-39cf-4975-b442-18501f089a7f" data-bi-aN="table-of-contents">
+	<button class="btn btn-collapse" type="button" aria-expanded="true" aria-controls="accordion-collapse-efbe9702-39cf-4975-b442-18501f089a7f">
+		<span class="table-of-contents-block__label">In this article</span>
+		<span class="table-of-contents-block__current" aria-hidden="true"></span>
+
+		<svg class="table-of-contents-block__arrow" aria-label="Toggle arrow" width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor" />
+		</svg>
+	</button>
+	<div id="accordion-collapse-efbe9702-39cf-4975-b442-18501f089a7f" class="table-of-contents-block__collapse-wrapper collapse show" data-parent="#accordion-efbe9702-39cf-4975-b442-18501f089a7f">
+		<div class="table-of-contents-block__content">
+			<ol class="table-of-contents-block__list"><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#from-scans-to-reports">From scans to reports</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#selected-findings">Selected findings</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#closing-thoughts">Closing thoughts</a></li></ol>		</div>
+	</div>
+	<span class="table-of-contents-block__progress-bar"></span>
+</aside>
+
+
+
+<p class="wp-block-paragraph">At <a href="https://forge-blog.github.io/posts/linux-kernel-3-month-lookback/" type="link" id="https://forge-blog.github.io/posts/linux-kernel-3-month-lookback/" target="_blank" rel="noopener noreferrer">Microsoft&#8217;s FORGE Lab</a>, we used codename MDASH to scan a subset of Linux kernel subsystems from late May to mid-June 2026. One full-time researcher and one intern led this three-month effort, which has so far produced <a href="https://lore.kernel.org/all/?q=mid%3A20261013051553.71887-1-cenzhang%40linux.microsoft.com+OR+mid%3A20261012215703.30592-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260925024408.32143-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260925015251.21168-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260901183151.16648-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260818164825.63967-1-blbllhy%40gmail.com+OR+mid%3A20260827051859.45511-1-blbllhy%40gmail.com+OR+mid%3A20260819145658.29872-1-blbllhy%40gmail.com+OR+mid%3A20260826154456.85974-1-blbllhy%40gmail.com+OR+mid%3A20260901182136.13745-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260901180600.10394-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260901175834.8557-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260901174934.6275-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260828041925.36758-1-blbllhy%40gmail.com+OR+mid%3A20260821182449.79785-2-blbllhy%40gmail.com+OR+mid%3A20260821182449.79785-3-blbllhy%40gmail.com+OR+mid%3A20260820200245.44312-1-blbllhy%40gmail.com+OR+mid%3A20260820010617.46851-1-blbllhy%40gmail.com+OR+mid%3A20260816035205.57966-1-blbllhy%40gmail.com+OR+mid%3A20260825052404.45665-3-blbllhy%40gmail.com+OR+mid%3A20260822045407.28983-1-blbllhy%40gmail.com+OR+mid%3A20260819014858.76707-1-blbllhy%40gmail.com+OR+mid%3A20260817013237.2797-1-blbllhy%40gmail.com+OR+mid%3A20260816173713.28998-1-blbllhy%40gmail.com+OR+mid%3A20260722193719.81157-1-blbllhy%40gmail.com+OR+mid%3A20260717210143.4734-1-blbllhy%40gmail.com+OR+mid%3A20260724164719.99563-1-blbllhy%40gmail.com+OR+mid%3A20260721143602.64677-1-blbllhy%40gmail.com+OR+mid%3A20260719232153.1405569-1-xmei5%40asu.edu+OR+mid%3A20260706212556.3199234-1-xmei5%40asu.edu+OR+mid%3A20260720204430.1886091-1-xmei5%40asu.edu+OR+mid%3A20260720223400.1939998-1-xmei5%40asu.edu+OR+mid%3A20260720034514.23053-1-blbllhy%40gmail.com+OR+mid%3A20260723000016.84091-1-blbllhy%40gmail.com+OR+mid%3A20260722223832.3524006-1-xmei5%40asu.edu+OR+mid%3A20260722004818.72310-1-blbllhy%40gmail.com+OR+mid%3A20260720155210.34229-1-blbllhy%40gmail.com+OR+mid%3A20260722002951.2614721-1-xmei5%40asu.e" type="link" id="https://lore.kernel.org/all/?q=mid%3A20261013051553.71887-1-cenzhang%40linux.microsoft.com+OR+mid%3A20261012215703.30592-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260925024408.32143-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260925015251.21168-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260901183151.16648-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260818164825.63967-1-blbllhy%40gmail.com+OR+mid%3A20260827051859.45511-1-blbllhy%40gmail.com+OR+mid%3A20260819145658.29872-1-blbllhy%40gmail.com+OR+mid%3A20260826154456.85974-1-blbllhy%40gmail.com+OR+mid%3A20260901182136.13745-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260901180600.10394-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260901175834.8557-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260901174934.6275-1-cenzhang%40linux.microsoft.com+OR+mid%3A20260828041925.36758-1-blbllhy%40gmail.com+OR+mid%3A20260821182449.79785-2-blbllhy%40gmail.com+OR+mid%3A20260821182449.79785-3-blbllhy%40gmail.com+OR+mid%3A20260820200245.44312-1-blbllhy%40gmail.com+OR+mid%3A20260820010617.46851-1-blbllhy%40gmail.com+OR+mid%3A20260816035205.57966-1-blbllhy%40gmail.com+OR+mid%3A20260825052404.45665-3-blbllhy%40gmail.com+OR+mid%3A20260822045407.28983-1-blbllhy%40gmail.com+OR+mid%3A20260819014858.76707-1-blbllhy%40gmail.com+OR+mid%3A20260817013237.2797-1-blbllhy%40gmail.com+OR+mid%3A20260816173713.28998-1-blbllhy%40gmail.com+OR+mid%3A20260722193719.81157-1-blbllhy%40gmail.com+OR+mid%3A20260717210143.4734-1-blbllhy%40gmail.com+OR+mid%3A20260724164719.99563-1-blbllhy%40gmail.com+OR+mid%3A20260721143602.64677-1-blbllhy%40gmail.com+OR+mid%3A20260719232153.1405569-1-xmei5%40asu.edu+OR+mid%3A20260706212556.3199234-1-xmei5%40asu.edu+OR+mid%3A20260720204430.1886091-1-xmei5%40asu.edu+OR+mid%3A20260720223400.1939998-1-xmei5%40asu.edu+OR+mid%3A20260720034514.23053-1-blbllhy%40gmail.com+OR [truncated]]]></content:encoded>
+					
+		
+		
+				<dc:creator><![CDATA[Cen Zhang]]></dc:creator>
+	</item>
+		<item>
+		<title>Detecting sleeper agents hiding in AI model neurons</title>
+		<link>https://www.microsoft.com/en-us/security/blog/2026/11/10/detecting-sleeper-agents-hiding-in-ai-model-neurons/</link>
+		
+		<dc:creator><![CDATA[Microsoft Threat Intelligence]]></dc:creator>
+		<pubDate>Tue, 10 Nov 2026 23:00:00 +0000</pubDate>
+				<guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=150905</guid>
+
+					<description><![CDATA[<p>Microsoft Research has released new threat research detailing how a capable agent model could be turned into a sleeper agent by editing fewer than ten neurons to inject a short payload; Microsoft Research has also found that this threat is detectable by frontier agents, which can identify anomalous weight edits.</p>
+<p>The post <a href="https://www.microsoft.com/en-us/security/blog/2026/11/10/detecting-sleeper-agents-hiding-in-ai-model-neurons/">Detecting sleeper agents hiding in AI model neurons</a> appeared first on <a href="https://www.microsoft.com/en-us/security/blog">Microsoft Security Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="wp-block-paragraph">Microsoft Research has released new threat research detailing how a capable agent model could be turned into a sleeper agent by editing fewer than 10 neurons to inject a short payload. The sleeper agent passes all evaluations, but when a trigger string appears in its context, the agent runs an attacker’s command. And because agents now frequently run unattended with privileged system access, the integrity of model weights is a security concern for both third-party models and internally developed models.</p>
+
+
+
+<p class="wp-block-paragraph">Key findings from Microsoft Research include:</p>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item">Software abuse and manipulation are familiar threats. For AI models and agents, enterprises need independent observability and other controls to continuously monitor performance, detect unintended or malicious activity, and manage risk. Satya Nadella recently outlined this approach in a <a href="https://snscratchpad.com/posts/models-as-insider-risks/">blog post</a>.</li>
+
+
+
+<li class="wp-block-list-item">A backdoored model can pass evaluations. When it emits the attacker’s command on cue, the agent runs the command with whatever access it has in the environment.</li>
+
+
+
+<li class="wp-block-list-item">The attack needs inference-only compute. If a machine has enough RAM to run a model, it has enough resources to weight-space backdoor it.</li>
+
+
+
+<li class="wp-block-list-item">Claude Code with Opus 4.5 discovered most of this threat autonomously.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">Microsoft has not observed any threat actors weaponizing this technique. However, this research aligns with similar recent research by <a href="https://arxiv.org/abs/2610.37741">Anthropic</a> and <a href="https://rikiyat.github.io/blog/weight-space-programming/">MIT</a> on agentic backdoors and weight-space programming, respectively, highlighting the need to audit open weights like code.</p>
+
+
+
+<p class="wp-block-paragraph">Notably, Microsoft Research has also found that this threat is detectable by frontier agents, which can identify anomalous weight edits. Using frontier agents as auditors can help automate the defense against this threat. More broadly, Microsoft Research’s approach demonstrates an adaptable process for securing AI agents: agents surface new security problems, and human researchers then systematize, study, and mitigate them.</p>
+
+
+
+<p class="wp-block-paragraph">Learn more from the Microsoft Research Blog:</p>
+
+
+
+<div class="wp-block-buttons alignwide is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link has-text-align-center wp-element-button" href="https://www.microsoft.com/en-us/research/blog/lazare-veni-foras-reprogramming-dormant-neurons-to-backdoor-ai-agents/" target="_blank" rel="noopener noreferrer">Lazare, veni foras: Reprogramming dormant neurons to backdoor AI agents</a></div>
+</div>
+
+
+
+<h2 class="wp-block-heading" id="mitigation-and-protection-guidance">Mitigation and protection guidance</h2>
+
+
+
+<p class="wp-block-paragraph">Microsoft recommends the following mitigations to defend against this threat as part of a broader defense-in-depth approach. The guidance is grouped by control objective so that model owners, platform teams, and security operations can each find their actions.</p>
+
+
+
+<h3 class="wp-block-heading" id="audit-model-weights-before-deployment-and-after-every-update">Audit model weights before deployment and after every update</h3>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item">Diff every checkpoint against its declared base model before deployment and after each update. Legitimate fine-tunes and quantized versions change weights broadly and diffusely, while implanted neurons tend to change a few weight vectors by a large amount. Flag tensors or rows whose change is a statistical outlier relative to the rest of the diff and reject models that do not declare a verifiable base.</li>
+
+
+
+<li class="wp-block-list-item">Use frontier AI agents as auditors in the model intake pipeline. Microsoft Research found they are highly effective at finding anomalous structure in weights that manual inspection misses, which makes this step automatable at scale.</li>
+
+
+
+<li class="wp-block-list-item">Complement weight diffing with behavioral backdoor scanning of open-weight models, as described in Microsoft&#8217;s research on <a href="https://www.microsoft.com/en-us/security/blog/2026/02/04/detecting-backdoored-language-models-at-scale/">detecting backdoored language models at scale</a>.</li>
+
+
+
+<li class="wp-block-list-item">Record audit results alongside the model in the registry, and state clearly to internal consumers that passing an audit reduces risk but does not guarantee safe behavior.</li>
+</ul>
+
+
+
+<h3 class="wp-block-heading" id="secure-model-hubs-and-publishers">Secure model hubs and publishers</h3>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item">Display provenance and audit status publicly before a checkpoint can be downloaded or served through an API.</li>
+
+
+
+<li class="wp-block-list-item">Scan every upload for anomalous neurons, weight patterns or behaviors, and state clearly that third-party checkpoints can be unsafe and that passing an audit does not guarantee safe behavior.</li>
+</ul>
+
+
+
+<h3 class="wp-block-heading" id="treat-every-third-party-model-as-untrusted-until-audited">Treat every third-party model as untrusted until audited</h3>
+
+
+
+<ul class="wp-block-list">
+<li class="wp-block-list-item">Source checkpoints only from the original publisher, verify the publisher&#8217;s published file hashes, and treat all third-party fine-tunes, merges, quantizations, and adapters as untrusted until they pass an audit.</li>
+
+
+
+<li class="wp-block-list-item">Register approved models in a private, access-controlled registry (for example, Azur [truncated]]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>FORGE Lab uses agentic tools to identify memory safety issues in Rust</title>
+		<link>https://www.microsoft.com/en-us/security/blog/2026/11/09/forge-lab-uses-agentic-tools-to-identify-memory-safety-issues-in-rust/</link>
+		
+		<dc:creator><![CDATA[Yechan Bae]]></dc:creator>
+		<pubDate>Mon, 09 Nov 2026 20:17:31 +0000</pubDate>
+				<category><![CDATA[Frontier AI models]]></category>
+		<category><![CDATA[Vulnerability]]></category>
+		<guid isPermaLink="false">https://www.microsoft.com/en-us/security/blog/?p=150871</guid>
+
+					<description><![CDATA[<p>Microsoft FORGE Lab researchers found memory-safety bugs in Rust's core and std libraries, including cases where safe Rust code can trigger undefined behavior. Using Hyenas, FORGE's frontier research version of codename MDASH, the team investigated three patterns of misplaced trust in unsafe code and what they reveal about Rust's safety guarantees.</p>
+<p>The post <a href="https://www.microsoft.com/en-us/security/blog/2026/11/09/forge-lab-uses-agentic-tools-to-identify-memory-safety-issues-in-rust/">FORGE Lab uses agentic tools to identify memory safety issues in Rust</a> appeared first on <a href="https://www.microsoft.com/en-us/security/blog">Microsoft Security Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<aside class="table-of-contents-block accordion wp-block-bloginabox-theme-table-of-contents" id="accordion-028d9a87-ebe2-4199-add0-e338f8c55bdd" data-bi-aN="table-of-contents">
+	<button class="btn btn-collapse" type="button" aria-expanded="true" aria-controls="accordion-collapse-028d9a87-ebe2-4199-add0-e338f8c55bdd">
+		<span class="table-of-contents-block__label">In this article</span>
+		<span class="table-of-contents-block__current" aria-hidden="true"></span>
+
+		<svg class="table-of-contents-block__arrow" aria-label="Toggle arrow" width="18" height="11" viewBox="0 0 18 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M15.7761 11L18 8.82043L9 0L0 8.82043L2.22394 11L9 4.35913L15.7761 11Z" fill="currentColor" />
+		</svg>
+	</button>
+	<div id="accordion-collapse-028d9a87-ebe2-4199-add0-e338f8c55bdd" class="table-of-contents-block__collapse-wrapper collapse show" data-parent="#accordion-028d9a87-ebe2-4199-add0-e338f8c55bdd">
+		<div class="table-of-contents-block__content">
+			<ol class="table-of-contents-block__list"><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#how-we-found-and-validated-the-bugs">How we found and validated the bugs</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#pattern-1-trusting-code-not-to-panic">Pattern 1: Trusting code not to panic</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#pattern-2-trusting-user-provided-implementations-to-be-correct">Pattern 2: Trusting user-provided implementations to be correct</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#pattern-3-trusting-the-underlying-system">Pattern 3: Trusting the underlying system</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#why-rust-still-matters-and-advancing-vulnerability-discovery-with-ai">Why Rust still matters and advancing vulnerability discovery with AI</a></li><li class="table-of-contents-block__list-item"><a class="table-of-contents-block__list-item-link" href="#rust-s-high-bar-is-hard-to-meet-but-worth-keeping">Rust&#039;s high bar is hard to meet but worth keeping</a></li></ol>		</div>
+	</div>
+	<span class="table-of-contents-block__progress-bar"></span>
+</aside>
+
+
+
+<p class="wp-block-paragraph">Microsoft&#8217;s FORGE Lab found several memory safety issues in Rust&#8217;s standard library (std and core), including cases where code written entirely in safe Rust can trigger undefined behavior. The research used Hyenas, FORGE&#8217;s frontier research version of codename MDASH, an AI-powered vulnerability-scanning system. The findings reveal three recurring patterns of misplaced trust in unsafe code: trusting code not to panic, trusting user-provided implementations to be correct, and trusting the underlying system.</p>
+
+
+
+<p class="wp-block-paragraph">Rust&#8217;s safety guarantees are precisely what make these findings interesting. Its rich type system and ownership model rule out whole classes of memory-safety issues, but much of the standard library relies on unsafe code underneath its safe APIs. When that code breaks its safety contract, even safe Rust can encounter behavior the language is designed to prevent.</p>
+
+
+
+<p class="wp-block-paragraph">Rust&#8217;s memory-safety guarantees are increasingly important as the language becomes part of software that billions of people rely on every day. Billions of people are estimated to interact with Rust-based software or operating systems daily, often without knowing it. Microsoft made Rust a <a href="https://rustfoundation.org/media/guest-post-rust-is-tier-1-language-at-microsoft/" target="_blank" rel="noreferrer noopener">Tier-1 internal language</a> alongside C++, C#, and TypeScript, GitHub <a href="https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/" target="_blank" rel="noreferrer noopener">rewrote the Copilot agent runtime in Rust</a>, and <a href="https://bun.com/blog/bun-in-rust" target="_blank" rel="noreferrer noopener">Bun</a>, <a href="https://blog.google/security/rust-in-android-move-fast-fix-things/" target="_blank" rel="noreferrer noopener">Android</a>, the <a href="https://lwn.net/Articles/1050174/" target="_blank" rel="noreferrer noopener">Linux kernel</a>, and <a href="https://blog.cloudflare.com/20-percent-internet-upgrade/" target="_blank" rel="noreferrer noopener">Cloudflare</a> are moving code to it as well. Much of this software relies on Rust&#8217;s foundational libraries, core and std, and the safety guarantees of the APIs they provide. Bugs in those libraries can have consequences well beyond the code where they originate.</p>
+
+
+
+<p class="wp-block-paragraph">Unsafe Rust has been a long-running interest for us. Our team includes the people behind <a href="https://dl.acm.org/doi/10.1145/3477132.3483570" target="_blank" rel="noreferrer noopener">Rudra</a>, a static analyzer that looked for memory-safety bugs across the Rust ecosystem in 2021. We also write many of our own tools in Rust, so its safety is more than a research topic for us. This year, we took a closer look at the standard library to see what kinds of mistakes still show up in its unsafe code today.</p>
+
+
+
+<p class="wp-block-paragraph">In this post, we share some of the bugs we reported to the Rust issue tracker. We use them to discuss what Rust does and doesn&#8217;t guarantee, why writing correct unsafe Rust is so difficult, and why Rust&#8217;s safety model still matters even though its memory safety isn&#8217;t perfect.</p>
+
+
+
+<h2 class="wp-block-heading" id="how-we-found-and-validated-the-bugs">How we found and validated the bugs</h2>
+
+
+
+<p class="wp-block-paragraph">At <a href="https://www.microsoft.com/en-us/security/blog/2026/10/07/3-lessons-from-frontier-ai-vulnerability-research/ [truncated]]]></content:encoded>
+					
+		
+		
+				<dc:creator><![CDATA[FORGE Lab]]></dc:creator>
+	</item>
+	</channel>
+</rss>

@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0">
+  <channel>
+    <title>Cloud Security Alliance</title>
+    <description>The Cloud Security Alliance (CSA) is the world’s leading organization dedicated to defining and raising awareness of best practices to help ensure a secure cloud computing environment.</description>
+    <link>https://cloudsecurityalliance.org/feed</link>
+    <language>en</language>
+    <item>
+      <title>CSAI Foundation Announces Availability of RiskRubric to Help Enterprises Evaluate AI Risk</title>
+      <pubDate>Wed, 18 Nov 2026 17:28:56 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/csai-foundation-announces-availability-of-riskrubric-to-help-enterprises-evaluate-ai-risk</link>
+      <guid>https://cloudsecurityalliance.org/articles/csai-foundation-announces-availability-of-riskrubric-to-help-enterprises-evaluate-ai-risk</guid>
+      <description>
+  
+
+
+
+
+With support from Deloitte Italy, PointGuardAI, and Tumeryk, the platform brings comparable risk ratings to AI models and MCP servers
+
+SEATTLE – Nov. 23, 2026 — The Cloud Security Alliance (CSA), the world&amp;#39;s leading not-for-profit organization committed to AI, cloud, and Zero Trust cybersecurity education, today announced the availability of RiskRubric v2, an AI risk rating platform advancing the CSAI Foundation’s mission of Securing the Agentic Control Plane. RiskRubric helps sec...</description>
+    </item>
+    <item>
+      <title>ARTEX and Autonomous Offensive Frameworks</title>
+      <pubDate>Tue, 17 Nov 2026 19:30:40 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/artex-and-autonomous-offensive-frameworks</link>
+      <guid>https://cloudsecurityalliance.org/articles/artex-and-autonomous-offensive-frameworks</guid>
+      <description>
+  
+They’re here. Time’s up. The window is closing.
+
+I despise hyping things up, but now that the FBI is issuing a flash warning about autonomous attacks, the window is down to just a little crack of an opening left for us to get our defenses in place.
+
+On November 17 we hosted an emergency CSA CISO Huddle with Gadi Evron on ARTEX and autonomous attacks. We pulled it together with less than a week’s notice, and roughly 600 people joined. Our speakers and attendees all shared what they are see...</description>
+    </item>
+    <item>
+      <title>How Operationalizing AI Governance Helps Securely Scale Enterprise AI Adoption</title>
+      <pubDate>Tue, 17 Nov 2026 12:08:04 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/how-operationalizing-ai-governance-helps-securely-scale-enterprise-ai-adoption</link>
+      <guid>https://cloudsecurityalliance.org/articles/how-operationalizing-ai-governance-helps-securely-scale-enterprise-ai-adoption</guid>
+      <description>
+  
+&amp;nbsp;
+
+Key takeaways
+
+
+	Runtime policy enforcement shifts enterprise AI governance from retrospective compliance audits into active, inline risk prevention.
+	AI-powered exposure management unifies security visibility by tracking interconnected risks across workforce browser extensions, hosted foundation models, and connected databases.
+	Session-scoped ephemeral credentials paired with runtime execution guardrails restrict agent blast radius and prevent unauthorized tool executions from r...</description>
+    </item>
+    <item>
+      <title>PQC for Defense Contractors Supporting the USA and Canadian Governments</title>
+      <pubDate>Tue, 17 Nov 2026 10:24:13 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/pqc-for-defense-contractors-supporting-the-usa-and-canadian-governments</link>
+      <guid>https://cloudsecurityalliance.org/articles/pqc-for-defense-contractors-supporting-the-usa-and-canadian-governments</guid>
+      <description>
+  
+Writtten by Diane Ouandji, Member of the CSA Quantum-Safe Security Working Group &amp;amp;&amp;nbsp;Founder and Strategic Cybersecurity Advisor at Stratechno Inc, with contributions from Mehak Kalsi, Co-Chair of the CSA Quantum-Safe Security Working Group.
+
+&amp;nbsp;
+
+Introduction
+
+Many governments around the world are requiring defense services/materials providers to comply with specific cybersecurity requirements in order to be able to become their contractors. In the USA, there is the Cybersecuri...</description>
+    </item>
+    <item>
+      <title>AI Governance Is Cloud Governance: From Posture to Proof</title>
+      <pubDate>Mon, 16 Nov 2026 10:40:03 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/ai-governance-is-cloud-governance-from-posture-to-proof</link>
+      <guid>https://cloudsecurityalliance.org/articles/ai-governance-is-cloud-governance-from-posture-to-proof</guid>
+      <description>
+  
+
+&amp;nbsp;
+
+Executive Summary&amp;nbsp;
+
+AI governance is cloud governance. It must go beyond inventory and policies to prove that AI systems operate securely across IaaS, PaaS and SaaS. Connecting discovery, posture assessment, adversarial testing, runtime monitoring and remediation provides evidence of what AI can access, how it behaves, and whether security controls work.&amp;nbsp;
+
+&amp;nbsp;
+
+Key Takeaways&amp;nbsp;
+
+
+	AI inventory must extend beyond cloud APIs.&amp;nbsp;
+	AI security posture is not proof ...</description>
+    </item>
+    <item>
+      <title>CSA STAR for AI Certifications: What are They?</title>
+      <pubDate>Mon, 16 Nov 2026 10:39:05 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/csa-star-for-ai-certifications-what-are-they</link>
+      <guid>https://cloudsecurityalliance.org/articles/csa-star-for-ai-certifications-what-are-they</guid>
+      <description>
+  
+The CSA STAR for AI program extends STAR, the largest cloud assurance program in the world, to artificial intelligence. Any organization that develops, orchestrates, or delivers AI services can benefit from completing a STAR for AI certification. These certifications are based on the AI Controls Matrix (AICM), which preserves all controls of the Cloud Controls Matrix (CCM) and adds AI-specific controls covering risks such as adversarial inputs, data poisoning, model integrity, explainabil...</description>
+    </item>
+    <item>
+      <title>RiskRubric v2 Is Live: Know the Risk Before You Deploy</title>
+      <pubDate>Mon, 16 Nov 2026 10:32:40 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/riskrubric-v2-is-live-know-the-risk-before-you-deploy</link>
+      <guid>https://cloudsecurityalliance.org/articles/riskrubric-v2-is-live-know-the-risk-before-you-deploy</guid>
+      <description>
+  
+RiskRubric v2 is live. As of today, 23&amp;nbsp;November, you can look up an evidence-based risk rating for 44 AI models and 203 MCP servers at riskrubric.ai&amp;nbsp;— each with a composite score on a 0–1000 scale, an A–F grade, a breakdown across its risk pillars, and the per-scanner evidence behind it. No registration, no fee, no vendor sponsorship.
+
+In June we told you what v2 would be. This post is about what you can do with it, starting now.
+
+&amp;nbsp;
+
+What you can do today
+
+If you are evalua...</description>
+    </item>
+    <item>
+      <title>The AI Threat Landscape in 2026: What You Need to Know</title>
+      <pubDate>Mon, 16 Nov 2026 10:11:54 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/the-ai-threat-landscape-in-2026-what-you-need-to-know</link>
+      <guid>https://cloudsecurityalliance.org/articles/the-ai-threat-landscape-in-2026-what-you-need-to-know</guid>
+      <description>
+  
+Artificial intelligence is changing cybercrime, but not necessarily by creating new types of attacks. Instead, AI is making familiar threats faster, cheaper, and easier to carry out. Phishing, identity fraud, credential theft, and attacks on software systems can now happen on a much larger scale. They used to require much bigger teams.
+
+That is the central finding of The AI Threat Landscape, a 2026 whitepaper by Ensar Seker, CISO of SOCRadar. It draws on dark-web monitoring, tests of unde...</description>
+    </item>
+    <item>
+      <title>Cloud Security Alliance Announces Winners of 2026 Pitchapalooza</title>
+      <pubDate>Wed, 11 Nov 2026 15:37:01 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/cloud-security-alliance-announces-winners-of-2026-pitchapalooza</link>
+      <guid>https://cloudsecurityalliance.org/articles/cloud-security-alliance-announces-winners-of-2026-pitchapalooza</guid>
+      <description>
+  
+Winners recognized for pioneering technologies advancing agentic AI security and tackling emerging cybersecurity challenges
+
+SEATTLE – Nov. 12, 2026 — The Cloud Security Alliance (CSA), the world&amp;#39;s leading not-for-profit organization committed to AI, cloud, and Zero Trust cybersecurity education, is pleased to announce the winners of its annual Startup Pitchapalooza competition. The event gives CSA-member early-stage cybersecurity and cloud vendors an opportunity to showcase innovativ...</description>
+    </item>
+    <item>
+      <title>How Penetration Testing Strengthens Your Cyber Insurance Renewal Strategy</title>
+      <pubDate>Tue, 10 Nov 2026 11:58:59 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/how-penetration-testing-strengthens-your-cyber-insurance-renewal-strategy</link>
+      <guid>https://cloudsecurityalliance.org/articles/how-penetration-testing-strengthens-your-cyber-insurance-renewal-strategy</guid>
+      <description>
+  
+Cyber insurance renewals have changed, have you noticed?
+
+Insurers are asking more questions, and those questions are growing more pointed. They want to understand not just what security controls you have on paper, but also how those controls work in practice. More than that, insurers want to see evidence of your vulnerability management, testing, remediation, and overall security maturity.
+
+For organizations, what used to feel like a fairly standard annual process has become a more criti...</description>
+    </item>
+    <item>
+      <title>Lost in Delegation</title>
+      <pubDate>Tue, 10 Nov 2026 11:58:30 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/lost-in-delegation</link>
+      <guid>https://cloudsecurityalliance.org/articles/lost-in-delegation</guid>
+      <description>
+  
+
+
+When AI starts acting on our behalf, fluency is no longer the skill that matters
+
+Since February 2025, the AI Act has obliged organisations to work on their staff’s AI literacy. Since July 2026, after the omnibus, only to “support” it. Europe is softening the duty to train people to use AI just as AI starts acting on its own.
+
+That is the right curriculum for a tool. It is the wrong one for a delegate. And AI is quietly turning from the first into the second.
+
+This piece began as the fi...</description>
+    </item>
+    <item>
+      <title>Minimum Viable AI Security: 9 Steps to Build Your Program in 90 Days</title>
+      <pubDate>Tue, 10 Nov 2026 11:58:18 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/minimum-viable-ai-security-9-steps-to-build-your-program-in-90-days</link>
+      <guid>https://cloudsecurityalliance.org/articles/minimum-viable-ai-security-9-steps-to-build-your-program-in-90-days</guid>
+      <description>
+  
+CEOs want every AI tool adopted, teams have experimental AI budgets, and agents are entering through browsers, IDEs, SaaS apps, and cloud platforms all at once.
+
+For CISOs, the challenge is enabling this adoption while maintaining visibility and control, often with limited budgets and resources.
+
+The answer is not to solve every AI security problem at once. It is to establish the right controls in the right order.
+
+At&amp;nbsp;Aktonomy Fall &amp;#39;26, security leaders from insurance, healthcare...</description>
+    </item>
+    <item>
+      <title>Human-in-the-Loop: When Should a Human Approve an AI Action?</title>
+      <pubDate>Tue, 10 Nov 2026 11:57:41 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/human-in-the-loop-when-should-a-human-approve-an-ai-action</link>
+      <guid>https://cloudsecurityalliance.org/articles/human-in-the-loop-when-should-a-human-approve-an-ai-action</guid>
+      <description>
+  
+AI can give security teams machine-scale capacity, but it cannot make human accountability disappear. The challenge for&amp;nbsp;AI-first security organizations is deciding which actions agents may take and which need human approval. Put a person in front of every action and AI security operations collapse back to human speed. Remove people from consequential decisions and the organization creates unacceptable operational, regulatory, and business risk.
+
+The answer is not simply to choose aut...</description>
+    </item>
+    <item>
+      <title>DLP and UEBA Are Asking the Wrong Insider Risk Questions</title>
+      <pubDate>Tue, 10 Nov 2026 11:57:39 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/dlp-and-ueba-are-asking-the-wrong-insider-risk-questions</link>
+      <guid>https://cloudsecurityalliance.org/articles/dlp-and-ueba-are-asking-the-wrong-insider-risk-questions</guid>
+      <description>
+  
+According to&amp;nbsp;IBM&amp;#39;s&amp;nbsp;Cost of a Data Breach report, a breach that begins with a malicious insider costs $4.99M on average (the costliest initial vector measured). Mean time to identify and contain it: 260 days.
+
+Ask a security leader whether insider risk matters and the answer comes back immediately. Ask them to describe their insider risk program and the conversation slows down.
+
+That gap is worth sitting with, because it isn&amp;#39;t a budget gap. Two mature categories- DLP and ...</description>
+    </item>
+    <item>
+      <title>The Cloud Configuration Blind Spot: Lessons from GitHub’s Outage</title>
+      <pubDate>Tue, 10 Nov 2026 11:56:45 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/the-cloud-configuration-blind-spot-lessons-from-github-s-outage</link>
+      <guid>https://cloudsecurityalliance.org/articles/the-cloud-configuration-blind-spot-lessons-from-github-s-outage</guid>
+      <description>
+  
+Executive Summary: GitHub’s August 17 outage illustrates a difficult truth about modern cloud infrastructure: a configuration can be technically present, correctly formatted, and still fail to protect the system it governs. The real risk emerges in the dependencies between components. In this blog, we examine what this incident reveals about continuous security posture monitoring.
+
+&amp;nbsp;
+
+When a “Correct” Configuration Still Fails
+
+GitHub’s August 17 outage lasted 7 hours and 47 minutes,...</description>
+    </item>
+    <item>
+      <title>AI Doesn’t Just Need Guardrails. It Actually Needs Independent Assurance.</title>
+      <pubDate>Tue, 10 Nov 2026 11:56:26 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/ai-doesn-t-just-need-guardrails-it-actually-needs-independent-assurance</link>
+      <guid>https://cloudsecurityalliance.org/articles/ai-doesn-t-just-need-guardrails-it-actually-needs-independent-assurance</guid>
+      <description>
+  
+There have been a lot of conversations about AI safety lately, but one idea really caught my attention: Anthropic CEO Dario Amodei spoke about the need for independent evaluators to have deeper access to AI companies and their models so they can actually test whether the safety measures being put in place are functioning.
+
+When I read that, I immediately thought this is exactly where AI assurance needs to go.
+
+&amp;nbsp;
+
+Why AI Should Be Held to the Same Security Standard as Everything Else
+...</description>
+    </item>
+    <item>
+      <title>How to Contain Shadow AI, As It Takes on Multiple Forms and Spreads Throughout Your Environment</title>
+      <pubDate>Tue, 10 Nov 2026 11:56:18 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/how-to-contain-shadow-ai-as-it-takes-on-multiple-forms-and-spreads-throughout-your-environment</link>
+      <guid>https://cloudsecurityalliance.org/articles/how-to-contain-shadow-ai-as-it-takes-on-multiple-forms-and-spreads-throughout-your-environment</guid>
+      <description>
+  
+&amp;nbsp;
+
+TL; DR
+
+Shadow AI used to be confined to a few simple scenarios, such as AI chatbots and AI browser extensions. Today, it spans a broad spectrum of complex vectors, making it harder to detect and control. In tthis blog, we look at how employee security training, AI usage governance, and exposure management can help you tackle shadow AI successfully.
+
+&amp;nbsp;
+
+Key Takeaways
+
+
+	Integrating shadow AI into security awareness training helps employees recognize its risks and learn how to...</description>
+    </item>
+    <item>
+      <title>The $6.3 Billion Binance Signing Compromise and Agentic AI Threat Analysis</title>
+      <pubDate>Tue, 10 Nov 2026 10:50:35 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/the-6-3-billion-binance-signing-compromise-and-agentic-ai-threat-analysis</link>
+      <guid>https://cloudsecurityalliance.org/articles/the-6-3-billion-binance-signing-compromise-and-agentic-ai-threat-analysis</guid>
+      <description>
+  
+
+
+
+&amp;nbsp;
+
+
+	
+		
+			
+			FORENSIC BRIEFING &amp;amp; EXECUTIVE ARCHITECTURE
+			Incident &amp;amp; Recovery Summary: On October 29, 2026, an attacker drained approximately $6.36 billion from Binance hot wallets across 10 distinct blockchains within approximately 20 minutes by compromising an internal signing request path via a privileged DevOps endpoint. Centralized stablecoin issuers froze roughly $3.0 billion. In Security Incident Recovery Update #3 on October 31, 2026, Binance Co-CEOs Richard Te...</description>
+    </item>
+    <item>
+      <title>AI Governance Isn't a Chore Problem. It's an Architecture Problem.</title>
+      <pubDate>Thu, 05 Nov 2026 10:45:39 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/ai-governance-isn-t-a-chore-problem-it-s-an-architecture-problem</link>
+      <guid>https://cloudsecurityalliance.org/articles/ai-governance-isn-t-a-chore-problem-it-s-an-architecture-problem</guid>
+      <description>
+  
+Originally published by LangGuard.ai.
+
+Four in five senior business decision-makers are spending more of their day managing AI risk, and their working hours are up 26% on average, according to the September 2026 OneTrust survey cited by CIO.com.
+
+That is not evidence that enterprises need more governance meetings… it is evidence that governance is being performed in the wrong place.
+
+Leaders are not governing. They are triaging incidents, chasing unapproved tools, reconstructing decisions...</description>
+    </item>
+    <item>
+      <title>Grok Bot, Dots, Muse and Instinct Now Act With Your Employees’ Access</title>
+      <pubDate>Thu, 05 Nov 2026 10:45:23 -0800</pubDate>
+      <link>https://cloudsecurityalliance.org/articles/grok-bot-dots-muse-and-instinct-now-act-with-your-employees-access</link>
+      <guid>https://cloudsecurityalliance.org/articles/grok-bot-dots-muse-and-instinct-now-act-with-your-employees-access</guid>
+      <description>
+  
+Between August and late September 2026, at least four personal AI agents launched or opened to early users. They come from different companies, from large AI labs to an invite-only startup. Underneath, they share one design: each agent holds standing access to a person’s accounts and works on its own, without waiting for a prompt.
+
+The capabilities overlap heavily. These agents run on vendor-hosted cloud computers with their own browsers and logins. They connect to email, calendars, file ...</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,378 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+<channel>
+<atom:link href="https://isc.sans.edu/rssfeed_full.xml" rel="self" type="application/rss+xml"/>
+<title>SANS Internet Storm Center, InfoCON: green</title>
+<atom:link href="https://isc.sans.edu/rssfeed_full.xml" rel="self" type="application/rss+xml"/><link>https://isc.sans.edu</link><description><![CDATA[SANS Internet Storm Center - Cooperative Cyber Security Monitor]]></description><language>   en-us</language><lastBuildDate>   Tue, 24 Nov 2026 23:35:04 +0000</lastBuildDate><pubDate>Tue, 24 Nov 2026 02:32:00 GMT</pubDate><copyright>(C) SANS Institute 2026</copyright>
+             <generator>isc rss feed maker</generator>
+             <ttl>30</ttl>
+             <webMaster>handlers@sans.org (ISC Handlers)</webMaster>
+             <image>
+               <title>SANS Internet Storm Center, InfoCON: green</title>
+               <url>https://isc.sans.edu/images/status.gif</url>
+               <link>https://isc.sans.edu</link>
+             </image>
+  <item>
+    <title><![CDATA[Scanning from Subnet 109.160.32.0/24, (Mon, Nov 23rd)]]></title>
+    <link>https://isc.sans.edu/diary/rss/33550</link>    <guid>https://isc.sans.edu/diary/rss/33550</guid><description><![CDATA[ <p>This subnet is assigned to a web hosting and virtual private server (VPS) provider BANATSYNC SRL with AS198364, located in Timisoara, Romania. This graph shows the DShield sensor activity over the past 90 days for this subnet and it is still ongoing as of this writing.</p>&#xd;]]></description><content:encoded><![CDATA[<p>This subnet is assigned to a web hosting and virtual private server (VPS) provider BANATSYNC SRL with AS198364, located in Timisoara, Romania. This graph shows the DShield sensor activity over the past 90 days for this subnet and it is still ongoing as of this writing.</p>
+
+<p><img alt="" src="https://isc.sans.edu/diaryimages/images/90_days_activity.png" style="width: 731px; height: 633px;" /></p>
+
+<p>Using the <a href="https://www.elastic.co/docs/reference/query-languages/esql">ES|QL</a> query listed below, starting the query from the 1 September 2026, 159 IPs from this block scanned at least once to multiple times my DShield sensors against mostly the SSH service and when found, attempted and sometimes successfully login the sensor. This analysis from this subnet started on the 5 September 2026 and capture regularly by 2 separate DShield sensors.&nbsp;</p>
+
+<p>A review of both the firewall and cowrie logs, all IPs involved attempted to login into the SSH service with almost all (152 out 159) of them succeeding to login into the sensors using with the standard usernames (root, ubuntu, admin, etc.) using a single command (<span style="font-family:Courier New,Courier,monospace;">uname -s -v -n -r -m</span>) followed by a immediate disconnection. One sensor received 127 unique IPs while the other received 134 unique IPs.&nbsp;</p>
+
+<p>The firewall logs show some interesting characteristics with a time-to-live mostly between 45 to 52 with some exception that also include ranges between 232 to 243. In order to understand the discrepancies, I reviewed the packet capture from each sensor and found some packets where <strong>69 IPs</strong>&nbsp;stared with a static IPID of <span style="font-family:Courier New,Courier,monospace;">54321</span> and every one of them had a TTL that range between 232 to 243. All the inbound backets behaved the same way, SYN, SYN-ACK, RST targeting various ports including TCP/2323, TCP/22 and TCP/2222 where the actors/bots sometimes after multiple attemps, successfully login.</p>
+
+<p><img alt="" src="https://isc.sans.edu/diaryimages/images/ip_id_54321.png" style="width: 1097px; height: 644px;" /></p>
+
+<p>Using the logs from the DShield SIEM and selecting only the traffic with the IPID 54321 and reviewing the Vega-Lite graph, it is easy to see the activity was consistent with the previously identified <strong>69 IPs</strong> that each time each IP would come live,&nbsp;the first packet was always starting with high TTL (<span style="font-family:Courier New,Courier,monospace;">230+</span>) and the remainder packets were all using normal TTL related to a moderl <a href="https://jumpcloud.com/it-index/what-is-time-to-live-ttl">Linux</a> system. In order to inspect why this would be happening, using packet capture by the sensors based on matching high TTL for one specific IP address (109.160.32.146) and what appeared was interesting. Using <a href="https://www.wireshark.org/docs/wsug_html_chunked/AppToolstshark.html">tshark</a> to replay the initial packet for 13 Nov 2026 started with a TTL of <span style="font-family:Courier New,Courier,monospace;">239</span>&nbsp;and when that traffic responded with a reset (0x0004), the TTL was now 50. Any traffic that followed the first SYN packets all had TTL of 50 (picture below).&nbsp;</p>
+
+<p><img alt="" src="https://isc.sans.edu/diaryimages/images/Packet_ttl_IP109_160_32_146.png" style="width: 844px; height: 399px;" /></p>
+
+<p>This is a sample of 4 IPs (DSL query below) out of the 69 that shows the first packet starting with a TTL <span style="font-family:Courier New,Courier,monospace;">230+</span> followed by normal TTL after the activity continue. Reviewing&nbsp; the reports from VirusTotal of those 4 IPs [<a href="https://www.virustotal.com/gui/ip-address/109.160.32.88/community">7</a>][<a href="https://www.virustotal.com/gui/ip-address/109.160.32.141/community">8</a>][<a href="https://www.virustotal.com/gui/ip-address/109.160.32.147/community">9</a>][<a href="https://www.virustotal.com/gui/ip-address/109.160.32.150/community">10</a>] shows all the same characteristics with SSH brute-force if SSH is listening and running some commands before disconnecting.</p>
+
+<p><img alt="" src="https://isc.sans.edu/diaryimages/images/low_high_TTL.png" style="width: 753px; height: 509px;" /></p>
+
+<p><span style="font-size:16px;"><strong>Shodan Open Ports</strong></span><br />
+This is a random list of IPs checked against <a href="https://www.shodan.io/">Shodan</a> that list the same open ports. The two sample lists show these IPs have SSH available as the only service while other have nothing open. If the SSH service is listening, it is using 2 different version of Ubuntu 24.04 LTS and 26.04 LTS.</p>
+
+<p><strong>Shodan Information about SSH TCP/22</strong></p>
+
+<p>109.160.32.34&nbsp; SSH-2.0-OpenSSH_10.2p1 Ubuntu-2ubuntu3.2 (Ubuntu 26.04 LTS)<br />
+109.160.32.141 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13&nbsp; &nbsp;(Ubuntu 24.04 LTS)<br />
+109.160.32.147 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13&nbsp; &nbsp;(Ubuntu 24.04 LTS)<br />
+109.160.32.150 SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13&nbsp; &nbsp;(Ubuntu 24.04 LTS)<br />
+109.160.32.200 SSH-2.0-OpenSSH_10.2p1 Ubuntu-2ubuntu3.2 (Ubuntu 26.04 LTS)</p>
+
+<p><strong>Shodan No Open Port for this IP sample</strong></p>
+
+<p>109.160.32.12<br />
+109.160.32.66<br />
+109.160.32.80<br />
+109.160.32.88</p>
+
+<p><span style="font-size:16px;"><strong>Kibana Traffic Analysis with DSL and ES|QL</strong></span></p>
+
+<p><strong>DSL Query IP Range</strong></p>
+
+<p>{<br />
+&nbsp; &quot;range&quot;: {<br />
+&nbsp; &nbsp; &quot;related.ip&quot;: {<br />
+&nbsp; &nbsp; &nbsp; &quot;gte&quot;: &quot;109.160.32.0&quot;,<br />
+&nbsp; &nbsp; &nbsp; &quot;lte&quot;: &quot;109.160.32.255&quot;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; }<br />
+}</p>
+
+<p><strong>DSL Query for IP with a TTL Greater than 230</strong></p>
+
+<p>{<br />
+&nbsp; &quot;range&quot;: {<br />
+&nbsp; &nbsp; &quot;network.ttl&quot;: {<br />
+&nbsp; &nbsp; &nbsp; &quot;gte&quot;: &quot;230&quot;<br />
+&nbsp; &nbsp; }<br />
+&nbsp; }<br />
+}</p>
+
+<p><strong>DSL Query IP with Low &amp; High TTL</strong></p>
+
+<p>{<br />
+&nbsp; &quot;terms&quot;: {<br />
+&nbsp; &nbsp; &quot;related.ip&quot;: [<br />
+&nbsp; &nbsp; &nbsp; &quot;109.160.32.88&quot;,<br />
+&nbsp; &nbsp; &nbsp; &quot;109.160.32.141&quot;,<br />
+&nbsp; &nbsp; &nbsp; &quot;109.160.32.147&quot;,<br />
+&nbsp; &nbsp; &nbsp; &quot;109.160.32.150&quot;<br />
+&nbsp; &nbsp; ]<br />
+&nbsp; }<br />
+}</p>
+
+<p><strong>ES|QL Query</strong></p>
+
+<p>FROM cowrie*&nbsp;<br />
+| WHERE event.reference == &quot;no match&quot;<br />
+| WHERE CIDR_MATCH(related.ip, &quot;109.160.32.0/24&quot;)<br />
+| STATS&nbsp; BY related.ip</p>
+
+<p>FROM cowrie*&nbsp;<br />
+| WHERE event.reference == &quot;no match&quot;<br />
+| WHERE CIDR_MATCH(related.ip, &quot;109.160.32.0/24&quot;)<br />
+| WHERE network.ttl &gt;= 230<br />
+| STATS&nbsp; BY network.ttl</p>
+
+<p><strong>TShark Output</strong></p>
+
+<p>This is the command used to verify the activity between low and high TTL:</p>
+
+<p>tshark.exe -nnr tcp2323_54321_random.pcap -T fields -e frame.time -e ip.src -e ip.dst -e ip.ttl -e tcp.flags</p>
+
+<p>[1] https://scamalytics.com<br />
+[2] https://arxiv.org/html/2307.08490v1<br />
+[3] https://github.com/zmap/zmap<br />
+[4] https://github.com/zmap/zmap/blob/main/src/probe_modules/packet.c<br />
+[5] https://isc.sans.edu/tools/honeypot/<br />
+[6] https://github.com/bruneaug/DShield-SIEM/tree/main<br />
+[7] https://www.virustotal.com/gui/ip-address/109.160.32.88<br />
+[8] https://www.virustotal.com/gui/ip-address/109.160.32.141<br />
+[9] https://www.virustotal.com/gui/ip-address/109.160.32.147<br />
+[10] https://www.virustotal.com/gui/ip-address/109.160.32.150</p>
+
+<p>-----------<br />
+Guy Bruneau <a href="http://www.ipss.ca/">IPSS Inc.</a><br />
+<a href="https://github.com/bruneaug/">My GitHub Page</a><br />
+Twitter: <a href="https://twitter.com/guybruneau">GuyBruneau</a><br />
+gbruneau at isc dot sans dot edu</p>
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></content:encoded>    <pubDate>Tue, 24 Nov 2026 02:32:00 GMT</pubDate>  </item>  <item>
+    <title><![CDATA[ISC Stormcast For Tuesday, November 24th, 2026 https://isc.sans.edu/podcastdetail/10192, (Tue, Nov 24th)]]></title>
+    <link>https://isc.sans.edu/diary/rss/33552</link>    <guid>https://isc.sans.edu/diary/rss/33552</guid><description><![CDATA[  (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></description><content:encoded><![CDATA[
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></content:encoded>    <pubDate>Tue, 24 Nov 2026 02:00:04 GMT</pubDate>  </item>  <item>
+    <title><![CDATA[ISC Stormcast For Monday, November 23rd, 2026 https://isc.sans.edu/podcastdetail/10190, (Mon, Nov 23rd)]]></title>
+    <link>https://isc.sans.edu/diary/rss/33548</link>    <guid>https://isc.sans.edu/diary/rss/33548</guid><description><![CDATA[  (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></description><content:encoded><![CDATA[
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></content:encoded>    <pubDate>Mon, 23 Nov 2026 02:00:04 GMT</pubDate>  </item>  <item>
+    <title><![CDATA[A brief history of syslog timestamps, (Sun, Nov 22nd)]]></title>
+    <link>https://isc.sans.edu/diary/rss/33530</link>    <guid>https://isc.sans.edu/diary/rss/33530</guid><description><![CDATA[ <p>BLUF: Debian and Ubuntu dropped a config directive in the rsyslogd package in early 2023.</p>&#xd;]]></description><content:encoded><![CDATA[<p>BLUF: Debian and Ubuntu dropped a config directive in the rsyslogd package in early 2023.</p>
+
+<p>As any of my FOR577 students will tell you, I&#39;m a fan of ISO-8601 (ok, RFC 3339, too, see below). They&#39;ll probably also tell you I&#39;m a firm believer in UTC||GTFO especially on servers (also true, and I&#39;ve made stickers to prove it). I was also asked recently why the syslog timestamps in newer Ubuntu and Debian systems changed to ISO-8601 (well, probably actually RFC 3339, but I won&#39;t got down that rabbithole in this handler&#39;s diary)&nbsp;timestamps from the historical <code>Mmm dd hh:mm:ss</code> format we&#39;ve known since the 1980s. I had noticed the same, a few years ago, but never really paid attention to it. Given the question from a student, I decided to do a little research on the subject and this diary is the result.</p>
+
+<p>To back up some, the syslog protocol and syslogd were originally the creation of Eric Allman in 1983 because he needed a way to debug sendmail[<a href="https://blog.runreveal.com/the-history-of-centralized-logging/">1</a>]. They became part of BSD 4.2&nbsp;that same year. BSD 4.2 also happened to be my introduction to Unix in 1983. Syslog then&nbsp;made it into AT&amp;T&#39;s System V Unix in about&nbsp;1989&nbsp;in SVR4 (System V Release 4) through an effort by AT&amp;T and Sun Microsystems to try to merge the features of the 2 major branches of Unix at the time. System V adopted the protocol and routing interfaces but built the daemon on top of System V internals.</p>
+
+<p>The first effort to develop the protocol into an actual standard was an IETF draft in Oct 2000 that evolved into RFC 3164[<a href="https://www.rfc-editor.org/info/rfc3164/#section-4">2</a>] in 2001, by which time the protocol was actually already 18 years old. This is the syslog message format we&#39;ve all come to know so well over the years. Meanwhile, around 2005, rsyslogd added the option of outputing RFC 3339 timestamps. In 2009, RFC 3164 was superceded by RFC 5424[<a href="https://www.rfc-editor.org/info/rfc5424/#section-6.2.3">3</a>] which defined the timestamp to be of the format <code>YYYY-MM-DDThh:mm:ss[.ssssss]Z</code> or <code>YYYY-MM-DDThh:mm:ss[.ssssss](+/-)hh:mm</code>. Despite the new RFC, the default setting even for rsyslogd in most Linux distros continued to be to write messages to the log files&nbsp;in the older format (referred to as the BSD format, as specified in the title of RFC 3164), by setting a directive in <code>/etc/rsyslog.conf</code>&nbsp;(the <code>RSYSLOG_TraditionalFileFormat</code> directive).</p>
+
+<p>That brings us to 2023, with the release of Debian 12 (Bookworm) and Ubuntu 23.04 (not a LTS release) both distros&nbsp;stopped installing rsyslogd by default and defaulted to the systemd journal for logging and removed the directive from the default config file for those who did install it..&nbsp;Many system administrators continue to&nbsp;install&nbsp;rsyslogd because they had infrastructure in place for forwarding syslog to central log servers and/or SIEMs. These are the folks most likely to have noticed the format change.&nbsp;Meanwhile, Fedora and Alma (and presumably the rest of the RedHat family)&nbsp;have left the directive in place when the package is installed.</p>
+
+<p>From a Ubuntu 24.04 system:</p>
+
+<p><img alt="" src="https://isc.sans.edu/diaryimages/images/2026-11-20%2013_15_59-leibnitz-ovpn%20-%20SecureCRT.png" style="width: 1429px; height: 103px;" />From a Fedora 44 system:</p>
+
+<p><img alt="" src="https://isc.sans.edu/diaryimages/images/2026-11-20%2013_19_21-leibnitz-ovpn%20-%20SecureCRT.png" style="width: 1421px; height: 139px;" /></p>
+
+<p>Meanwhile you can get either one with <code>journalctl </code>by setting the output format to either <code>short </code>(BSD format) or <code>short-iso-precise</code> (ISO format).</p>
+
+<p><img alt="" src="https://isc.sans.edu/diaryimages/images/2026-11-23%2002_23_10-leibnitz-ts%20-%20SecureCRT.png" style="width: 992px; height: 136px;" />&nbsp;</p>
+
+<p>Also, note that rsyslogd is not the only option for a syslog server. I&#39;ve been using syslog-ng as the syslog server on my home log collector&nbsp;since about 2000. In syslog-ng, the new &#39;ISO&#39; timestamps can be enabled by setting the following two options in syslog-ng.conf: <code>ts-format(iso)</code> and <code>frac-digits(6)</code>. Since I have just been upgrading my central log server for years, I haven&#39;t done a fresh install lately, so I&#39;m not sure if that is the default. I had to explicitly add it to my config.</p>
+
+<p>References:</p>
+
+<p>1. <a href="https://blog.runreveal.com/the-history-of-centralized-logging/">The History of Centralized Logging</a></p>
+
+<p>2. <a href="https://www.rfc-editor.org/info/rfc3164/#section-4">RFC 3164: The BSD Syslog Protocol</a></p>
+
+<p>3. <a href="https://www.rfc-editor.org/info/rfc5424/#section-6.2.3">RFC 5424: The Syslog Protocol</a></p>
+
+<p>---------------<br />
+Jim Clausing, GIAC GSE #26<br />
+jclausing --at-- isc [dot] sans (dot) edu</p>
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></content:encoded>    <pubDate>Sun, 22 Nov 2026 18:40:18 GMT</pubDate>  </item>  <item>
+    <title><![CDATA[ISC Stormcast For Friday, November 20th, 2026 https://isc.sans.edu/podcastdetail/10188, (Fri, Nov 20th)]]></title>
+    <link>https://isc.sans.edu/diary/rss/33538</link>    <guid>https://isc.sans.edu/diary/rss/33538</guid><description><![CDATA[  (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></description><content:encoded><![CDATA[
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></content:encoded>    <pubDate>Fri, 20 Nov 2026 02:00:02 GMT</pubDate>  </item>  <item>
+    <title><![CDATA[ISC Stormcast For Thursday, November 19th, 2026 https://isc.sans.edu/podcastdetail/10186, (Thu, Nov 19th)]]></title>
+    <link>https://isc.sans.edu/diary/rss/33536</link>    <guid>https://isc.sans.edu/diary/rss/33536</guid><description><![CDATA[  (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></description><content:encoded><![CDATA[
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></content:encoded>    <pubDate>Thu, 19 Nov 2026 02:00:03 GMT</pubDate>  </item>  <item>
+    <title><![CDATA[Treat Your Honeypot Analysis Like Code: Git, Pull Requests and a Human Gate for AI &#x5b;Guest Diary&#x5d;, (Wed, Nov 18th)]]></title>
+    <link>https://isc.sans.edu/diary/rss/33534</link>    <guid>https://isc.sans.edu/diary/rss/33534</guid><description><![CDATA[ <p>&#x5b;This is a Guest Diary by Kevin Truong, an ISC intern as part of the SANS.edu <a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/">BACS</a> program&#x5d;</p>&#xd;]]></description><content:encoded><![CDATA[<p>[This is a Guest Diary by Kevin Truong, an ISC intern as part of the SANS.edu <a href="https://www.sans.edu/cyber-security-programs/bachelors-degree/">BACS</a> program]</p>
+
+<p><strong><span style="font-size:16px;">Introduction</span></strong><br />
+When conducting analysis of honeypot activity, it&#39;s easy for it to start as a pile of terminal output. The process is manual; screenshots of the terminal, plus a text file that gets edited in a common word processing application until it is &quot;done&quot;. There is no say whether a certain number came from a certain query, what changed between drafts, or who decided to drop a caveat.</p>
+
+<p><br />
+While hosting my own honeypot sensor, I wrote up three attacks:</p>
+
+<ul>
+	<li>An SSH brute force that logged in as mysql/mysql [<a href="https://github.com/kevtruo/security/tree/main/analysis/2026-10-18-ssh-brute-force-mysql-default-creds">1</a>]</li>
+	<li>A bot looking for Telegram Desktop sessions and SMS modems [<a href="https://github.com/kevtruo/security/tree/main/analysis/2026-10-19-telegram-sms-recon-bot">2</a>]</li>
+	<li>A month of RedTail exploits against PHP plus one oversized multipart POST that matches the shape of PHP2Shell (CVE-2026-109618) [<a href="https://github.com/kevtruo/security/tree/main/analysis/2026-10-03-php-vulnerability-hunt">3</a>].</li>
+</ul>
+
+<p>Instead of a document folder though, I kept every report in a public git repository [<a href="https://github.com/kevtruo/security">4</a>] and changed it only through pull requests. Supporting me in my analysis was an AI coding agent (Claude Code), which also drafted reports as a separate GitHub machine account. I wanted to give my Claude Code sessions a tangible identity in the code submission and review process, where a dedicated GitHub account could propose changes but never approve or merge them.&nbsp;</p>
+
+<p>Even though I drove every part of the analysis process, the code review of each pull request marked a deliberate step in my workflow which acted as both a gate and a spot-check of the content I was producing.</p>
+
+<p>This diary describes that setup, what the git history shows about how well it worked, and what I would change.</p>
+
+<p><strong><span style="font-size:16px;">Why Do It</span></strong></p>
+
+<p>The question this post answers are: can version control and a mandatory human review make AI-drafted security analysis trustworthy enough to publish?</p>
+
+<p>It matters for three reasons:</p>
+
+<ul>
+	<li><strong>Reproducibility</strong>. An indicator list or a timeline is only as good as the query behind it. If the query and its output are stored next to the claim, anyone can check it.</li>
+	<li><strong>Public safety</strong>. Honeypot reports contain things that must not be published: the sensor&#39;s own address, its hostname, its cloud account, and sometimes attacker material such as private keys. Once something reaches a public git history, deleting the file does not remove it [<a href="https://github.com/kevtruo/security">4</a>, SECURITY.md].</li>
+	<li><strong>AI accountability</strong>. Language models are fluent and are confident; but fluency and confidence don&#39;t mean accuracy. If an AI is part of the workflow, there needs to be a record of what it wrote, what a human changed, and who approved it.</li>
+</ul>
+
+<p><span style="font-size:16px;"><strong>The Setup</strong></span></p>
+
+<p>The repository has one folder per attack. Each folder holds the summary, every piece of evidence it cites, and a hash list:</p>
+
+<p><img alt="" src="https://isc.sans.edu/diaryimages/images/Kevin_Truong_pic1.png" style="width: 667px; height: 200px;" /></p>
+
+<p>Every exhibit in a report&#39;s appendix shows the exact jq query that produced it, for example:</p>
+
+<p><img alt="" src="https://isc.sans.edu/diaryimages/images/Kevin_Truong_pic2.png" style="width: 670px; height: 100px;" /></p>
+
+<p>Before anything leaves the sensor, output is passed through a filter that replaces the sensor&#39;s address with &lt;sensor-ip&gt;, and then hashed. Anyone who clones the repository can confirm the evidence has not changed since it was committed:</p>
+
+<p><img alt="" src="https://isc.sans.edu/diaryimages/images/Kevin_Truong_pic3.png" style="width: 667px; height: 115px;" /></p>
+
+<p>The workflow around those files is shown in Figure 1.</p>
+
+<p><img alt="" src="https://isc.sans.edu/diaryimages/images/Kevin_Truong_pic4.png" style="width: 686px; height: 330px;" /></p>
+
+<p>The important pieces are:</p>
+
+<ul>
+	<li>A separate identity for the AI. Pull requests from the machine account are written by Claude Code sessions. It is a machine account I operate, and the README says so publicly [<a href="https://github.com/kevtruo/security">4</a>].</li>
+	<li>The AI can write but not merge. A GitHub ruleset on main requires a pull request with one approval, blocks force-pushes and branch deletion and has no bypass actors. The AI account has written access, but GitHub does not let an author approve their own pull request, so it can never get a change into main alone.</li>
+	<li>A public-safety checklist on every PR. The pull request template asks the author to confirm that they read the full diff, that the secret scan is clean, that every IP and account is a placeholder (attacker indicators excepted), that there are no hostnames or local paths, and that attachments were checked by hand. The AI fills this in and I check it.</li>
+	<li>A secret scanner before every commit. A pre-commit hook runs gitleaks locally.</li>
+</ul>
+
+<p><span style="font-size:16px;"><strong>Options to Close Gaps</strong></span></p>
+
+<p>Comparing the ruleset with my own design notes [4, homelab/change-control.md] showed where the live settings fall short:</p>
+
+<p><img alt="" src="https://isc.sans.edu/diaryimages/images/Kevin_Truong_pic5.png" style="width: 666px; height: 430px;" /></p>
+
+<p>Fortunately, none of these needs&rsquo; new tools. These are repository settings and habits, which is the point. The controls that are deployed are the ones enforced by the server (GitHub), not ones written into a file the AI could edit on its own branch.</p>
+
+<p><span style="font-size:16px;"><strong>Who Benefits</strong></span></p>
+
+<ul>
+	<li>Students and new analysts get a structure that forces each claim to point at evidence, and a history that shows a reviewer how their analysis improved. This works as a solo project, but the benefits grow exponentially with multiple analysts and reviewers.</li>
+	<li>Honeypot operators and DShield contributors can publish findings with less risk of leaking their sensor&#39;s identity, because the scrubbing and checklist happen before a merge, not after.</li>
+	<li>Teams adopting AI assistants get a pattern they can copy: a separate identity for the AI, server-side merge controls, and a checklist that the AI must fill in honestly. The record shows exactly where the AI&#39;s work ended and a human&#39;s began.</li>
+	<li>Readers of the reports can verify them. Every indicator traces to a query, and every query&#39;s output has a hash.</li>
+</ul>
+
+<p><span style="font-size:16px;"><strong>Conclusion</strong></span></p>
+
+<p>Version control is not new to security teams, where it&#39;s commonly seen in areas like detection rules and infrastructure code. That said though, treating something like honeypot/log analysis like code gave me reproducible evidence, a reviewable history, and a safe way to use an AI drafter: it proposed, I reviewed, and only I could merge. The history also kept me honest about the parts that did not work. Those gaps are visible because the work was in git, and each has a simple fix in the repository settings.</p>
+
+<p><strong>References</strong></p>
+
+<p>[1] Honeypot Attack Summary: SSH Brute Force from 77.239.124.204. https://github.com/kevtruo/security/tree/main/analysis/2026-10-18-ssh-brute-force-mysql-default-creds<br />
+[2] Honeypot Attack Summary: Telegram Session and SMS Modem Reconnaissance Bot. https://github.com/kevtruo/security/tree/main/analysis/2026-10-19-telegram-sms-recon-bot<br />
+[3] Honeypot Attack Summary: PHP Vulnerability Hunt, RedTail and a PHP2Shell-Pattern Request. https://github.com/kevtruo/security/tree/main/analysis/2026-10-03-php-vulnerability-hunt<br />
+[4] kevtruo/security repository (README, SECURITY.md, pull request template,homelab/change-control.md). https://github.com/kevtruo/security<br />
+[5] GitHub Docs, &quot;About rulesets.&quot; https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets<br />
+[6] GitHub Docs, &quot;About push protection.&quot; https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection<br />
+[7] gitleaks. https://github.com/gitleaks/gitleaks<br />
+[8] Claude Code GitHub Actions documentation. https://docs.anthropic.com/en/docs/claude-code/github-action<br />
+[9] https://www.sans.edu/cyber-security-programs/bachelors-degree/</p>
+
+<p>-----------<br />
+Guy Bruneau <a href="http://www.ipss.ca/">IPSS Inc.</a><br />
+<a href="https://github.com/bruneaug/">My GitHub Page</a><br />
+Twitter: <a href="https://twitter.com/guybruneau">GuyBruneau</a><br />
+gbruneau at isc dot sans dot edu</p>
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></content:encoded>    <pubDate>Thu, 19 Nov 2026 01:53:48 GMT</pubDate>  </item>  <item>
+    <title><![CDATA[Java4Shell, NGINX2Shell and more: Why we are not at "Yellow", (Wed, Nov 18th)]]></title>
+    <link>https://isc.sans.edu/diary/rss/33532</link>    <guid>https://isc.sans.edu/diary/rss/33532</guid><description><![CDATA[ <p>About a month ago, we went to Infocon Yellow for the first time in a few years. We decided to address the php2shell vulnerability and alert our readers to its significant impact. Following php2shell, we had a number of vulnerabilities and events that may also have scored high enough to trigger an Infocon "Yellow" &#x5b;infocon&#x5d;. In the last few days, we had a major Microsoft 365 outage, a critical vulnerability in Java, and a critical vulnerability in NGINX, which was disclosed today.</p>&#xd;]]></description><content:encoded><![CDATA[<p>About a month ago, we went to Infocon Yellow for the first time in a few years. We decided to address the php2shell vulnerability and alert our readers to its significant impact. Following php2shell, we had a number of vulnerabilities and events that may also have scored high enough to trigger an Infocon &quot;Yellow&quot; [infocon]. In the last few days, we had a major Microsoft 365 outage, a critical vulnerability in Java, and a critical vulnerability in NGINX, which was disclosed today.</p>
+
+<p>My plan today was to write a bit about attacks we are seeing against one of our Java-specific honeypots. But the results can be summarized in one sentence: We are seeing many attacks, but none that exploit Java4Shell (yet). Will it be an important issue? Probably. Should you patch? Sure. Will the world as we know it end? Maybe.&nbsp;</p>
+
+<p>So why not go to &quot;Yellow&quot;? This is not a new question. Often people ask why we are on &quot;Green&quot; if they are seeing hundreds or thousands of attacks hitting their system each day. The Internet is a dangerous place. Shouldn&#39;t we be on &quot;Yellow&quot; (or &quot;Orange&quot;) to reflect that danger? My answer has been: &quot;Green&quot; means the Internet is broken as usual. As long as the status is &quot;Green&quot;, you should expect a normal &quot;9-to-5&quot; day. I have heard from organizations that have used our infocon to justify staffing and overtime, and I am well aware of the impact it may have.</p>
+
+<p>The reason behind our conservative Infocon is that you can&#39;t be alert and &quot;on guard&quot; all the time. An alert status that is &quot;high&quot; all the time is meaningless and counterproductive. You must not treat these recent vulnerabilities as &quot;emergencies&quot;. They are the &quot;new normal&quot;. Treat them as such. You will not be able to patch nginx2shell across a large organization before the exploit is released. Instead of trying to do the impossible and fail, think beyond the vulnerability of the day. A new reality requires new procedures and techniques. Here are a few ideas:</p>
+
+<ul>
+	<li>Automate patching as much as possible, in particular for less critical systems. Traditionally, automatic patching had two significant drawbacks. First, you may crash a system because of a failed patch. Secondly, the patch may not be applied correctly, and you treat a vulnerable system as &quot;patched&quot;.<br />
+	Select less critical systems that would be at the end of your patch priority list. I&#39;d rather take a system down myself than have ransomware do it for me. Having a system possibly patched is better than being sure the system isn&#39;t patched. And of course, there should be some testing, but that can wait a bit longer. This responds well to the faster development of exploits.</li>
+	<li>Reduce your exposure. This should have been a priority years ago. But there are still too many systems connected to the internet that shouldn&#39;t be connected. Build a defensible architecture. The same is true for individual applications: reduce the &quot;blast radius&quot; by restricting which data and resources each application can access. And reduce your supply chain exposure. Do you get enough value from tools like Optimizely to justify the risk of them compromising your application?</li>
+	<li>Avoid chasing squirrels. Do not change your plan and drop what you are doing just because the world is going to end. The world may end, in which case, patching one more system is probably not going to make a difference. Whether the world ends or not, at least you will be well-rested to deal with it.</li>
+</ul>
+
+<p>During my classes, I am exposed to security professionals from a wide range of backgrounds, working in different industries and countries worldwide. The one thing they all have in common is that they do not have enough time, tools, and sometimes skills to do their job. Making the job you can&#39;t do right now any more urgent won&#39;t help. Work on tooling and resources, and develop a plan for applying best practices at a sustainable pace. Embrace AI tooling. It is immensely useful for automation. It is even more amazing at helping you get organized. Many partitioners are afraid that AI will do more harm than good, and they are not wrong. But use it where it helps you most. Are you great at writing little scripts but horrible at tracking and inventorying them? Give AI the job you suck at and develop a rapport with your tools. But embracing automation does include embracing AI tooling.</p>
+
+<p>Finally, I got a lot of positive feedback on the final &quot;conclusion&quot; of yesterday&#39;s podcast, so I am going to link to it directly here:</p>
+
+<p>&nbsp;</p>
+
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/YToDZoN2wrk?si=qjRUKUyYInMJxKMT&amp;start=380" title="YouTube video player" width="300"></iframe></p>
+
+<p>&nbsp;</p>
+
+<p>[php2shell]&nbsp;https://isc.sans.edu/diary/33440<br />
+[infocon]&nbsp;https://isc.sans.edu/infocon.html</p>
+
+<p>--<br />
+Johannes B. Ullrich, Ph.D. , Dean of Research, <a href="https://sans.edu">SANS.edu</a><br />
+<a href="https://jbu.me/164">Twitter</a>|<img alt="" src="https://isc.sans.edu/diaryimages/images/Screenshot%202026-11-18%20at%202_47_04%E2%80%AFPM.png" style="width: 1px; height: 1px;" /></p>
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></content:encoded>    <pubDate>Wed, 18 Nov 2026 19:54:50 GMT</pubDate>  </item>  <item>
+    <title><![CDATA[ISC Stormcast For Wednesday, November 18th, 2026 https://isc.sans.edu/podcastdetail/10184, (Wed, Nov 18th)]]></title>
+    <link>https://isc.sans.edu/diary/rss/33528</link>    <guid>https://isc.sans.edu/diary/rss/33528</guid><description><![CDATA[  (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></description><content:encoded><![CDATA[
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></content:encoded>    <pubDate>Wed, 18 Nov 2026 02:00:03 GMT</pubDate>  </item>  <item>
+    <title><![CDATA[A phishing page interested in MX records, (Tue, Nov 17th)]]></title>
+    <link>https://isc.sans.edu/diary/rss/33526</link>    <guid>https://isc.sans.edu/diary/rss/33526</guid><description><![CDATA[ <p>I&&#x23&#x3b;x26&#x3b;&#x23&#x3b;xe2&#x3b;&&#x23&#x3b;x26&#x3b;&#x23&#x3b;x80&#x3b;&&#x23&#x3b;x26&#x3b;&#x23&#x3b;x99&#x3b;ve mentioned before in some of my diaries that it can be instructive to look at what appear to be &&#x23&#x3b;x26&#x3b;&#x23&#x3b;xe2&#x3b;&&#x23&#x3b;x26&#x3b;&#x23&#x3b;x80&#x3b;&&#x23&#x3b;x26&#x3b;&#x23&#x3b;x9c&#x3b;generic&&#x23&#x3b;x26&#x3b;&#x23&#x3b;xe2&#x3b;&&#x23&#x3b;x26&#x3b;&#x23&#x3b;x80&#x3b;&&#x23&#x3b;x26&#x3b;&#x23&#x3b;x9d&#x3b; phishing messages in detail from time to time, since some of them might prove not to be as generic as they initially appear. I came across a good example of this while going over phishing messages delivered to our handler inbox over the past few weeks, when a message that, at first glance, appeared to be a fairly ordinary attempt at stealing e-mail credentials turned out to lead to a page interested in collecting a little more information than just the victim&&#x23&#x3b;x26&#x3b;&#x23&#x3b;39&#x3b;s password.</p>&#xd;]]></description><content:encoded><![CDATA[<p>I&rsquo;ve mentioned before in some of my diaries that it can be instructive to look at what appear to be &ldquo;generic&rdquo; phishing messages in detail from time to time, since some of them might prove not to be as generic as they initially appear. I came across a good example of this while going over phishing messages delivered to our handler inbox over the past few weeks, when a message that, at first glance, appeared to be a fairly ordinary attempt at stealing e-mail credentials turned out to lead to a page interested in collecting a little more information than just the victim&#39;s password.</p>
+
+<p>As you can see, the original message was not especially noteworthy on its own, being a spin on the usual &ldquo;your password will expire today&rdquo; approach&hellip;</p>
+
+<p><a href="https://isc.sans.edu/diaryimages/images/26-11-17-phish.png"><img alt="" src="https://isc.sans.edu/diaryimages/images/26-11-17-phish.png" style="border-width: 1px; border-style: solid; width: 800px; height: 398px;" /></a></p>
+
+<p>The link pointed to an HTML page hosted on Google Cloud Storage, with the recipient&#39;s e-mail address included in the URL fragment:</p>
+
+<p>hxxps[:]//storage[.]googleapis[.]com/alx2/03/1a/we.html#[recipient_e-mail_address]</p>
+
+<p>After opening the link, the recipient would be presented with a generic login form, personalized using the domain part of their e-mail address. The page also attempted to use a screenshot of the legitimate website of the recipient&#39;s organization as its background, which it retrieved using the thum.io service. This didn&#39;t work quite as intended for isc.sans.edu, since the screenshot service returned an error message instead of the requested image. However, when I modified the URL to contain an e-mail address from another domain, the resulting page looked considerably more convincing.</p>
+
+<p><a href="https://isc.sans.edu/diaryimages/images/26-11-17-site1.png"><img alt="" src="https://isc.sans.edu/diaryimages/images/26-11-17-site1.png" style="border-width: 1px; border-style: solid; width: 801px; height: 367px;" /></a></p>
+
+<p><a href="https://isc.sans.edu/diaryimages/images/26-11-17-site2.png"><img alt="" src="https://isc.sans.edu/diaryimages/images/26-11-17-site2.png" style="border-width: 1px; border-style: solid; width: 800px; height: 367px;" /></a></p>
+
+<p>Looking at the source code revealed a couple of layers of URL-encoding and additional JavaScript obfuscation. Once these were removed, the page turned out to contain a fairly typical credential-harvesting kit, which supported multiple languages and attempted to collect not just the submitted password, but also the visitor&#39;s public IP address, geographic location, browser information and language. This information, along with a timestamp, was supposed to be sent to the attacker using the Telegram Bot API.</p>
+
+<p>Such extensive collection of information is not particularly unusual. In fact, another phishing page that I examined recently collected a similarly extensive set of information and also sent it to the attacker using Telegram. In the present case, however, one additional field included in the information sent to the attacker caught my attention &ndash; it was labeled &quot;MX Record&quot;.</p>
+
+<p>A closer look at the corresponding code revealed that the JavaScript actually performed a DNS-over-HTTPS query for MX records associated with the victim&#39;s e-mail domain, using Google&#39;s public DNS service. The relevant parts of the code (slightly simplified and reformatted for readability) looked as follows:</p>
+
+<pre>
+<code class="language-javascript">...
+const response = await fetch(
+    "https://dns.google/resolve?name=" + domain + "&amp;type=MX"
+);
+const data = await response.json();
+return data.Answer.map(answer =&gt; answer.data).join("\n");
+...</code></pre>
+
+<p>The retrieved records were then included in the message containing the stolen credentials:</p>
+
+<pre>
+<code class="language-javascript">...
+message += "MX Record : " + await getMXRecord(domain) + "\n";
+...</code></pre>
+
+<p>The use of MX records in phishing is certainly not new. For example, Infoblox documented a phishing-as-a-service operation called Morphing Meerkat in March 2025, which used DNS-over-HTTPS queries for MX records to identify victims&#39; e-mail service providers and dynamically select appropriate phishing templates[<a href="https://www.infoblox.com/blog/threat-intelligence/a-phishing-tale-of-doh-and-dns-mx-abuse/">1</a>].</p>
+
+<p>In the present case, however, the MX records weren&#39;t used to customize the phishing page. Instead, the lookup was performed as part of the credential collection process, and its results were included in the information sent to the attacker.</p>
+
+<p>Of course, MX records are publicly available, and there is nothing preventing an attacker from looking them up independently. Nevertheless, including them with each set of stolen credentials would help the attacker automatically identify the e-mail infrastructure used by the targeted organization, which could be useful for further attacks or for prioritizing the collected credentials.</p>
+
+<p>Whether the threat actor behind this particular phishing actually used the collected MX records in this (or any) way is impossible to say. Still, having the phishing page perform a little additional reconnaissance on the victim&#39;s organization, and including the results with the stolen credentials, seems like a noteworthy detail in an otherwise fairly ordinary phishing kit&hellip;</p>
+
+<p>[1] <a href="https://www.infoblox.com/blog/threat-intelligence/a-phishing-tale-of-doh-and-dns-mx-abuse/">https://www.infoblox.com/blog/threat-intelligence/a-phishing-tale-of-doh-and-dns-mx-abuse/</a></p>
+
+<p>-----------<br />
+Jan Kopriva<br />
+<a href="https://www.linkedin.com/in/jan-kopriva/">LinkedIn</a><br />
+<a href="https://www.nettles.cz/">Nettles Consulting</a></p>
+
+ 
+ (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.]]></content:encoded>    <pubDate>Tue, 17 Nov 2026 10:56:38 GMT</pubDate>  </item></channel>
+</rss>

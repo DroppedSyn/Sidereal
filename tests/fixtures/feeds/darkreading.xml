@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0" xml:base="https://www.darkreading.com">
+    <channel>
+        <title>darkreading</title>
+        <link>https://www.darkreading.com</link>
+        <description>Public RSS feed</description>
+                <language>en</language>
+        <atom:link href="https://www.darkreading.com/feeds/rss.xml" rel="self" type="application/rss+xml"/>
+                 <item>
+            <title><![CDATA[Satellites Have a Ground-Level Cybersecurity Problem]]></title>
+            <link><![CDATA[https://www.darkreading.com/cyber-risk/satellites-ground-level-cybersecurity-problem]]></link>
+                        <description><![CDATA[Weaknesses in the ground-based infrastructure supporting satellite services are becoming more consequential as a new space race gathers pace.]]></description>
+                                                        <pubDate>Tue, 24 Nov 2026 22:05:34 GMT</pubDate>
+                                                                <dc:creator>Jai Vijayan</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/cyber-risk/satellites-ground-level-cybersecurity-problem]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt6866e786d2fd0c3c/6b05fc1bdcebc97b86eb1502/satellite_Y_alax_shutterstock.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt6866e786d2fd0c3c/6b05fc1bdcebc97b86eb1502/satellite_Y_alax_shutterstock.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">satellite_Y_alax_shutterstock.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[Webworm APT Slithers Into Networks With Customized SoftEther VPN]]></title>
+            <link><![CDATA[https://www.darkreading.com/perimeter/webworm-slithers-customized-softether-vpn]]></link>
+                        <description><![CDATA[The China-aligned espionage group rebuilt the open source VPN software from source, stripping out the artifacts that would normally expose it to defenders.]]></description>
+                                                        <pubDate>Tue, 24 Nov 2026 21:48:06 GMT</pubDate>
+                                                                <dc:creator>Alexander Culafi</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/perimeter/webworm-slithers-customized-softether-vpn]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt90d6b1405473fe5b/6b05fadd5bf26ea3ca9d2638/snake_computer-the-lightwriter-GettyImages-530757188.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt90d6b1405473fe5b/6b05fadd5bf26ea3ca9d2638/snake_computer-the-lightwriter-GettyImages-530757188.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">snake_computer-the-lightwriter-GettyImages-530757188.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA['God Mode' Flaws Could Wreak Border-Control Havoc]]></title>
+            <link><![CDATA[https://www.darkreading.com/vulnerabilities-threats/god-mode-flaws-wreak-border-control-havoc]]></link>
+                        <description><![CDATA[Attackers could have disrupted traveler entry into Nigeria, Ethiopia, Zambia, Sri Lanka, Fiji, and Ghana via several vulnerabilities in their online visa and immigration systems.]]></description>
+                                                        <pubDate>Tue, 24 Nov 2026 21:36:11 GMT</pubDate>
+                                                                <dc:creator>Elizabeth Montalbano</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/vulnerabilities-threats/god-mode-flaws-wreak-border-control-havoc]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/bltf04ed1ecab1b2c42/66cc9d45781c434a1b20ebb3/airport1800_RoadPix_alamy.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/bltf04ed1ecab1b2c42/66cc9d45781c434a1b20ebb3/airport1800_RoadPix_alamy.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">airport1800_RoadPix_alamy.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[Industrial Serial Gateways Broadcast That They're Insecure]]></title>
+            <link><![CDATA[https://www.darkreading.com/ics-ot-security/industrial-serial-gateways-broadcast-insecure]]></link>
+                        <description><![CDATA[Critical OT access devices will often tell you, and anyone else, whether they're protected by authentication — and many aren't.]]></description>
+                                                        <pubDate>Mon, 23 Nov 2026 22:02:46 GMT</pubDate>
+                                                                <dc:creator>Nate Nelson</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/ics-ot-security/industrial-serial-gateways-broadcast-insecure]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt301a7a187c53b85f/6b04a5d4187d8b84c6ba02e4/Serial_to_IP-Gri-spb-Getty.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt301a7a187c53b85f/6b04a5d4187d8b84c6ba02e4/Serial_to_IP-Gri-spb-Getty.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">Serial_to_IP-Gri-spb-Getty.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[CrowdStrike Makes AI Security Push With Blockbuster Zscaler Deal]]></title>
+            <link><![CDATA[https://www.darkreading.com/endpoint-security/crowdstrike-ai-security-push-zscaler-deal]]></link>
+                        <description><![CDATA[CrowdStrike's $44 billion acquisition of Zscaler would unite endpoint protection and zero-trust network security to obtain greater control over AI agents.]]></description>
+                                                        <pubDate>Mon, 23 Nov 2026 21:21:42 GMT</pubDate>
+                                                                <dc:creator>Jeffrey Schwartz</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/endpoint-security/crowdstrike-ai-security-push-zscaler-deal]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/bltffaa274e5fcd829e/68386b0dd0a57a8348fa8ace/Zscaler_SundryPhotography_Alamy.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/bltffaa274e5fcd829e/68386b0dd0a57a8348fa8ace/Zscaler_SundryPhotography_Alamy.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">Zscaler_SundryPhotography_Alamy.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[US Cyber Director Pick Signals Shift Toward Expertise]]></title>
+            <link><![CDATA[https://www.darkreading.com/cybersecurity-operations/us-cyber-director-pick-signals-shift-toward-expertise]]></link>
+                        <description><![CDATA[Trump named Kirsten Davies as Acting National Cyber Director, bringing greater industry experience to the role amid recent outages and rising geopolitical tensions.]]></description>
+                                                        <pubDate>Mon, 23 Nov 2026 20:13:48 GMT</pubDate>
+                                                                <dc:creator>Alexander Culafi</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/cybersecurity-operations/us-cyber-director-pick-signals-shift-toward-expertise]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt9a0966356bb6bbf4/6b048a6e805d232dd3e79e51/white_house-uschools-GettyImages-160196566.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt9a0966356bb6bbf4/6b048a6e805d232dd3e79e51/white_house-uschools-GettyImages-160196566.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">white_house-uschools-GettyImages-160196566.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[Behind the Alias: How One Researcher Unmasked a Decade of Ransomware Actors]]></title>
+            <link><![CDATA[https://www.darkreading.com/cybersecurity-operations/alias-researcher-unmasked-ransomware-actors]]></link>
+                        <description><![CDATA[Ransomware isn't slowing down. A new framework gives security teams the edge to trace attackers back to their source.]]></description>
+                                                        <pubDate>Mon, 23 Nov 2026 17:45:52 GMT</pubDate>
+                                                                <dc:creator>Arielle Waldman</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/cybersecurity-operations/alias-researcher-unmasked-ransomware-actors]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt525c0b544f1eeec1/6afe238519e68185a02d38c2/GettyImages-1428094247.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt525c0b544f1eeec1/6afe238519e68185a02d38c2/GettyImages-1428094247.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">GettyImages-1428094247.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[AI Agents Zip From Flaw Discovery to Root Access in 11 Minutes]]></title>
+            <link><![CDATA[https://www.darkreading.com/cyberattacks-data-breaches/ai-agents-flaw-discovery-root-access-11-minutes]]></link>
+                        <description><![CDATA[A China-nexus actor used the Cairn penetration testing tool in attacks against East Asian universities, exploiting a zero-day in a medical imaging app.]]></description>
+                                                        <pubDate>Mon, 23 Nov 2026 16:17:21 GMT</pubDate>
+                                                                <dc:creator>Elizabeth Montalbano</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/cyberattacks-data-breaches/ai-agents-flaw-discovery-root-access-11-minutes]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt068557e4f1edea18/6b0424213e73ecdcfb851a70/working-with-AI-agents-ImageFlow-shutterstock.png?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt068557e4f1edea18/6b0424213e73ecdcfb851a70/working-with-AI-agents-ImageFlow-shutterstock.png?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">working-with-AI-agents-ImageFlow-shutterstock.png</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[How Security Vendors Are Tackling Access-Control Challenges for AI Agents]]></title>
+            <link><![CDATA[https://www.darkreading.com/identity-access-management-security/ai-agents-bring-enterprises-new-access-control-challenges]]></link>
+                        <description><![CDATA[Identity, runtime, and development controls are converging as enterprises look for ways to keep agents within their assigned jobs. But vendors' approaches vary, so CISOs face a choice.]]></description>
+                                                        <pubDate>Sat, 21 Nov 2026 01:31:23 GMT</pubDate>
+                                                                <dc:creator>Jeffrey Schwartz</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/identity-access-management-security/ai-agents-bring-enterprises-new-access-control-challenges]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt64d615142d7be882/6882572f618f869f048e5227/Agentic_AI_(1800)_Pattara_Alamy.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt64d615142d7be882/6882572f618f869f048e5227/Agentic_AI_(1800)_Pattara_Alamy.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">Agentic_AI_(1800)_Pattara_Alamy.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[China's 'Armory Castle' Lays Siege to VMware vCenter Zero-Day]]></title>
+            <link><![CDATA[https://www.darkreading.com/cyberattacks-data-breaches/china-armory-castle-vmware-vcenter-zero-day]]></link>
+                        <description><![CDATA[During the last wave of major VMware vCenter security updates, a China-nexus threat group likely already had its next zero-day up its sleeve.]]></description>
+                                                        <pubDate>Fri, 20 Nov 2026 21:03:27 GMT</pubDate>
+                                                                <dc:creator>Nate Nelson</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/cyberattacks-data-breaches/china-armory-castle-vmware-vcenter-zero-day]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt911ff7b35a2a2c1d/6b009babdd63b308b3111bc2/Chinese_fortress-Lukas_Bischoff-Getty.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt911ff7b35a2a2c1d/6b009babdd63b308b3111bc2/Chinese_fortress-Lukas_Bischoff-Getty.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">Chinese_fortress-Lukas_Bischoff-Getty.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[Nok et norsk energiselskap har blitt utsatt for et datainnbrudd på to dager]]></title>
+            <link><![CDATA[https://www.darkreading.com/cyberattacks-data-breaches/second-norwegian-energy-company-breached-norwegian]]></link>
+                        <description><![CDATA[Det er ikke påvist noen konkret sammenheng mellom de to hendelsene, selv om de helt klart har mange likhetstrekk.]]></description>
+                                                        <pubDate>Fri, 20 Nov 2026 20:43:45 GMT</pubDate>
+                                                                <dc:creator>Nate Nelson</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/cyberattacks-data-breaches/second-norwegian-energy-company-breached-norwegian]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blte4910babc7878a94/6aff5ad57ab982a4c314744c/Equinor-makasana-Getty.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blte4910babc7878a94/6aff5ad57ab982a4c314744c/Equinor-makasana-Getty.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">Equinor-makasana-Getty.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[In Security, Words Matter as Much as Tools — Maybe More]]></title>
+            <link><![CDATA[https://www.darkreading.com/cybersecurity-operations/security-words-matter]]></link>
+                        <description><![CDATA[From talking cloud security to using AI, cyber leaders are finding that clear, disciplined communication is now a front-line defense capability across the enterprise.]]></description>
+                                                        <pubDate>Fri, 20 Nov 2026 18:35:40 GMT</pubDate>
+                                                                <dc:creator>Becky Bracken</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/cybersecurity-operations/security-words-matter]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt36f1afcfa92ff2c5/6af766db3c02eaba0a4aae0d/cyber_talk_ATHVisions_Getty.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt36f1afcfa92ff2c5/6af766db3c02eaba0a4aae0d/cyber_talk_ATHVisions_Getty.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">cyber_talk_ATHVisions_Getty.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[What We Missed: Nvidia CEO Scandal Rocks AI Industry]]></title>
+            <link><![CDATA[https://www.darkreading.com/cyber-risk/what-we-missed-nvidia-ceo-scandal-rocks-ai-industry]]></link>
+                        <description><![CDATA[In this video, Dark Reading editors discuss some of the news they didn't get a chance to cover, from Jensen Huang's resignation from Nvidia to Microsoft's recent cloud outage.]]></description>
+                                                        <pubDate>Fri, 20 Nov 2026 17:04:04 GMT</pubDate>
+                                                                <dc:creator>Rob Wright, Alexander Culafi</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/cyber-risk/what-we-missed-nvidia-ceo-scandal-rocks-ai-industry]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/bltafa9df51f75884e4/6b007fead61f59302a23c588/nvidia-Benjamin_Fanjoy_-Getty-2304259055.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/bltafa9df51f75884e4/6b007fead61f59302a23c588/nvidia-Benjamin_Fanjoy_-Getty-2304259055.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">nvidia-Benjamin_Fanjoy_-Getty-2304259055.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[Microsoft Debuts Offensive, Defensive Security Tools for the AI Era]]></title>
+            <link><![CDATA[https://www.darkreading.com/endpoint-security/microsoft-offense-defense-ai-security-tools]]></link>
+                        <description><![CDATA[At its Ignite technical conference, Microsoft announced AI agent security tools and transparency standards to protect enterprise systems.]]></description>
+                                                        <pubDate>Fri, 20 Nov 2026 13:51:30 GMT</pubDate>
+                                                                <dc:creator>Agam Shah</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/endpoint-security/microsoft-offense-defense-ai-security-tools]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt823dceb89b6bf324/6a1dd1f32928e11bac7b2d1a/microsoft_DrewAngerer_Getty.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt823dceb89b6bf324/6a1dd1f32928e11bac7b2d1a/microsoft_DrewAngerer_Getty.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">microsoft_DrewAngerer_Getty.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[Qwen Incidents Show Self-Hosted AI Models Need Stronger Steering]]></title>
+            <link><![CDATA[https://www.darkreading.com/cyber-risk/qwen-incidents-self-hosted-ai-models-stronger-steering]]></link>
+                        <description><![CDATA[Companies deploying AI agents have the illusion of control, but several incidents demonstrate that businesses need to be ready to enforce directions.]]></description>
+                                                        <pubDate>Thu, 19 Nov 2026 22:40:03 GMT</pubDate>
+                                                                <dc:creator>Robert Lemos</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/cyber-risk/qwen-incidents-self-hosted-ai-models-stronger-steering]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/bltdca0689384b67fb8/6aff731dfef3359545395d0a/old-ship-steering-wheel-DmitriiElj-shutterstock.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/bltdca0689384b67fb8/6aff731dfef3359545395d0a/old-ship-steering-wheel-DmitriiElj-shutterstock.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">old-ship-steering-wheel-DmitriiElj-shutterstock.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[Second Norwegian Energy Company Breached in 2 Days]]></title>
+            <link><![CDATA[https://www.darkreading.com/cyberattacks-data-breaches/second-norwegian-energy-company-breached]]></link>
+                        <description><![CDATA[No specific link has been drawn between the two incidents, though they certainly sing the same notes.]]></description>
+                                                        <pubDate>Thu, 19 Nov 2026 20:14:15 GMT</pubDate>
+                                                                <dc:creator>Nate Nelson</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/cyberattacks-data-breaches/second-norwegian-energy-company-breached]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blte4910babc7878a94/6aff5ad57ab982a4c314744c/Equinor-makasana-Getty.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blte4910babc7878a94/6aff5ad57ab982a4c314744c/Equinor-makasana-Getty.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">Equinor-makasana-Getty.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[Critical PHP Flaws Allow Code Execution, but Don't Panic 'PHP2Shell'-Style]]></title>
+            <link><![CDATA[https://www.darkreading.com/application-security/critical-php-flaws-code-execution-panic-php2shell]]></link>
+                        <description><![CDATA[November's monthly security release patches seven critical PHP flaws that should be addressed ASAP, though experts say exploitability varies and depends heavily on configuration.]]></description>
+                                                        <pubDate>Thu, 19 Nov 2026 19:57:31 GMT</pubDate>
+                                                                <dc:creator>Alexander Culafi</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/application-security/critical-php-flaws-code-execution-panic-php2shell]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt63f30aa2e4f7a5b8/6aff560d615b4f7719adda8c/source_code_background-scanrail-GettyImages-832282452.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt63f30aa2e4f7a5b8/6aff560d615b4f7719adda8c/source_code_background-scanrail-GettyImages-832282452.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">source_code_background-scanrail-GettyImages-832282452.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[Navigating Vulnerability Hysteria in the AI Era]]></title>
+            <link><![CDATA[https://www.darkreading.com/vulnerabilities-threats/navigating-vulnerability-hysteria-ai-era]]></link>
+                        <description><![CDATA[This installment of the Reporters' Notebook video series examines the fallout from recent high-severity flaw disclosures, exploring how fears of AI-assisted exploits trigger widespread panic, operational disruptions, and growing warning fatigue.]]></description>
+                                                        <pubDate>Thu, 19 Nov 2026 19:46:44 GMT</pubDate>
+                                                                <dc:creator>Fahmida Y. Rashid</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/vulnerabilities-threats/navigating-vulnerability-hysteria-ai-era]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt7d04c37959ab5304/6aff50a7d42cb182cb40c79e/panic_Kzenon_Alamy_REWORKED_FOR_16_BY_9_FORMAT.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt7d04c37959ab5304/6aff50a7d42cb182cb40c79e/panic_Kzenon_Alamy_REWORKED_FOR_16_BY_9_FORMAT.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">panic_Kzenon_Alamy_REWORKED_FOR_16_BY_9_FORMAT.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[Why Holiday Security Can't Wait for Black Friday]]></title>
+            <link><![CDATA[https://www.darkreading.com/cybersecurity-operations/why-holiday-security-cant-wait-black-friday]]></link>
+                        <description><![CDATA[Bot-driven fraud and holiday social engineering attacks stretch across many weeks, straining security teams and small businesses alike.]]></description>
+                                                        <pubDate>Thu, 19 Nov 2026 14:00:00 GMT</pubDate>
+                                                                <dc:creator>Alexander Culafi</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/cybersecurity-operations/why-holiday-security-cant-wait-black-friday]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt3a97d098a9dd9e12/6afe0f2eb91ada7c366c492c/Holiday_shopping_tap_to_pay-Nastasic-GettyImages-2235710285.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/blt3a97d098a9dd9e12/6afe0f2eb91ada7c366c492c/Holiday_shopping_tap_to_pay-Nastasic-GettyImages-2235710285.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">Holiday_shopping_tap_to_pay-Nastasic-GettyImages-2235710285.jpg</media:title>
+                </media:content>
+                                    </item>        <item>
+            <title><![CDATA[Africa Retakes Top Spot as Most Attacked Region, Led by Nigeria Surge]]></title>
+            <link><![CDATA[https://www.darkreading.com/threat-intelligence/africa-top-spot-most-attacked-region-nigeria-surge]]></link>
+                        <description><![CDATA[Nigeria faced more than double the cyber threats of the previous year, with Angola and Kenya also in the top 5 most-attacked countries globally.]]></description>
+                                                        <pubDate>Thu, 19 Nov 2026 08:00:00 GMT</pubDate>
+                                                                <dc:creator>Robert Lemos</dc:creator>
+                                    <guid isPermaLink="false"><![CDATA[https://www.darkreading.com/threat-intelligence/africa-top-spot-most-attacked-region-nigeria-surge]]></guid>
+                             
+                <media:thumbnail url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/bltcfa70452a477c780/6afe245fab384927766a0238/africa-da-kuk-Getty-1386416241.jpg?width=720&amp;quality=80&amp;disable=upscale"/>
+                <media:content url="https://eu-images.contentstack.com/v3/assets/blt6d90778a997de1cd/bltcfa70452a477c780/6afe245fab384927766a0238/africa-da-kuk-Getty-1386416241.jpg?width=720&amp;quality=80&amp;disable=upscale" medium="image">
+                    <media:title type="html">africa-da-kuk-Getty-1386416241.jpg</media:title>
+                </media:content>
+                                    </item>        </channel>
+</rss>

@@ -1,0 +1,569 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" version="2.0">
+  <channel>
+    <title>Microsoft Entra Blog articles</title>
+    <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/bg-p/microsoft-entra-blog</link>
+    <description>Microsoft Entra Blog articles</description>
+    <pubDate>Tue, 24 Nov 2026 18:31:10 GMT</pubDate>
+    <dc:creator>microsoft-entra-blog</dc:creator>
+    <dc:date>2026-11-24T18:31:10Z</dc:date>
+    <item>
+      <title>Ask the Microsoft Entra experts anything, live on December 2</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/ask-the-microsoft-entra-experts-anything-live-on-december-2/ba-p/4576043</link>
+      <description><![CDATA[<P data-line="5">Microsoft Ignite 2026 brought <A class="lia-internal-link lia-internal-url lia-internal-url-content-type-blog" href="https://techcommunity.microsoft.com/blog/microsoft-entra-blog/ai-is-changing-access-see-how-microsoft-entra-helps-you-stay-ahead-/4556456" target="_blank" rel="noopener" data-lia-auto-title="a wave of news for Microsoft Entra" data-lia-auto-title-active="0">a wave of news for Microsoft Entra</A>, from new ways to secure AI agents to new tools for managing access at scale. Now it's your turn to ask the people who build it.</P>
+<P data-line="7">On Tuesday, December 2, Yina Arenas, Chief Product Officer for Microsoft Identity and Network Access, joins a panel of Microsoft Entra product and engineering experts for a live Ask Microsoft Anything (AMA). Post your questions and add the event to your calendar at&nbsp;<A href="https://aka.ms/EntraAMA" target="_blank" rel="noopener">https://aka.ms/EntraAMA</A>&nbsp; &nbsp;</P>
+<H2 data-line="7">Live AMA event details</H2>
+<P class="lia-indent-padding-left-30px"><STRONG>When:</STRONG> Tuesday, December 2, 2026, 11:00 AM–12:00 PM PT</P>
+<P class="lia-indent-padding-left-30px"><STRONG>Where:</STRONG> <A class="lia-internal-link lia-internal-url lia-internal-url-content-type-occasion" href="https://techcommunity.microsoft.com/event/microsoft-security-events/ama-what%E2%80%99s-new-in-microsoft-entra-ask-the-experts/4570030" target="_blank" rel="noopener" data-lia-auto-title="Livestream on the Microsoft Tech Community" data-lia-auto-title-active="0">Livestream on the Microsoft Tech Community</A></P>
+<P class="lia-indent-padding-left-30px"><STRONG>Add to calendar:</STRONG> <A class="lia-external-url" href="https://aka.ms/EntraAMA" target="_blank" rel="noopener">aka.ms/EntraAMA</A></P>
+<P class="lia-indent-padding-left-30px"><STRONG>How to ask:</STRONG> Sign in to the Microsoft Tech Community (or create an account) and post your question as a comment on the event page. Post early to get your question in the queue.</P>
+<P class="lia-indent-padding-left-30px"><STRONG>Can't join live?</STRONG> The recording will be available on demand as soon as the livestream ends.</P>
+<H2>Meet the Microsoft Entra AMA panelists</H2>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table class="lia-background-color-22 lia-border-color-22 lia-border-style-none" border="1" style="width: 100%; border-width: 1px;"><colgroup><col style="width: 33.8217%" /><col style="width: 33.1745%" /><col style="width: 32.9884%" /></colgroup><tbody><tr><td class="lia-align-center lia-border-color-22"><img />
+<H4><STRONG>Yina Arenas</STRONG></H4>
+<P>Chief Product Officer</P>
+<P>&nbsp;</P>
+</td><td class="lia-align-center lia-border-color-22"><img />
+<H4><STRONG>Ankur Patel</STRONG></H4>
+<P>Partner Group Product Manager</P>
+<P>&nbsp;</P>
+</td><td class="lia-align-center lia-border-color-22"><img />
+<H4><STRONG>Ngozi Nwoko</STRONG></H4>
+<P>Director, Secure AI</P>
+<P>&nbsp;</P>
+</td></tr><tr><td cla [truncated]]]></description>
+      <pubDate>Tue, 24 Nov 2026 15:30:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/ask-the-microsoft-entra-experts-anything-live-on-december-2/ba-p/4576043</guid>
+      <dc:creator>Nichole_Peterson</dc:creator>
+      <dc:date>2026-11-24T15:30:00Z</dc:date>
+    </item>
+    <item>
+      <title>Demystifying macOS Platform SSO: How Apple and Microsoft Entra ID work together</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/demystifying-macos-platform-sso-how-apple-and-microsoft-entra-id/ba-p/4437423</link>
+      <description><![CDATA[<P>Platform SSO has been transforming the macOS sign-in experience by bringing Microsoft Entra authentication closer to the operating system. Users can sign in to their Mac and access work applications with fewer authentication prompts, while organizations retain Microsoft Entra device trust and access controls.</P>
+<P>As more organizations deploy Platform SSO, new questions have emerged:</P>
+<UL>
+<LI>What actually happens under the hood?</LI>
+<LI>Which responsibilities belong to Apple, and which belong to Microsoft?</LI>
+<LI>Where are credentials created and protected?</LI>
+<LI>Does every application receive the Platform SSO <A href="https://learn.microsoft.com/en-us/entra/identity/devices/concept-primary-refresh-token" target="_blank" rel="noopener">Primary Refresh Token</A> (PRT)?</LI>
+</UL>
+<P>To help answer these questions, we published a new Microsoft Learn article: <A href="https://learn.microsoft.com/entra/identity/devices/macos-platform-sso-architecture" target="_blank" rel="noopener">Architecture and authentication flow for macOS Platform SSO with Microsoft Entra ID</A>.</P>
+<P>Apple Platform SSO is an extensible framework that can work with supported identity-provider extensions. This post focuses on its integration with Microsoft Entra ID through the Microsoft Enterprise SSO plug-in. It provides a practical mental model, highlights the ownership boundaries between Apple and Microsoft, and walks through the key parts of the architecture.</P>
+<H2>Why the ownership boundary can be difficult to see</H2>
+<P>From the user's perspective, Platform SSO can feel like one continuous experience. The Mac is enrolled, the user completes registration, and supported applications begin signing in with fewer prompts.</P>
+<P>Behind that experience, however, several systems retain distinct responsibilities. MDM (Mobile Device Management) deploys the Platform SSO policy. The Microsoft Enterprise SSO plug-in connects the Mac to Microsoft Entra ID. macOS owns the operating-system experience and protects the platform credentials. Microsoft Entra ID validates the authentication proofs and issues identity credentials. Applications consume only the authorization intended for them.</P>
+<P><STRONG>Platform SSO is a shared architecture across device management, Apple, and Microsoft. The following diagram shows how responsibilities are divided across the end-to-end flow.</STRONG></P>
+<img />
+<P class="lia-align-center"><EM>Ownership boundaries in macOS Platform SSO with Microsoft Entra ID.</EM></P>
+<P>This division of responsibility isn't just an implementation detail. It establishes the security boundaries that allow Platform SSO to reduce authentication prompts without distributing powerful credentials to every application.</P>
+<H2>Three ideas that make the architecture easier to understand</H2>
+<H3>1. Registration and SSO aren't the same operation</H3>
+<P>Registration establishes trust. It connects the managed Mac and local user to Microsoft Entra ID, registers  [truncated]]]></description>
+      <pubDate>Fri, 20 Nov 2026 16:00:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/demystifying-macos-platform-sso-how-apple-and-microsoft-entra-id/ba-p/4437423</guid>
+      <dc:creator>veenasoman</dc:creator>
+      <dc:date>2026-11-20T16:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>AI is changing access. See how Microsoft Entra helps you stay ahead.</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/ai-is-changing-access-see-how-microsoft-entra-helps-you-stay/ba-p/4556456</link>
+      <description><![CDATA[<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN">&nbsp;</DIV>
+<P>AI and agents are changing the access landscape at a pace that challenges even mature identity and security programs. Without centralized visibility and control, agent sprawl risks becoming shadow IT at a scale we've never had to manage before.</P>
+<H5><STRONG>AI amplifies today's identity challenges. Every agent needs an identity, the right access, and controls that adapt as risk changes.</STRONG></H5>
+<H5><STRONG>We're designing Microsoft Entra for this reality: secure access for every identity, human or agent, to every resource, from anywhere.</STRONG></H5>
+<P>This week at Microsoft Ignite, we're announcing new Microsoft Entra capabilities, advancing this strategy around three customer priorities: strengthen your identity foundation, secure agent access at scale, and turn customer identity into a competitive advantage.</P>
+<H2><SPAN class="lia-text-color-15">Strengthen your identity foundation</SPAN></H2>
+<H5><STRONG>Agent adoption makes strengthening the identity foundation more urgent.</STRONG></H5>
+<H5><STRONG>Agents inherit unnecessary privileges, persistent access, and weak governance. Today's identity backlog becomes tomorrow's agent security problem.</STRONG></H5>
+<P>As one practitioner told us, “If you're not doing it for humans today, you're going to struggle with agents.”</P>
+<H3><SPAN class="lia-text-color-10">Make every sign-in phishing-resistant and verified</SPAN></H3>
+<P>Secure access starts with phishing-resistant credentials like passkeys, now the default for new accounts in Microsoft Entra. Yet 57% of organizations still rely on phishable authentication methods.<A href="#community--1-_edn1" target="_blank" rel="noopener" name="_ednref1"><SUP>[i]</SUP></A> Weaker credentials like SMS codes leave users vulnerable to adversary-in-the-middle (AiTM) phishing attacks, which target not only sign-ins, but also onboarding and account recovery.</P>
+<UL>
+<LI><STRONG>High assurance credentials (preview).</STRONG> A strong credential is only as trustworthy as the process used to issue and recover it. You can now combine passkeys with trusted identity verification throughout the credential lifecycle, including when someone onboards and first gets a passkey, before they access a sensitive resource or join a sensitive meeting, and when they recover their account. Microsoft Entra supports identity verification from partners including AU10TIX, IDEMIA, CLEAR, 1Kosmos, Entrust, Persona, and TrueCredential. <A href="http://aka.ms/highassurancecredentials" target="_blank" rel="noopener">Learn more</A>.</LI>
+<LI><STRONG>Secure enterprise browser for BYOD with Microsoft Edge for Business and Microsoft Entra Global Secure Access (preview).&nbsp;</STRONG>Legacy VPNs give users access that’s too broad. With Microsoft Entra Global Secure access, users simply sign in to their Microsoft Edge work profile, even on a personal device, to gain secure access to your pri [truncated]]]></description>
+      <pubDate>Tue, 24 Nov 2026 00:43:52 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/ai-is-changing-access-see-how-microsoft-entra-helps-you-stay/ba-p/4556456</guid>
+      <dc:creator>Yina Arenas</dc:creator>
+      <dc:date>2026-11-24T00:43:52Z</dc:date>
+    </item>
+    <item>
+      <title>What’s new in Microsoft Entra: November 2026</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/what-s-new-in-microsoft-entra-november-2026/ba-p/4556457</link>
+      <description><![CDATA[<BLOCKQUOTE>
+<P><STRONG>Don't miss our Microsoft Ignite announcements.</STRONG> Tune in or join us in person for&nbsp;<A href="https://ignite.microsoft.com/sessions/BRK343" target="_blank" rel="noopener"><EM>AI is changing access: See how Microsoft Entra helps you stay ahead</EM></A> on November 18, 2026, at 10:15 AM Pacific for secure access news and demos from our latest product roadmap.</P>
+</BLOCKQUOTE>
+<P>Access is never a one-time decision. Employees change roles, devices fall out of compliance, AI agents get created and forgotten, and guests outlast the projects they joined for. But it’s not just identities that change: risks shift in real time and attacks never let up. Customers tell us the hardest part is keeping access secure as users, devices, agents, and guests change over time while threats evolve by the minute.</P>
+<P>This month’s releases help you stay ahead of both: lifecycle policies for agent and guest identities, drift detection and group discovery for governed access, continuous access evaluation that responds to device and user risk signals within minutes, and phishing-resistant sign-in from the very first MFA method.</P>
+<P>Here’s everything new in Microsoft Entra from October 2026, organized around the outcomes you’re trying to achieve:</P>
+<H1>Outcome: Keep my organization trusted and resilient</H1>
+<P><STRONG>Detect drift in access package entitlements | Public Preview</STRONG><BR />Access package drift reports help you spot where real-world access diverges from policy intent. Flag over‑granted permissions or missing assignments and restore alignment with a click. Reports refresh daily and require <STRONG>Microsoft Entra ID Governance</STRONG> or <STRONG>Microsoft Entra Suite</STRONG>.<BR /><A href="https://learn.microsoft.com/entra/id-governance/entitlement-management-reports" target="_blank" rel="noopener">Learn more →</A></P>
+<P><STRONG>Discover and govern application groups | Public Preview</STRONG><BR />Account discovery now extends to groups. Find groups created directly within connected apps and bring them under governance. Classify them as local, unassigned, or assigned to streamline administration.<BR /><A href="https://learn.microsoft.com/entra/identity/app-provisioning/how-to-account-discovery" target="_blank" rel="noopener">Learn more →</A></P>
+<H1>Outcome: Give users and agents secure access without friction</H1>
+<P><STRONG>Apply a cloud firewall for Global Secure Access clients | Public Preview</STRONG><BR />Cloud firewall in <STRONG>Microsoft Entra Internet Access</STRONG> now covers Global Secure Access client traffic, allowing granular control over outbound network connections through rule‑based security profiles.<BR /><A href="https://learn.microsoft.com/entra/global-secure-access/how-to-configure-cloud-firewall-clients" target="_blank" rel="noopener">Learn more →</A></P>
+<P><STRONG>Support home network users reaching private access resources | Public Preview</STRONG><BR />Home network support ensures us [truncated]]]></description>
+      <pubDate>Fri, 06 Nov 2026 21:04:04 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/what-s-new-in-microsoft-entra-november-2026/ba-p/4556457</guid>
+      <dc:creator>Yina Arenas</dc:creator>
+      <dc:date>2026-11-06T21:04:04Z</dc:date>
+    </item>
+    <item>
+      <title>AI is changing access: Catch Microsoft Entra at Ignite 2026</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/ai-is-changing-access-catch-microsoft-entra-at-ignite-2026/ba-p/4513159</link>
+      <description><![CDATA[<P>Join us at <STRONG><A class="lia-external-url" href="https://ignite.microsoft.com/" target="_blank" rel="noopener">Microsoft Ignite 2026,</A> November 17–20, 2026, at Moscone Center in San Francisco and online. </STRONG>Explore Microsoft Entra and learn how to secure access for users and AI agents. From stopping identity attacks to simplifying access policies and securing agents, our sessions bring practical guidance and demos to your toughest access challenges.</P>
+<P>Use this guide to plan your sessions, connect with our team, and enter the Microsoft Entra prize draw!</P>
+<H4>Enter the Microsoft Entra prize draw</H4>
+<P>Registered for Ignite? Check in at <SPAN data-teams="true">any of the seven eligible Microsoft Entra sessions</SPAN> in this post for a chance to win. These are the live-streamed breakouts, which you can join in person or online.</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="width: 99.9989%; height: 210.787px; border-width: 1px;"><tbody><tr style="height: 38.7037px;"><td style="height: 38.7037px;">
+<P><STRONG>How to enter</STRONG></P>
+</td><td style="height: 38.7037px;">
+<P>Scan the QR code shown during an eligible session and complete the short entry form. Each session you check in to earns one entry.</P>
+</td></tr><tr style="height: 38.7037px;"><td style="height: 38.7037px;">
+<P><STRONG>Entry period</STRONG></P>
+</td><td style="height: 38.7037px;">
+<P>12:00 AM PT on Tuesday, November 17, through 11:59 PM PT on Friday, November 20, 2026.</P>
+</td></tr><tr style="height: 66.6898px;"><td style="height: 66.6898px;">
+<P><STRONG>Prizes</STRONG></P>
+</td><td style="height: 66.6898px;">
+<P><U>One grand prize:</U> an Xbox plus a 30-minute chat with a Microsoft Entra identity architect.<BR /><U>Two Microsoft Entra swag bags:</U> one for a decision-maker and one for a practitioner.</P>
+</td></tr><tr style="height: 66.6898px;"><td style="height: 66.6898px;">
+<P><STRONG>Drawing</STRONG></P>
+</td><td style="height: 66.6898px;">
+<P>Winners are selected by random drawing on December 1, 2026. Swag bag winners come from decision-maker and practitioner entries, and the grand prize winner from all entries.</P>
+</td></tr></tbody><colgroup><col style="width: 10.3807%" /><col style="width: 89.5953%" /></colgroup></table></DIV>
+<P><EM>NO PURCHASE NECESSARY. Open to legal residents of the United States, including the District of Columbia and Puerto Rico, who are 18 or older and registered for Microsoft Ignite 2026. Entry period: November 17, 2026, 12:00 AM PT, to November 20, 2026, 11:59 PM PT. <SPAN data-teams="true">See the Official Rules for full details at the end of this blog</SPAN></EM><EM>.&nbsp;</EM></P>
+<H2>Don't miss the Microsoft Entra news session</H2>
+<P>All breakout sessions will stream live, stay available on demand, and count toward the prize draw. Join them in San Francisco or online.&nbsp;<BR />For onsite locations, please visit the linked session details.</P>
+<H4><STRONG> [truncated]]]></description>
+      <pubDate>Wed, 18 Nov 2026 00:08:11 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/ai-is-changing-access-catch-microsoft-entra-at-ignite-2026/ba-p/4513159</guid>
+      <dc:creator>NgoziNwoko</dc:creator>
+      <dc:date>2026-11-18T00:08:11Z</dc:date>
+    </item>
+    <item>
+      <title>Scale access controls with Microsoft Entra Conditional Access policy plans</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/scale-access-controls-with-microsoft-entra-conditional-access/ba-p/4569647</link>
+      <description><![CDATA[<P>Today we’re announcing the&nbsp;<STRONG>public preview of Microsoft Entra Conditional Access policy plans</STRONG>—a new framework for enterprise-scale access control. Instead of managing dozens of individual policies, policy plans let you define your access intent once and enforce it consistently across every identity. Scale and control are now complementary, not mutually exclusive.</P>
+<P>This evolution moves Conditional Access from administrative configuration toward policy management without sacrificing granularity or manageability. It helps identity teams close coverage gaps faster, improve policy clarity, and bring emerging identity types, such as AI agents, into the same trusted model. Policy plans run side by side with your existing Conditional Access policies, so you can start with one plan and expand from there.</P>
+<P>&nbsp;</P>
+<div data-video-id="https://youtu.be/BUI5LZPoHAs/1793748970125" data-video-remote-vid="https://youtu.be/BUI5LZPoHAs/1793748970125" class="lia-video-container lia-media-is-center lia-media-size-large"><iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FBUI5LZPoHAs%3Ffeature%3Doembed&amp;display_name=YouTube&amp;url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBUI5LZPoHAs&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FBUI5LZPoHAs%2Fhqdefault.jpg&amp;type=text%2Fhtml&amp;schema=youtube" allowfullscreen="" style="max-width: 100%"></iframe></div>
+<P class="lia-align-left"><EM>Check out this Microsoft Mechanics video for a first look at Conditional Access policy plans in Microsoft Entra and </EM><EM>see</EM><EM> the latest features in action.</EM></P>
+<H2>How it works</H2>
+<P>Let's start with what a policy plan is. A&nbsp;<STRONG>policy plan</STRONG> groups related Conditional Access policies around one security objective, such as requiring compliant devices or securing agent activity. Every plan has three parts:</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="width: 100%; border-width: 1px;"><tbody><tr><td>
+<P><STRONG>Part</STRONG></P>
+</td><td>
+<P><STRONG>What it is</STRONG></P>
+</td><td>
+<P><STRONG>What it enables</STRONG></P>
+</td></tr><tr><td>
+<P><STRONG>Plan details</STRONG></P>
+</td><td>
+<P>Name, description, optional tags, and owners.</P>
+</td><td>
+<P>Clear accountability. Identity admins can see what the plan is for, who owns it, and what a change could affect.</P>
+</td></tr><tr><td>
+<P><STRONG>Shared conditions</STRONG></P>
+</td><td>
+<P>Targeting you define once for the whole plan, such as users in scope and emergency access exclusions.</P>
+</td><td>
+<P>Consistent coverage across every rule. Users, apps, and exclusions are defined once instead of repeated in each policy.</P>
+</td></tr><tr><td>
+<P><STRONG>Rules</STRONG></P>
+</td><td>
+<P>Individual enforcement scenarios that inherit shared conditions and add their own controls.</P>
+</td><td>
+<P>Granular enforcement for each requirement, so the plan grows wit [truncated]]]></description>
+      <pubDate>Wed, 04 Nov 2026 17:00:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/scale-access-controls-with-microsoft-entra-conditional-access/ba-p/4569647</guid>
+      <dc:creator>Swaroop Krishnamurthy</dc:creator>
+      <dc:date>2026-11-04T17:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>Microsoft Entra deep dives: Join our December 15–17 webinar series</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/microsoft-entra-deep-dives-join-our-december-15-17-webinar/ba-p/4448760</link>
+      <description><![CDATA[<P>At Microsoft Ignite, November 17–20, the Microsoft Entra team will explore innovative ways to secure access for people and AI agents. <BR /><BR />But Microsoft Ignite is just the beginning. Post Ignite from December 15–17, keep the momentum going with three days dedicated to what’s next for identity and network access security.&nbsp;<BR /><BR />Join the Microsoft Entra team online for a series of deep dives: Take a closer look at the latest announcements, explore what they mean in practice, and get the insights you need to put them to work for you and your organization. Explore the sessions below, add them to your calendar, then sign in to the Tech Community and select Attend to receive reminders.</P>
+<H2><A class="lia-external-url" href="https://aka.ms/ScaleSecureAccess" target="_blank" rel="noopener">Scale secure, adaptive access without policy sprawl</A></H2>
+<P><STRONG>Tuesday, December 15, 2026, 9:00 AM Pacific Time</STRONG></P>
+<P><EM>Etan Basseri, Principal PM Manager; Itai Zauer, Principal PM Manager</EM></P>
+<P>See how Microsoft Entra helps you manage Conditional Access policy plans and scale granular access controls for every identity without contributing to policy sprawl. Through practical scenarios, learn how high-assurance credentials and passkeys strengthen phishing resistance; how AI-driven identity posture identifies security gaps and posture drift; and how identity context and risk signals from Microsoft Entra and Microsoft Defender help your team investigate and disrupt threats faster.</P>
+<P><BR /><A class="lia-external-url" href="https://aka.ms/ScaleSecureAccess" target="_blank" rel="noopener">Add to calendar</A></P>
+<H2><A class="lia-external-url" href="https://aka.ms/IdentityResilience" target="_blank" rel="noopener">Strengthen governance, privileged access, and resilience across every identity and tenant</A></H2>
+<P><STRONG>Wednesday, December 16, 2026, 9:00 AM Pacific Time</STRONG></P>
+<P><EM>Ilya Lushnikov, Principal Product Manager; Hien Nguyen, Product Marketing Manager; Yash Singh, Senior Product Marketing Manager</EM></P>
+<P>Explore new capabilities and demos across Microsoft Entra ID Governance, Privileged Identity Management (PIM), and Microsoft Entra Tenant Governance—from identity lifecycle management to group management. You’ll also see how Microsoft Entra Backup and Recovery helps your organization recover quickly from disruptions.</P>
+<P><BR /><A class="lia-external-url" href="https://aka.ms/IdentityResilience" target="_blank" rel="noopener">Add to calendar</A></P>
+<H2><A class="lia-external-url" href="http://aka.ms/AgentIdentity" target="_blank" rel="noopener">Secure identity and access for every agent, local or cloud</A></H2>
+<P><STRONG>Thursday, December 17, 2026, 9:00 AM Pacific Time</STRONG></P>
+<P><EM>Ehud Itshaki, Principal Product Manager; Leandro Iwase, Senior Product Marketing Manager</EM></P>
+<P>Local AI agents on employee devices are expanding the agent estate beyond the cloud. Identity and secur [truncated]]]></description>
+      <pubDate>Wed, 04 Nov 2026 16:19:58 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/microsoft-entra-deep-dives-join-our-december-15-17-webinar/ba-p/4448760</guid>
+      <dc:creator>lauraviarengo</dc:creator>
+      <dc:date>2026-11-04T16:19:58Z</dc:date>
+    </item>
+    <item>
+      <title>Global Secure Access: Private Access and Internet Access in one offering</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/global-secure-access-private-access-and-internet-access-in-one/ba-p/4569098</link>
+      <description><![CDATA[<P><SPAN data-contrast="auto">Employees, and now AI agents, need secure access to resources wherever they live: the internet, Microsoft 365 and SaaS, cloud and datacenter workloads, on-premises apps, and AI services. Zero Trust means evaluating every one of those connections against full context, including identity, risk, device, app and data, location, and network, and enforcing the decision continuously, not only at sign-in. Organizations need to do that without stitching together separate tools and policies.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:210,&quot;335559739&quot;:210,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">Today, we’re taking the next step in our Secure Access Service Edge (SASE) journey: customers can now purchase </SPAN><A href="https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-private-access" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">Microsoft Entra Private Access</SPAN></SPAN></A><SPAN data-contrast="auto"> and </SPAN><A href="https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-internet-access" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">Microsoft Entra Internet Access</SPAN></SPAN></A><SPAN data-contrast="auto"> together as a single </SPAN><STRONG><A href="https://www.microsoft.com/en-us/security/identity-access/microsoft-entra-global-secure-access" target="_blank" rel="noopener"><SPAN data-contrast="none"><SPAN data-ccp-charstyle="Hyperlink">Microsoft Entra </SPAN><SPAN data-ccp-charstyle="Hyperlink">Glo</SPAN><SPAN data-ccp-charstyle="Hyperlink">bal</SPAN><SPAN data-ccp-charstyle="Hyperlink"> Secure Access</SPAN></SPAN></A></STRONG><SPAN data-contrast="auto"><STRONG> </STRONG>offering.</SPAN><SPAN data-ccp-props="{&quot;201341983&quot;:0,&quot;335559738&quot;:210,&quot;335559739&quot;:210,&quot;335559740&quot;:300}">&nbsp;</SPAN></P>
+<P><SPAN data-contrast="auto">This is not a new product; it’s a simpler way to purchase these capabilities together. Microsoft Entra Private Access and Microsoft Entra Internet Access will also continue to be available individually.</SPAN></P>
+<H2><SPAN data-contrast="none"><SPAN data-ccp-parastyle="heading 2">How Microsoft Entra&nbsp;</SPAN><SPAN data-ccp-parastyle="heading 2">Glo</SPAN><SPAN data-ccp-parastyle="heading 2">bal</SPAN><SPAN data-ccp-parastyle="heading 2"> Secure Access fits</SPAN></SPAN><SPAN data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;201341983&quot;:0,&quot;335559738&quot;:261,&quot;335559739&quot;:261,&quot;335559740&quot;:300}">&nbsp;</SPAN></H2>
+<UL>
+<LI aria-setsize="-1" data-leveltext="" data-font="Symbol" data-listid="1" data-list-defn-props="{&quot;335552541&quot;:1,&quot;335559685&quot;:720,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Symbol&quot;,&quot;469769242&quot;:[8226],&quot;469777803&quot; [truncated]]]></description>
+      <pubDate>Tue, 03 Nov 2026 16:38:50 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/global-secure-access-private-access-and-internet-access-in-one/ba-p/4569098</guid>
+      <dc:creator>Yair_Tor</dc:creator>
+      <dc:date>2026-11-03T16:38:50Z</dc:date>
+    </item>
+    <item>
+      <title>AI agents are coming—are your identity controls prepared?</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/ai-agents-are-coming-are-your-identity-controls-prepared/ba-p/4515964</link>
+      <description><![CDATA[<P>AI is reshaping identity risk. Attackers now use AI to automate phishing, social engineering, and privilege escalation, making credential theft faster and more convincing than ever. SMS codes and push approvals can be intercepted, while standing privileges give attackers reach far beyond a single account.</P>
+<P>On the other hand, as organizations adopt AI agents, identity risk grows exponentially. Securing agent identities is critical to maintaining trust and control. The same principles that protect user identities must now extend to every agent identity.</P>
+<H2>Reinforcing the principles</H2>
+<P>Microsoft’s recently published guidance, <A href="https://learn.microsoft.com/en-us/security/zero-trust/sfi/secure-identity-to-get-ready-for-ai" target="_blank" rel="noopener">Secure identity to get ready for AI</A>, reinforces key principles for securing identities: move users and administrators to phishing-resistant multifactor authentication (MFA), eliminate standing privileges with Microsoft Entra Privileged Identity Management (PIM), and extend a unified policy engine to govern every identity.</P>
+<H2>Putting the principles into practice</H2>
+<P>Implement these principles in sequence to strengthen your Zero Trust foundation and secure every identity, starting with the accounts and controls you already manage:</P>
+<UL>
+<LI><STRONG>Move users and admins to phishing-resistant MFA. </STRONG>Protect privileged accounts first by requiring MFA for every administrator and moving them to device-bound passkeys or FIDO2 security keys. Plan a phishing-resistant, passwordless authentication rollout across your workforce using methods such as Windows Hello for Business, device-bound passkeys, synced passkeys, or certificate-based authentication.</LI>
+<LI><STRONG>Eliminate standing privileges.</STRONG> Permanent administrative assignments create lasting exposure. Run Microsoft Entra Privileged Identity Management (PIM) discovery, and convert static roles to eligible, time-bound activations that require justification and MFA. Govern guest access through expiring access packages.</LI>
+<LI><STRONG>Apply policy coverage across every identity and resource.</STRONG> Apply Conditional Access broadly, block legacy authentication, and require device compliance through Microsoft Intune. Enable Microsoft Entra ID Protection to respond to identity risk in real time by enforcing MFA at medium risk and a credential reset at high risk.<STRONG> </STRONG>Maintain continuous coverage by exporting logs to Microsoft Sentinel or Azure Monitor, alerting on privileged activations, and running recurring access reviews.</LI>
+</UL>
+<H2>Start your secure identity journey today</H2>
+<P>Phishing-resistant MFA removes the password and SMS-based paths attackers depend on. Just-in-time activation through PIM removes standing privileges. A unified policy engine secures identities consistently. By securing identities in the recommended sequence, you establish the Zero Trust foundation that A [truncated]]]></description>
+      <pubDate>Fri, 30 Oct 2026 19:54:24 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/ai-agents-are-coming-are-your-identity-controls-prepared/ba-p/4515964</guid>
+      <dc:creator>Melanie_Maynes</dc:creator>
+      <dc:date>2026-10-30T19:54:24Z</dc:date>
+    </item>
+    <item>
+      <title>Why identity needs network insight to make Zero Trust work</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/why-identity-needs-network-insight-to-make-zero-trust-work/ba-p/4566630</link>
+      <description><![CDATA[<P>Your users sign in successfully—and then what? The session can be hijacked, device posture can degrade, and traffic to non-federated SaaS and AI apps can slip past the identity controls you trust to protect them. That’s the gap admins see every day: identity tells you who, but not what’s happening across the network during the session—and it’s why identity alone can’t carry Zero Trust on its own.<BR /><BR />Most Zero Trust strategies start with identity—and for good reason. Identity is the control point for authenticating users and granting access. But identity by itself can’t address every evolving risk. Today, users connect from anywhere, on any device, and interact with thousands of apps across cloud, AI, internet, and private networks. The gap between identity and network security creates blind spots that attackers can exploit.</P>
+<P>Microsoft’s approach is clear: <STRONG>identity </STRONG><STRONG>is</STRONG><STRONG> most effective when it operates with full awareness of the network.</STRONG> That’s why Microsoft Entra brings identity and network protections together in a unified architecture designed for modern Zero Trust security.</P>
+<H2><STRONG>Why identity alone is not enough</STRONG></H2>
+<P>Traditional access decisions often stop at sign-in and rely on credentials plus multifactor authentication. This works for many scenarios—but not all. In practice, a session that looks low-risk at sign-in can turn risky minutes later, and unmanaged traffic to AI tools and non-federated SaaS apps creates blind spots your identity policies weren’t designed to cover Why? Because threats don’t disappear after a successful sign-in:</P>
+<UL>
+<LI><STRONG>Risk changes dynamically:</STRONG> A user’s session can be hijacked, or device posture can deteriorate mid-session.</LI>
+<LI><STRONG>Blind spots in traffic:</STRONG> Connections to non-federated SaaS apps or AI services often bypass identity controls.</LI>
+<LI><STRONG>Static policies fail:</STRONG> Network contexts like location or traffic path often go unchecked.</LI>
+</UL>
+<P>Zero Trust isn’t just about verifying identity at the front door—it’s about making continuous, adaptive decisions that factor in <STRONG>identity, device, network conditions, and session context together.</STRONG></P>
+<H2><STRONG>How Microsoft Entra unifies identity and network signals</STRONG></H2>
+<P>Microsoft brings these controls together through <STRONG>a single security architecture anchored by Microsoft Entra ID, Conditional Access, </STRONG><STRONG>continuous access evaluation, and Global Secure</STRONG><STRONG> Access</STRONG><STRONG>, including </STRONG><STRONG>Microsoft Entra Internet Access and </STRONG><STRONG>Microsoft Entra </STRONG><STRONG>Private Access.</STRONG></P>
+<H3><STRONG>Key principles</STRONG></H3>
+<UL>
+<LI><STRONG>Conditional Access as a unified engine</STRONG><BR />Access decisions no longer evaluate identity alone—they also factor in device compliance, location, trusted network, and contextual signal [truncated]]]></description>
+      <pubDate>Tue, 27 Oct 2026 15:00:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/why-identity-needs-network-insight-to-make-zero-trust-work/ba-p/4566630</guid>
+      <dc:creator>Mohammad_Zmaili</dc:creator>
+      <dc:date>2026-10-27T15:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>Designing smarter access policies for hybrid enterprises</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/designing-smarter-access-policies-for-hybrid-enterprises/ba-p/4529308</link>
+      <description><![CDATA[<P>Every hybrid enterprise eventually reaches the same point: the security model that worked when everyone was inside the corporate network no longer holds up when people, apps, and data are distributed across clouds, data centers, and unmanaged devices. Add AI agents acting on users’ behalf, and the idea of a trusted perimeter loses even more relevance. The answer is not more controls for their own sake, but better-designed policies: deliberate rules that determine who and what can access specific resources, under which conditions, and how access adapts as risk changes. Get the design right, and security becomes an enabler rather than a burden. Get it wrong, and you either leave gaps attackers can exploit or frustrate the users you are trying to protect. This article explains how to get it right.</P>
+<H2>TL;DR</H2>
+<P>In a hybrid enterprise, users, apps, and data no longer sit behind a single perimeter, and AI agents also make access requests. This article explains how to design Microsoft Entra Conditional Access policies and policy governance for that reality, protecting what matters without slowing people down. The goal is a Zero Trust posture you can operate, not merely deploy.</P>
+<H2>Why this matters</H2>
+<P>Hybrid work is no longer a transition state; it is the operating model. Most organizations now run apps across multiple clouds, maintain legacy systems on-premises, and support a distributed workforce that expects access to feel immediate and seamless. That combination creates real tension in policy design: policies that are too loose leave gaps, while policies that are too rigid lock out the people they are meant to enable.</P>
+<P>Organizations that get this right treat policy as a design discipline rather than a collection of rules. A Zero Trust architecture is not measured by how many controls you enable. It is measured by how well those controls adapt to how people actually work. Good policy design keeps security strong and friction low, distinguishing a framework people trust from one they work around.</P>
+<H2>Start with identity, not the network</H2>
+<P>In a hybrid environment, identity is the perimeter. Network location reveals little about whether a request is safe, so policies should begin with who the user is, how they authenticate, and what the available signals indicate about the session.</P>
+<P>Practically, that means requiring multi-factor authentication for everyone and moving toward phishing-resistant methods as your baseline rather than your aspiration. It also means evaluating each sign-in in context, factoring in user risk and session conditions instead of granting standing access. For privileged accounts, replace always-on admin rights with just-in-time elevation through Privileged Identity Management, so elevated access exists only for as long as the task requires it.</P>
+<H2>Extend the same model to AI agents</H2>
+<P>AI assistants and autonomous agents are now first-class actors in hybrid environments, requesting a [truncated]]]></description>
+      <pubDate>Thu, 22 Oct 2026 15:00:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/designing-smarter-access-policies-for-hybrid-enterprises/ba-p/4529308</guid>
+      <dc:creator>SuleTatar</dc:creator>
+      <dc:date>2026-10-22T15:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>Master Microsoft Entra with live webinars, AMAs, and on-demand videos</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/master-microsoft-entra-with-live-webinars-amas-and-on-demand/ba-p/4502147</link>
+      <description><![CDATA[<P>The identity security landscape never stands still, and neither should your knowledge. With evolving scenarios such as Zero Trust adoption, AI-driven automation, and hybrid security strategies, staying informed is essential. That’s exactly what we want to do together with you – stay ahead and be prepared for whatever comes next! So we’re delivering a number of opportunities to learn more and get the most of Microsoft Entra solutions - interactive webinars, Ask Me Anything (AMA) sessions, and a comprehensive video repository—your way, on your schedule.</P>
+<P>This guide shows you where to start, what’s available, and how to access these resources in one place.</P>
+<H2>Why live learning matters</H2>
+<P>Documentation and blogs provide foundational knowledge, but real-time access to product experts delivers unique value. With Microsoft Entra webinars and AMAs, you can:</P>
+<UL>
+<LI>Get insider perspectives on new features</LI>
+<LI>See best practices demonstrated live</LI>
+<LI>Ask product engineers and PMs questions directly</LI>
+<LI>Connect with the global identity community for shared insights</LI>
+</UL>
+<H2>Your engagement options</H2>
+<P>Microsoft Entra learning opportunities are designed for flexibility: join live or watch on-demand.</P>
+<H3>1. Webinars for technical deep dives</H3>
+<P>Webinars help you explore deployment strategies, optimize configurations, and strengthen identity security with practical examples.</P>
+<H3>2. AMAs: Ask Me Anything sessions</H3>
+<P>Our AMAs provide direct access to product experts. Whether you have a configuration question, are considering new capabilities, or need best-practice advice, you will get live answers from engineers and the product team.</P>
+<H3>3. Microsoft Entra Mechanics video repository</H3>
+<P>Can’t attend live? Access demo-rich tutorials and feature walkthroughs anytime. The Microsoft Mechanics video library covers everything from initial setup to advanced deployment patterns for Microsoft Entra solutions.</P>
+<H2>Webinars and AMAs</H2>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="border-width: 1px;"><tbody><tr><td>
+<P><STRONG>Title</STRONG></P>
+</td><td>
+<P><STRONG>Date</STRONG></P>
+</td><td>
+<P><STRONG>Speaker(s)</STRONG></P>
+</td><td>
+<P><STRONG>Key value</STRONG></P>
+</td><td>
+<P><STRONG>Direct link</STRONG></P>
+</td></tr><tr><td>
+<P>Unlock AI agents without sacrificing security</P>
+<P>&nbsp;</P>
+</td><td>
+<P><STRONG>Jul 23, 2026</STRONG></P>
+</td><td>
+<P>Jeevan Bisht, Safeena Begum Lepakshi</P>
+</td><td>
+<P>Covers shadow AI discovery, agent governance, Conditional Access for AI interactions, and runtime data protection for AI agents.</P>
+</td><td>
+<P><A href="https://www.youtube.com/watch?v=AJx5PYKm1Cw" target="_blank" rel="noopener">Watch recording</A></P>
+<P>&nbsp;</P>
+</td></tr><tr><td>
+<P>Data and identity controls for the browser and network</P>
+<P>&nbsp;</P>
+</td><td>
+<P><STRONG>Jul 22, 2026</STRONG></P>
+</td><td>
+<P>Alexander P [truncated]]]></description>
+      <pubDate>Fri, 16 Oct 2026 21:53:24 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/master-microsoft-entra-with-live-webinars-amas-and-on-demand/ba-p/4502147</guid>
+      <dc:creator>Irina_Nechaeva</dc:creator>
+      <dc:date>2026-10-16T21:53:24Z</dc:date>
+    </item>
+    <item>
+      <title>What’s new in Microsoft Entra: October 2026</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/what-s-new-in-microsoft-entra-october-2026/ba-p/4556460</link>
+      <description><![CDATA[<P>Over the last few months, I've spent a lot of time with customers and our teams on one of the biggest security shifts ahead of us: securing an enterprise where people and AI agents are both acting on behalf of the business.</P>
+<P>It’s a challenge shaping Microsoft's approach to Secure AI. And while AI makes the challenge urgent, the underlying problem is broader. Organizations need to give more people, applications, workloads, and agents access to more resources, while maintaining control without adding more friction and complexity.</P>
+<P>Identity and network access are at the center of the transition.</P>
+<P>Customers are clear about what they need. Across my conversations with identity and network access leaders and practitioners, and through our ongoing customer research, four outcomes consistently rise to the top:</P>
+<OL>
+<LI>Keep my organization trusted and resilient</LI>
+<LI>Give users and agents secure access without friction</LI>
+<LI>Reduce the cost and complexity of access management</LI>
+<LI>Adopt AI safely at enterprise scale</LI>
+</OL>
+<P>So, we're making a change to this blog.</P>
+<P>Starting this month, we’re organizing “What’s New” around the outcomes you're trying to achieve, rather than around our product architecture. Our goal is to make the connection between what we're shipping, the challenges you’re having, and where we're headed much clearer. I welcome your feedback on this new approach in the comments.</P>
+<H2>What I'd pay attention to this month</H2>
+<P>We’re acting on your feedback with new capabilities that:</P>
+<UL>
+<LI><STRONG>Continue to make access more adaptive.</STRONG> Universal Continuous Access Evaluation in Global Secure Access can now use additional user-risk and device-revocation signals, including when a device is deleted, disabled, or becomes noncompliant.</LI>
+<LI><STRONG>Take complexity out of everyday identity operations. </STRONG>From a guided path to Cloud Sync to Microsoft-managed certificates for TLS inspection, several of this month's updates are about making stronger security easier to deploy and operate.</LI>
+</UL>
+<P>Here's everything new in Microsoft Entra since September.</P>
+<H2>Outcome: Keep my organization trusted and resilient</H2>
+<P><A href="https://learn.microsoft.com/entra/global-secure-access/concept-universal-continuous-access-evaluation#microsoft-entra-id-signals-that-trigger-universal-cae-reauthentication" target="_blank" rel="noopener"><STRONG>Device signals added to Continuous Access Evaluation (CAE) in Global Secure Access </STRONG></A>&nbsp;</P>
+<P>Give hybrid users fast, seamless, and secure access with Universal Continuous Access Evaluation (CAE) in Global Secure Access. Universal CAE adapts access based on a user’s location, optimizing the experience on the corporate network while maintaining strong security controls. It now supports user-risk and device-revocation signals, including when a device is deleted, disabled, or becomes noncompliant.</P>
+<P><EM>Public Preview< [truncated]]]></description>
+      <pubDate>Fri, 16 Oct 2026 16:25:24 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/what-s-new-in-microsoft-entra-october-2026/ba-p/4556460</guid>
+      <dc:creator>Yina Arenas</dc:creator>
+      <dc:date>2026-10-16T16:25:24Z</dc:date>
+    </item>
+    <item>
+      <title>Sign in to Microsoft apps with passkeys from external identity providers</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/sign-in-to-microsoft-apps-with-passkeys-from-external-identity/ba-p/4556448</link>
+      <description><![CDATA[<P>Organizations that use an external identity provider to authenticate Microsoft 365 users can now extend browser-based passkeys, security keys, and eligible single sign-on sessions to supported Microsoft app sign-ins—including Outlook, Teams, OneDrive, Word, Excel, PowerPoint, and Microsoft To Do—on Android, iOS, and managed macOS.</P>
+<P>Previously, some Microsoft app sign-ins used an embedded web view that couldn’t provide the browser capabilities required to support passkeys (FIDO2) issued by external identity providers. As a result, some users couldn’t use a passkey or security key or complete sign-in when the identity provider required passkeys or blocked embedded web views.</P>
+<P>Browser authentication for external identity providers addresses this limitation by opening only the external identity provider step in the system browser. After authentication, the user returns to the Microsoft identity broker—the trusted Microsoft component that coordinates app sign-in—and the originating app completes sign-in.</P>
+<P>&nbsp;</P>
+<img />
+<P class="lia-align-center"><EM>Browser authentication opens the external identity provider’s sign-in step in the system browser.</EM></P>
+<H2>Extend your passkey strategy to Microsoft app sign-ins</H2>
+<P>Organizations federated through WS-Fed or SAML 2.0 can use this capability to extend supported external identity provider authentication methods to Microsoft app sign-ins. Users can authenticate with passkeys or FIDO2 security keys in the system browser, and eligible browser sessions can reduce repeated prompts.</P>
+<P>With this capability, you can:</P>
+<UL>
+<LI><STRONG>Use external identity provider passkeys and FIDO2 security keys.</STRONG> The external identity provider authentication step runs in a browser surface that supports WebAuthn, so users can use FIDO credentials registered with that identity provider instead of falling back to a password-only experience.</LI>
+<LI><STRONG>Enable single sign-on from native apps to web apps.</STRONG> The system browser provides a shared web surface and can reuse an eligible identity provider session, reducing unnecessary sign-in prompts.</LI>
+<LI><STRONG>Support identity providers that reject embedded web views.</STRONG> Organizations can maintain identity provider policies that require a system browser without creating a separate authentication path for supported Microsoft apps.</LI>
+<LI><STRONG>Roll out with platform-level control.</STRONG> Administrators enable the experience in the relevant federation configuration and select the platforms where it applies.</LI>
+</UL>
+<P>This creates a more consistent experience across web and supported Microsoft app sign-ins without requiring a separate authentication approach for embedded sign-in surfaces.</P>
+<H2>Keep the brokered app experience</H2>
+<P>The Microsoft identity broker—a trusted Microsoft component that coordinates app sign-in and token acquisition—continues to manage the sign-in flow. Depending on the platform, [truncated]]]></description>
+      <pubDate>Tue, 29 Sep 2026 15:00:00 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/sign-in-to-microsoft-apps-with-passkeys-from-external-identity/ba-p/4556448</guid>
+      <dc:creator>Justin-Ploegert</dc:creator>
+      <dc:date>2026-09-29T15:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>Prepare your tenant estate for AI: Join our upcoming webinars</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/prepare-your-tenant-estate-for-ai-join-our-upcoming-webinars/ba-p/4554525</link>
+      <description><![CDATA[<P>Securing multiple tenants has never been more critical. From mergers and acquisitions to shadow IT and test environments, multi-tenant complexity can introduce gaps in security, compliance, and governance.</P>
+<P>Now that Microsoft Entra Tenant Governance is generally available, you can gain visibility across every tenant, implement consistent policies, and confidently reduce shadow-tenant risk. A strong identity foundation prepares you for the age of AI.</P>
+<P>To help you get started, we’re hosting <STRONG>exclusive webinars</STRONG> that explore multi-tenant risk and show you how to deploy Microsoft Entra Tenant Governance to maintain a secure, compliant tenant estate. These sessions are designed for <STRONG>security and identity leaders</STRONG> who need a strategy for securing multi-tenant environments and for <STRONG>IT and identity professionals</STRONG> who need to govern sprawling tenant environments efficiently and securely.</P>
+<P>Don’t miss this opportunity to learn how to strengthen your identity foundation. <STRONG>Register now for the webinars:</STRONG></P>
+<P><STRONG style="color: rgb(30, 30, 30); font-size: 32px;">1. Secure multitenant environments with Microsoft Entra Tenant Governance</STRONG></P>
+<P>In this session, we’ll explore why fragmented environments create vulnerabilities and what you can do to close security gaps. Learn how to detect shadow IT tenants, establish governance relationships, and scale configuration management effectively.</P>
+<P>📅 <EM>Date:</EM> Tuesday, September 15, 2026<BR />⏰ <EM>Time:</EM> 9:00 AM–10:00 AM Pacific Time</P>
+<P>Watch it on demand:&nbsp;<A href="https://aka.ms/EntraTG-AMA" target="_blank" rel="noopener">https://aka.ms/EntraTG-AMA</A></P>
+<H2><STRONG>2. Microsoft Entra Tenant Governance in action: Best practices and real-world scenarios</STRONG></H2>
+<P>In this session, we’ll explore practical scenarios for protecting your multitenant environments while maintaining productivity. Bring your questions about deployment, workflows, and real-world scenarios for our product experts.</P>
+<P>📅 <EM>Date:</EM> Tuesday, October 6, 2026<BR />⏰ <EM>Time:</EM> 9:00 AM–10:00 AM Pacific Time</P>
+<P>Register here: <A href="https://aka.ms/EntraTG-webinar" target="_blank" rel="noopener">https://aka.ms/EntraTG-webinar</A></P>
+<P>-Hien Nguyen</P>
+<P>&nbsp;</P>
+<P><STRONG>Additional resources</STRONG></P>
+<UL>
+<LI><A href="https://aka.ms/TenantGovernance/Docs" target="_blank" rel="noopener">Microsoft Entra tenant governance documentation</A></LI>
+<LI><A href="https://learn.microsoft.com/en-us/entra/architecture/tenant-estate-guide" target="_blank" rel="noopener">Microsoft Entra tenant estate architecture guidance</A></LI>
+<LI><A href="https://learn.microsoft.com/en-us/entra/id-governance/tenant-governance/deployment-guide" target="_blank" rel="noopener">Microsoft Entra Tenant Governance deployment guide</A></LI>
+<LI><A href="https://learn.microsoft.com/en-us/entra/id-governance/tenant-governance/licensing" [truncated]]]></description>
+      <pubDate>Mon, 21 Sep 2026 16:04:27 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/prepare-your-tenant-estate-for-ai-join-our-upcoming-webinars/ba-p/4554525</guid>
+      <dc:creator>Hien-Nguyen</dc:creator>
+      <dc:date>2026-09-21T16:04:27Z</dc:date>
+    </item>
+    <item>
+      <title>Public preview of self-service onboarding for new Microsoft Entra App Gallery applications</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/public-preview-of-self-service-onboarding-for-new-microsoft/ba-p/4557199</link>
+      <description><![CDATA[<P>Previously, publishing a new application to Microsoft Entra App Gallery could require multiple review cycles. Publishers submitted an integration, received feedback, made corrections, and resubmitted it, which delayed when customers could discover and deploy the application.</P>
+<P>Today, we're announcing the <STRONG>public preview of self-service onboarding for new applications to Microsoft Entra App Gallery</STRONG>.</P>
+<P>The new experience helps independent software vendors validate supported integrations before submission, resolve common configuration issues earlier, and manage publishing through a guided workflow in the Microsoft Entra admin center. Publishers can create a new App Gallery submission, associate validation results, provide customer-facing documentation and logos, submit the application for Microsoft review, and track its status throughout the process.</P>
+<H2>Validate before submitting</H2>
+<P>Configuration issues that previously surfaced during Microsoft review can now be identified earlier.</P>
+<P>With self-service onboarding, publishers can test supported integrations against Microsoft Entra App Gallery requirements before submission, while they still have the context needed to address identified issues.</P>
+<P>The public preview supports validation for the following.</P>
+<DIV class="styles_lia-table-wrapper__h6Xo9 styles_table-responsive__MW0lN"><table border="1" style="border-width: 1px;"><thead><tr><td>
+<P><STRONG>Capability</STRONG></P>
+</td><td>
+<P><STRONG>Validation experience</STRONG></P>
+</td></tr></thead><tbody><tr><td>
+<P>OIDC single-tenant and multitenant SSO</P>
+</td><td>
+<P>Microsoft Entra App Validator browser extension</P>
+</td></tr><tr><td>
+<P>SAML SSO</P>
+</td><td>
+<P>Microsoft Entra App Validator browser extension</P>
+</td></tr><tr><td>
+<P>User provisioning</P>
+</td><td>
+<P>Microsoft-provided Logic Apps validation flow or SCIM onboarding agent</P>
+</td></tr></tbody><colgroup><col style="width: 50.00%" /><col style="width: 50.00%" /></colgroup></table></DIV>
+<P>For OIDC and SAML integrations, the Microsoft Entra App Validator guides publishers through the required sign-in scenarios, identifies blocking issues, and generates the Test ID needed for submission. For user provisioning, Microsoft-provided validation tools test the integration and generate validation results that can be associated with the App Gallery submission.</P>
+<P>&nbsp;</P>
+<img />
+<P class="lia-align-center"><EM>The Microsoft Entra App Validator helps publishers identify configuration issues in new OIDC and SAML integrations before submission.</EM></P>
+<H2>Submit and track through one guided workflow</H2>
+<P>After completing the applicable validation, publishers can continue the self-service publishing workflow. In the Microsoft Entra admin center, they can:</P>
+<UL>
+<LI>Create a new App Gallery submission.</LI>
+<LI>Associate the applicable validation results.</LI>
+<LI>Provide application and publisher information, support details, an [truncated]]]></description>
+      <pubDate>Thu, 17 Sep 2026 20:27:30 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/public-preview-of-self-service-onboarding-for-new-microsoft/ba-p/4557199</guid>
+      <dc:creator>hildak</dc:creator>
+      <dc:date>2026-09-17T20:27:30Z</dc:date>
+    </item>
+    <item>
+      <title>Replace VPN access with identity-driven security</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/replace-vpn-access-with-identity-driven-security/ba-p/4529309</link>
+      <description><![CDATA[<P>Traditional VPNs no longer fit the security or agility needs of modern enterprises. Static tunnels, device trust assumptions, and network-level access introduce risk in a Zero Trust world.</P>
+<P>Microsoft Entra Private Access offers a different path. As a component of Global Secure Access, it is designed to replace traditional VPN access to private resources with identity-driven, per-app connectivity. That distinction matters: Global Secure Access is the broader Security Service Edge framework, while Microsoft Entra Private Access is the component most directly aligned to VPN replacement for private applications.</P>
+<P>This guide provides a <STRONG>practical, phased strategy to replace VPN with identity-driven, secure access services</STRONG> provided by Microsoft Entra Private Access.</P>
+<P><STRONG>Start here:</STRONG></P>
+<UL>
+<LI><A href="https://aka.ms/GSAOpsGuide" target="_blank">Plan and operate your Global Secure Access deployment</A></LI>
+</UL>
+<UL>
+<LI><A href="https://aka.ms/GSAOpsGuide" target="_blank">Use the Global Secure Access operations guide</A></LI>
+</UL>
+<H2><STRONG>Why replace VPN now</STRONG></H2>
+<P>As organizations embrace hybrid work, cloud services, and Zero Trust security models, VPNs often become a source of both security and operational challenges. By design, VPNs extend network connectivity to remote users, frequently providing access to more resources than necessary. This approach conflicts with the principle of least privilege and increases the potential impact of compromised accounts or devices.</P>
+<P>VPN infrastructure can also create operational overhead. Organizations must maintain gateways, manage capacity, monitor performance, and address availability concerns. Split-tunnel configurations, while often necessary for performance, can introduce visibility gaps that attackers can exploit.</P>
+<P>At the same time, attackers continue to target remote access infrastructure using stolen credentials, phishing campaigns, and MFA fatigue attacks. Replacing VPNs with identity-driven access reduces the attack surface, enforces granular access controls, and delivers a more seamless experience for users</P>
+<P>Read more: <A href="https://techcommunity.microsoft.com/" target="_blank">Identity Under Attack: How AI Learns to Defend</A></P>
+<H2><STRONG>Step</STRONG><STRONG> 1: Understand your private application landscape</STRONG></H2>
+<P>A successful VPN modernization project begins with visibility. Start by identifying the private applications, file shares, and internal web resources that currently rely on VPN connectivity. Understanding who uses these resources, from where, and on what devices will help determine migration priorities.</P>
+<P>Organizations should evaluate workloads based on factors such as business criticality, sensitivity of data, user impact, and overall migration complexity. Applications supporting functions such as finance, HR, or other sensitive business processes often benefit most from early plan [truncated]]]></description>
+      <pubDate>Wed, 16 Sep 2026 16:30:30 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/replace-vpn-access-with-identity-driven-security/ba-p/4529309</guid>
+      <dc:creator>SuleTatar</dc:creator>
+      <dc:date>2026-09-16T16:30:30Z</dc:date>
+    </item>
+    <item>
+      <title>Simplify Employee Identity Lifecycle with HiBob and Microsoft Entra</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/simplify-employee-identity-lifecycle-with-hibob-and-microsoft/ba-p/4554510</link>
+      <description><![CDATA[<P>Every workforce transition creates an identity moment that your IT team must get right. That’s why we’re excited to announce the general availability of HiBob’s native integration with Microsoft Entra. It helps you turn trusted workforce changes in HiBob into governed identity actions, so employees get the right access across on-premises and cloud apps as they join, change roles, or leave.</P>
+<H2>Why this matters</H2>
+<P>New hires need accounts and the right access from day one. When employees change roles, their access needs to change with them. And when someone leaves, that access needs to be removed quickly. Manual handoffs, tickets, and custom integrations slow these moments down, create more work for IT, and add unnecessary security risk. Connecting trusted workforce data in HiBob with Microsoft Entra helps you securely govern and automate the process, reducing the back-and-forth.</P>
+<P>If your organization uses HiBob, this integration gives your HR and IT teams a more connected way to manage identity changes across hybrid environments. HR keeps workforce information current in HiBob, while IT decides how Microsoft Entra applies mappings, scoping rules, provisioning policies, and governance controls. Together, the systems turn workforce events into consistent identity actions - reducing manual handoffs, speeding up lifecycle processes, and creating a stronger foundation for identity governance.</P>
+<H2>Modernize identity without forcing a disruptive migration</H2>
+<P>Many organizations are moving applications and infrastructure to the cloud while still supporting on-premises directories. Modernizing identity does not mean replacing everything at once. The HiBob integration works with the environment you have today and helps you move toward a more cloud-managed model over time.</P>
+<P>This integration advances a broader Microsoft Entra strategy: bring identity lifecycle control, visibility, and governance into a unified cloud service. Microsoft Entra can serve as the control plane for workforce identity changes across hybrid and cloud environments, while IT retains control over which users are in scope, how attributes are mapped, and what actions are performed.</P>
+<P>&nbsp;</P>
+<img />
+<P class="lia-align-center"><EM>Figure 1: HR-driven identity lifecycle flow from HiBob through Microsoft Entra.</EM></P>
+<P>&nbsp;</P>
+<H2>Choose the integration that matches your identity environment</H2>
+<P>HiBob Marketplace offers two purpose-built integrations. Choose the one that fits where your organization is in its identity modernization journey.</P>
+<H3>For hybrid identities</H3>
+<P>Use the <A href="https://www.hibob.com/marketplace/adhybrid/overview" target="_blank" rel="noopener">Windows Server Active Directory (Hybrid) integration</A> if employees still need identities in an on-premises directory. Microsoft Entra cloud provisioning sends the configured changes through the Microsoft Entra provisioning agent, while Microsoft Entra keeps provisio [truncated]]]></description>
+      <pubDate>Mon, 14 Sep 2026 18:17:58 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/simplify-employee-identity-lifecycle-with-hibob-and-microsoft/ba-p/4554510</guid>
+      <dc:creator>udimilo</dc:creator>
+      <dc:date>2026-09-14T18:17:58Z</dc:date>
+    </item>
+    <item>
+      <title>What’s new in Microsoft Entra: September 2026</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/what-s-new-in-microsoft-entra-september-2026/ba-p/4545179</link>
+      <description><![CDATA[<P>Welcome to the September edition of “What’s New in Microsoft Entra.” This month, we’re highlighting new generally available and public preview capabilities that strengthen tenant governance, simplify identity lifecycle management, and help organizations secure access in the age of AI. We’re also sharing important change announcements to help you plan ahead.</P>
+<H2>What went into General Availability (GA) since August 2026?</H2>
+<UL>
+<LI><A href="https://learn.microsoft.com/entra/id-governance/tenant-governance/overview" target="_blank" rel="noopener"><STRONG>Microsoft Entra Tenant Governance</STRONG></A> -&nbsp;Administrators can discover and get control of shadow IT tenants across their organization, establish least-privilege governance relationships with existing and newly created tenants, and monitor for configuration drift against customer-defined baselines across Microsoft Entra, Intune, Exchange Online, Teams, Purview, and Defender. Tenant Governance empowers administrators to move from ad hoc, portal-by-portal, tenant-by-tenant administration to secure, governed tenant configuration at scale, reducing shadow tenant risk and strengthening the identity foundation for cloud and AI services.</LI>
+<LI><A href="https://learn.microsoft.com/entra/id-governance/catalog-access-reviews" target="_blank" rel="noopener"><STRONG>Improve access governance with&nbsp;User-centric Access Reviews (UAR)</STRONG></A> - UAR enables reviewers to evaluate a user’s access across multiple resources within a catalog in one unified view, streamlining the process of ensuring that users have right access at the right time. This supports Entra ID groups, connected and disconnected applications, providing customers with a unified review experience across Entra-integrated and external resources.</LI>
+<LI><A href="https://learn.microsoft.com/entra/id-governance/create-lifecycle-workflow" target="_blank" rel="noopener"><STRONG>Create workflows by cloning an existing workflow in Lifecycle Workflows </STRONG></A>- Lifecycle Workflows administrators can now create a workflow by cloning an existing workflow in the Microsoft Entra admin center. Start from the <STRONG>Clone</STRONG>&nbsp;action on the workflow list or the <STRONG>Clone an existing workflow</STRONG> card during workflow creation. The cloned workflow opens directly on <STRONG>Review and create</STRONG> page, allowing administrators to modify details, configuration, or tasks before creating it.</LI>
+<LI><A href="https://learn.microsoft.com/en-us/microsoftteams/rooms/passwordlessentraresourceaccounts" target="_blank" rel="noopener"><STRONG>Microsoft Entra Resource Accounts for Teams Devices</STRONG></A> - Delivers a secure, passwordless identity model for Microsoft Teams Rooms, Teams Panels, Common Area Phones, and other shared Teams devices. Resource Accounts replace legacy password-based authentication with hardware-protected, device-bound credentials that improve security, reliability, and operational efficienc [truncated]]]></description>
+      <pubDate>Tue, 01 Sep 2026 15:36:09 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/what-s-new-in-microsoft-entra-september-2026/ba-p/4545179</guid>
+      <dc:creator>Yina Arenas</dc:creator>
+      <dc:date>2026-09-01T15:36:09Z</dc:date>
+    </item>
+    <item>
+      <title>Instant revocation of service principal bearer tokens with CAE</title>
+      <link>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/instant-revocation-of-service-principal-bearer-tokens-with-cae/ba-p/4548192</link>
+      <description><![CDATA[<H4><STRONG>Introduction</STRONG></H4>
+<P>Workload identities such as service principals are an important part of the attack surface in Entra: they are often used by critical automated processes, and they can carry privileged and sensitive permissions. The authentication flow used by these principals is the Client Credential flow, which results in an access token.</P>
+<P>In this blog post, I'll describe how Continuous Access Evaluation (CAE) can be leveraged to instantly invalidate an access token for a service principal in Microsoft Entra. This is incredibly valuable as part of a kill-switch in incident response scenarios.</P>
+<H4><STRONG>Access tokens (aka bearer tokens)</STRONG></H4>
+<P>Access tokens are <STRONG>bearer tokens</STRONG>. Instant invalidation of bearer tokens is an important response capability because <EM>normally </EM>these tokens have a lifetime between 60 and 90 minutes.</P>
+<P>This is a long time in scenarios where a compromised token can be used for triggering malicious automation by a bad actor.</P>
+<H4><STRONG>How to enable CAE for service principal tokens</STRONG></H4>
+<P>CAE is enabled by a “client capability” claim, “xms_cc”, with the value of “cp1”.</P>
+<P>The screenshot below shows an example of a PowerShell function that incorporates this:</P>
+<img />
+<H4><STRONG>Recognizing a CAE-enabled token&nbsp;</STRONG></H4>
+<P>The access token I get back from this request is base64 encoded. I can echo this encoded value back in my PowerShell session, then paste it into a decoder to investigate it (jwt.io or jwt.ms).</P>
+<P>The first thing&nbsp;you will notice is the presence of this claim:</P>
+<img />
+<P>The second thing you will notice is the lifetime of the token:</P>
+<img />
+<P>The expiry value is now (roughly) 24 hours after the “iat” (issued at) time, instead of the 60-90 minutes that we normally see in tokens that are not CAE-enabled.</P>
+<H4><STRONG>Why does this matter</STRONG></H4>
+<P>Although a longer lifetime seems less secure, Microsoft’s philosophy around this is that with Workload Identity Protection enabled, risk levels can dynamically be picked up for the identity.</P>
+<P>If an identity is at a <STRONG>high </STRONG>risk level, the token is revoked within a couple of minutes <STRONG>automatically.</STRONG></P>
+<P>High risk is only one of three revocation events. At the time of writing, the revocation events are:</P>
+<UL>
+<LI>Service Principal at high risk</LI>
+<LI>Service Principal disabled</LI>
+<LI>Service Principal deleted</LI>
+</UL>
+<H4><STRONG>How to manually test this</STRONG></H4>
+<P>In PowerShell, I use the “Connect-And-GetToken" function above to obtain the token and construct a header, which I then use to call a Graph endpoint:</P>
+<P>&nbsp;</P>
+<img />
+<P>(<EM>I can call this <A href="https://graph.microsoft.com/v1.0/users" target="_blank" rel="noopener">https://graph.microsoft.com/v1.0/users</A> endpoint, because my app, represented by $cid, has the <SPAN class="lia-text-color-9">User.Read.All </SPA [truncated]]]></description>
+      <pubDate>Wed, 02 Sep 2026 17:51:51 GMT</pubDate>
+      <guid>https://techcommunity.microsoft.com/t5/microsoft-entra-blog/instant-revocation-of-service-principal-bearer-tokens-with-cae/ba-p/4548192</guid>
+      <dc:creator>Simone_Oor</dc:creator>
+      <dc:date>2026-09-02T17:51:51Z</dc:date>
+    </item>
+  </channel>
+</rss>

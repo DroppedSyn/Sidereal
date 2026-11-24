@@ -1,0 +1,87 @@
+# Sidereal settings. Copy to ~/.config/sidereal/sidereal.toml and edit; every key is optional
+# (the values below are the defaults). Env overrides: SIDEREAL_<SECTION>__<KEY>, e.g.
+# SIDEREAL_WEB__PORT=8471 or SIDEREAL_WEB__ALLOWED_HOSTS='["127.0.0.1","localhost"]'.
+# No secrets here: SMTP password and Discord webhook go in ~/.config/sidereal/env (mode 0600).
+
+[web]
+host = "127.0.0.1"                 # non-loopback needs auth.mode = "on" and a user (rule 9)
+port = 8470
+allowed_hosts = ["127.0.0.1", "localhost"]
+allowed_origins = []               # extra origins for writes, e.g. ["http://localhost:5173"] (Vite dev)
+https = false
+trusted_proxies = []
+
+[auth]
+mode = "off"                       # "on" from M25
+require_totp = false
+
+[ollama]
+url = "http://192.168.221.1:11434"
+
+[models]
+triage = "qwen3.8:27b"
+assess = "qwen3.8:27b"
+digest = "qwen3.8:27b"
+never_unload = ["qwen3.6:35b-a3b-coding"]
+keep_alive = "10m"
+
+[budget]
+max_triage_per_run = 150
+triage_batch_size = 15
+max_assess_per_run = 40
+max_run_minutes = 45
+assess_excerpt_chars = 1500
+assess_content_chars = 6000
+
+[ingest]
+max_age_hours = 96
+backfill_hours = 72
+dedupe_window_hours = 72
+
+[triage]
+keep_min = 2
+
+[gate]
+pi_bridge_runs_dir = "~/.pi-bridge/runs"
+probe_busy_seconds = 20.0
+poll_seconds = 60.0
+max_wait_minutes = 90.0
+
+[scoring]
+w_relevance = 0.40
+w_urgency = 0.25
+w_actionability = 0.20
+w_novelty = 0.15
+source_bonus_factor = 10.0
+kev_bonus = 12.0
+exploited_bonus = 8.0
+cvss9_bonus = 8.0
+cvss7_bonus = 4.0
+corroboration_bonus = 4.0
+corroboration_max = 12.0
+primary_bonus = 5.0
+side_penalty = 5.0
+top_threshold = 72.0
+relevant_threshold = 48.0
+side_threshold = 25.0
+top_cap = 8
+relevant_cap = 30
+recency_full_hours = 6.0
+recency_floor = 0.8
+
+[schedule]
+tz = "Europe/London"
+
+[notify]
+channels = []                      # "email", "discord" (M28)
+quiet_start = "22:00"
+quiet_end = "07:00"
+smtp_host = ""
+smtp_port = 587
+smtp_ssl = false
+smtp_user = ""
+smtp_from = ""
+smtp_to = []
+
+[paths]
+# state_dir = "~/.local/share/sidereal"   # default: $XDG_DATA_HOME/sidereal
