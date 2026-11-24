@@ -25,7 +25,7 @@ Spec: `Sidereal_implementation_plan.md` (authoritative; follow it literally). Ow
 - `config/defaults/sources.toml` — seed sources (plan §6.6), `[[source]]` tables
 - `config/defaults/focus.toml` — seed focus areas (plan §5), descriptions go into prompts verbatim (Claude's text)
 - `config/sidereal.example.toml` — every setting with its default
-- `prompts/` — prompt files (M10, Claude only); `README.md` placeholder now
+- `prompts/` — prompt files `<name>.vN.txt` (Claude only; format and placeholders in `prompts/README.md`)
 - `deploy/` — systemd units, install.sh (M22), Caddyfile.example (M30); placeholder README now
 - `src/sidereal/__init__.py` — `__version__`
 - `src/sidereal/__main__.py` — `python -m sidereal`
@@ -107,6 +107,11 @@ Milestones are delegated to pi via pi-bridge and reviewed by Claude (`/implement
 - M0: Fixtures recorded 2026-11-24 (see `tests/fixtures/README.md`). Krebs now answers `application/rss+xml`; `test_html_page_is_broken_not_empty` (M4) uses `msrc-blog-html.html`.
 - M2 (Claude): `textclean.to_text(s)` HTML or plain text → plain text (drops script/style/iframe/noscript/svg/template/head/title/object/math/select/textarea, comments, CDATA, PIs; blocks → `\n\n`, `<br>` → `\n`, `<li>` → `\n• `; entities decoded exactly once via `HTMLParser(convert_charrefs=False)`; a raw tag-like `<` left in text becomes `‹`; control chars → space, zero-width/bidi/BOM/soft hyphen removed, NFC). Input without a tag-like `<` is plain text: line breaks kept, `html.unescape` once. `clean_title(s, max_len=300)` one line; `truncate(text, max_chars)` word boundary + `…`, `len <= max_chars`; `excerpt(html, max_chars=1500)`. Never raises; 2 MB in about 1 s (test limit 2 s). Decoded entity text like `&lt;x&gt;` → `<x>` is data, rendered as text.
 - M3a (Claude): `net/guard.py`: `UrlGuard(*, resolver=None, allowed_ports=(80, 443), allow_private=False)`; `await guard.check(url, *, allow_hosts=None) -> CheckedUrl(url, host, port, addresses)` or raises `UrlBlocked` (`.reason`, safe to log; also raised for DNS failure / no addresses). `resolver` is `async (host, port) -> Sequence[str]` (default `default_resolver`, loop `getaddrinfo`); tests pass a fake. `allow_hosts=[]` allows nothing (sources with empty `article_hosts` get no enrichment). **M3b: the fetcher must call `guard.check` on the first URL and on every redirect `Location` (resolved against the current URL) before requesting it**, passing the same `allow_hosts`; the plan's `test_redirect_to_private_blocked` lives in `test_guard.py` at guard level, so `test_fetch.py` needs its own test that a 302 to `http://127.0.0.1/` raises `UrlBlocked` without requesting it. `UrlBlocked` is not retried.
+- M10 (Claude): prompt files `prompts/<name>.v1.txt`: optional leading `#` header lines (stripped), system part, a line `=== USER ===`, user part; `str.format_map` raising on missing keys; v1 templates contain no literal braces. Format, value formats and versioning rule in `prompts/README.md`; checked by `tests/test_prompt_files.py`. Owner profile is fixed text in the prompts (no placeholder). Article-derived values (`items`, `article`, `stories`) arrive wrapped by code in `<untrusted_article>` tags.
+- M10 (Claude): `triage.v1` placeholders: system `{focus_areas}` (`- key (tier): description` per line); user `{today}`, `{count}`, `{items}` (`[id] title — source — excerpt` per line).
+- M10 (Claude): `assess.v1` placeholders: system `{focus_areas}`, `{focus_keys}` (comma-separated enabled keys, without `none`); user `{today}`, `{article}` (wrapped block: `Title:`, `Sources:`, `Published:`, `Excerpt:`, optional `Article text:`).
+- M10 (Claude): `day_digest.v1` placeholders: user `{day_label}`, `{stories}` (`[TOP] title: summary` per line); no system placeholders. Reply `{overview, headline}`.
+- M10 (Claude): `week_digest.v1` (for M29) placeholders: user `{week_label}`, `{stories}` (`[TOP] YYYY-MM-DD — title: summary` per line); no system placeholders. Reply `{overview, headline}`.
 
 ## Status
 - [x] M0 scaffolding, fixtures, seeds, app skeleton (Claude, 2026-11-24)
@@ -119,7 +124,7 @@ Milestones are delegated to pi via pi-bridge and reviewed by Claude (`/implement
 - [ ] M7 `dedupe.py`, `prefilter.py`
 - [ ] M8 `llm/ollama.py` + full `fake_ollama.py`
 - [ ] M9 `llm/gate.py`
-- [ ] M10 prompts (Claude) + `llm/prompts.py`, `llm/triage.py`
+- [ ] M10 prompts (Claude) + `llm/prompts.py`, `llm/triage.py` — prompts v1 done (Claude)
 - [ ] M11 M11a `scoring.py`, M11b `assess.py`
 - [ ] M12 M12a `enrich.py`, M12b `digest.py` + `digests_repo`
 - [ ] M13 `lock.py`, `runner.py`, CLI `run`/`rescore`/`doctor`
