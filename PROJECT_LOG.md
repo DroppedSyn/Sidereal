@@ -88,3 +88,18 @@ a brief says so.
   content-first against the brief. MSRC order changed to filter first, then cap (orchestrator
   request; plan §6.3 updated). 13 tests added. Mutation checks (45, all red; title `.strip()`
   equivalent). Full suite 423 passed, ruff clean.
+- 2026-11-25 **M8** (pi run r52, `qwen3.6:35b-a3b-coding`, builtin edit tools, 38m00s, 12 tool
+  calls / 0 failed, 181k tokens in / 52.3k out, 1 file changed, resumed after stalling 2×).
+  pi read the context files, then replied with 16,384 tokens of thinking and no tool call
+  (stopReason `length`) twice. After the second resume it wrote an extended `tests/fake_ollama.py`
+  (248 lines, all briefed features except `created_at` in chat replies), announced "I'll write
+  all four files now" and hit the cap a third time. Both resumes were used up, so the run ended
+  `done` with 1 of 4 files. Outcome: pi's diff discarded; Claude wrote all four files from the brief:
+  `tests/fake_ollama.py` 125 lines, `src/sidereal/llm/__init__.py`, `src/sidereal/llm/ollama.py`
+  190, `tests/test_ollama.py` 278 (31 tests: the 22 briefed plus edge cases: stats from the
+  successful reply, missing `message`, no reply text in LLMOutputInvalid, HTTP error on the retry,
+  non-JSON 200, per-request timeout on a passed client, errored requests recorded). Mutation
+  checks (17, all red; "per-request timeout" survived the briefed tests and got its own test).
+  Cause: over-thinking at the output cap (pi-bridge failure table r13/r52). A brief of this size
+  (4 files, 22 tests) needs a `:low` thinking model or a split (fake + tests, then module).
+  Full suite 455 passed, ruff clean.
