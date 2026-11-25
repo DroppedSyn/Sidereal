@@ -48,6 +48,12 @@ class LoadedModel:
     expires_at: str
 
 
+@dataclass(frozen=True)
+class ProbeResult:
+    total_ms: int  # total_duration (ns) // 1_000_000
+    load_ms: int   # load_duration (ns) // 1_000_000
+
+
 class _Invalid(Exception):
     """Internal: one reply failed parsing/validation; ``args[0]`` is the reason type name."""
 
@@ -72,10 +78,17 @@ class OllamaClient:
             self._client = client
             self._owns_client = False
 
-    async def _request(self, method: str, path: str, body: dict[str, Any] | None = None) -> Any:
+    async def _request(
+        self,
+        method: str,
+        path: str,
+        body: dict[str, Any] | None = None,
+        timeout: float | None = None,
+    ) -> Any:
         try:
             resp = await self._client.request(
-                method, self._base + path, json=body, timeout=self._timeout
+                method, self._base + path, json=body,
+                timeout=self._timeout if timeout is None else timeout,
             )
         except httpx.TimeoutException as exc:
             raise LLMUnavailable(f"ollama {path}: timed out ({type(exc).__name__})") from None
@@ -184,6 +197,14 @@ class OllamaClient:
             log.info("ollama: not unloading protected model %s", model)
             return
         await self._request("POST", "/api/generate", {"model": model, "keep_alive": 0})
+
+    async def probe(self, model: str, *, timeout_s: float, keep_alive: str = "10m") -> ProbeResult:
+        """1-token generate used by the GPU gate (plan §7.5)."""
+        body = {"model": model, "prompt": "ok", "stream": False, "think": False,
+                "keep_alive": keep_alive, "options": {"num_predict": 1}}
+        data = await self._request("POST", "/api/generate", body, timeout=timeout_s)
+        return ProbeResult(int(data.get("total_duration", 0)) // 1_000_000,
+                           int(data.get("load_duration", 0)) // 1_000_000)
 
     async def aclose(self) -> None:
         if self._owns_client:

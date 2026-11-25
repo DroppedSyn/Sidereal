@@ -167,3 +167,16 @@ a brief says so.
   false positives found: `entra`→"Entrance", `sentinel`→"SentinelOne", `azure ad`→"Azure
   Advisor" (all primary → always-kept), and primary `cve-`/`exploited` always-keep every CVE or
   "exploited" title from any source. Left for the user. Full suite 649 passed, ruff clean.
+- 2026-11-25 **M9** (pi run r57, `qwen3.6:35b-a3b-coding`, builtin edit tools, done in **21m30s**,
+  47 tool calls / 9 failed (7 malformed `todo` calls, one red test run on an un-awaited
+  `busy_reason`, one ruff UP037; all fixed by pi), 914k tokens in / 10.9k out, largest reply 3.6k).
+  pi's `gate.py` (130 lines) and the `ollama.py` hunk (`ProbeResult`, `probe`, `_request(timeout=)`)
+  matched the brief; `test_ollama.py` unchanged and green; patch applied cleanly. Review fixes: the
+  probe-error warning logged `type(LLMError).__name__` (the metaclass name) instead of the caught
+  exception's type; `tests/test_gate.py` rewritten onto `tmp_path` (pi hand-rolled temp dirs inside
+  `tests/` with try/finally rmtree) and extended 18 → 28 tests (every state word incl. `timeout`,
+  load excluded both sides, configurable threshold, slow-then-fast probe, timeout with probe always
+  slow, log contents, `from_settings` asserts all four settings and drives a wait). Files as
+  landed: `gate.py` 130, `ollama.py` 211, `test_gate.py` 255 (28 tests), `test_ollama_probe.py` 87
+  (6). Mutation checks (19, all red; dropping the `is_dir()` guard is equivalent). Full suite 684
+  passed, ruff clean.
