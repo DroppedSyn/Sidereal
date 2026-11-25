@@ -127,6 +127,24 @@ systemctl --user start sidereal-web.service sidereal-run.timer
 (Wait for a running `sidereal-run.service` to finish first: `systemctl --user status
 sidereal-run.service`.)
 
+## Authentication
+
+There is no default account. To turn login on:
+
+```sh
+sidereal user add <name>      # prompts twice for the password (min 12 chars, no echo)
+sidereal user totp <name>     # optional: shows a secret for an authenticator app
+```
+
+then set `[auth] mode = "on"` in `~/.config/sidereal/sidereal.toml` (or
+`SIDEREAL_AUTH__MODE=on`) and restart the web app (`systemctl --user restart sidereal-web`). Every `/api` route except
+`/api/health` and login then needs a session (cookie `sidereal_session`, HttpOnly,
+SameSite=Strict; `Secure` when `[web] https = true`). Other commands: `sidereal user list`,
+`sidereal user passwd <name>` (ends that user's sessions), `sidereal user delete <name>`,
+`sidereal user totp <name> --off`. `[auth] require_totp = true` refuses logins without TOTP.
+Behind a reverse proxy, list it in `[web] trusted_proxies` so the login rate limit sees the
+real client IP. Writes from the Vite dev server also need `allowed_origins` (see AGENTS.md).
+
 ## LAN deployment (M30, plan §11.3 stage 2)
 
 Prepared, not enabled: the VM still serves `127.0.0.1:8470` only. The recommended shape keeps

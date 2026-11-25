@@ -13,32 +13,32 @@ file, re-run it so they stay true.
 |---|---------|-------|
 | 0 | 0. How to use this document and the other docs | L45–L61 |
 | 1 | 1. What Sidereal is | L62–L93 |
-| 2 | 2. Repository map | L94–L127 |
-| 3 | 3. Runtime architecture | L128–L152 |
-| 4 | 4. The run pipeline, step by step | L153–L327 |
-| 4.1 | 4.1 Lock, recovery, gate, deadline | L175–L187 |
-| 4.2 | 4.2 Ingest: fetch, normalise, dedupe, store | L188–L219 |
-| 4.3 | 4.3 Prefilter and triage | L220–L236 |
-| 4.4 | 4.4 Enrichment and assessment | L237–L252 |
-| 4.5 | 4.5 Scoring and placement | L253–L284 |
-| 4.6 | 4.6 Day and week digests | L285–L297 |
-| 4.7 | 4.7 Notifications | L298–L312 |
-| 4.8 | 4.8 Retention, unload, finish, run status and stats | L313–L327 |
-| 5 | 5. LLM layer | L328–L349 |
-| 6 | 6. Data model | L350–L383 |
-| 7 | 7. Web API | L384–L414 |
-| 8 | 8. Authentication and web security | L415–L439 |
-| 9 | 9. Front end | L440–L464 |
-| 10 | 10. Configuration | L465–L493 |
-| 11 | 11. CLI | L494–L512 |
-| 12 | 12. Deployment and operations | L513–L532 |
-| 13 | 13. Invariants (never break these) | L533–L554 |
-| 14 | 14. Testing | L555–L585 |
-| 15 | 15. Maintenance recipes | L586–L628 |
-| 16 | 16. Known limitations and open owner decisions | L629–L643 |
-| 17 | 17. Gotchas | L644–L663 |
-| 18 | 18. Where history lives | L664–L671 |
-| 19 | 19. Regenerating this TOC | L672–L696 |
+| 2 | 2. Repository map | L94–L128 |
+| 3 | 3. Runtime architecture | L129–L153 |
+| 4 | 4. The run pipeline, step by step | L154–L328 |
+| 4.1 | 4.1 Lock, recovery, gate, deadline | L176–L188 |
+| 4.2 | 4.2 Ingest: fetch, normalise, dedupe, store | L189–L220 |
+| 4.3 | 4.3 Prefilter and triage | L221–L237 |
+| 4.4 | 4.4 Enrichment and assessment | L238–L253 |
+| 4.5 | 4.5 Scoring and placement | L254–L285 |
+| 4.6 | 4.6 Day and week digests | L286–L298 |
+| 4.7 | 4.7 Notifications | L299–L313 |
+| 4.8 | 4.8 Retention, unload, finish, run status and stats | L314–L328 |
+| 5 | 5. LLM layer | L329–L350 |
+| 6 | 6. Data model | L351–L384 |
+| 7 | 7. Web API | L385–L415 |
+| 8 | 8. Authentication and web security | L416–L440 |
+| 9 | 9. Front end | L441–L465 |
+| 10 | 10. Configuration | L466–L494 |
+| 11 | 11. CLI | L495–L513 |
+| 12 | 12. Deployment and operations | L514–L533 |
+| 13 | 13. Invariants (never break these) | L534–L555 |
+| 14 | 14. Testing | L556–L586 |
+| 15 | 15. Maintenance recipes | L587–L629 |
+| 16 | 16. Known limitations and open owner decisions | L630–L644 |
+| 17 | 17. Gotchas | L645–L664 |
+| 18 | 18. Where history lives | L665–L672 |
+| 19 | 19. Regenerating this TOC | L673–L697 |
 
 ---
 
@@ -100,6 +100,7 @@ config/defaults/focus.toml     7 seed focus areas (descriptions go into prompts 
 config/sidereal.example.toml   every setting with its default
 prompts/                       <name>.v1.txt prompt files + README (format, placeholders)
 install.sh                     one-step installer/updater (`--uninstall`, `--help`)
+docs/screenshots/               images used by README.md (taken from the live app)
 deploy/                        systemd user units, Caddyfile.example, README
 src/sidereal/
   cli.py, commands.py          argparse entry (`sidereal`); run/rescore/doctor/backup
