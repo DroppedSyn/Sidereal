@@ -19,7 +19,7 @@ retirements and breaking changes with dates, SKU or pricing changes, new limits,
 changes that affect existing designs (for example default outbound access or routing changes). \
 Generic Azure marketing, AI product launches and compute or storage news without a networking \
 angle do not belong here."""
-keywords = ["vnet", "virtual network", "virtual wan", "vwan", "expressroute", "vpn gateway", "private link", "private endpoint", "azure firewall", "front door", "application gateway", "waf", "dns private resolver", "azure dns", "nsg", "network security group", "avnm", "virtual network manager", "load balancer", "nat gateway", "ddos protection", "route server", "ipv6"]
+keywords = ["vnet", "virtual network", "virtual wan", "vwan", "expressroute", "vpn gateway", "private link", "private endpoint", "azure firewall", "front door", "application gateway", "waf", "dns private resolver", "azure dns", "nsg", "network security group", "avnm", "virtual network manager", "load balancer", "nat gateway", "ddos protection", "route server", "ipv6", "bastion", "vnet peering", "private dns", "azure kubernetes", "aks network"]
 
 [[focus]]
 key = "network-architecture"
@@ -48,7 +48,7 @@ access and B2B settings. Highest value: retirements and enforcement dates (for e
 mandatory MFA or legacy authentication shutdowns), breaking changes, new policy controls, and \
 attacks or vulnerabilities abusing Entra tokens, consent or federation. Licensing and \
 marketing posts with nothing to configure are low value."""
-keywords = ["entra", "azure ad", "azure active directory", "conditional access", "authentication strength", "pim", "privileged identity", "token protection", "continuous access evaluation", "passkey", "fido2", "workload identit", "managed identit", "mfa", "multifactor", "id protection", "cross-tenant"]
+keywords = ["entra id", "microsoft entra", "entra connect", "azure active directory", "conditional access", "authentication strength", "pim", "privileged identity", "token protection", "continuous access evaluation", "passkey", "fido2", "workload identit", "managed identit", "mfa", "multifactor", "id protection", "cross-tenant"]
 
 [[focus]]
 key = "ms-security"
@@ -63,7 +63,7 @@ incidents or outages affecting Microsoft cloud services. Highest value is anythi
 action (patch, mitigation, configuration change, detection) with a clear deadline or active \
 exploitation. Client-only consumer products (Xbox, Edge-only Chromium fixes, Office on Mac) \
 matter far less."""
-keywords = ["msrc", "patch tuesday", "cve-", "microsoft defender", "defender for cloud", "sentinel", "mcsb", "cloud security benchmark", "exploited", "zero-day", "exchange server", "sharepoint", "active directory", "kerberos", "ntlm", "hyper-v", "windows server"]
+keywords = ["msrc", "patch tuesday", "microsoft defender", "defender for cloud", "microsoft sentinel", "mcsb", "cloud security benchmark", "exchange server", "sharepoint", "active directory", "kerberos", "ntlm", "hyper-v", "windows server"]
 
 [[focus]]
 key = "network-security"
@@ -91,7 +91,7 @@ compromise) and notable offensive research that a former penetration tester woul
 about. Relevant when it reveals a new technique, affects widely used software or cloud \
 services, or changes what defenders should look for. Routine arrest reports, small local \
 breaches and vendor product promotion are low value."""
-keywords = ["breach", "ransomware", "kev", "known exploited", "supply chain", "cloud attack", "token theft", "kubernetes", "ci/cd", "red team", "pentest", "proof of concept", "exploit", "apt"]
+keywords = ["breach", "ransomware", "kev", "known exploited", "supply chain", "cloud attack", "token theft", "kubernetes", "ci/cd", "red team", "pentest", "proof of concept", "exploit", "apt", "cve-", "zero-day"]
 
 [[focus]]
 key = "industry"
