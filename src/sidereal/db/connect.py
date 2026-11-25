@@ -20,7 +20,7 @@ def connect(path: Path | str) -> sqlite3.Connection:
     conn = sqlite3.connect(str(path))
     conn.row_factory = sqlite3.Row
     for pragma in PRAGMAS:
-        conn.execute(pragma)
+        conn.execute(pragma)  # sql-ok: fixed PRAGMAS tuple of literals
     return conn
 
 

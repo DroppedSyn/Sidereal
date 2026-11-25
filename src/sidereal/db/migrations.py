@@ -68,7 +68,7 @@ def apply_migrations(conn: sqlite3.Connection, sql_dir: Path = SQL_DIR) -> list[
         try:
             conn.execute("BEGIN")
             for statement in statements:
-                conn.execute(statement)
+                conn.execute(statement)  # sql-ok: statements from packaged .sql migration files
             conn.execute(
                 "INSERT INTO schema_version (version, applied_at) VALUES (?, ?)",
                 (number, datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")),

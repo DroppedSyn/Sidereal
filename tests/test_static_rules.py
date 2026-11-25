@@ -3,8 +3,12 @@
 Each rule is an AST check in ``check_python`` (or a grep for the front end), run over the real
 tree and also over small snippets so the checks themselves can't silently go hollow.
 
-A line may opt out of the SQL-formatting rule with a trailing ``# sql-ok: <reason>`` comment, used
-only where an identifier comes from a fixed whitelist and a brief says so.
+The SQL passed to ``.execute()`` / ``.executemany()`` / ``.executescript()`` must be a string
+literal or a module-level constant built only from string literals (``+`` / implicit concatenation);
+f-strings, ``%``, ``.format``, ``+`` with a non-constant operand, locals, calls and attributes are
+flagged. A line may opt out of the SQL rules with a trailing ``# sql-ok: <reason>`` comment (on the
+SQL argument's line or the call's first line), used only where the SQL comes from a fixed whitelist
+or a trusted file and a brief says so.
 """
 
 from __future__ import annotations
@@ -99,6 +103,53 @@ def _formatted_sql(node: ast.AST) -> bool:
     return False
 
 
+def _is_literal_sql(node: ast.AST, constants: set[str]) -> bool:
+    """A str literal, a module-level str constant, or ``+`` of those."""
+    if isinstance(node, ast.Constant):
+        return isinstance(node.value, str)
+    if isinstance(node, ast.Name):
+        return node.id in constants
+    if isinstance(node, ast.BinOp) and isinstance(node.op, ast.Add):
+        return _is_literal_sql(node.left, constants) and _is_literal_sql(node.right, constants)
+    return False
+
+
+def _sql_constants(tree: ast.Module) -> set[str]:
+    """Names bound exactly once, at module level, to a str literal (or ``+`` of literals)."""
+    stores: dict[str, int] = {}
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Name) and isinstance(node.ctx, (ast.Store, ast.Del)):
+            stores[node.id] = stores.get(node.id, 0) + 1
+        elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            stores[node.name] = stores.get(node.name, 0) + 1
+        elif isinstance(node, ast.arg):
+            stores[node.arg] = stores.get(node.arg, 0) + 1
+        elif isinstance(node, ast.alias):
+            name = (node.asname or node.name).split(".")[0]
+            stores[name] = stores.get(name, 0) + 1
+    constants: set[str] = set()
+    for stmt in tree.body:  # in order, so a constant may reuse earlier ones
+        if isinstance(stmt, ast.Assign) and len(stmt.targets) == 1:
+            target, value = stmt.targets[0], stmt.value
+        elif isinstance(stmt, ast.AnnAssign) and stmt.value is not None:
+            target, value = stmt.target, stmt.value
+        else:
+            continue
+        if (
+            isinstance(target, ast.Name)
+            and stores.get(target.id) == 1
+            and _is_literal_sql(value, constants)
+        ):
+            constants.add(target.id)
+    return constants
+
+
+def _sql_arg(call: ast.Call) -> ast.AST | None:
+    if call.args:
+        return call.args[0]
+    return next((k.value for k in call.keywords if k.arg in {"sql", "sql_script"}), None)
+
+
 def check_python(source: str, rel: str) -> list[str]:
     """Rule violations in one module (``rel`` is its path relative to src/sidereal)."""
     tree = ast.parse(source)
@@ -111,6 +162,7 @@ def check_python(source: str, rel: str) -> list[str]:
         if name.split(".")[0] == "sqlite3" and not rel.startswith(SQL_ALLOWED_PREFIX):
             found.append(f"{rel}:{line}: sqlite3 only in db/")
     docstrings = _docstring_ids(tree)
+    constants = _sql_constants(tree)
     for node in ast.walk(tree):
         line = getattr(node, "lineno", 0)
         where = f"{rel}:{line}"
@@ -123,6 +175,17 @@ def check_python(source: str, rel: str) -> list[str]:
             attr = node.func.attr if isinstance(node.func, ast.Attribute) else ""
             if attr in DB_CALLS and not rel.startswith(SQL_ALLOWED_PREFIX):
                 found.append(f"{where}: .{attr}() outside db/")
+            arg = _sql_arg(node) if attr in DB_CALLS else None
+            if (
+                arg is not None
+                and not _is_literal_sql(arg, constants)
+                and "# sql-ok:" not in lines[line - 1]
+                and "# sql-ok:" not in lines[arg.lineno - 1]
+            ):
+                found.append(
+                    f"{rel}:{arg.lineno}: .{attr}() SQL must be a literal or module constant"
+                    " (use ? parameters; or `# sql-ok: <reason>`)"
+                )
         if _formatted_sql(node) and "# sql-ok:" not in lines[line - 1]:
             found.append(f"{where}: SQL built with f-string/%/+/.format (use ? parameters)")
         text = _const_text(node)
@@ -180,6 +243,23 @@ def test_frontend_has_no_banned_apis():
         ("q = 'UPDATE t SET a = 1 WHERE id = ' + i", "db/items_repo.py", "f-string"),
         ("q = 'INSERT INTO t VALUES ({})'.format(v)", "db/items_repo.py", "f-string"),
         ("print('hi')", "cli.py", "print()"),
+        # SQL argument of .execute*(): only literals / module-level literal constants
+        ("conn.execute(f'DELETE FROM t WHERE id = {i}')", "db/x.py", "literal or module constant"),
+        ("conn.execute('DELETE FROM t WHERE id = %s' % i)", "db/x.py", "module constant"),
+        ("conn.execute('DELETE FROM t WHERE a = {}'.format(a))", "db/x.py", "module constant"),
+        ("conn.execute('DELETE FROM t WHERE ' + cond)", "db/x.py", "literal or module constant"),
+        ("W = 'WHERE a = 1'\ndef f(c):\n    c.execute(WHERE + c)", "db/x.py", "module constant"),
+        ("def f(conn, q):\n    conn.execute(q)", "db/x.py", "literal or module constant"),
+        ("def f(c):\n    q = 'SELECT 1'\n    c.execute(q)", "db/x.py", "module constant"),
+        ("conn.executemany(build_sql(), rows)", "db/x.py", ".executemany() SQL must be"),
+        ("conn.executescript(self.script)", "db/x.py", ".executescript() SQL must be"),
+        ("conn.execute(sql=q)", "db/x.py", "literal or module constant"),
+        ("Q = 'SELECT 1'\nQ = Q + x\nconn.execute(Q)", "db/x.py", "module constant"),
+        ("Q = 'SELECT 1'\ndef f(c):\n    Q = c\n    c.execute(Q)", "db/x.py", "constant"),
+        ("Q = 'SELECT ' + col\nconn.execute(Q)", "db/x.py", "literal or module constant"),
+        ("Q = PREFIX\nconn.execute(Q)", "db/x.py", "literal or module constant"),
+        ("conn.execute(\n    q,\n)  # sql-ok: the comment must be on the SQL's line", "db/x.py",
+         "module constant"),
     ],
 )
 def test_checker_flags(snippet: str, rel: str, fragment: str):
@@ -198,6 +278,14 @@ def test_checker_flags(snippet: str, rel: str, fragment: str):
         ("msg = f'Selected {n} stories from the feed'", "pipeline/runner.py"),
         ("q = f'SELECT {col} FROM t'  # sql-ok: col from COLUMNS whitelist", "db/x_repo.py"),
         ("label = 'Update available: set a reminder'", "api/x.py"),
+        ("conn.execute('SELECT 1 FROM t' ' WHERE a = ?', (a,))", "db/x.py"),
+        ("Q = 'SELECT 1 FROM t'\nconn.execute(Q)", "db/x.py"),
+        ("A = 'SELECT 1'\nB: str = A + ' FROM t' + ' WHERE a = ?'\nconn.executemany(B, r)",
+         "db/x.py"),
+        ("conn.executescript('CREATE TABLE t (a);')", "db/x.py"),
+        ("conn.execute(stmt)  # sql-ok: statements from trusted migration files", "db/x.py"),
+        ("conn.execute(\n    q,  # sql-ok: q from a fixed whitelist\n)", "db/x.py"),
+        ("cur.execute('SELECT 1')", "db/x.py"),
     ],
 )
 def test_checker_allows(snippet: str, rel: str):
