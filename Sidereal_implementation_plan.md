@@ -22,7 +22,7 @@ as a web "gazette".
 
 - **Gazette** (main page): the best of the **last 24 hours (rolling)**, grouped into
   **TOP / Relevant / On the side**.
-- **Daily**: left pane lists days (`Sunday - 14.07.2026`). Selecting a day shows that day's
+- **Daily**: left pane lists days (`Sunday - 12.07.2026`). Selecting a day shows that day's
   sub-gazette: a short overview of the day, then the same three groups, built from every run that
   day.
 - Every story shows: title, sources (several outlets reporting the same thing are merged into one
@@ -820,7 +820,7 @@ sidereal openapi                   # print OpenAPI JSON (for TS type generation)
 |---|---|---|
 | GET | `/api/health` | `{status, version, db: ok, ollama: ok\|down, last_run: {...}}` (no auth; minimal when auth on) |
 | GET | `/api/gazette?hours=24&include_drop=false` | `{generated_at, window_start, sections: {top: Story[], relevant: Story[], side: Story[]}, counts}` |
-| GET | `/api/days?limit=60&before=YYYY-MM-DD` | `[{day, label: "Sunday - 14.07.2026", counts: {top, relevant, side}, run_count, headline}]` newest first |
+| GET | `/api/days?limit=60&before=YYYY-MM-DD` | `[{day, label: "Sunday - 12.07.2026", counts: {top, relevant, side}, run_count, headline}]` newest first |
 | GET | `/api/days/{day}` | `{day, label, overview, headline, runs: Run[], sections: {...}}` |
 | GET | `/api/stories/{id}` | story + all items (sources) + assessment + excerpt |
 | GET | `/api/runs?limit=50` | run list with stats |
@@ -830,7 +830,7 @@ sidereal openapi                   # print OpenAPI JSON (for TS type generation)
 `Story` schema: `{id, title, day, first_seen_at, published_at, bucket, score, summary, why, tags,
 focus, flags, sources: [{key, name, url}], lead_url, excerpt, read: bool}`.
 Pagination by `before` cursors, not offsets. All responses `Cache-Control: no-store`.
-The label format is produced server-side by `timeutil.day_label(day) -> "Sunday - 14.07.2026"`
+The label format is produced server-side by `timeutil.day_label(day) -> "Sunday - 12.07.2026"`
 (English day names, `DD.MM.YYYY`), and the front end shows it as is.
 
 **⚠ Pitfall (rolling window vs day):** the gazette window is by `first_seen_at >= now - 24h`, not by
@@ -848,9 +848,9 @@ The label format is produced server-side by `timeutil.day_label(day) -> "Sunday 
   summary labelled "AI summary", "Why it matters:" line, a "Show original excerpt" toggle, and
   (Phase 6) 👍 👎 and read state.
 - **Daily:** left pane `DayList` (scrolls, infinite load via `before`), each row
-  `Sunday - 14.07.2026` + counts. Default selection today. Right pane: headline, overview paragraph,
+  `Sunday - 12.07.2026` + counts. Default selection today. Right pane: headline, overview paragraph,
   the run timeline (6 dots for the day's runs, status-coloured), then the three sections.
-  URL `/daily/2026-07-14` (deep-linkable, browser back works).
+  URL `/daily/2026-07-12` (deep-linkable, browser back works).
 - **Runs:** table of runs with status, duration, stat summary; row expands to the full stats.
 - **Sources:** table with health badge, last ok, last error, items in the last 7 days.
 - Accessibility: semantic headings per section, keyboard focus visible, colour never the only

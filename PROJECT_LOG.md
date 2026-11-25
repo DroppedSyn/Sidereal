@@ -29,3 +29,17 @@ a brief says so.
   3.13's `ipaddress` already treats `::ffff:127.0.0.1` as loopback, the unwrap is for 3.12 and
   NAT64/6to4/compat forms); no numeric-host check (10 red); subdomain match without the dot
   (`test_allow_hosts`).
+- 2026-11-25 **M1** (pi run r48, `qwen3.6:35b-a3b-coding`, 9m16s, 15 tool calls / 3 failed:
+  first verify run 3 failures fixed by pi, then the full suite and ruff failed on M2 files that
+  were stale in pi's copy, not on its own; 234k tokens in / 9.0k out). Files: `timeutil.py` 103
+  lines, `urls.py` 113, `tests/test_timeutil.py` 267 (22 tests), `tests/test_urls.py` 204
+  (19 tests). Outcome: landed; pi followed the brief closely (tests verbatim). Review fixes:
+  `TRACKING_PARAMS` made public as briefed, `_split` return annotation, `to_utc` simplified;
+  `entry_published` falls through to the next key when a value is >1 day in the future (pi's
+  reading of "treated as missing", kept and pinned by
+  `test_entry_future_published_falls_back_to_updated`); added `//` root-path and bare-host
+  idempotence cases. Mutation checks (each red): day_key in UTC, `utm_*` kept, case-sensitive
+  `wt.mc_id`, `drop_future` disabled / `>=`, `.get` instead of `key in entry` (the warning
+  test), fragment kept, no query sort, subdomain match without the dot, no port validation,
+  default ports kept; the root-path `or "/"` mutation survived until the added test. Full suite
+  279 passed, ruff clean.
