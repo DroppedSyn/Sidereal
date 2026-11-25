@@ -353,3 +353,17 @@ a brief says so.
   briefed + row isolation across two stories, a `seed_demo` round trip, and a trace-callback
   check that no executed SQL mentions `content`. 18 mutations all red. Full suite 1220 passed,
   ruff clean.
+- 2026-11-25 **M15a-3** (Claude, no pi run: the first real run M14 held the GPU). Files:
+  `api/schemas.py` 87 lines (the brief's pydantic response models verbatim: plan §10.1 Story +
+  `read=False`, Sections/Counts always with `drop`, DayCounts/DaySummary/DayRun/DayDetail,
+  Gazette), `api/present.py` 73 (`story_out`, `build_sections`, `placed_counts`, pure),
+  `tests/test_api_present.py` 34 tests. Decisions beyond the brief: `assess_failed` is forced to
+  side with no score in both placement and `story_out` regardless of the stored bucket/score
+  (rule 1, "On the side"); `lead_url` and source urls are re-checked with `urls.is_http_url` at
+  the API edge although `views_repo` already nulls them (rule 2, defence in depth); day labels
+  stay in the M15a-5 routes. Extra tests: six non-http link forms, http kept, lists copied,
+  assess_failed in `story_out` and in sections, drop key always serialised, Gazette order inside
+  relevant/side/drop, caps applied before recency order, `seed_demo` round trip. 11 mutations all
+  red (caps ignored, score-only Gazette order, drop key missing, drop uncounted when hidden,
+  non-http links passed, assess_failed scored ×2 / keeping its bucket, stored bucket shown,
+  `placed_counts` without either overflow). Full suite 1257 passed, ruff clean.
