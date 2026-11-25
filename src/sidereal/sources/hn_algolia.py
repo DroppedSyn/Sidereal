@@ -77,6 +77,9 @@ def search_url(base: str, query: str, min_points: int, since_epoch: int) -> str:
                 "query": query,
                 "tags": "story",
                 "numericFilters": f"points>={min_points},created_at_i>{since_epoch}",
+                # Algolia's default typo tolerance matched "bgp" to GPU stories and "entra"
+                # to unrelated titles in the first real run (M14): exact words only.
+                "typoTolerance": "false",
             }
         )
     )

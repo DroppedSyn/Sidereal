@@ -29,6 +29,7 @@ async def test_request_url_defaults():
         str(seen[0].url)
         == BASE
         + "?query=azure&tags=story&numericFilters=points%3E%3D40%2Ccreated_at_i%3E1795219200"
+        "&typoTolerance=false"
     )
     assert seen[0].headers["accept"] == "application/json"
     assert "if-none-match" not in seen[0].headers
@@ -48,6 +49,7 @@ async def test_min_points_and_window_in_url():
         str(seen[0].url)
         == BASE
         + "?query=zero+day&tags=story&numericFilters=points%3E%3D100%2Ccreated_at_i%3E1795305600"
+        "&typoTolerance=false"
     )
 
 
@@ -56,6 +58,7 @@ async def test_search_url():
         search_url(BASE, "zero day", 40, 1795219200)
         == BASE
         + "?query=zero+day&tags=story&numericFilters=points%3E%3D40%2Ccreated_at_i%3E1795219200"
+        "&typoTolerance=false"
     )
 
 

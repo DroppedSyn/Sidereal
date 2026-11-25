@@ -424,3 +424,45 @@ a brief says so.
   Firefox (WebDriver BiDi; Playwright isn't installed) against a temp demo DB seeded at the current
   time: Gazette, Daily, Daily at 390 px, Runs, Sources render as intended with no console errors;
   fixed the Sources numeric header alignment. M20b (Playwright E2E + CSP check) open.
+- 2026-11-25 **M14** first real run (Claude). Real state dir `~/.local/share/sidereal` (init:
+  21 sources, 7 focus areas), `doctor` all green except the not-yet-installed systemd units and
+  linger, `run --dry-run` 21/21 sources, 107 items, 104 stories in 5 s. **Run 1** (manual, gate
+  on, pi idle, 72 h backfill): `ok` in 15m02s (fetch 4.2 s, triage+enrich+assess 870 s, digest
+  21.5 s). Sources 21 ok / 0 failed (7 had nothing inside the window: azure-blog, csa-blog,
+  krebs, ms-security-blog, msrc-update-guide, tc-azure-netsec, tc-defender-cloud). 107 items →
+  104 stories (0 joined). Prefilter: 31 always (26 azure-updates + 5 KEV, trusted weight 1.3),
+  0 filtered. Triage: 5 calls, 73 stories → 29 kept, 44 out, 0 invalid batches. Enrich 34 ok,
+  1 failed (darkreading), 5 skipped (NVD links, empty allowlist). Assess 40 ok, **0 failed**,
+  20 deferred to run 2; 17.9 s per story on average (6.5–53.6 s, qwen3.8:27b). Buckets: top 11,
+  relevant 5, side 5, drop 19. Day digest written (headline + 5-sentence overview, English, no
+  URLs). **Run 2** (fix below in place): `ok` in 10m55s; 7 sources answered 304; 95 fetched, 91
+  duplicate, 4 new stories (all triaged out); the 20 deferred stories assessed (avg 29.5 s:
+  longer enriched text); digest rewritten for the new set. Totals: 111 items, 108 stories, no
+  duplicate (source, guid) or canonical URL; 60 assessed (avg 21.8 s), 48 triaged out, 0
+  assess_failed; top 15 / relevant 12 / side 13 / drop 20 (the views cap TOP at 8).
+  **Quality.** Summaries are factual, English, name products/CVEs/dates; `why` is concrete or
+  starts "Background only:" (35 of 60); no URLs (3 hits for "HTTP" are protocol mentions). TOP holds
+  the right Microsoft items (NTLM auth failures after the November updates and the exploited
+  Azure API Management Classic flaw, both 100; Route Server route maps; Entra Ignite
+  features; Azure Firewall wildcard FQDN GA; App Gateway WAF Insights GA) and real
+  network/edge security (ScreenConnect exploitation, Check Point servers compromised). Triage
+  drops were sensible (ICS advisories, consumer breaches, podcasts, opinion). Weak spots, all
+  scoring/config/design (not changed, owner's call): (1) four non-Microsoft KEV entries
+  (Optimizely, Drupal, MONAI Label, N-able MailAssure) are TOP at relevance 1 with 84.7: kev
+  +12 and the model's `exploited_in_wild` +8 stack on urgency 3. Suggest: TOP needs relevance
+  ≥ 2, or no exploited bonus on top of kev. (2) azure-updates is "trusted" (≥ 1.3) and skips
+  triage: 18 of its 26 notices in run 1 were Foundry/AI items the model rated relevance 0, so 18 of 40
+  assess slots went to drops while a triage-3 Azure API Management story waited for run 2.
+  Suggest an `exclude_regex` like `(?i)foundry|ai search|speech|document intelligence` on
+  azure-updates, or weight 1.2 so it goes through triage. (3) the assess queue orders this
+  run's triage keeps by age band + hint, not by triage relevance; ordering keeps by relevance
+  (3 before 2) would assess the best first when the cap bites. (4) the same incident from
+  several outlets stays several stories (Drupal ×3, N-able ×3, Check Point ×2, Webworm ×2):
+  only MSRC/KEV items carry CVE ids and outlet titles differ too much for Jaccard ≥ 0.6.
+  Extracting `CVE-\d{4}-\d+` from news titles/excerpts at ingest would merge most of these
+  (with the ≤ 3 CVE rule guarding roundups) and add corroboration. (5) Assessing takes ~18–30 s
+  per story, not the 12–17 s estimated: 40 assessments ≈ 13–20 min, inside the 45 min budget.
+  **Fix** (real bug): `hn_algolia.search_url` adds `typoTolerance=false`. All 8 HN items in
+  run 1 were Algolia typo matches (`bgp` → GPU demos, GPUI, a local-AI guide; `entra` → π
+  digits, car fees, a C dialect); checked live that the flag removes them. Tests updated
+  (3 exact-URL assertions), plan §6.2 row updated. Full suite 1362 passed, ruff clean.
