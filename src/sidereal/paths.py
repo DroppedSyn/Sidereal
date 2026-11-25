@@ -55,3 +55,13 @@ def prompts_dir() -> Path:
 
 def web_dist_dir() -> Path:
     return project_root() / "web" / "dist"
+
+
+def systemd_user_dir(env: Mapping[str, str] = os.environ) -> Path:
+    """Where ``deploy/install.sh`` puts the user units: ``$XDG_CONFIG_HOME/systemd/user``."""
+    return _xdg(env, "XDG_CONFIG_HOME", ".config") / "systemd" / "user"
+
+
+def systemd_timer_stamps_dir(env: Mapping[str, str] = os.environ) -> Path:
+    """systemd's ``Persistent=true`` stamp files for user timers (mtime = last trigger)."""
+    return _xdg(env, "XDG_DATA_HOME", ".local/share") / "systemd" / "timers"

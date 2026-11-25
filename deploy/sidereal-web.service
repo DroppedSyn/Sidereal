@@ -1,0 +1,21 @@
+# Sidereal web app (plan §12.1). Installed by deploy/install.sh into ~/.config/systemd/user.
+[Unit]
+Description=Sidereal web app (127.0.0.1:8470)
+
+[Service]
+Type=simple
+ExecStart=%h/Projects/Sidereal/.venv/bin/sidereal serve --host 127.0.0.1 --port 8470
+EnvironmentFile=-%h/.config/sidereal/env
+Environment=PYTHONDONTWRITEBYTECODE=1
+Restart=on-failure
+RestartSec=5
+# Hardening that works in user units (needs unprivileged user namespaces).
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=%h/.local/share/sidereal
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+[Install]
+WantedBy=default.target

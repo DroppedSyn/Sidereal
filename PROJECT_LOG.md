@@ -313,3 +313,17 @@ a brief says so.
   reachable, `/api/tags` only); a real-network `run --dry-run` took 4 s: 20 sources ok, 98
   items, 95 new stories; **`sans-isc` failed as broken**: `https://isc.sans.edu/rssfeed_full.xml`
   now answers an HTML page (31 KB) labelled `text/xml`, also to curl; the source needs a new URL.
+- 2026-11-25 **M22** (Claude, not delegated). Deploy: five systemd user units in `deploy/`
+  (web on 127.0.0.1:8470, oneshot run + timer at 00/04/08/12/16/20 Europe/London with
+  `Persistent=true`, nightly backup service + 03:30 timer), hardened with `NoNewPrivileges`,
+  `PrivateTmp`, `ProtectSystem=strict`, `ProtectHome=read-only` + `ReadWritePaths` for the state
+  dir, `RestrictAddressFamilies`; all verified working in a transient `systemd-run --user` unit
+  and `systemd-analyze --user verify` clean. Run timeout raised to 3 h (gate 90 min + budget
+  45 min exceeded the plan's 2 h). `deploy/install.sh` is idempotent, runs `sidereal init`,
+  installs, `daemon-reload`, `enable --now`, never sudo, prints the linger command when off;
+  `bash -n` clean, shellcheck not available. `sidereal backup` (online backup API, quick_check,
+  atomic rename, keep newest 14, `sidereal-YYYYMMDD-HHMM.db` UTC). Retention runs at the end of
+  every run (`[retention]` 30 / 90 days). `doctor` now checks web service, both timers (last and
+  next trigger) and linger from files only, so rule 12 stays as it is. 5 new test files (42
+  tests, incl. `install.sh` against fake systemctl/loginctl); 29 mutations all red. Not
+  installed: the owner runs `deploy/install.sh` and `sudo loginctl enable-linger al`.

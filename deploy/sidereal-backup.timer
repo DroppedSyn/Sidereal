@@ -1,0 +1,13 @@
+# Nightly backup at 03:30 UK time (plan §12.4), caught up after boot.
+[Unit]
+Description=Sidereal nightly backup 03:30 Europe/London
+
+[Timer]
+OnCalendar=*-*-* 03:30:00 Europe/London
+RandomizedDelaySec=120
+AccuracySec=1min
+Persistent=true
+Unit=sidereal-backup.service
+
+[Install]
+WantedBy=timers.target

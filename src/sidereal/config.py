@@ -133,6 +133,15 @@ class NotifySettings(_Section):
     smtp_to: list[str] = []
 
 
+class RetentionSettings(_Section):
+    """Data lifecycle (plan §12.4): article text kept ``content_days``, dropped/filtered stories
+    deleted after ``drop_days``, ``backup_keep`` newest backups kept."""
+
+    content_days: int = Field(default=30, ge=1)
+    drop_days: int = Field(default=90, ge=1)
+    backup_keep: int = Field(default=14, ge=1)
+
+
 class PathSettings(_Section):
     state_dir: Path | None = None  # None → $XDG_DATA_HOME/sidereal
 
@@ -154,6 +163,7 @@ class Settings(_Section):
     scoring: ScoringSettings = ScoringSettings()
     schedule: ScheduleSettings = ScheduleSettings()
     notify: NotifySettings = NotifySettings()
+    retention: RetentionSettings = RetentionSettings()
     paths: PathSettings = PathSettings()
 
     @property

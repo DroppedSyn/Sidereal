@@ -22,7 +22,7 @@ from sidereal.db.runs_repo import RunRow
 from sidereal.llm.gate import Gate
 from sidereal.llm.ollama import LLMError, LLMUnavailable, OllamaClient
 from sidereal.net.fetch import Fetcher
-from sidereal.pipeline import digest_step, ingest, placement
+from sidereal.pipeline import digest_step, ingest, placement, retention
 from sidereal.pipeline.assess_step import run_assess
 from sidereal.pipeline.common import Deadline, short_error
 from sidereal.timeutil import day_key, utc_now
@@ -124,6 +124,11 @@ async def run_once(settings: Settings, conn: Connection, *, fetcher: Fetcher,
                 asr.llm_error = short_error(exc)
                 llm_used = True
         stats["durations_s"]["digest"] = round(clock() - t, 1)
+        try:  # §12.4 lifecycle; a failure here leaves the run partial, not failed
+            stats["retention"] = retention.apply_retention(conn, settings.retention, now=now)
+        except Exception as exc:
+            log.exception("run %d: retention failed", run_id)
+            reasons.append(f"retention failed: {short_error(exc)}")
         if asr.llm_error is not None:
             reasons.append(f"ollama unavailable: {asr.llm_error}")
         if deadline.hit:

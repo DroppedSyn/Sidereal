@@ -1,0 +1,14 @@
+# Six runs a day, UK time (plan §12.1). Persistent: a run missed while the VM was off
+# happens after boot.
+[Unit]
+Description=Sidereal pipeline runs at 00/04/08/12/16/20 Europe/London
+
+[Timer]
+OnCalendar=*-*-* 00,04,08,12,16,20:00:00 Europe/London
+RandomizedDelaySec=300
+AccuracySec=1min
+Persistent=true
+Unit=sidereal-run.service
+
+[Install]
+WantedBy=timers.target

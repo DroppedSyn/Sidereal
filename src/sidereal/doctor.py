@@ -1,9 +1,8 @@
 """``sidereal doctor`` checks (plan §12.5). Read-only: never creates the state dir, the DB or
 the lock file, never writes a row. Each check is one ``Check``; ``fail`` makes doctor exit 1.
 
-The systemd checks (web service, timer, linger) need ``systemctl``/``loginctl``; subprocess is
-allowed only in ``api/routes_runs.py`` (rule 12) and the units arrive in M22, so they are
-reported as not checked for now.
+The systemd checks (web service, timers, linger) live in ``doctor_systemd`` and read files
+only: subprocess is allowed only in ``api/routes_runs.py`` (rule 12).
 """
 
 from __future__ import annotations
@@ -144,10 +143,6 @@ async def check_ollama(settings: Settings, ollama: OllamaClient) -> list[Check]:
     return [Check(OK, "ollama", f"{settings.ollama.url} reachable"), *found]
 
 
-def check_systemd() -> list[Check]:
-    return [Check(WARN, "systemd", "web service, timer and linger not checked yet (M22)")]
-
-
 async def run_checks(settings: Settings, ollama: OllamaClient, *,
                      now: datetime | None = None) -> list[Check]:
     at = now or utc_now()
@@ -156,5 +151,7 @@ async def run_checks(settings: Settings, ollama: OllamaClient, *,
         checks += check_lock(settings)
     checks += check_db(settings, at)
     checks += await check_ollama(settings, ollama)
-    checks += check_systemd()
+    from sidereal.doctor_systemd import check_systemd  # imports Check from here
+
+    checks += check_systemd(at)
     return checks

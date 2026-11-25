@@ -1,6 +1,6 @@
-"""``sidereal run`` / ``rescore`` / ``doctor`` (plan §9.3, §12.5), kept out of ``cli.py`` so the
-parser stays thin. Network clients come from ``make_fetcher`` / ``make_ollama`` (tests
-monkeypatch them); every client opened here is closed here, also on error.
+"""``sidereal run`` / ``rescore`` / ``doctor`` / ``backup`` (plan §9.3, §12.4, §12.5), kept out
+of ``cli.py`` so the parser stays thin. Network clients come from ``make_fetcher`` /
+``make_ollama`` (tests monkeypatch them); every client opened here is closed here, also on error.
 
 Exit codes (§9.2): 0 ok / partial / skipped, 1 failed, 2 config error (bad ``--source``).
 """
@@ -86,7 +86,7 @@ async def _run(settings: Settings, args: argparse.Namespace) -> runs_repo.RunRow
 
 def _print_counts(stats: dict) -> None:
     for key in ("sources", "items", "stories", "prefilter", "triage", "enrich", "assess",
-                "buckets", "digest", "durations_s"):
+                "buckets", "digest", "retention", "durations_s"):
         if key in stats:
             _out(f"{key}: {json.dumps(stats[key], sort_keys=True)}")
 
@@ -164,6 +164,22 @@ def cmd_doctor(settings: Settings, args: argparse.Namespace) -> int:
     return EXIT_FAILED if any(c.level == FAIL for c in checks) else EXIT_OK
 
 
+def cmd_backup(settings: Settings, args: argparse.Namespace) -> int:
+    """Online backup to ``$STATE/backups`` keeping ``retention.backup_keep`` (plan §12.4).
+    No run lock needed: the backup API copies a consistent snapshot while a run writes."""
+    from sidereal.db.backup import BackupError, make_backup
+
+    try:
+        result = make_backup(settings.db_path, settings.state_dir / "backups", at=utc_now(),
+                             keep=settings.retention.backup_keep)
+    except BackupError as exc:
+        _err(f"backup: {exc}")
+        return EXIT_FAILED
+    _out(f"backup: {result.path} ({result.size / 1e6:.1f} MB)")
+    _out(f"removed: {len(result.removed)} old backup(s)")
+    return EXIT_OK
+
+
 def non_negative_int(text: str) -> int:
     value = int(text)
     if value < 0:
@@ -183,5 +199,7 @@ def add_parsers(sub: argparse._SubParsersAction) -> None:
     rescore = sub.add_parser("rescore", help="recompute scores/buckets (no LLM)")
     rescore.add_argument("--day", default=None, metavar="YYYY-MM-DD")
     rescore.set_defaults(func=cmd_rescore)
-    sub.add_parser("doctor", help="check config, DB, Ollama, sources").set_defaults(
+    sub.add_parser("doctor", help="check config, DB, Ollama, sources, systemd").set_defaults(
         func=cmd_doctor)
+    sub.add_parser("backup", help="online DB backup to $STATE/backups").set_defaults(
+        func=cmd_backup)

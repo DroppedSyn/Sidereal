@@ -1,0 +1,19 @@
+# One Sidereal pipeline run (plan §9, §12.1). Started by sidereal-run.timer and by
+# POST /api/runs (systemctl --user start sidereal-run.service).
+[Unit]
+Description=Sidereal pipeline run
+
+[Service]
+Type=oneshot
+ExecStart=%h/Projects/Sidereal/.venv/bin/sidereal run --trigger timer
+EnvironmentFile=-%h/.config/sidereal/env
+Environment=PYTHONDONTWRITEBYTECODE=1
+# Gate wait (max 90 min) + run budget (45 min) + margin; the plan's 2h is too short.
+TimeoutStartSec=3h
+Nice=10
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=%h/.local/share/sidereal
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX

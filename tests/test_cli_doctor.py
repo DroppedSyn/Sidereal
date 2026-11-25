@@ -71,7 +71,7 @@ def test_healthy_setup_exits_0(ready, fake, capsys):
     assert "✅ last run" in lines and "run 1 ok, 1.0 h ago" in lines["✅ last run"]
     assert lines["✅ run lock"].endswith("free")
     assert lines["✅ sources"].endswith("21 of 21 enabled sources ok")
-    assert "⚠ systemd" in lines
+    assert "not installed" in lines["⚠ web service"] and "⚠ run timer" in lines
     assert fake.closed == [True] and fake.timeout_s == commands.DOCTOR_OLLAMA_TIMEOUT_S
     assert {p for _, p, _ in fake.requests} == {"/api/tags"}  # never loads a model
 

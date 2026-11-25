@@ -1,0 +1,17 @@
+# Nightly online backup of the SQLite DB into ~/.local/share/sidereal/backups (plan §12.4).
+[Unit]
+Description=Sidereal database backup
+
+[Service]
+Type=oneshot
+ExecStart=%h/Projects/Sidereal/.venv/bin/sidereal backup
+Environment=PYTHONDONTWRITEBYTECODE=1
+TimeoutStartSec=30min
+Nice=19
+IOSchedulingClass=idle
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=%h/.local/share/sidereal
+RestrictAddressFamilies=AF_UNIX

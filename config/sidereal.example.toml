@@ -83,5 +83,10 @@ smtp_user = ""
 smtp_from = ""
 smtp_to = []
 
+[retention]
+content_days = 30                  # article text (content_text) cleared after this many days
+drop_days = 90                     # dropped / filtered / triaged-out stories deleted after this
+backup_keep = 14                   # newest backups kept in $STATE/backups (sidereal backup)
+
 [paths]
 # state_dir = "~/.local/share/sidereal"   # default: $XDG_DATA_HOME/sidereal

@@ -24,7 +24,6 @@ PLANNED = {
     "reassess": "unscheduled",  # §9.3 lists it, no milestone row builds it
     "eval": "M16",
     "user": "M25",
-    "backup": "M22",
 }
 
 
