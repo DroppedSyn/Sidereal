@@ -8,7 +8,14 @@ from fastapi import FastAPI
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from sidereal import __version__, paths
-from sidereal.api import routes_days, routes_gazette, routes_health
+from sidereal.api import (
+    routes_days,
+    routes_gazette,
+    routes_health,
+    routes_runs,
+    routes_sources,
+    routes_stories,
+)
 from sidereal.api.security import make_guard
 from sidereal.api.static import mount_ui
 from sidereal.config import Settings
@@ -22,6 +29,9 @@ def create_app(settings: Settings, *, dist_dir: Path | None = None) -> FastAPI:
     app.include_router(routes_health.router)
     app.include_router(routes_gazette.router)
     app.include_router(routes_days.router)
+    app.include_router(routes_stories.router)
+    app.include_router(routes_runs.router)
+    app.include_router(routes_sources.router)
     mount_ui(app, dist_dir or paths.web_dist_dir())  # last: catch-all GET
     app.middleware("http")(make_guard(settings.web))
     # Added last = outermost: a bad Host is refused before anything else runs.

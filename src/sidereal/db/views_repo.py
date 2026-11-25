@@ -182,3 +182,82 @@ def runs_between(conn: sqlite3.Connection, *,
                     status=r["status"], stats=json.loads(r["stats_json"]),
                     error=r["error"])
             for r in rows]
+
+
+# --- Story detail, sources page (M15b) ---
+
+@dataclass(frozen=True)
+class ItemView:
+    id: int
+    source_key: str
+    source_name: str
+    title: str
+    url: str | None  # None unless http(s)
+    author: str | None
+    published_at: str | None
+    first_seen_at: str
+    excerpt: str
+
+
+@dataclass(frozen=True)
+class AssessmentView:
+    model: str
+    prompt_version: str
+    relevance: int
+    urgency: int
+    actionability: int
+    novelty: int
+    exploited_in_wild: bool  # raw_json["exploited_in_wild"] is True
+    created_at: str
+
+
+@dataclass(frozen=True)
+class StoryDetailView:
+    story: StoryView
+    items: list[ItemView]  # by item id
+    assessment: AssessmentView | None
+
+
+_STORY_SQL = _SELECT + " WHERE s.id = ?" + _VISIBLE + " ORDER BY s.id, i.id"
+_ITEMS_SQL = (
+    "SELECT i.id, i.title, i.url, i.author, i.published_at, i.first_seen_at, i.excerpt,"
+    " so.key AS source_key, so.name AS source_name"
+    " FROM items i JOIN sources so ON so.id = i.source_id"
+    " WHERE i.story_id = ? ORDER BY i.id"
+)
+_ASSESSMENT_SQL = (
+    "SELECT model, prompt_version, relevance, urgency, actionability, novelty, raw_json,"
+    " created_at FROM assessments WHERE story_id = ?"
+)
+_SOURCE_COUNTS_SQL = (
+    "SELECT source_id, COUNT(*) AS n FROM items WHERE first_seen_at >= ? GROUP BY source_id"
+)
+
+
+def story_detail(conn: sqlite3.Connection, story_id: int) -> StoryDetailView | None:
+    """A visible story with all its items and assessment; None if unknown or not visible.
+    Never reads ``content_text``."""
+    rows = conn.execute(_STORY_SQL, (story_id,)).fetchall()
+    if not rows:
+        return None
+    items = [ItemView(id=r["id"], source_key=r["source_key"], source_name=r["source_name"],
+                      title=r["title"], url=_safe_url(r["url"]), author=r["author"],
+                      published_at=r["published_at"], first_seen_at=r["first_seen_at"],
+                      excerpt=r["excerpt"])
+             for r in conn.execute(_ITEMS_SQL, (story_id,)).fetchall()]
+    a = conn.execute(_ASSESSMENT_SQL, (story_id,)).fetchone()
+    assessment = None
+    if a is not None:
+        raw = json.loads(a["raw_json"])
+        exploited = isinstance(raw, dict) and raw.get("exploited_in_wild") is True
+        assessment = AssessmentView(
+            model=a["model"], prompt_version=a["prompt_version"], relevance=a["relevance"],
+            urgency=a["urgency"], actionability=a["actionability"], novelty=a["novelty"],
+            exploited_in_wild=exploited, created_at=a["created_at"])
+    return StoryDetailView(story=_story_view(rows), items=items, assessment=assessment)
+
+
+def item_counts_since(conn: sqlite3.Connection, *, since: datetime) -> dict[int, int]:
+    """``{source_id: items first seen at or after since}``; sources without any are absent."""
+    rows = conn.execute(_SOURCE_COUNTS_SQL, (iso_z(since),)).fetchall()
+    return {r["source_id"]: r["n"] for r in rows}

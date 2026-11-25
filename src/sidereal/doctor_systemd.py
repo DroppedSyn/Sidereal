@@ -24,7 +24,8 @@ from sidereal.doctor import FAIL, OK, WARN, Check
 WEB = "sidereal-web.service"
 RUN_TIMER = "sidereal-run.timer"
 BACKUP_TIMER = "sidereal-backup.timer"
-UNITS = (WEB, "sidereal-run.service", RUN_TIMER, "sidereal-backup.service", BACKUP_TIMER)
+UNITS = (WEB, "sidereal-run.service", "sidereal-run-manual.service", RUN_TIMER,
+         "sidereal-backup.service", BACKUP_TIMER)
 RUN_TIMES = (time(0), time(4), time(8), time(12), time(16), time(20))  # Europe/London
 BACKUP_TIMES = (time(3, 30),)
 TIMER_TZ = "Europe/London"

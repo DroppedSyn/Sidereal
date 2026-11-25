@@ -72,10 +72,89 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/runs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Runs */
+        get: operations["runs_api_runs_get"];
+        put?: never;
+        /** Start Run */
+        post: operations["start_run_api_runs_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/runs/{run_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Run Detail */
+        get: operations["run_detail_api_runs__run_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/sources": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Sources */
+        get: operations["sources_api_sources_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/stories/{story_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Story */
+        get: operations["get_story_api_stories__story_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AssessmentOut */
+        AssessmentOut: {
+            /** Created At */
+            created_at: string;
+            /** Model */
+            model: string;
+            /** Prompt Version */
+            prompt_version: string;
+            rubric: components["schemas"]["Rubric"];
+        };
         /** Counts */
         Counts: {
             /** Drop */
@@ -165,6 +244,50 @@ export interface components {
             /** Version */
             version: string;
         };
+        /** Rubric */
+        Rubric: {
+            /** Actionability */
+            actionability: number;
+            /** Exploited In Wild */
+            exploited_in_wild: boolean;
+            /** Novelty */
+            novelty: number;
+            /** Relevance */
+            relevance: number;
+            /** Urgency */
+            urgency: number;
+        };
+        /** RunOut */
+        RunOut: {
+            /** Duration S */
+            duration_s: number | null;
+            /** Error */
+            error: string | null;
+            /** Finished At */
+            finished_at: string | null;
+            /** Id */
+            id: number;
+            /** Started At */
+            started_at: string;
+            /** Stats */
+            stats: {
+                [key: string]: unknown;
+            };
+            /** Status */
+            status: string;
+            /** Trigger */
+            trigger: string;
+        };
+        /** RunStarted */
+        RunStarted: {
+            /**
+             * Status
+             * @constant
+             */
+            status: "started";
+            /** Unit */
+            unit: string;
+        };
         /** Sections */
         Sections: {
             /** Drop */
@@ -184,6 +307,40 @@ export interface components {
             name: string;
             /** Url */
             url: string | null;
+        };
+        /** SourceStatus */
+        SourceStatus: {
+            /** Consecutive Failures */
+            consecutive_failures: number;
+            /** Enabled */
+            enabled: boolean;
+            /**
+             * Health
+             * @enum {string}
+             */
+            health: "ok" | "stale" | "failing" | "empty" | "broken";
+            /** Id */
+            id: number;
+            /** Items 7D */
+            items_7d: number;
+            /** Key */
+            key: string;
+            /** Kind */
+            kind: string;
+            /** Last Error */
+            last_error: string | null;
+            /** Last Fetch At */
+            last_fetch_at: string | null;
+            /** Last Item At */
+            last_item_at: string | null;
+            /** Last Ok At */
+            last_ok_at: string | null;
+            /** Name */
+            name: string;
+            /** Url */
+            url: string | null;
+            /** Weight */
+            weight: number;
         };
         /** Story */
         Story: {
@@ -227,6 +384,78 @@ export interface components {
             title: string;
             /** Why */
             why: string | null;
+        };
+        /**
+         * StoryDetail
+         * @description A Story plus all its items and the assessment details (never article text).
+         */
+        StoryDetail: {
+            assessment: components["schemas"]["AssessmentOut"] | null;
+            /**
+             * Bucket
+             * @enum {string}
+             */
+            bucket: "top" | "relevant" | "side" | "drop";
+            /** Cve Ids */
+            cve_ids: string[];
+            /** Day */
+            day: string;
+            /** Excerpt */
+            excerpt: string;
+            /** First Seen At */
+            first_seen_at: string;
+            /** Flags */
+            flags: {
+                [key: string]: unknown;
+            };
+            /** Focus */
+            focus: string | null;
+            /** Id */
+            id: number;
+            /** Items */
+            items: components["schemas"]["StoryItem"][];
+            /** Lead Url */
+            lead_url: string | null;
+            /** Published At */
+            published_at: string | null;
+            /**
+             * Read
+             * @default false
+             */
+            read: boolean;
+            /** Score */
+            score: number | null;
+            /** Sources */
+            sources: components["schemas"]["SourceOut"][];
+            /** Summary */
+            summary: string | null;
+            /** Tags */
+            tags: string[];
+            /** Title */
+            title: string;
+            /** Why */
+            why: string | null;
+        };
+        /** StoryItem */
+        StoryItem: {
+            /** Author */
+            author: string | null;
+            /** Excerpt */
+            excerpt: string;
+            /** First Seen At */
+            first_seen_at: string;
+            /** Id */
+            id: number;
+            /** Published At */
+            published_at: string | null;
+            /** Source Key */
+            source_key: string;
+            /** Source Name */
+            source_name: string;
+            /** Title */
+            title: string;
+            /** Url */
+            url: string | null;
         };
         /** ValidationError */
         ValidationError: {
@@ -363,6 +592,169 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Health"];
+                };
+            };
+        };
+    };
+    runs_api_runs_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+                /** @description run id cursor (exclusive) */
+                before?: number | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RunOut"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    start_run_api_runs_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RunStarted"];
+                };
+            };
+            /** @description a run is in progress */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description the run unit could not be started */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    run_detail_api_runs__run_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                run_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RunOut"];
+                };
+            };
+            /** @description unknown run */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    sources_api_sources_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SourceStatus"][];
+                };
+            };
+        };
+    };
+    get_story_api_stories__story_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                story_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StoryDetail"];
+                };
+            };
+            /** @description unknown or hidden story */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };

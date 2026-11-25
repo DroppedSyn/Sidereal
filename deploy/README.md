@@ -6,6 +6,7 @@ systemd **user** units, no root services. Claude writes these files, not pi.
 |---|---|
 | `sidereal-web.service` | `sidereal serve --host 127.0.0.1 --port 8470`, `Restart=on-failure`, enabled at login/boot |
 | `sidereal-run.service` | oneshot `sidereal run --trigger timer`, `Nice=10`, `TimeoutStartSec=3h` |
+| `sidereal-run-manual.service` | the same with `--trigger manual`; started by `POST /api/runs` (Runs page) |
 | `sidereal-run.timer` | `00,04,08,12,16,20:00` Europe/London, `RandomizedDelaySec=300`, `Persistent=true` |
 | `sidereal-backup.service` | oneshot `sidereal backup` (idle I/O, `Nice=19`, no network) |
 | `sidereal-backup.timer` | `03:30` Europe/London, `Persistent=true` |
@@ -34,9 +35,11 @@ Without lingering the user manager (and so the timers and the web app) stops whe
 
 ## Day to day
 
-- Run now: `systemctl --user start sidereal-run.service` (or the Runs page, M20); a manual
+- Run now: `systemctl --user start sidereal-run-manual.service` (what the Runs page's
+  `POST /api/runs` does, recorded as trigger `manual`); a manual
   `sidereal run` from a shell works too (the run lock keeps them from overlapping).
-- Logs: `journalctl --user -u sidereal-run.service -n 100`, `-u sidereal-web.service -f`.
+- Logs: `journalctl --user -u sidereal-run.service -n 100` (`-u sidereal-run-manual.service`
+  for manual runs), `-u sidereal-web.service -f`.
 - Health: `sidereal doctor` (config, env file mode, DB, last run, sources, Ollama, web service,
   timers with last/next trigger, linger).
 - Pause runs: `systemctl --user stop sidereal-run.timer` (start it again to resume).

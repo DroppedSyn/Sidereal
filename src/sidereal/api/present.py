@@ -5,9 +5,19 @@ from __future__ import annotations
 from collections.abc import Sequence
 from datetime import datetime
 
-from sidereal.api.schemas import Counts, DayCounts, Sections, SourceOut, Story
+from sidereal.api.schemas import (
+    AssessmentOut,
+    Counts,
+    DayCounts,
+    Rubric,
+    Sections,
+    SourceOut,
+    Story,
+    StoryDetail,
+    StoryItem,
+)
 from sidereal.config import ScoringSettings
-from sidereal.db.views_repo import StoryView
+from sidereal.db.views_repo import StoryDetailView, StoryView
 from sidereal.pipeline.scoring import Scored, gazette_order, place
 from sidereal.timeutil import parse_iso_z
 from sidereal.urls import is_http_url
@@ -71,3 +81,20 @@ def placed_counts(top: int, relevant: int, side: int, cfg: ScoringSettings) -> D
     shown_relevant = min(pool, cfg.relevant_cap)
     return DayCounts(top=shown_top, relevant=shown_relevant,
                      side=side + (pool - shown_relevant))
+
+
+def story_detail_out(d: StoryDetailView) -> StoryDetail:
+    """GET /api/stories/{id}: the Story plus items and assessment; links http(s) only."""
+    a = d.assessment
+    assessment = None if a is None or _failed(d.story) else AssessmentOut(
+        model=a.model, prompt_version=a.prompt_version, created_at=a.created_at,
+        rubric=Rubric(relevance=a.relevance, urgency=a.urgency, actionability=a.actionability,
+                      novelty=a.novelty, exploited_in_wild=a.exploited_in_wild))
+    items = [StoryItem(id=i.id, source_key=i.source_key, source_name=i.source_name,
+                       title=i.title, url=_http(i.url), author=i.author,
+                       published_at=i.published_at, first_seen_at=i.first_seen_at,
+                       excerpt=i.excerpt)
+             for i in d.items]
+    base = story_out(d.story).model_dump()
+    return StoryDetail(**base, cve_ids=list(d.story.cve_ids), items=items,
+                       assessment=assessment)

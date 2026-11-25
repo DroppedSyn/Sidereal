@@ -1,5 +1,5 @@
-# One Sidereal pipeline run (plan §9, §12.1). Started by sidereal-run.timer and by
-# POST /api/runs (systemctl --user start sidereal-run.service).
+# One Sidereal pipeline run (plan §9, §12.1), started by sidereal-run.timer.
+# POST /api/runs starts sidereal-run-manual.service (same unit, --trigger manual).
 [Unit]
 Description=Sidereal pipeline run
 

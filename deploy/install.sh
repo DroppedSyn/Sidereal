@@ -11,7 +11,7 @@ repo="$(dirname "$here")"
 bin="$repo/.venv/bin/sidereal"
 unit_dir="${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"
 user="$(id -un)"
-units=(sidereal-web.service sidereal-run.service sidereal-run.timer
+units=(sidereal-web.service sidereal-run.service sidereal-run-manual.service sidereal-run.timer
        sidereal-backup.service sidereal-backup.timer)
 enable=(sidereal-web.service sidereal-run.timer sidereal-backup.timer)
 

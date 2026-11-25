@@ -381,3 +381,21 @@ a brief says so.
   regenerated, tsc clean. 8 mutations all red (DST bounds in UTC / start + 24 h, 404 for bad
   days, DB created when missing, Gazette window `>`, day unchecked). Full suite 1304 passed,
   ruff clean. M15a done; M15b open.
+- 2026-11-25 **M15b** (Claude, no pi run: M14 held the GPU). The rest of the v1 API (plan §10.1):
+  `GET /api/stories/{id}` (Story + `cve_ids`, all items with http(s)-only urls, assessment with
+  the rubric; never `content_text`; hidden states 404), `GET /api/runs?limit&before` and
+  `GET /api/runs/{id}` (stats, `duration_s`), `POST /api/runs` (202; 409 while the run lock is
+  held; 503 if systemctl fails) and `GET /api/sources` (health, last ok/error, last item,
+  items in 7 days). Run-now follows plan §12.1 instead of a direct child process: fixed argv
+  `systemctl --user start --no-block sidereal-run-manual.service`, no shell, nothing from the
+  request; a new unit `deploy/sidereal-run-manual.service` (the run unit with
+  `--trigger manual`) so manual runs are labelled manual; `install.sh`, `doctor_systemd.UNITS`
+  and `deploy/README.md` updated. Checked that `systemctl --user` works under the web unit's
+  sandbox (transient unit with the same hardening). No source enable/disable toggle (not in
+  §10.1; M27). New read queries in `db/views_repo.py` (`story_detail`, `item_counts_since`).
+  5 new test files, 55 cases; tests monkeypatch `spawn_run` / `subprocess.run` (no run is ever
+  started). 12 mutations all red (argv from a query param, no lock check, write guard skipping
+  `/api/runs`, `content_text` in the detail, `javascript:` url via the repo / repo + edge, source
+  url unchecked, hidden story visible, 7-day count `>`, `shell=True`, exit code ignored,
+  `--no-block` dropped). OpenAPI types regenerated, tsc clean. Full suite 1362 passed, ruff
+  clean. M15 done.
