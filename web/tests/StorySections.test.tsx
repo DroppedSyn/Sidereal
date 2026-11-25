@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import StorySections, { CALM_MESSAGE } from '../src/components/StorySections';
-import { countsOf, makeSections, makeStory } from './helpers';
+import { countsOf, makeSections, makeStory, renderWithClient as render } from './helpers';
 
 describe('StorySections', () => {
   it('renders TOP, Relevant and On the side with their stories', () => {

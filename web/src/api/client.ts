@@ -64,12 +64,24 @@ export function apiGet<T>(path: string, query?: Query): Promise<T> {
   return request<T>(withQuery(path, query), { method: 'GET', headers: { Accept: 'application/json' } });
 }
 
-export function apiPost<T>(path: string, body?: unknown): Promise<T> {
+function send<T>(method: 'POST' | 'PUT' | 'DELETE', path: string, body?: unknown): Promise<T> {
   const headers: Record<string, string> = { Accept: 'application/json', 'X-Sidereal': '1' };
-  const init: RequestInit = { method: 'POST', headers };
+  const init: RequestInit = { method, headers };
   if (body !== undefined) {
     headers['Content-Type'] = 'application/json';
     init.body = JSON.stringify(body);
   }
   return request<T>(path, init);
+}
+
+export function apiPost<T>(path: string, body?: unknown): Promise<T> {
+  return send<T>('POST', path, body);
+}
+
+export function apiPut<T>(path: string, body: unknown): Promise<T> {
+  return send<T>('PUT', path, body);
+}
+
+export function apiDelete<T>(path: string): Promise<T> {
+  return send<T>('DELETE', path);
 }

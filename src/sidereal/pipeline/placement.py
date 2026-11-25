@@ -5,19 +5,43 @@ placement without the LLM (``sidereal rescore``)."""
 
 from __future__ import annotations
 
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from typing import Any
 
 from sidereal.config import ScoringSettings
-from sidereal.db import Connection, assessments_repo, focus_repo, sources_repo, stories_repo
+from sidereal.db import (
+    Connection,
+    assessments_repo,
+    feedback_repo,
+    focus_repo,
+    sources_repo,
+    stories_repo,
+)
 from sidereal.db.assessments_repo import AssessmentRow
 from sidereal.pipeline.common import StoryBundle, bundle
-from sidereal.pipeline.scoring import BUCKETS, Rubric, StorySignals, bucket_for, score_story
+from sidereal.pipeline.scoring import (
+    BUCKETS,
+    NO_BOOSTS,
+    FeedbackBoosts,
+    Rubric,
+    StorySignals,
+    Vote,
+    bucket_for,
+    feedback_boost,
+    feedback_tables,
+    score_story,
+)
 
 
 def focus_tiers(conn: Connection) -> dict[str, str]:
     """``{focus key: tier}`` over every focus area (a disabled area keeps its tier)."""
     return {f.key: f.tier for f in focus_repo.list_focus_areas(conn, enabled_only=False)}
+
+
+def feedback_boosts(conn: Connection) -> FeedbackBoosts:
+    """Per-source and per-topic boosts from every vote (M24), computed once per pass."""
+    return feedback_tables(Vote(v.vote, v.source_keys, v.focus, v.tags)
+                           for v in feedback_repo.voted_stories(conn))
 
 
 def _cvss(flags: Mapping[str, Any]) -> float | None:
@@ -28,13 +52,16 @@ def _cvss(flags: Mapping[str, Any]) -> float | None:
 
 
 def signals_for(b: StoryBundle, focus_key: str | None,
-                tiers: Mapping[str, str]) -> StorySignals:
+                tiers: Mapping[str, str], *, boosts: FeedbackBoosts = NO_BOOSTS,
+                tags: Sequence[str] = ()) -> StorySignals:
     flags = b.story.flags
     return StorySignals(
         kev=flags.get("kev") is True,
         max_cvss=_cvss(flags),
         source_weights=b.source_weights or (1.0,),
         focus_tier=tiers.get(focus_key) if focus_key else None,
+        feedback_boost=feedback_boost(boosts, sources=b.source_keys, focus=focus_key,
+                                      tags=tags),
     )
 
 
@@ -44,11 +71,13 @@ def rubric_of(a: AssessmentRow) -> Rubric:
 
 
 def place_assessed(conn: Connection, b: StoryBundle, a: AssessmentRow,
-                   tiers: Mapping[str, str], cfg: ScoringSettings) -> str:
+                   tiers: Mapping[str, str], cfg: ScoringSettings, *,
+                   boosts: FeedbackBoosts = NO_BOOSTS) -> str:
     """Compute and store score + bucket for an assessed story; returns the bucket."""
     focus = a.raw.get("focus")
     rubric = rubric_of(a)
-    signals = signals_for(b, focus if isinstance(focus, str) else None, tiers)
+    signals = signals_for(b, focus if isinstance(focus, str) else None, tiers,
+                          boosts=boosts, tags=a.tags)
     score = score_story(rubric, signals, cfg)
     bucket = bucket_for(score, rubric, signals, cfg)
     stories_repo.set_score(conn, b.story.id, score=score, bucket=bucket)
@@ -67,6 +96,7 @@ def rescore(conn: Connection, cfg: ScoringSettings, *,
     """Recompute score and bucket of every assessed / assess_failed story (one ``day`` or all)
     from stored assessments; no LLM. Returns ``{"rescored", "buckets", "days"}``."""
     tiers = focus_tiers(conn)
+    boosts = feedback_boosts(conn)
     sources = {s.id: s for s in sources_repo.list_sources(conn)}
     counts = dict.fromkeys(BUCKETS, 0)
     days: set[str] = set()
@@ -76,7 +106,8 @@ def rescore(conn: Connection, cfg: ScoringSettings, *,
         if story.state == "assess_failed" or a is None:
             bucket = mark_failed(conn, story.id)
         else:
-            bucket = place_assessed(conn, bundle(conn, story, sources), a, tiers, cfg)
+            bucket = place_assessed(conn, bundle(conn, story, sources), a, tiers, cfg,
+                                    boosts=boosts)
         counts[bucket] += 1
         days.add(story.day)
         n += 1
@@ -87,6 +118,7 @@ def refresh(conn: Connection, story_ids: list[int], cfg: ScoringSettings) -> set
     """Re-place already assessed stories that gained items this run (corroboration, KEV flag);
     returns their days. Other states are left alone."""
     tiers = focus_tiers(conn)
+    boosts = feedback_boosts(conn)
     sources = {s.id: s for s in sources_repo.list_sources(conn)}
     days: set[str] = set()
     for sid in story_ids:
@@ -94,6 +126,6 @@ def refresh(conn: Connection, story_ids: list[int], cfg: ScoringSettings) -> set
         a = assessments_repo.get_assessment(conn, sid)
         if story is None or story.state != "assessed" or a is None:
             continue
-        place_assessed(conn, bundle(conn, story, sources), a, tiers, cfg)
+        place_assessed(conn, bundle(conn, story, sources), a, tiers, cfg, boosts=boosts)
         days.add(story.day)
     return days

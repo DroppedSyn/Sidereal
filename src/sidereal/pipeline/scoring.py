@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
+from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import dataclass, field, replace
 from datetime import datetime
 
 from sidereal.config import ScoringSettings
@@ -11,6 +12,7 @@ DEFAULT = ScoringSettings()
 
 BUCKETS = ("top", "relevant", "side", "drop")
 FEEDBACK_MAX = 10.0  # feedback boost clamped to [-FEEDBACK_MAX, +FEEDBACK_MAX]
+FEEDBACK_PRIOR = 5  # damping: (up - down) / (n + FEEDBACK_PRIOR)
 RECENCY_END_HOURS = 24.0  # recency reaches cfg.recency_floor here
 
 
@@ -150,3 +152,72 @@ def gazette_order(
         return (0, -x.score * recency_factor(x.first_seen, now, cfg), x.story_id)
 
     return sorted(stories, key=key)
+
+
+# --- Feedback boost (plan §8, §16 M24) ---
+
+@dataclass(frozen=True)
+class Vote:
+    """One voted story's features: its sources and its topics (focus key + tags)."""
+    vote: str  # "up" | "down"
+    sources: tuple[str, ...]
+    focus: str | None = None
+    tags: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
+class FeedbackBoosts:
+    """Per-key boosts in [-FEEDBACK_MAX, FEEDBACK_MAX]; keys without votes are absent."""
+    sources: Mapping[str, float] = field(default_factory=dict)
+    topics: Mapping[str, float] = field(default_factory=dict)  # "focus:<key>", "tag:<tag>"
+
+
+NO_BOOSTS = FeedbackBoosts()
+
+
+def smoothed_boost(up: int, down: int) -> float:
+    """``(up - down) / (n + 5) × 10`` with n = up + down; always inside ±FEEDBACK_MAX because
+    ``|up - down| < n + 5`` (the story total is clamped again in ``feedback_boost``)."""
+    return FEEDBACK_MAX * (up - down) / (up + down + FEEDBACK_PRIOR)
+
+
+def topic_keys(focus: str | None, tags: Iterable[str]) -> tuple[str, ...]:
+    """Distinct topic keys of a story: its focus (not "none") and its tags (lower-cased)."""
+    keys: list[str] = []
+    if focus and focus != "none":
+        keys.append(f"focus:{focus}")
+    for t in tags:
+        t = t.strip().lower()
+        if t:
+            keys.append(f"tag:{t}")
+    return tuple(dict.fromkeys(keys))
+
+
+def feedback_tables(votes: Iterable[Vote]) -> FeedbackBoosts:
+    """Aggregate votes per source and per topic into smoothed boosts."""
+    tallies: dict[str, dict[str, list[int]]] = {"sources": {}, "topics": {}}
+    for v in votes:
+        idx = 0 if v.vote == "up" else 1 if v.vote == "down" else None
+        if idx is None:
+            continue
+        for kind, keys in (("sources", tuple(dict.fromkeys(v.sources))),
+                           ("topics", topic_keys(v.focus, v.tags))):
+            for k in keys:
+                tallies[kind].setdefault(k, [0, 0])[idx] += 1
+    return FeedbackBoosts(
+        sources={k: smoothed_boost(u, d) for k, (u, d) in tallies["sources"].items()},
+        topics={k: smoothed_boost(u, d) for k, (u, d) in tallies["topics"].items()})
+
+
+def _mean_known(table: Mapping[str, float], keys: Sequence[str]) -> float:
+    known = [table[k] for k in keys if k in table]
+    return sum(known) / len(known) if known else 0.0
+
+
+def feedback_boost(boosts: FeedbackBoosts, *, sources: Sequence[str], focus: str | None,
+                   tags: Sequence[str] = ()) -> float:
+    """A story's boost: mean boost of its voted-on sources + mean boost of its voted-on topics,
+    clamped to ±FEEDBACK_MAX. No feedback → 0."""
+    value = (_mean_known(boosts.sources, tuple(dict.fromkeys(sources)))
+             + _mean_known(boosts.topics, topic_keys(focus, tags)))
+    return max(-FEEDBACK_MAX, min(FEEDBACK_MAX, value))

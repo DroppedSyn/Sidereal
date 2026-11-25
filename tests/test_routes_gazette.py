@@ -88,7 +88,8 @@ def test_story_shape(client, conn, run):
              "url": "https://msrc.example/a"},
             {"key": "bleepingcomputer", "name": "BleepingComputer",
              "url": "https://bc.example/b"}],
-        "lead_url": "https://msrc.example/a", "excerpt": "Original excerpt.", "read": False}]
+        "lead_url": "https://msrc.example/a", "excerpt": "Original excerpt.", "read": False,
+        "vote": None, "hidden": False}]
 
 
 def test_window_crosses_midnight(client, conn, run):

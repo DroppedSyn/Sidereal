@@ -66,8 +66,12 @@ _SELECT = (
     " LEFT JOIN sources so ON so.id = i.source_id"
 )
 _VISIBLE = " AND (s.bucket IS NOT NULL OR s.state = 'assess_failed')"
-_GAZETTE_SQL = _SELECT + " WHERE s.first_seen_at >= ?" + _VISIBLE + " ORDER BY s.id, i.id"
-_DAY_SQL = _SELECT + " WHERE s.day = ?" + _VISIBLE + " ORDER BY s.id, i.id"
+_NOT_HIDDEN = (
+    " AND NOT EXISTS (SELECT 1 FROM feedback f WHERE f.story_id = s.id AND f.kind = 'hide')"
+)
+_GAZETTE_SQL = (_SELECT + " WHERE s.first_seen_at >= ?" + _VISIBLE + _NOT_HIDDEN
+                + " ORDER BY s.id, i.id")
+_DAY_SQL = _SELECT + " WHERE s.day = ?" + _VISIBLE + _NOT_HIDDEN + " ORDER BY s.id, i.id"
 _COUNTS = (
     "SELECT d.day AS day,"
     " COALESCE(SUM(s.bucket = 'top'), 0) AS top,"
@@ -83,7 +87,8 @@ _DAYS_BEFORE = (
     " UNION SELECT day FROM day_digests WHERE day < ?) AS d"
 )
 _COUNTS_TAIL = (
-    " LEFT JOIN stories s ON s.day = d.day"
+    " LEFT JOIN stories s ON s.day = d.day AND NOT EXISTS"
+    " (SELECT 1 FROM feedback f WHERE f.story_id = s.id AND f.kind = 'hide')"
     " LEFT JOIN day_digests dd ON dd.day = d.day"
     " GROUP BY d.day ORDER BY d.day DESC LIMIT ?"
 )
@@ -147,12 +152,12 @@ def _views(rows: list[sqlite3.Row]) -> list[StoryView]:
 
 
 def gazette_views(conn: sqlite3.Connection, *, since: datetime) -> list[StoryView]:
-    """Visible stories with ``first_seen_at >= since`` (inclusive), by id."""
+    """Visible, not hidden stories with ``first_seen_at >= since`` (inclusive), by id."""
     return _views(conn.execute(_GAZETTE_SQL, (iso_z(since),)).fetchall())
 
 
 def day_views(conn: sqlite3.Connection, day: str) -> list[StoryView]:
-    """Visible stories for ``day``, by id."""
+    """Visible, not hidden stories for ``day``, by id."""
     _check_day(day)
     return _views(conn.execute(_DAY_SQL, (day,)).fetchall())
 
@@ -160,7 +165,8 @@ def day_views(conn: sqlite3.Connection, day: str) -> list[StoryView]:
 def day_summaries(conn: sqlite3.Connection, *,
                   limit: int = 60,
                   before: str | None = None) -> list[DaySummaryRow]:
-    """Days with any story or digest, newest first, with bucket counts."""
+    """Days with any story or digest, newest first, with bucket counts (hidden stories
+    not counted)."""
     if limit < 1:
         raise ValueError(f"limit must be >= 1, got {limit!r}")
     if before is not None:

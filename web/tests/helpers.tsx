@@ -1,7 +1,7 @@
 // Shared test helpers: providers, a routing fetch mock and story/data builders.
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
-import type { ReactElement } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { vi } from 'vitest';
 import { ROUTER_FUTURE } from '../src/routes';
@@ -61,6 +61,16 @@ export function renderWith(ui: ReactElement, { route = '/', path }: { route?: st
   );
 }
 
+/** Render inside a fresh QueryClientProvider only (no router): for components that use
+ * mutations (story cards) but never navigate. */
+export function renderWithClient(ui: ReactElement) {
+  const client = new QueryClient({ defaultOptions: { queries: { retry: false }, mutations: { retry: false } } });
+  const wrapper = ({ children }: { children: ReactNode }) => (
+    <QueryClientProvider client={client}>{children}</QueryClientProvider>
+  );
+  return render(ui, { wrapper });
+}
+
 let nextId = 1;
 
 export function makeStory(over: Partial<Story> = {}): Story {
@@ -82,6 +92,8 @@ export function makeStory(over: Partial<Story> = {}): Story {
     lead_url: `https://bc.example/${id}`,
     excerpt: `Original excerpt ${id}.`,
     read: false,
+    vote: null,
+    hidden: false,
     ...over,
   };
 }

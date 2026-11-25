@@ -63,6 +63,7 @@ def test_detail_shape(client, conn, run):
             {"key": "bleepingcomputer", "name": "BleepingComputer",
              "url": "https://bc.example/b"}],
         "lead_url": "https://msrc.example/a", "excerpt": "Original excerpt.", "read": False,
+        "vote": None, "hidden": False,
         "cve_ids": ["CVE-2026-1"],
         "assessment": {"model": "demo-model", "prompt_version": "assess.v1",
                        "created_at": "2026-07-14T07:00:00Z",

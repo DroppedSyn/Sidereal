@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import BucketSection from '../src/components/BucketSection';
-import { makeStory } from './helpers';
+import { makeStory, renderWithClient as render } from './helpers';
 
 describe('BucketSection', () => {
   it('has a heading with the count and one card per story', () => {

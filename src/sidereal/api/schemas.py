@@ -31,7 +31,9 @@ class Story(BaseModel):
     sources: list[SourceOut]
     lead_url: str | None  # http(s) only, else None
     excerpt: str
-    read: bool = False  # feedback arrives in M24
+    read: bool = False  # feedback (M24)
+    vote: Literal["up", "down"] | None = None
+    hidden: bool = False  # only ever true on the story detail: lists leave hidden stories out
 
 
 class Sections(BaseModel):

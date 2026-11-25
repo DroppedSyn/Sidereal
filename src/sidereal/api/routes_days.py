@@ -14,6 +14,7 @@ from sidereal.api.present import build_sections, placed_counts
 from sidereal.api.schemas import DayDetail, DayRun, DaySummary
 from sidereal.config import Settings
 from sidereal.db.digests_repo import get_day_digest
+from sidereal.db.feedback_repo import story_feedback
 from sidereal.db.views_repo import day_summaries, day_views, runs_between
 from sidereal.timeutil import day_key, day_label, parse_iso_z
 
@@ -62,9 +63,11 @@ def get_day(
     start, end = day_bounds(day, settings.schedule.tz)
     with open_db(settings) as conn:
         views = day_views(conn, day)
+        feedback = story_feedback(conn, [v.id for v in views])
         digest = get_day_digest(conn, day)
         runs = runs_between(conn, start=start, end=end)
-    sections, counts = build_sections(views, settings.scoring, now=None, include_drop=include_drop)
+    sections, counts = build_sections(views, settings.scoring, now=None,
+                                      include_drop=include_drop, feedback=feedback)
     return DayDetail(
         day=day, label=day_label(day),
         overview=digest.overview if digest else None,

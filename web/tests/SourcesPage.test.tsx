@@ -38,7 +38,7 @@ describe('SourcesPage', () => {
     const first = renderWith(<SourcesPage />);
     expect(screen.getByText('Loading sources…')).toBeInTheDocument();
     first.unmount();
-    mockFetch({ '/api/sources': new Response('{"detail":"database not initialised (run sidereal init)"}', { status: 503 }) });
+    mockFetch({ '/api/mutes': [], '/api/sources': new Response('{"detail":"database not initialised (run sidereal init)"}', { status: 503 }) });
     renderWith(<SourcesPage />);
     expect(await screen.findByRole('alert')).toHaveTextContent('database not initialised');
   });

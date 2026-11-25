@@ -528,3 +528,22 @@ a brief says so.
   37 tests) and redid the version lists (`[1, 2, 3]`; `TABLES` gains the auth and feedback
   tables). 43 mutations all red. Suite 1517 passed, ruff and static rules clean. Next: M24a-2
   `routes_feedback`.
+- 2026-11-25 **M24a-2, M24a-3, M24b** (Claude, no pi: recent pi runs ignored their briefs). M24
+  done. Back end: `api/routes_feedback.py` (vote/read/hidden PUTs, feedback GET, mark day read,
+  mutes CRUD; `StrictBool` bodies; unknown source mute → 422) per the M24a-2 brief;
+  `scoring.feedback_boost` per plan §8/§16: per-key `10 × (up − down) / (n + 5)` for each source
+  and each topic (`focus:<key>`, `tag:<tag>`), a story's boost = mean over its voted-on sources +
+  mean over its voted-on topics, clamped ±10, wired through `placement.feedback_boosts` into
+  `signals_for` for rescore, refresh and first placement; mutes from `feedback_repo.muted_values`
+  reach `assess_step`'s prefilter; hidden stories leave the Gazette, Daily and day-list counts
+  (SQL `NOT EXISTS` + a `present` filter) but stay reachable on the detail route; Story responses
+  carry `vote`/`read`/`hidden`. Front end: `api/feedback.ts` (optimistic edits of cached
+  gazette/day views with snapshot rollback), `StoryActions`, `MuteMenu`, `MutesList` (Sources
+  page), "Mark day read", read-on-open, bold unread titles. Tests: back end 1517 → 1588 (4 new
+  files; 4 shape tests updated for the new fields), front end 93 → 107 (2 new files; 3 card tests
+  now render inside a QueryClient). Mutation checks: 33 back-end and 12 front-end mutants all red
+  (list in AGENTS.md Status); the per-key clamp in `smoothed_boost` was unreachable and removed;
+  the front-end rollback test was hollow at first (the post-error refetch restored the story) and
+  now makes the refetch hang. OpenAPI and `schema.d.ts` regenerated; pytest, ruff, static rules,
+  vitest, tsc, eslint and build clean. Not done: hidden stories still count toward the day
+  digest's story set; a vote changes placement only at the next run or `sidereal rescore`.

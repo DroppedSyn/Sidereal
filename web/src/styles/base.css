@@ -182,6 +182,7 @@ a:hover { text-decoration-thickness: 2px; }
 .story-normal .story-title { font-size: 1.12rem; }
 .story-compact { padding: 0.45rem 0; }
 .story-compact .story-title { font-size: 1rem; font-weight: 600; }
+.story-read .story-title { font-weight: 400; }
 
 .story-meta, .story-labels, .source-badges {
   display: flex;
@@ -328,3 +329,23 @@ a:hover { text-decoration-thickness: 2px; }
   .daylist-pane { display: none; }
   .dayselect { display: block; }
 }
+
+/* Feedback (M24) */
+.story-actions { margin-top: 0.35rem; font-size: 0.8rem; }
+.story-action-row { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.action-button {
+  font: inherit; color: var(--muted); background: transparent; cursor: pointer;
+  border: 1px solid var(--rule); border-radius: 3px; padding: 0.1rem 0.45rem;
+}
+.action-button:hover { color: var(--fg); }
+.action-button[aria-pressed="true"] { color: var(--fg); border-color: var(--fg); font-weight: 600; }
+.action-button:disabled { opacity: 0.6; cursor: default; }
+.action-error { color: var(--severe); margin: 0.25rem 0; }
+.mute-menu { margin-top: 0.35rem; }
+.mute-sources { list-style: none; margin: 0 0 0.35rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.mute-keyword { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+.mute-keyword input { font: inherit; padding: 0.1rem 0.3rem; max-width: 14rem; }
+.mute-status { min-height: 1em; margin: 0.25rem 0 0; color: var(--muted); }
+.mutes { margin-top: 1.5rem; }
+.mutes-list { list-style: none; padding: 0; margin: 0; }
+.mutes-list li { padding: 0.2rem 0; }

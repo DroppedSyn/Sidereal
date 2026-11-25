@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from datetime import datetime
 
 from sidereal.api.schemas import (
@@ -17,6 +17,7 @@ from sidereal.api.schemas import (
     StoryItem,
 )
 from sidereal.config import ScoringSettings
+from sidereal.db.feedback_repo import NO_FEEDBACK, StoryFeedback
 from sidereal.db.views_repo import StoryDetailView, StoryView
 from sidereal.pipeline.scoring import Scored, gazette_order, place
 from sidereal.timeutil import parse_iso_z
@@ -34,8 +35,10 @@ def _failed(v: StoryView) -> bool:
     return v.state == ASSESS_FAILED
 
 
-def story_out(v: StoryView, *, bucket: str | None = None) -> Story:
-    """One API Story; *bucket* (the placed one) overrides the stored bucket."""
+def story_out(v: StoryView, *, bucket: str | None = None,
+              fb: StoryFeedback = NO_FEEDBACK) -> Story:
+    """One API Story; *bucket* (the placed one) overrides the stored bucket; *fb* is the
+    owner's feedback (vote, read, hidden)."""
     failed = _failed(v)
     return Story(
         id=v.id, title=v.title, day=v.day, first_seen_at=v.first_seen_at,
@@ -45,7 +48,8 @@ def story_out(v: StoryView, *, bucket: str | None = None) -> Story:
         summary=v.summary, why=v.why, tags=list(v.tags), focus=v.focus,
         flags=dict(v.flags),
         sources=[SourceOut(key=s.key, name=s.name, url=_http(s.url)) for s in v.sources],
-        lead_url=_http(v.lead_url), excerpt=v.excerpt, read=False,
+        lead_url=_http(v.lead_url), excerpt=v.excerpt, read=fb.read, vote=fb.vote,
+        hidden=fb.hidden,
     )
 
 
@@ -58,15 +62,22 @@ def _scored(v: StoryView) -> Scored:
 
 
 def build_sections(views: Sequence[StoryView], cfg: ScoringSettings, *,
-                   now: datetime | None, include_drop: bool) -> tuple[Sections, Counts]:
+                   now: datetime | None, include_drop: bool,
+                   feedback: Mapping[int, StoryFeedback] | None = None,
+                   ) -> tuple[Sections, Counts]:
     """Per-view caps via ``place``; Gazette order (score × recency) when *now* is set,
-    else place's score order (Daily). Drop is always counted, listed only on request."""
+    else place's score order (Daily). Drop is always counted, listed only on request.
+    Hidden stories (per *feedback*) are left out before placement (defence in depth: the
+    view queries already skip them)."""
+    fbs = feedback or {}
+    views = [v for v in views if not fbs.get(v.id, NO_FEEDBACK).hidden]
     by_id = {v.id: v for v in views}
     placed = place([_scored(v) for v in views], cfg)
     out: dict[str, list[Story]] = {}
     for name, lst in placed.items():
         ordered = gazette_order(lst, now, cfg) if now is not None else lst
-        out[name] = [story_out(by_id[s.story_id], bucket=s.bucket) for s in ordered]
+        out[name] = [story_out(by_id[s.story_id], bucket=s.bucket,
+                               fb=fbs.get(s.story_id, NO_FEEDBACK)) for s in ordered]
     sections = Sections(top=out["top"], relevant=out["relevant"], side=out["side"],
                         drop=out["drop"] if include_drop else [])
     counts = Counts(top=len(placed["top"]), relevant=len(placed["relevant"]),
@@ -83,7 +94,7 @@ def placed_counts(top: int, relevant: int, side: int, cfg: ScoringSettings) -> D
                      side=side + (pool - shown_relevant))
 
 
-def story_detail_out(d: StoryDetailView) -> StoryDetail:
+def story_detail_out(d: StoryDetailView, fb: StoryFeedback = NO_FEEDBACK) -> StoryDetail:
     """GET /api/stories/{id}: the Story plus items and assessment; links http(s) only."""
     a = d.assessment
     assessment = None if a is None or _failed(d.story) else AssessmentOut(
@@ -95,6 +106,6 @@ def story_detail_out(d: StoryDetailView) -> StoryDetail:
                        published_at=i.published_at, first_seen_at=i.first_seen_at,
                        excerpt=i.excerpt)
              for i in d.items]
-    base = story_out(d.story).model_dump()
+    base = story_out(d.story, fb=fb).model_dump()
     return StoryDetail(**base, cve_ids=list(d.story.cve_ids), items=items,
                        assessment=assessment)

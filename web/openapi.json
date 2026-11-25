@@ -137,6 +137,24 @@
         "title": "DayDetail",
         "type": "object"
       },
+      "DayReadOut": {
+        "properties": {
+          "day": {
+            "title": "Day",
+            "type": "string"
+          },
+          "marked": {
+            "title": "Marked",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "day",
+          "marked"
+        ],
+        "title": "DayReadOut",
+        "type": "object"
+      },
       "DayRun": {
         "properties": {
           "finished_at": {
@@ -214,6 +232,45 @@
           "headline"
         ],
         "title": "DaySummary",
+        "type": "object"
+      },
+      "FeedbackOut": {
+        "properties": {
+          "hidden": {
+            "title": "Hidden",
+            "type": "boolean"
+          },
+          "read": {
+            "title": "Read",
+            "type": "boolean"
+          },
+          "story_id": {
+            "title": "Story Id",
+            "type": "integer"
+          },
+          "vote": {
+            "anyOf": [
+              {
+                "enum": [
+                  "up",
+                  "down"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vote"
+          }
+        },
+        "required": [
+          "story_id",
+          "vote",
+          "read",
+          "hidden"
+        ],
+        "title": "FeedbackOut",
         "type": "object"
       },
       "Gazette": {
@@ -300,6 +357,20 @@
         "title": "Health",
         "type": "object"
       },
+      "HiddenIn": {
+        "additionalProperties": false,
+        "properties": {
+          "hidden": {
+            "title": "Hidden",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "hidden"
+        ],
+        "title": "HiddenIn",
+        "type": "object"
+      },
       "LoginIn": {
         "properties": {
           "code": {
@@ -356,6 +427,77 @@
           "username"
         ],
         "title": "Me",
+        "type": "object"
+      },
+      "MuteIn": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "enum": [
+              "source",
+              "keyword"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "value": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "value"
+        ],
+        "title": "MuteIn",
+        "type": "object"
+      },
+      "MuteOut": {
+        "properties": {
+          "created_at": {
+            "title": "Created At",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "kind": {
+            "enum": [
+              "source",
+              "keyword"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "value",
+          "created_at"
+        ],
+        "title": "MuteOut",
+        "type": "object"
+      },
+      "ReadIn": {
+        "additionalProperties": false,
+        "properties": {
+          "read": {
+            "title": "Read",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "read"
+        ],
+        "title": "ReadIn",
         "type": "object"
       },
       "Rubric": {
@@ -710,6 +852,11 @@
             ],
             "title": "Focus"
           },
+          "hidden": {
+            "default": false,
+            "title": "Hidden",
+            "type": "boolean"
+          },
           "id": {
             "title": "Id",
             "type": "integer"
@@ -780,6 +927,21 @@
           "title": {
             "title": "Title",
             "type": "string"
+          },
+          "vote": {
+            "anyOf": [
+              {
+                "enum": [
+                  "up",
+                  "down"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vote"
           },
           "why": {
             "anyOf": [
@@ -871,6 +1033,11 @@
             ],
             "title": "Focus"
           },
+          "hidden": {
+            "default": false,
+            "title": "Hidden",
+            "type": "boolean"
+          },
           "id": {
             "title": "Id",
             "type": "integer"
@@ -948,6 +1115,21 @@
           "title": {
             "title": "Title",
             "type": "string"
+          },
+          "vote": {
+            "anyOf": [
+              {
+                "enum": [
+                  "up",
+                  "down"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vote"
           },
           "why": {
             "anyOf": [
@@ -1096,6 +1278,31 @@
           "type"
         ],
         "title": "ValidationError",
+        "type": "object"
+      },
+      "VoteIn": {
+        "additionalProperties": false,
+        "properties": {
+          "vote": {
+            "anyOf": [
+              {
+                "enum": [
+                  "up",
+                  "down"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vote"
+          }
+        },
+        "required": [
+          "vote"
+        ],
+        "title": "VoteIn",
         "type": "object"
       }
     }
@@ -1295,6 +1502,45 @@
         "summary": "Get Day"
       }
     },
+    "/api/days/{day}/read": {
+      "post": {
+        "operationId": "mark_day_read_api_days__day__read_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "day",
+            "required": true,
+            "schema": {
+              "title": "Day",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DayReadOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Mark Day Read"
+      }
+    },
     "/api/gazette": {
       "get": {
         "operationId": "gazette_api_gazette_get",
@@ -1363,6 +1609,93 @@
           }
         },
         "summary": "Health"
+      }
+    },
+    "/api/mutes": {
+      "get": {
+        "operationId": "list_mutes_api_mutes_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/MuteOut"
+                  },
+                  "title": "Response List Mutes Api Mutes Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "List Mutes"
+      },
+      "post": {
+        "operationId": "add_mute_api_mutes_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MuteIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MuteOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "unknown source or invalid value"
+          }
+        },
+        "summary": "Add Mute"
+      }
+    },
+    "/api/mutes/{mute_id}": {
+      "delete": {
+        "operationId": "delete_mute_api_mutes__mute_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "mute_id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "title": "Mute Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "404": {
+            "description": "unknown mute"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Delete Mute"
       }
     },
     "/api/runs": {
@@ -1558,6 +1891,208 @@
           }
         },
         "summary": "Get Story"
+      }
+    },
+    "/api/stories/{story_id}/feedback": {
+      "get": {
+        "operationId": "get_feedback_api_stories__story_id__feedback_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "story_id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "title": "Story Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "description": "unknown story"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Feedback"
+      }
+    },
+    "/api/stories/{story_id}/hidden": {
+      "put": {
+        "operationId": "put_hidden_api_stories__story_id__hidden_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "story_id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "title": "Story Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HiddenIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "description": "unknown story"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Put Hidden"
+      }
+    },
+    "/api/stories/{story_id}/read": {
+      "put": {
+        "operationId": "put_read_api_stories__story_id__read_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "story_id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "title": "Story Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReadIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "description": "unknown story"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Put Read"
+      }
+    },
+    "/api/stories/{story_id}/vote": {
+      "put": {
+        "operationId": "put_vote_api_stories__story_id__vote_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "story_id",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "title": "Story Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VoteIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedbackOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "404": {
+            "description": "unknown story"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Put Vote"
       }
     }
   }

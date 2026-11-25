@@ -1,5 +1,6 @@
 // Sources: health badge, last ok, last error, items in the last 7 days (plan §10.2).
 import { useSources } from '../api/hooks';
+import MutesList from '../components/MutesList';
 import { ErrorNote, Loading } from '../components/Status';
 import { formatDateTime } from '../lib/format';
 import { safeHref } from '../lib/safeHref';
@@ -56,6 +57,7 @@ export default function SourcesPage() {
         <h2 className="page-title">Sources</h2>
       </header>
       {body}
+      <MutesList />
     </div>
   );
 }

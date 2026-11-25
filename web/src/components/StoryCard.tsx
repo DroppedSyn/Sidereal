@@ -1,10 +1,12 @@
 // One story (plan §10.2). Every string from the API renders as React text, never as markup.
 import { useId, useState } from 'react';
+import { useStoryFeedback } from '../api/feedback';
 import type { Story } from '../api/types';
 import { flagBadges } from '../lib/flags';
 import { formatDateTime, relativeTime } from '../lib/format';
 import { safeHref } from '../lib/safeHref';
 import SourceBadges from './SourceBadges';
+import StoryActions from './StoryActions';
 
 export type CardVariant = 'lead' | 'normal' | 'compact';
 
@@ -14,13 +16,13 @@ interface Props {
   now?: Date;
 }
 
-function StoryTitle({ story, variant }: { story: Story; variant: CardVariant }) {
+function StoryTitle({ story, variant, onOpen }: { story: Story; variant: CardVariant; onOpen: () => void }) {
   const href = safeHref(story.lead_url);
   const Tag = variant === 'lead' ? 'h3' : 'h4';
   return (
     <Tag className="story-title">
       {href ? (
-        <a href={href} target="_blank" rel="noopener noreferrer">
+        <a href={href} target="_blank" rel="noopener noreferrer" onClick={onOpen}>
           {story.title}
         </a>
       ) : (
@@ -63,10 +65,15 @@ function Score({ score }: { score: number | null }) {
 export default function StoryCard({ story, variant = 'normal', now }: Props) {
   const [showExcerpt, setShowExcerpt] = useState(false);
   const excerptId = useId();
+  const feedback = useStoryFeedback();
   const seen = story.first_seen_at;
+  const markRead = () => {
+    if (!story.read) feedback.mutate({ id: story.id, change: { read: true } });
+  };
   return (
-    <article className={`story story-${variant}`} data-bucket={story.bucket}>
-      <StoryTitle story={story} variant={variant} />
+    <article className={`story story-${variant} ${story.read ? 'story-read' : 'story-unread'}`}
+      data-bucket={story.bucket}>
+      <StoryTitle story={story} variant={variant} onOpen={markRead} />
       <div className="story-meta">
         <SourceBadges sources={story.sources} />
         <time dateTime={seen} title={formatDateTime(seen)} className="story-time">
@@ -103,6 +110,7 @@ export default function StoryCard({ story, variant = 'normal', now }: Props) {
           ) : null}
         </div>
       ) : null}
+      <StoryActions story={story} />
     </article>
   );
 }

@@ -96,6 +96,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/days/{day}/read": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Mark Day Read */
+        post: operations["mark_day_read_api_days__day__read_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/gazette": {
         parameters: {
             query?: never;
@@ -125,6 +142,41 @@ export interface paths {
         put?: never;
         post?: never;
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/mutes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Mutes */
+        get: operations["list_mutes_api_mutes_get"];
+        put?: never;
+        /** Add Mute */
+        post: operations["add_mute_api_mutes_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/mutes/{mute_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete Mute */
+        delete: operations["delete_mute_api_mutes__mute_id__delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -199,6 +251,74 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/stories/{story_id}/feedback": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Feedback */
+        get: operations["get_feedback_api_stories__story_id__feedback_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/stories/{story_id}/hidden": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Put Hidden */
+        put: operations["put_hidden_api_stories__story_id__hidden_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/stories/{story_id}/read": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Put Read */
+        put: operations["put_read_api_stories__story_id__read_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/stories/{story_id}/vote": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Put Vote */
+        put: operations["put_vote_api_stories__story_id__vote_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -248,6 +368,13 @@ export interface components {
             runs: components["schemas"]["DayRun"][];
             sections: components["schemas"]["Sections"];
         };
+        /** DayReadOut */
+        DayReadOut: {
+            /** Day */
+            day: string;
+            /** Marked */
+            marked: number;
+        };
         /** DayRun */
         DayRun: {
             /** Finished At */
@@ -272,6 +399,17 @@ export interface components {
             label: string;
             /** Run Count */
             run_count: number;
+        };
+        /** FeedbackOut */
+        FeedbackOut: {
+            /** Hidden */
+            hidden: boolean;
+            /** Read */
+            read: boolean;
+            /** Story Id */
+            story_id: number;
+            /** Vote */
+            vote: ("up" | "down") | null;
         };
         /** Gazette */
         Gazette: {
@@ -299,6 +437,11 @@ export interface components {
             /** Version */
             version: string | null;
         };
+        /** HiddenIn */
+        HiddenIn: {
+            /** Hidden */
+            hidden: boolean;
+        };
         /** LoginIn */
         LoginIn: {
             /** Code */
@@ -317,6 +460,35 @@ export interface components {
             auth: "on" | "off";
             /** Username */
             username: string | null;
+        };
+        /** MuteIn */
+        MuteIn: {
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "source" | "keyword";
+            /** Value */
+            value: string;
+        };
+        /** MuteOut */
+        MuteOut: {
+            /** Created At */
+            created_at: string;
+            /** Id */
+            id: number;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "source" | "keyword";
+            /** Value */
+            value: string;
+        };
+        /** ReadIn */
+        ReadIn: {
+            /** Read */
+            read: boolean;
         };
         /** Rubric */
         Rubric: {
@@ -435,6 +607,11 @@ export interface components {
             };
             /** Focus */
             focus: string | null;
+            /**
+             * Hidden
+             * @default false
+             */
+            hidden: boolean;
             /** Id */
             id: number;
             /** Lead Url */
@@ -456,6 +633,8 @@ export interface components {
             tags: string[];
             /** Title */
             title: string;
+            /** Vote */
+            vote?: ("up" | "down") | null;
             /** Why */
             why: string | null;
         };
@@ -484,6 +663,11 @@ export interface components {
             };
             /** Focus */
             focus: string | null;
+            /**
+             * Hidden
+             * @default false
+             */
+            hidden: boolean;
             /** Id */
             id: number;
             /** Items */
@@ -507,6 +691,8 @@ export interface components {
             tags: string[];
             /** Title */
             title: string;
+            /** Vote */
+            vote?: ("up" | "down") | null;
             /** Why */
             why: string | null;
         };
@@ -543,6 +729,11 @@ export interface components {
             msg: string;
             /** Error Type */
             type: string;
+        };
+        /** VoteIn */
+        VoteIn: {
+            /** Vote */
+            vote: ("up" | "down") | null;
         };
     };
     responses: never;
@@ -710,6 +901,37 @@ export interface operations {
             };
         };
     };
+    mark_day_read_api_days__day__read_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                day: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DayReadOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     gazette_api_gazette_get: {
         parameters: {
             query?: {
@@ -758,6 +980,93 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Health"];
+                };
+            };
+        };
+    };
+    list_mutes_api_mutes_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MuteOut"][];
+                };
+            };
+        };
+    };
+    add_mute_api_mutes_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MuteIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MuteOut"];
+                };
+            };
+            /** @description unknown source or invalid value */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    delete_mute_api_mutes__mute_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                mute_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description unknown mute */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -908,6 +1217,170 @@ export interface operations {
                 };
             };
             /** @description unknown or hidden story */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_feedback_api_stories__story_id__feedback_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                story_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FeedbackOut"];
+                };
+            };
+            /** @description unknown story */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_hidden_api_stories__story_id__hidden_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                story_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["HiddenIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FeedbackOut"];
+                };
+            };
+            /** @description unknown story */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_read_api_stories__story_id__read_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                story_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReadIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FeedbackOut"];
+                };
+            };
+            /** @description unknown story */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_vote_api_stories__story_id__vote_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                story_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["VoteIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FeedbackOut"];
+                };
+            };
+            /** @description unknown story */
             404: {
                 headers: {
                     [name: string]: unknown;

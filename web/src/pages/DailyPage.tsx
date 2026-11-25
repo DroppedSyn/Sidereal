@@ -1,6 +1,7 @@
 // Daily: the day list on the left, the selected day's sub-gazette on the right (plan §10.2).
 import { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
+import { useMarkDayRead } from '../api/feedback';
 import { useDay, useDays } from '../api/hooks';
 import type { DaySummary } from '../api/types';
 import DayList from '../components/DayList';
@@ -11,6 +12,7 @@ import StorySections from '../components/StorySections';
 function DayView({ day, now }: { day: string; now?: Date }) {
   const [includeDrop, setIncludeDrop] = useState(false);
   const { data, isPending, isError, error, refetch } = useDay(day, includeDrop);
+  const markRead = useMarkDayRead(day);
   if (isPending) return <Loading what="Loading the day" />;
   if (isError) return <ErrorNote error={error} onRetry={() => void refetch()} />;
   return (
@@ -18,6 +20,13 @@ function DayView({ day, now }: { day: string; now?: Date }) {
       <header className="page-header">
         <h2 className="page-title">{data.label}</h2>
         {data.headline ? <p className="day-headline">{data.headline}</p> : null}
+        <button type="button" className="link-button" disabled={markRead.isPending}
+          onClick={() => markRead.mutate()}>
+          Mark day read
+        </button>
+        {markRead.isError ? (
+          <p role="alert" className="action-error">Could not mark the day read: {markRead.error.message}</p>
+        ) : null}
       </header>
       {data.overview ? <p className="day-overview">{data.overview}</p> : null}
       <RunTimeline runs={data.runs} />

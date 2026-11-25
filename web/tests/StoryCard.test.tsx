@@ -1,8 +1,8 @@
-import { render, screen, within } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import StoryCard from '../src/components/StoryCard';
-import { NOW, makeStory } from './helpers';
+import { NOW, makeStory, renderWithClient as render } from './helpers';
 
 describe('StoryCard', () => {
   it('links the title to lead_url in a new tab without opener or referrer', () => {

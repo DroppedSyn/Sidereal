@@ -20,6 +20,7 @@ from sidereal.config import Settings
 from sidereal.db import (
     Connection,
     assessments_repo,
+    feedback_repo,
     focus_repo,
     items_repo,
     sources_repo,
@@ -38,7 +39,7 @@ from sidereal.pipeline.prefilter import (
     order_for_triage,
     prefilter,
 )
-from sidereal.pipeline.scoring import BUCKETS
+from sidereal.pipeline.scoring import BUCKETS, NO_BOOSTS, FeedbackBoosts
 from sidereal.timeutil import day_key, iso_z
 
 ALWAYS_RELEVANCE = 3  # always-keeps rank with the best triage keeps in the assess queue
@@ -160,7 +161,8 @@ def _render_assess(b: StoryBundle, p: _Prompts, settings: Settings,
 
 async def _assess_one(conn: Connection, ollama: OllamaClient, settings: Settings,
                       b: StoryBundle, p: _Prompts, content: str | None, tiers: dict[str, str],
-                      *, now: datetime) -> tuple[str, int | None]:
+                      *, now: datetime,
+                      boosts: FeedbackBoosts = NO_BOOSTS) -> tuple[str, int | None]:
     """Assess and place one story; returns ``(bucket, duration_ms or None if failed)``."""
     system, user = _render_assess(b, p, settings, content)
     try:
@@ -181,7 +183,7 @@ async def _assess_one(conn: Connection, ollama: OllamaClient, settings: Settings
         stories_repo.merge_flags(conn, b.story.id, {"exploited": True})
     saved = assessments_repo.get_assessment(conn, b.story.id)
     assert saved is not None
-    bucket = placement.place_assessed(conn, b, saved, tiers, settings.scoring)
+    bucket = placement.place_assessed(conn, b, saved, tiers, settings.scoring, boosts=boosts)
     stories_repo.set_state(conn, b.story.id, "assessed")
     return bucket, res.duration_ms
 
@@ -204,10 +206,12 @@ def _select(conn: Connection, bundles: Sequence[StoryBundle], settings: Settings
     order, and stats."""
     always, pre, tri = [], [], []
     filtered = 0
+    muted_sources, muted_keywords = feedback_repo.muted_values(conn)
+    mutes = Mutes(sources=muted_sources, keywords=muted_keywords)
     keep_min = settings.triage.keep_min
     for b in bundles:
         c = candidate(b)
-        d: Decision = prefilter(c, focus, Mutes(), now=now,
+        d: Decision = prefilter(c, focus, mutes, now=now,
                                 max_age_hours=settings.ingest.max_age_hours)
         if not d.keep:
             stories_repo.set_state(conn, b.story.id, "filtered", reason=d.reason)
@@ -242,6 +246,7 @@ async def run_assess(conn: Connection, ollama: OllamaClient, fetcher: Fetcher,
             prompts.FocusLine(f.key, f.tier, f.description) for f in focus_rows),
         focus_keys=tuple(f.key for f in focus_rows), today=day_key(now, settings.schedule.tz))
     tiers = placement.focus_tiers(conn)
+    boosts = placement.feedback_boosts(conn)
     buckets = dict.fromkeys(BUCKETS, 0)
     res.stats.update(buckets=buckets, assess={"ok": 0, "failed": 0, "deferred": 0,
                                               "avg_ms": 0})
@@ -268,7 +273,8 @@ async def run_assess(conn: Connection, ollama: OllamaClient, fetcher: Fetcher,
         if content is None and b.lead is not None and b.lead.content_status == "ok":
             content = b.lead.content_text
         try:
-            bucket, ms = await _assess_one(conn, ollama, settings, b, p, content, tiers, now=now)
+            bucket, ms = await _assess_one(conn, ollama, settings, b, p, content, tiers,
+                                           now=now, boosts=boosts)
         except LLMUnavailable as exc:
             res.llm_error = short_error(exc)
             break

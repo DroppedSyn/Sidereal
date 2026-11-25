@@ -61,6 +61,7 @@ def test_story_out_fields():
         "flags": {"kev": True},
         "sources": [{"key": "k", "name": "K", "url": "https://e.example/k"}],
         "lead_url": "https://e.example/1", "excerpt": "ex", "read": False,
+        "vote": None, "hidden": False,
     }
 
 
@@ -112,7 +113,8 @@ def test_model_fields():
     # Plan §10.1 Story schema; no state, no article text.
     assert set(Story.model_fields) == {
         "id", "title", "day", "first_seen_at", "published_at", "bucket", "score", "summary",
-        "why", "tags", "focus", "flags", "sources", "lead_url", "excerpt", "read"}
+        "why", "tags", "focus", "flags", "sources", "lead_url", "excerpt", "read",
+        "vote", "hidden"}
     assert set(Sections.model_fields) == {"top", "relevant", "side", "drop"}
     assert set(Gazette.model_fields) == {"generated_at", "window_start", "sections", "counts"}
     assert set(DaySummary.model_fields) == {"day", "label", "counts", "run_count", "headline"}
