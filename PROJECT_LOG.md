@@ -150,3 +150,20 @@ a brief says so.
   `test_deterministic` used 3-token titles, so nothing it checked could match). Mutation checks
   (28, all red after adding a short-item-title test and a group-growth test whose 4th/5th items
   match only via a joined item's title/CVE). Full suite 587 passed, ruff clean.
+- 2026-11-25 **M7b** (pi run r56, `qwen3.6:35b-a3b-coding`, builtin edit tools, done in **29m28s**,
+  29 tool calls / 4 failed (an import error, a test-module construction error, 4 red tests, one
+  ruff F401; all fixed by pi), 1 stall resume, 871k tokens in / 30.8k out, largest reply 16.4k
+  (near the cap)). pi delivered a module that matched the brief (165 lines) and 39 green tests;
+  full suite and ruff clean in its copy. Patch conflicted only on the already-existing empty
+  `pipeline/__init__.py` (applied without it). Review: removed a dead `if ...: pass` mute block
+  and a redundant helper, `FocusArea.keywords` made required as briefed, duplicate keywords
+  counted once, shared `_age_hours`; pi's "dropped decision carries hint" test used a muted
+  keyword instead of the briefed muted source. Added 22 tests (boundaries, all adjacent
+  precedence pairs, kev case, empty sources, published over first_seen, future band, tie-break by
+  first_seen, max_age passthrough). Files as landed: `prefilter.py` 155 lines, `test_prefilter.py`
+  481 (61 tests); `focus.toml` header comment updated (it still said "substring matches").
+  Mutation checks (27, all red after the additions; 4↔5 and 5↔6 precedence swaps and the empty-
+  sources guard survived pi's tests). Seed keywords over fixture titles behave as intended;
+  false positives found: `entra`→"Entrance", `sentinel`→"SentinelOne", `azure ad`→"Azure
+  Advisor" (all primary → always-kept), and primary `cve-`/`exploited` always-keep every CVE or
+  "exploited" title from any source. Left for the user. Full suite 649 passed, ruff clean.

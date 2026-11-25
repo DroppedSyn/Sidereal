@@ -1,7 +1,9 @@
 # Seed focus areas (plan §5). `description` goes into the triage and assess prompts verbatim:
 # it tells the model what this reader (a cloud network architect working mainly in Azure, a former
 # penetration tester, with security duties) needs from each area. `keywords` are the prefilter's
-# positive terms (case-insensitive substring matches on titles). Re-seeding adds missing keys only.
+# positive terms (case-insensitive, matched at a word start; terms of <= 4 chars ending in a letter or
+# digit must also end at a word end, plural s allowed; longer terms match as prefixes, so
+# "workload identit" covers identity/identities). Re-seeding adds missing keys only.
 
 [[focus]]
 key = "azure-networking"
