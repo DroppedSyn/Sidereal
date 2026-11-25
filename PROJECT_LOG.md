@@ -267,3 +267,16 @@ a brief says so.
   `assess.strip_urls` (`HTTPS://` survived the copy); 3 tests added (helper identity, upper-case
   URLs in both fields, URL-only overview → `""`); tests 26 → 29 cases. 19 mutations all red, see
   AGENTS.md M12. M12 done (M12a r60, M12b-1 r63, M12b-2 r64). Full suite 979 passed, ruff clean.
+- 2026-11-25 **M13a** (pi run r65, `qwen3.6:35b-a3b-coding:off`, builtin edit tools, done in
+  **5m37s**, 22 tool calls / 4 failed (a malformed todo call, one red test run, two ruff runs),
+  557k tokens in / 7.4k out, largest reply 3.7k, no stalls). pi wrote the test file and the
+  module in one go each; both match the near-verbatim brief, no behavioural bug. Review: the
+  nested try in `acquire` (with an unreachable `except BlockingIOError: raise`) flattened,
+  `is_held` unlocks after a successful probe as briefed; child holders moved into a
+  `start_holder` fixture with a 10 s `select` readiness check and kill + reap at teardown (two
+  tests had no cleanup), stray unreleased locks in tests 5/14 released, and
+  `test_is_held_leaves_no_fd_or_lock` added (a probe leaking its locked fd survived). 23
+  mutations all red (two by timeout: `LOCK_NB` dropped, `held_by` taking a blocking lock). Full
+  suite: 1007 passed, 3 failed only in the in-progress M13b files (static rules on
+  `pipeline/common.py`, `ingest.py`, `placement.py`); `test_lock.py` 27 passed ×3; ruff clean on
+  M13a files (E501 only in M13b files).
