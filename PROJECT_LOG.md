@@ -327,3 +327,15 @@ a brief says so.
   next trigger) and linger from files only, so rule 12 stays as it is. 5 new test files (42
   tests, incl. `install.sh` against fake systemctl/loginctl); 29 mutations all red. Not
   installed: the owner runs `deploy/install.sh` and `sudo loginctl enable-linger al`.
+- 2026-11-25 **M15a-2** (pi r67, timed out at 50 min; Claude finish). `tests/factories.py`
+  demo-data builder over the repos and `tests/test_factories.py`. pi (thinking `:off`, builtin
+  edit tools) spent 41 of 56 tool calls reading the repos and their tests (most twice), then
+  wrote its own design instead of the brief's literal code (other function names, clock
+  2026-11-20, 10 stories, no `seed_demo`/`--seed-demo`) and ran out of time on ruff import
+  order. Both files rewritten to the brief. One deviation: the assessment `raw` now mirrors what
+  `assess_step` stores (the whole assess reply plus `focus`, `exploited_in_wild` from the
+  story's `exploited` flag) instead of `{"focus": ...}` only, so placement and `views_repo`
+  read demo rows as real ones. `--seed-demo` writes 16 runs / 30 stories / 40 items / 2
+  digests and refuses an existing file. 24 tests (21 briefed + 3 added for survivors: a run
+  exactly at `now`, the failed/partial run positions, ids growing with time); 21 mutations
+  all red, one equivalent. Full suite 1191 passed, ruff clean.
