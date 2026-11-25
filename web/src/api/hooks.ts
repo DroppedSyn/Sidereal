@@ -6,8 +6,17 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { apiGet, apiPost } from './client';
-import type { DayDetail, DaySummary, Gazette, Run, RunStarted, SourceStatus } from './types';
+import { LOGIN_PATH, apiGet, apiPost } from './client';
+import type {
+  DayDetail,
+  DaySummary,
+  Gazette,
+  LoginIn,
+  Me,
+  Run,
+  RunStarted,
+  SourceStatus,
+} from './types';
 
 export const DAYS_PAGE = 60;
 
@@ -70,4 +79,20 @@ export function useStartRun() {
     mutationFn: () => apiPost<RunStarted>('/api/runs'),
     onSettled: () => client.invalidateQueries({ queryKey: ['runs'] }),
   });
+}
+
+export function useMe() {
+  return useQuery({
+    queryKey: ['me'],
+    queryFn: () => apiGet<Me>('/api/auth/me'),
+    staleTime: 5 * 60_000,
+  });
+}
+
+export function useLogin() {
+  return useMutation({ mutationFn: (body: LoginIn) => apiPost<Me>(LOGIN_PATH, body) });
+}
+
+export function useLogout() {
+  return useMutation({ mutationFn: () => apiPost<undefined>('/api/auth/logout') });
 }

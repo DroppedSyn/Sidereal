@@ -28,8 +28,26 @@ every key has a default). Environment overrides use `SIDEREAL_<SECTION>__<KEY>`.
 ```
 
 From another machine, tunnel instead of exposing the port:
-`ssh -L 8470:127.0.0.1:8470 al@<vm>`. The app refuses to bind a non-loopback address until
-authentication exists (M25).
+`ssh -L 8470:127.0.0.1:8470 al@<vm>`. The app refuses to bind a non-loopback address unless
+authentication is on and a user exists (rule 9).
+
+## Authentication
+
+There is no default account. To turn login on:
+
+```sh
+.venv/bin/sidereal user add <name>      # prompts twice for the password (min 12 chars, no echo)
+.venv/bin/sidereal user totp <name>     # optional: shows a secret for an authenticator app
+```
+
+then set `[auth] mode = "on"` in `~/.config/sidereal/sidereal.toml` (or
+`SIDEREAL_AUTH__MODE=on`) and restart `sidereal serve`. Every `/api` route except
+`/api/health` and login then needs a session (cookie `sidereal_session`, HttpOnly,
+SameSite=Strict; `Secure` when `[web] https = true`). Other commands: `sidereal user list`,
+`sidereal user passwd <name>` (ends that user's sessions), `sidereal user delete <name>`,
+`sidereal user totp <name> --off`. `[auth] require_totp = true` refuses logins without TOTP.
+Behind a reverse proxy, list it in `[web] trusted_proxies` so the login rate limit sees the
+real client IP. Writes from the Vite dev server also need `allowed_origins` (see AGENTS.md).
 
 ## Test
 

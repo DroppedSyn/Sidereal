@@ -5,6 +5,7 @@ from __future__ import annotations
 import ipaddress
 
 from sidereal.config import Settings
+from sidereal.db.users_repo import count_active_users_at
 
 
 class UnsafeBindError(Exception):
@@ -32,3 +33,8 @@ def check_bind(host: str, settings: Settings, user_count: int) -> None:
         raise UnsafeBindError(
             f"refusing to bind {host}: auth is on but no user exists (sidereal user add)"
         )
+
+
+def count_users(settings: Settings) -> int:
+    """Active users in the configured DB, read-only; 0 if the DB or the table doesn't exist."""
+    return count_active_users_at(settings.db_path)

@@ -258,12 +258,19 @@
       "Health": {
         "properties": {
           "db": {
-            "enum": [
-              "ok",
-              "error"
+            "anyOf": [
+              {
+                "enum": [
+                  "ok",
+                  "error"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
             ],
-            "title": "Db",
-            "type": "string"
+            "title": "Db"
           },
           "status": {
             "enum": [
@@ -274,8 +281,15 @@
             "type": "string"
           },
           "version": {
-            "title": "Version",
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version"
           }
         },
         "required": [
@@ -284,6 +298,64 @@
           "db"
         ],
         "title": "Health",
+        "type": "object"
+      },
+      "LoginIn": {
+        "properties": {
+          "code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code"
+          },
+          "password": {
+            "title": "Password",
+            "type": "string"
+          },
+          "username": {
+            "title": "Username",
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "LoginIn",
+        "type": "object"
+      },
+      "Me": {
+        "properties": {
+          "auth": {
+            "enum": [
+              "on",
+              "off"
+            ],
+            "title": "Auth",
+            "type": "string"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          }
+        },
+        "required": [
+          "auth",
+          "username"
+        ],
+        "title": "Me",
         "type": "object"
       },
       "Rubric": {
@@ -1034,6 +1106,84 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/auth/login": {
+      "post": {
+        "operationId": "login_api_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Me"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "description": "login failed"
+          },
+          "404": {
+            "description": "auth off"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "429": {
+            "description": "rate limited"
+          }
+        },
+        "summary": "Login"
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "description": "Deletes the session row (if any) and clears the cookie. Always 204.",
+        "operationId": "logout_api_auth_logout_post",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Logout"
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "description": "Auth off \u2192 ``{auth: off, username: null}``; on \u2192 the session's user (the middleware has\nalready answered 401 without one).",
+        "operationId": "me_api_auth_me_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Me"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Me"
+      }
+    },
     "/api/days": {
       "get": {
         "operationId": "list_days_api_days_get",

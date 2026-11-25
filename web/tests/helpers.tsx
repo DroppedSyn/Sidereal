@@ -35,7 +35,12 @@ export function never(): Promise<Response> {
 
 function LocationProbe() {
   const loc = useLocation();
-  return <div data-testid="location">{loc.pathname}</div>;
+  return (
+    <>
+      <div data-testid="location">{loc.pathname}</div>
+      <div data-testid="search">{loc.search}</div>
+    </>
+  );
 }
 
 export function renderWith(ui: ReactElement, { route = '/', path }: { route?: string; path?: string } = {}) {

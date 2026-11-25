@@ -483,3 +483,21 @@ a brief says so.
   dropped / after the text ids, no dedup between them. Real DB not back-filled (no re-dedupe
   command; `rescore` only re-places). Scoring weights, KEV/exploited bonuses and the
   azure-updates weight untouched.
+- 2026-11-25 **M25 authentication** (Claude, no pi: plan reserves auth for Claude). Owner asked
+  for auth "to make ready for external deployment". Built per plan §11.2: migration
+  `0002_auth.sql` (next free number, not the plan's 0004: migrations below the current version
+  never run), `db/users_repo.py`, `auth/` (Argon2id passwords with a dummy verify for unknown or
+  disabled users, 32-byte session tokens stored only as SHA-256, idle 7 d / absolute 30 d,
+  rotation on login, DB-backed rate limit 5 per user+IP / 20 per IP / 50 per user in 15 min →
+  429, optional stdlib TOTP, session middleware over every `/api` path except health/login/
+  logout), `api/routes_auth.py` (login/logout/me), `sidereal user add|passwd|list|delete|totp`
+  (getpass only), `serve` counting real users for rule 9 and running uvicorn without
+  `proxy_headers` (client IPs via `web.trusted_proxies` only). Cookie HttpOnly + SameSite=Strict,
+  Secure when `web.https`. One generic 401 for every login failure; 422s under `/api/auth/` never
+  echo input. Front end: LoginPage, 401 → `/login?next=…` (open-redirect safe), Log out in the
+  top bar. Smoke-tested against a real `sidereal serve` in a temp home (login, cookie flags,
+  401 before/after logout, spoofed XFF ignored). Tests: 8 new back-end files (90), 3 new
+  front-end files (11); suites 1472 / 93 passed; 35 mutations all red. The next `sidereal run`
+  or `serve` applies migration 2 to the real DB (empty auth tables; auth stays off until the
+  owner sets `[auth] mode = "on"` after `sidereal user add NAME`). Not done: TOTP replay
+  protection inside the ±30 s window, `doctor` checks of bind/auth consistency (M30).

@@ -8,12 +8,12 @@ host = "127.0.0.1"                 # non-loopback needs auth.mode = "on" and a u
 port = 8470
 allowed_hosts = ["127.0.0.1", "localhost"]
 allowed_origins = []               # extra origins for writes, e.g. ["http://localhost:5173"] (Vite dev)
-https = false
-trusted_proxies = []
+https = false                      # true behind TLS: the session cookie gets Secure
+trusted_proxies = []               # proxy IPs whose X-Forwarded-For is believed (rate limit)
 
 [auth]
-mode = "off"                       # "on" from M25
-require_totp = false
+mode = "off"                       # "on": every /api route needs a login (sidereal user add NAME)
+require_totp = false               # true: refuse logins without TOTP (sidereal user totp NAME)
 
 [ollama]
 url = "http://192.168.221.1:11434"

@@ -1,6 +1,7 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import DailyPage from './pages/DailyPage';
 import GazettePage from './pages/GazettePage';
+import LoginPage from './pages/LoginPage';
 import RunsPage from './pages/RunsPage';
 import SourcesPage from './pages/SourcesPage';
 
@@ -26,6 +27,7 @@ export default function AppRoutes() {
       <Route path="/daily/:day" element={<DailyPage />} />
       <Route path="/runs" element={<RunsPage />} />
       <Route path="/sources" element={<SourcesPage />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

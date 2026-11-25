@@ -24,6 +24,16 @@ async function errorMessage(res: Response): Promise<string> {
   return `HTTP ${res.status}${res.statusText ? ` ${res.statusText}` : ''}`;
 }
 
+// Called on any 401 except from the login call itself (a failed login is not a lost session).
+// The app shell registers a handler that sends the browser to /login?next=… (plan §11.2).
+let unauthorizedHandler: (() => void) | null = null;
+
+export function setUnauthorizedHandler(handler: (() => void) | null): void {
+  unauthorizedHandler = handler;
+}
+
+export const LOGIN_PATH = '/api/auth/login';
+
 async function request<T>(path: string, init: RequestInit): Promise<T> {
   let res: Response;
   try {
@@ -31,7 +41,11 @@ async function request<T>(path: string, init: RequestInit): Promise<T> {
   } catch {
     throw new ApiError(0, 'The server cannot be reached.');
   }
-  if (!res.ok) throw new ApiError(res.status, await errorMessage(res));
+  if (!res.ok) {
+    if (res.status === 401 && path !== LOGIN_PATH) unauthorizedHandler?.();
+    throw new ApiError(res.status, await errorMessage(res));
+  }
+  if (res.status === 204) return undefined as T;
   return (await res.json()) as T;
 }
 

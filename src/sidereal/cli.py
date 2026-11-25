@@ -13,6 +13,7 @@ import sys
 from collections.abc import Sequence
 
 from sidereal import __version__
+from sidereal.auth.usercli import add_parser as add_user_parser
 from sidereal.commands import add_parsers
 from sidereal.config import ConfigError, Settings, load_settings
 from sidereal.db.migrations import MigrationError
@@ -23,7 +24,6 @@ EXIT_OK, EXIT_FAILED, EXIT_CONFIG = 0, 1, 2
 PLANNED = {
     "reassess": "unscheduled",  # §9.3 lists it, no milestone row builds it
     "eval": "M16",
-    "user": "M25",
 }
 
 
@@ -56,23 +56,26 @@ def cmd_openapi(settings: Settings, args: argparse.Namespace) -> int:
 def cmd_serve(settings: Settings, args: argparse.Namespace) -> int:
     import uvicorn
 
-    from sidereal.api.bind import UnsafeBindError, check_bind
+    from sidereal.api.bind import UnsafeBindError, check_bind, count_users
     from sidereal.bootstrap import migrate
 
     host = args.host or settings.web.host
     port = args.port or settings.web.port
     try:
-        check_bind(host, settings, user_count=0)  # users table arrives in M25
+        check_bind(host, settings, user_count=count_users(settings))
     except UnsafeBindError as exc:
         err(str(exc))
         return EXIT_CONFIG
     migrate(settings)
+    # proxy_headers off: client IPs come from X-Forwarded-For only via web.trusted_proxies
+    # (auth.middleware.client_ip), never from uvicorn's own 127.0.0.1 default.
     if args.reload:
-        uvicorn.run("sidereal.api.asgi:app", host=host, port=port, reload=True)
+        uvicorn.run("sidereal.api.asgi:app", host=host, port=port, reload=True,
+                    proxy_headers=False)
     else:
         from sidereal.api.app import create_app
 
-        uvicorn.run(create_app(settings), host=host, port=port)
+        uvicorn.run(create_app(settings), host=host, port=port, proxy_headers=False)
     return EXIT_OK
 
 
@@ -96,6 +99,7 @@ def build_parser() -> argparse.ArgumentParser:
     serve.add_argument("--reload", action="store_true", help="auto-reload (development)")
     serve.set_defaults(func=cmd_serve)
     add_parsers(sub)
+    add_user_parser(sub)
     for name, milestone in PLANNED.items():
         sub.add_parser(name, help=f"(not implemented yet, {milestone})").set_defaults(
             func=cmd_planned

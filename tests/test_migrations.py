@@ -22,9 +22,9 @@ def tables(conn: sqlite3.Connection) -> set[str]:
 
 def test_init_schema_applies_and_is_idempotent(tmp_path: Path):
     conn = connect(tmp_path / "s.db")
-    assert apply_migrations(conn) == [1]
+    assert apply_migrations(conn) == [1, 2]
     assert apply_migrations(conn) == []
-    assert current_version(conn) == 1
+    assert current_version(conn) == 2
     assert TABLES <= tables(conn)
 
 

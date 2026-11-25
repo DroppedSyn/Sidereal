@@ -15,3 +15,5 @@ export type Run = S['RunOut'];
 export type RunStarted = S['RunStarted'];
 export type SourceStatus = S['SourceStatus'];
 export type Bucket = Story['bucket'];
+export type Me = S['Me'];
+export type LoginIn = S['LoginIn'];
