@@ -43,3 +43,16 @@ a brief says so.
   test), fragment kept, no query sort, subdomain match without the dot, no port validation,
   default ports kept; the root-path `or "/"` mutation survived until the added test. Full suite
   279 passed, ruff clean.
+- 2026-11-25 **M3b** (pi run r49, `qwen3.6:35b-a3b-coding`, 48m20s of a 50 min limit, 25 tool
+  calls / 1 failed, 2 stall resumes, 199k tokens in / 56.9k out, largest reply 16.4k near the
+  cap). pi wrote both files in one go, ran the fetch tests once (3 failed: no backoff sleep on
+  5xx, redirect test calling `get` twice) and stopped there. Files as landed:
+  `net/fetch.py` 223 lines, `tests/test_fetch.py` 597 (35 tests). Outcome: landed after review
+  rewrote the `Fetcher` body (security-relevant): `per_host_concurrency` was ignored, the 429
+  allowance lived on `self` (once per Fetcher, not per call), the host slot was held during
+  backoff, non-2xx bodies were read, read timeouts escaped as raw httpx errors; dead code
+  removed. 13 tests added (see Status). Mutation checks, all red: guard / `allow_hosts` only on
+  the first hop, `follow_redirects=True`, no stream cap, no Content-Length cap, `>=` cap,
+  Retry-After uncapped, UrlBlocked / FetchTooLarge / ReadTimeout retried, redirect limit off by
+  one, semaphore hard-coded or held while sleeping, second 429 honoured, no backoff sleep, no
+  UA, raw Location. Full suite 315 passed, ruff clean.
