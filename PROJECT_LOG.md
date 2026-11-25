@@ -399,3 +399,28 @@ a brief says so.
   url unchecked, hidden story visible, 7-day count `>`, `shell=True`, exit code ignored,
   `--no-block` dropped). OpenAPI types regenerated, tsc clean. Full suite 1362 passed, ruff
   clean. M15 done.
+- 2026-11-25 **M17, M18, M19, M20a** (Claude, no pi run: a real `sidereal run` held the GPU). The
+  front end (plan §10.2, §10.4). M17: shell (masthead, tabs Gazette · Daily · Runs · Sources,
+  last-run indicator "Last scan 13:00 · next ~16:00" from `GET /api/runs?limit=1`, marked and
+  worded "failed" when the last run failed), routes, `api/client.ts` (only `fetch`, `X-Sidereal: 1`
+  on writes, `ApiError` with the API's detail), `api/types.ts`, React Query hooks. M18:
+  `safeHref`, `StoryCard` (title link http(s) only, `target=_blank rel="noopener noreferrer"`,
+  source badges, relative time with the London date/time as tooltip, KEV/Exploited/CVSS badges,
+  focus + tags, "AI summary", "Why it matters:", excerpt toggle, subtle score), `BucketSection`,
+  `StorySections` (TOP / Relevant / On the side, calm message for an empty TOP, side collapsed after
+  10, "Show N dropped" → `include_drop=true`), `GazettePage`. M19: `DayList` (labels as given +
+  counts, `before` paging, a `<select>` under 720 px), `RunTimeline`, `DailyPage` (`/daily` →
+  newest day, deep links `/daily/YYYY-MM-DD`, headline, overview, sections). M20a: `RunsPage`
+  (expandable stats, Run now with the 409 message) and `SourcesPage` (health badges, last ok, items
+  in 7 days, last error). Newspaper styling with CSS variables, dark via `prefers-color-scheme`,
+  serif system fonts, no web fonts. Every stored string renders as React text; no
+  `dangerouslySetInnerHTML`/`innerHTML`/Markdown. Tests: 17 vitest files, 82 cases (safeHref with
+  `javascript:`/`JaVaScRiPt:`/tab-split/`data:`/relative/protocol-relative/whitespace, markup in
+  titles rendered as text, three sections, empty/loading/error states, drop toggle URL, Daily
+  redirect/deep link/day switch/paging, write header on Run now). Mutations red: protocol check off
+  (caught via `ftp:`; the host check still blocks `javascript:`), write header renamed, drop flag
+  ignored, `rel` without `noreferrer`, time zone UTC. tsc, eslint, `npm run build` clean; backend
+  suite 1362 passed (static rules check `web/dist` for inline scripts). Looked at it in headless
+  Firefox (WebDriver BiDi; Playwright isn't installed) against a temp demo DB seeded at the current
+  time: Gazette, Daily, Daily at 390 px, Runs, Sources render as intended with no console errors;
+  fixed the Sources numeric header alignment. M20b (Playwright E2E + CSP check) open.

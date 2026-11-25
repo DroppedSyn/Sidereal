@@ -1,0 +1,73 @@
+// React Query hooks, one per endpoint (plan §10.1).
+import {
+  keepPreviousData,
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
+import { apiGet, apiPost } from './client';
+import type { DayDetail, DaySummary, Gazette, Run, RunStarted, SourceStatus } from './types';
+
+export const DAYS_PAGE = 60;
+
+export function useGazette(includeDrop: boolean) {
+  return useQuery({
+    queryKey: ['gazette', includeDrop],
+    queryFn: () => apiGet<Gazette>('/api/gazette', { include_drop: includeDrop || undefined }),
+    placeholderData: keepPreviousData,
+  });
+}
+
+export function useDays() {
+  return useInfiniteQuery({
+    queryKey: ['days'],
+    queryFn: ({ pageParam }) =>
+      apiGet<DaySummary[]>('/api/days', { limit: DAYS_PAGE, before: pageParam }),
+    initialPageParam: undefined as string | undefined,
+    getNextPageParam: (last) => (last.length < DAYS_PAGE ? undefined : last[last.length - 1]?.day),
+  });
+}
+
+export function useDay(day: string | undefined, includeDrop: boolean) {
+  return useQuery({
+    queryKey: ['day', day, includeDrop],
+    queryFn: () =>
+      apiGet<DayDetail>(`/api/days/${encodeURIComponent(day ?? '')}`, {
+        include_drop: includeDrop || undefined,
+      }),
+    enabled: day !== undefined,
+    placeholderData: keepPreviousData,
+  });
+}
+
+export function useRuns(limit = 50) {
+  return useQuery({
+    queryKey: ['runs', limit],
+    queryFn: () => apiGet<Run[]>('/api/runs', { limit }),
+  });
+}
+
+export function useLastRun() {
+  return useQuery({
+    queryKey: ['runs', 1],
+    queryFn: () => apiGet<Run[]>('/api/runs', { limit: 1 }),
+    select: (runs) => runs[0] ?? null,
+    refetchInterval: 60_000,
+  });
+}
+
+export function useSources() {
+  return useQuery({
+    queryKey: ['sources'],
+    queryFn: () => apiGet<SourceStatus[]>('/api/sources'),
+  });
+}
+
+export function useStartRun() {
+  const client = useQueryClient();
+  return useMutation({
+    mutationFn: () => apiPost<RunStarted>('/api/runs'),
+    onSettled: () => client.invalidateQueries({ queryKey: ['runs'] }),
+  });
+}
