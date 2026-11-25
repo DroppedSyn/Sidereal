@@ -235,3 +235,30 @@ def delete_dropped_before(conn: sqlite3.Connection, *,
             cutoff,
         )
     return cur.rowcount
+
+
+def merge_flags(conn: sqlite3.Connection, story_id: int,
+                flags: Mapping[str, Any]) -> None:
+    """Merge ``flags`` into ``flags_json`` (given keys overwrite). Unknown id → ``KeyError``."""
+    with conn:
+        row = conn.execute(
+            "SELECT flags_json FROM stories WHERE id = ?", (story_id,)
+        ).fetchone()
+        if row is None:
+            raise KeyError(story_id)
+        merged = {**json.loads(row["flags_json"]), **dict(flags)}
+        conn.execute(
+            "UPDATE stories SET flags_json = ? WHERE id = ?",
+            (json.dumps(merged, sort_keys=True), story_id),
+        )
+
+
+def scored_stories(conn: sqlite3.Connection, *,
+                   day: str | None = None) -> list[StoryRow]:
+    """Stories in state ``assessed`` or ``assess_failed`` (all days, or one ``day``), by id."""
+    rows = conn.execute(
+        "SELECT * FROM stories WHERE state IN ('assessed', 'assess_failed')"
+        " AND (? IS NULL OR day = ?) ORDER BY id",
+        (day, day),
+    ).fetchall()
+    return [_story_row(r) for r in rows]

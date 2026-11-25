@@ -280,3 +280,18 @@ a brief says so.
   suite: 1007 passed, 3 failed only in the in-progress M13b files (static rules on
   `pipeline/common.py`, `ingest.py`, `placement.py`); `test_lock.py` 27 passed ×3; ruff clean on
   M13a files (E501 only in M13b files).
+- 2026-11-25 **M13b** (Claude, not delegated: broad coordinator work). The runner is six
+  modules: `pipeline/common.py` (Deadline, StoryBundle, short_error), `ingest.py` (fetch all
+  sources with per-source error isolation, source health, normalisation, `item_exists` filter,
+  dedupe, story/item storage with the MSRC roll-up title and KEV flags), `placement.py` (score
+  and bucket from stored rubric numbers only; `rescore`, `refresh` for joined stories),
+  `assess_step.py` (prefilter → triage slice → enrich → assess, backlog carried without
+  re-triage), `digest_step.py` (rewrite a day's digest only when its placed TOP/Relevant set
+  changed) and `runner.py` (`run_once`, `make_gate`, `dry_run`; partial/failed status, deadline
+  started after the gate, unload after LLM use). New: `db/focus_repo.py`, `stories_repo.merge_flags`
+  / `scored_stories`, `sidereal.db.Connection` for annotations outside `db/`. 67 tests in 8 new
+  files incl. an end-to-end run over all 21 seed fixtures with a schema-routing fake Ollama;
+  36 mutations all red (3 survivors of the first pass killed by added tests: triage deadline,
+  gate before the deadline, re-placing joined stories). Full suite 1081 passed, ruff clean.
+  Owner notes: `zero_item_runs` counts items after the age cap (adapters return no raw entry
+  count), so a source quiet for 96 h turns `empty` after 6 runs; no source sets `flags.cvss`.
