@@ -83,7 +83,7 @@ async def test_rerun_inserts_no_duplicates(settings, conn):
     assert count(conn, "items") == items and count(conn, "stories") == stories
     assert second.stats["items"]["new"] == 0
     assert second.stats["items"]["duplicate"] == first.stats["items"]["new"]
-    assert second.stats["stories"] == {"new": 0, "joined": 0}
+    assert second.stats["stories"] == {"new": 0, "joined": 0, "reopened": 0}
 
 
 async def test_backlog_carried_to_next_run(settings, conn):
@@ -257,7 +257,7 @@ async def test_assessed_story_joined_later_is_replaced_without_llm(settings, con
         200, content=feed, headers={"content-type": "application/rss+xml"})
     second, _, fake = await _run(settings, conn, server=server, only_source="thehackernews",
                                  now=NOW + timedelta(hours=1))
-    assert second.stats["stories"] == {"new": 0, "joined": 1}
+    assert second.stats["stories"] == {"new": 0, "joined": 1, "reopened": 0}
     after = stories_repo.get_story(conn, story.id)
     assert after.score == pytest.approx(story.score + settings.scoring.corroboration_bonus)
     assert chats(fake, "assess") == []  # placement only, no new assessment

@@ -8,7 +8,7 @@ from collections.abc import Callable, Iterable
 from datetime import datetime
 
 from sidereal.config import Settings
-from sidereal.db import Connection, assessments_repo, digests_repo, stories_repo
+from sidereal.db import Connection, assessments_repo, digests_repo, feedback_repo, stories_repo
 from sidereal.llm import digest, prompts
 from sidereal.llm.ollama import LLMOutputInvalid, OllamaClient
 from sidereal.pipeline.scoring import Scored, place
@@ -19,12 +19,12 @@ log = logging.getLogger(__name__)
 
 def digest_set(conn: Connection, day: str, settings: Settings) -> list[tuple[str, int]]:
     """``[(bucket, story_id)]`` of the day's placed TOP then Relevant stories (caps applied,
-    score order), as the Daily view shows them."""
-    scored = [
-        Scored(s.id, s.score, s.bucket, parse_iso_z(s.first_seen_at))
-        for s in stories_repo.stories_for_day(conn, day)
-        if s.bucket is not None and s.state in ("assessed", "assess_failed")
-    ]
+    score order), as the Daily view shows them: hidden stories are left out before placement."""
+    rows = [s for s in stories_repo.stories_for_day(conn, day)
+            if s.bucket is not None and s.state in ("assessed", "assess_failed")]
+    feedback = feedback_repo.story_feedback(conn, [s.id for s in rows])
+    scored = [Scored(s.id, s.score, s.bucket, parse_iso_z(s.first_seen_at))
+              for s in rows if not feedback[s.id].hidden]
     placed = place(scored, settings.scoring)
     return [(x.bucket, x.story_id) for x in placed["top"] + placed["relevant"]]
 

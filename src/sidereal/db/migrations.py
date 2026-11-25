@@ -79,7 +79,13 @@ def apply_migrations(conn: sqlite3.Connection, sql_dir: Path = SQL_DIR) -> list[
         old_isolation = conn.isolation_level
         conn.isolation_level = None  # we manage the transaction ourselves
         try:
-            conn.execute("BEGIN")
+            # IMMEDIATE takes the write lock first, then the version is checked again: a run
+            # and the web service starting together must not both apply the same file.
+            conn.execute("BEGIN IMMEDIATE")
+            if conn.execute("SELECT 1 FROM schema_version WHERE version = ?",
+                            (number,)).fetchone() is not None:
+                conn.execute("COMMIT")
+                continue
             for statement in statements:
                 conn.execute(statement)  # sql-ok: statements from packaged .sql migration files
             conn.execute(

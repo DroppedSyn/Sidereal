@@ -108,6 +108,7 @@ async def run_once(settings: Settings, conn: Connection, *, fetcher: Fetcher,
         if ing.stats["sources"]["failed"]:
             reasons.append(f"{ing.stats['sources']['failed']} source(s) failed")
         days = placement.refresh(conn, ing.joined_story_ids, settings.scoring)
+        stats["stories"]["reopened"] = placement.reopen(conn, ing.joined_story_ids)
 
         t = clock()
         asr = await run_assess(conn, ollama, fetcher, settings, now=now, deadline=deadline,

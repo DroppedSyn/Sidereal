@@ -656,3 +656,22 @@ a brief says so.
   not allowed. Three existing tests used the test config's `testserver` host with auth off and
   now pin loopback-only hosts. Tests: 5 new files (106); 21 of 22 mutants red, one equivalent.
   Backend 2218 passed, front end 157 passed; ruff, static rules, tsc, eslint clean.
+- 2026-11-25 **Final review** (Claude): seams between modules. Fixed: (1) medium: a `filtered` /
+  `triaged_out` story that gained an item stayed dropped forever (`placement.refresh` re-placed
+  only assessed stories), so a Microsoft KEV entry joining a triaged-out story by its CVE (or a
+  trusted-source / primary-keyword / unmuted-source item) never reached assessment; the runner
+  now reopens such stories to `new` (`placement.reopen`, stats `stories.reopened`). (2) low: the
+  day digest's story set still counted hidden stories (left open in M24; the week digest and
+  every view already skip them). (3) low: two processes migrating at once (timer run + web
+  restart after an upgrade) could both try a file and the second failed with "table already
+  exists"; each file now runs under `BEGIN IMMEDIATE` with the version re-checked inside.
+  Checked and fine: overrides reach run, rescore, gazette/days/weeks and the week step; hidden
+  stories are skipped by gazette, days, day list, search, week digest and notify; retention on a
+  demo DB with votes, hides and notification rows on the deleted stories leaves no FK violation
+  or FTS orphan; 0001-0003 + 0005 then 0004 + 0006 applies once and re-runs nothing;
+  regenerated OpenAPI and `schema.d.ts` are identical to the committed ones; run lock held for the
+  whole `asyncio.run`. Not changed (noted): notify sends every stored-`top` story, also those
+  beyond `top_cap` that the views show as Relevant; search shows the stored bucket; the front
+  end's time zone is fixed to London (matches the default `schedule.tz`); nothing sets
+  `flags.cvss`, so the CVSS bonuses never apply. Tests: 2 new files (8 tests), two
+  `test_runner.py` stats asserts gain `reopened`; each new regression test fails on HEAD.

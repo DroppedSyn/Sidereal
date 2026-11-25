@@ -129,3 +129,21 @@ def refresh(conn: Connection, story_ids: list[int], cfg: ScoringSettings) -> set
         place_assessed(conn, bundle(conn, story, sources), a, tiers, cfg, boosts=boosts)
         days.add(story.day)
     return days
+
+
+REOPEN_STATES = ("filtered", "triaged_out")
+
+
+def reopen(conn: Connection, story_ids: list[int]) -> int:
+    """Put filtered / triaged-out stories that gained items this run back to ``new``, so the
+    prefilter and triage see them again: a joining item can carry an always-keep signal (a
+    Microsoft KEV entry, a trusted source, a primary keyword) or a source that is not muted.
+    A stored triage relevance below ``keep_min`` sends the story to triage again. Returns the
+    number reopened."""
+    n = 0
+    for sid in story_ids:
+        story = stories_repo.get_story(conn, sid)
+        if story is not None and story.state in REOPEN_STATES:
+            stories_repo.set_state(conn, sid, "new")
+            n += 1
+    return n
