@@ -89,6 +89,28 @@ class DayDetail(BaseModel):
     counts: Counts
 
 
+class WeekSummary(BaseModel):
+    week: str  # ISO week, "2026-W48"
+    label: str  # "Week 48 · 23.11.2026 – 29.11.2026"
+    start_day: str
+    end_day: str
+    headline: str
+    story_count: int  # stories the digest was built from
+    updated_at: str
+
+
+class WeekDetail(BaseModel):
+    week: str
+    label: str
+    start_day: str
+    end_day: str
+    overview: str | None  # None until a run has written the week's digest
+    headline: str | None
+    updated_at: str | None
+    sections: Sections  # the week's TOP and best Relevant now; side and drop always empty
+    counts: Counts
+
+
 class StoryItem(BaseModel):
     id: int
     source_key: str

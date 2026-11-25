@@ -8,6 +8,7 @@ import AppRoutes from './routes';
 const TABS = [
   { to: '/', label: 'Gazette', end: true },
   { to: '/daily', label: 'Daily', end: false },
+  { to: '/week', label: 'Week', end: false },
   { to: '/runs', label: 'Runs', end: false },
   { to: '/sources', label: 'Sources', end: false },
   { to: '/settings', label: 'Settings', end: false },

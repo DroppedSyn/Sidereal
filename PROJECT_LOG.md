@@ -616,3 +616,21 @@ a brief says so.
   of M28's scrub. Not done: a "rescore now" button (the plan doesn't ask; the UI points to
   `sidereal rescore`). Tests: 5 back-end files (197), 3 front-end files (22); 28 mutants all red.
   Backend 2027 passed, front end 140 passed; ruff, static rules, tsc, eslint and build clean.
+- 2026-11-25 **M29 weekly digest** (Claude, no pi). Migration `0006_weekly.sql` (`week_digests`
+  keyed by ISO week `YYYY-Www`), `weeks.py` (keys, local days, labels `Week 48 · 23.11.2026 –
+  29.11.2026`), `week_digests_repo`, `llm/week_digest.py` (`week_digest.v1`; overview up to 2400
+  chars because the prompt asks for 250 words; URLs stripped per paragraph so paragraphs
+  survive), `pipeline/week_step.py` hooked into the runner after the day digests. Timing follows
+  the plan's "Sunday run builds": each local Sunday run checks the current week, every run
+  checks the previous week, so the first run after Monday 00:00 local catches late Sunday stories;
+  a digest is rewritten only when its story set changed. The set: the week's TOP and best
+  Relevant (per-day placement with the Daily caps, TOP first, by score, at most 25), hidden
+  stories left out. API `GET /api/weeks`, `/api/weeks/{week}` (live set + digest, 422 for a week
+  that does not exist such as `2025-W53`), `/api/weeks/{week}/export.md` (plain Markdown, every
+  stored text backslash-escaped, links only from http(s) `lead_url`). Front end: Week tab with the
+  digest weeks plus "This week so far", overview paragraphs, Markdown export link and a print
+  button with print CSS (PDF via the browser). Not sent by notifications (the plan's M28 sends
+  new TOP stories only). Year boundaries (2026-W53 spans 28.12.2026-03.01.2027, 2027-W01) and
+  the DST weeks (BST start 29.03.2026, end 25.10.2026) are tested; mutants red: week from the UTC
+  date, regenerate guard, hidden filter, Sunday check, cap, order. Backend 2111 passed, front end
+  157 passed; ruff, static rules, tsc, eslint, build and the E2E smoke clean.

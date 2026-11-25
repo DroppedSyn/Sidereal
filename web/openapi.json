@@ -1895,6 +1895,121 @@
         ],
         "title": "VoteIn",
         "type": "object"
+      },
+      "WeekDetail": {
+        "properties": {
+          "counts": {
+            "$ref": "#/components/schemas/Counts"
+          },
+          "end_day": {
+            "title": "End Day",
+            "type": "string"
+          },
+          "headline": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Headline"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "overview": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Overview"
+          },
+          "sections": {
+            "$ref": "#/components/schemas/Sections"
+          },
+          "start_day": {
+            "title": "Start Day",
+            "type": "string"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          },
+          "week": {
+            "title": "Week",
+            "type": "string"
+          }
+        },
+        "required": [
+          "week",
+          "label",
+          "start_day",
+          "end_day",
+          "overview",
+          "headline",
+          "updated_at",
+          "sections",
+          "counts"
+        ],
+        "title": "WeekDetail",
+        "type": "object"
+      },
+      "WeekSummary": {
+        "properties": {
+          "end_day": {
+            "title": "End Day",
+            "type": "string"
+          },
+          "headline": {
+            "title": "Headline",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "start_day": {
+            "title": "Start Day",
+            "type": "string"
+          },
+          "story_count": {
+            "title": "Story Count",
+            "type": "integer"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string"
+          },
+          "week": {
+            "title": "Week",
+            "type": "string"
+          }
+        },
+        "required": [
+          "week",
+          "label",
+          "start_day",
+          "end_day",
+          "headline",
+          "story_count",
+          "updated_at"
+        ],
+        "title": "WeekSummary",
+        "type": "object"
       }
     }
   },
@@ -3169,6 +3284,142 @@
           }
         },
         "summary": "Put Vote"
+      }
+    },
+    "/api/weeks": {
+      "get": {
+        "operationId": "list_weeks_api_weeks_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 52,
+              "maximum": 260,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "before",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Before"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/WeekSummary"
+                  },
+                  "title": "Response List Weeks Api Weeks Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Weeks"
+      }
+    },
+    "/api/weeks/{week}": {
+      "get": {
+        "operationId": "get_week_api_weeks__week__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "week",
+            "required": true,
+            "schema": {
+              "title": "Week",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeekDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Week"
+      }
+    },
+    "/api/weeks/{week}/export.md": {
+      "get": {
+        "operationId": "export_week_api_weeks__week__export_md_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "week",
+            "required": true,
+            "schema": {
+              "title": "Week",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "text/markdown": {}
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Export Week"
       }
     }
   }

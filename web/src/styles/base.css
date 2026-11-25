@@ -395,3 +395,19 @@ a:hover { text-decoration-thickness: 2px; }
 .feed-test ul { margin: 0.25rem 0 0; padding-left: 1.2rem; font-size: 0.85rem; }
 .config-dump { max-height: 28rem; overflow: auto; background: var(--paper); border: 1px solid var(--rule);
   padding: 0.6rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* Week (M29) */
+.week-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.4rem; font-size: 0.85rem; }
+.week-overview { margin-bottom: 1.5rem; }
+
+/* Print the Week page (or any page) as a clean PDF via the browser's print dialog. */
+@media print {
+  .topbar, .week-left, .daily-left, .week-actions, .story-actions, .story-excerpt,
+  .drop-toggle, .action-error { display: none !important; }
+  body { background: #fff; color: #000; }
+  .content { padding: 0; max-width: none; }
+  .daily { display: block; }
+  .bucket-relevant .story-list { grid-template-columns: minmax(0, 1fr); }
+  .story-list > li { break-inside: avoid; }
+  a { color: #000; }
+}

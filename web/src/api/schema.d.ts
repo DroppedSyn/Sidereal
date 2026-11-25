@@ -485,6 +485,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/weeks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Weeks */
+        get: operations["list_weeks_api_weeks_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/weeks/{week}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Week */
+        get: operations["get_week_api_weeks__week__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/weeks/{week}/export.md": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Export Week */
+        get: operations["export_week_api_weeks__week__export_md_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1172,6 +1223,42 @@ export interface components {
         VoteIn: {
             /** Vote */
             vote: ("up" | "down") | null;
+        };
+        /** WeekDetail */
+        WeekDetail: {
+            counts: components["schemas"]["Counts"];
+            /** End Day */
+            end_day: string;
+            /** Headline */
+            headline: string | null;
+            /** Label */
+            label: string;
+            /** Overview */
+            overview: string | null;
+            sections: components["schemas"]["Sections"];
+            /** Start Day */
+            start_day: string;
+            /** Updated At */
+            updated_at: string | null;
+            /** Week */
+            week: string;
+        };
+        /** WeekSummary */
+        WeekSummary: {
+            /** End Day */
+            end_day: string;
+            /** Headline */
+            headline: string;
+            /** Label */
+            label: string;
+            /** Start Day */
+            start_day: string;
+            /** Story Count */
+            story_count: number;
+            /** Updated At */
+            updated_at: string;
+            /** Week */
+            week: string;
         };
     };
     responses: never;
@@ -2217,6 +2304,100 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_weeks_api_weeks_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+                before?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WeekSummary"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_week_api_weeks__week__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                week: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WeekDetail"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    export_week_api_weeks__week__export_md_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                week: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/markdown": unknown;
+                };
             };
             /** @description Validation Error */
             422: {

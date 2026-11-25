@@ -1,7 +1,8 @@
 """Pipeline runner (plan §9): one run = gate → ingest → judgement → digests, recorded in
 ``runs``. A thin coordinator: the steps live in ``ingest``, ``assess_step``, ``placement``,
-``digest_step`` and ``notify.dispatcher``. The caller (``sidereal run``) holds the run lock
-(rule 10) and owns the ``Fetcher`` / ``OllamaClient``; nothing here opens network clients itself.
+``digest_step``, ``week_step`` (M29) and ``notify.dispatcher``. The caller (``sidereal run``)
+holds the run lock (rule 10) and owns the ``Fetcher`` / ``OllamaClient``; nothing here opens
+network clients itself.
 
 Status: ``ok``; ``partial`` when a source failed, the deadline cut the run short, Ollama
 became unavailable, a digest was left for later or a notification channel failed; ``failed``
@@ -24,7 +25,7 @@ from sidereal.llm.ollama import LLMError, LLMUnavailable, OllamaClient
 from sidereal.net.fetch import Fetcher
 from sidereal.notify.dispatcher import dispatch as notify_dispatch
 from sidereal.overrides import effective_settings
-from sidereal.pipeline import digest_step, ingest, placement, retention
+from sidereal.pipeline import digest_step, ingest, placement, retention, week_step
 from sidereal.pipeline.assess_step import run_assess
 from sidereal.pipeline.common import Deadline, short_error
 from sidereal.timeutil import day_key, utc_now
@@ -123,6 +124,11 @@ async def run_once(settings: Settings, conn: Connection, *, fetcher: Fetcher,
                     conn, ollama, settings, _digest_days(now, tz, days), run_id=run_id,
                     now=now, deadline=deadline)
                 llm_used = llm_used or bool(stats["digest"]["written"] + stats["digest"]["failed"])
+                stats["week_digest"] = await week_step.update_weeks(
+                    conn, ollama, settings, week_step.weeks_to_check(now, tz), run_id=run_id,
+                    now=now, deadline=deadline)
+                wd = stats["week_digest"]
+                llm_used = llm_used or bool(wd["written"] + wd["failed"])
             except LLMUnavailable as exc:
                 asr.llm_error = short_error(exc)
                 llm_used = True
@@ -144,6 +150,9 @@ async def run_once(settings: Settings, conn: Connection, *, fetcher: Fetcher,
             reasons.append("deadline reached")
         if stats.get("digest", {}).get("skipped") or stats.get("digest", {}).get("failed"):
             reasons.append("digest left for the next run")
+        if stats.get("week_digest", {}).get("skipped") or stats.get("week_digest", {}).get(
+                "failed"):
+            reasons.append("weekly digest left for the next run")
         status = "partial" if reasons else "ok"
     except Exception as exc:  # unexpected: record and keep what the steps committed
         log.exception("run %d failed", run_id)

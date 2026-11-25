@@ -13,7 +13,7 @@ from sidereal.db.migrations import (
 
 TABLES = {"sources", "focus_areas", "runs", "stories", "items", "assessments", "day_digests",
           "settings", "schema_version", "users", "sessions", "login_attempts",
-          "feedback", "mutes", "story_search", "notifications"}
+          "feedback", "mutes", "story_search", "notifications", "week_digests"}
 
 
 def tables(conn: sqlite3.Connection) -> set[str]:
@@ -23,9 +23,9 @@ def tables(conn: sqlite3.Connection) -> set[str]:
 
 def test_init_schema_applies_and_is_idempotent(tmp_path: Path):
     conn = connect(tmp_path / "s.db")
-    assert apply_migrations(conn) == [1, 2, 3, 4, 5]
+    assert apply_migrations(conn) == [1, 2, 3, 4, 5, 6]
     assert apply_migrations(conn) == []
-    assert current_version(conn) == 5
+    assert current_version(conn) == 6
     assert TABLES <= tables(conn)
 
 

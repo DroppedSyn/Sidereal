@@ -12,7 +12,7 @@ interface View {
 }
 
 const BUCKETS: Bucket[] = ['top', 'relevant', 'side', 'drop'];
-const VIEW_KEYS: QueryKey[] = [['gazette'], ['day']];
+const VIEW_KEYS: QueryKey[] = [['gazette'], ['day'], ['week']];
 
 /** A copy of `view` with `edit` applied to every story it returns true for; an edit returning
  * null removes the story (hidden) and lowers that bucket's count. */
@@ -72,6 +72,7 @@ export function useStoryFeedback() {
       void client.invalidateQueries({ queryKey: ['gazette'] });
       void client.invalidateQueries({ queryKey: ['day'] });
       void client.invalidateQueries({ queryKey: ['search'] });
+      void client.invalidateQueries({ queryKey: ['week'] });
       if ('hidden' in change) void client.invalidateQueries({ queryKey: ['days'] });
     },
   });
@@ -89,6 +90,7 @@ export function useMarkDayRead(day: string) {
     onSettled: () => {
       void client.invalidateQueries({ queryKey: ['gazette'] });
       void client.invalidateQueries({ queryKey: ['day'] });
+      void client.invalidateQueries({ queryKey: ['week'] });
     },
   });
 }

@@ -17,6 +17,8 @@ import type {
   RunStarted,
   SearchResults,
   SourceStatus,
+  WeekDetail,
+  WeekSummary,
 } from './types';
 
 export const DAYS_PAGE = 60;
@@ -48,6 +50,24 @@ export function useDay(day: string | undefined, includeDrop: boolean) {
         include_drop: includeDrop || undefined,
       }),
     enabled: day !== undefined,
+    placeholderData: keepPreviousData,
+  });
+}
+
+export const WEEKS_PAGE = 52;
+
+export function useWeeks() {
+  return useQuery({
+    queryKey: ['weeks'],
+    queryFn: () => apiGet<WeekSummary[]>('/api/weeks', { limit: WEEKS_PAGE }),
+  });
+}
+
+export function useWeek(week: string | undefined) {
+  return useQuery({
+    queryKey: ['week', week],
+    queryFn: () => apiGet<WeekDetail>(`/api/weeks/${encodeURIComponent(week ?? '')}`),
+    enabled: week !== undefined,
     placeholderData: keepPreviousData,
   });
 }

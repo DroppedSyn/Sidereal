@@ -6,6 +6,7 @@ import RunsPage from './pages/RunsPage';
 import SearchPage from './pages/SearchPage';
 import SettingsPage from './pages/SettingsPage';
 import SourcesPage from './pages/SourcesPage';
+import WeekPage from './pages/WeekPage';
 
 // Opt in to the v7 behaviour now (silences the v6 future-flag warnings).
 export const ROUTER_FUTURE = { v7_startTransition: true, v7_relativeSplatPath: true } as const;
@@ -27,6 +28,8 @@ export default function AppRoutes() {
       <Route path="/" element={<GazettePage />} />
       <Route path="/daily" element={<DailyPage />} />
       <Route path="/daily/:day" element={<DailyPage />} />
+      <Route path="/week" element={<WeekPage />} />
+      <Route path="/week/:week" element={<WeekPage />} />
       <Route path="/runs" element={<RunsPage />} />
       <Route path="/sources" element={<SourcesPage />} />
       <Route path="/search" element={<SearchPage />} />

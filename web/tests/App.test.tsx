@@ -13,7 +13,7 @@ describe('App shell', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Sidereal' })).toBeInTheDocument();
     const nav = screen.getByRole('navigation', { name: 'Main' });
     expect(Array.from(nav.querySelectorAll('a')).map((a) => a.textContent)).toEqual([
-      'Gazette', 'Daily', 'Runs', 'Sources', 'Settings',
+      'Gazette', 'Daily', 'Week', 'Runs', 'Sources', 'Settings',
     ]);
     expect(screen.getByRole('link', { name: 'Gazette' })).toHaveAttribute('aria-current', 'page');
     expect(await screen.findByRole('heading', { name: 'The Gazette' })).toBeInTheDocument();
