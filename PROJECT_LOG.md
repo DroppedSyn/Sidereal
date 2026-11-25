@@ -207,3 +207,16 @@ a brief says so.
   same-length edits (`300`→`301`, `extra`→`False`) survived at first through stale `__pycache__`
   (pyc check is mtime-seconds + size); run mutants with `PYTHONDONTWRITEBYTECODE=1`. Full suite 805
   passed, ruff clean.
+- 2026-11-25 **M12a** (pi run r60, `qwen3.6:35b-a3b-coding`, builtin edit tools, done in
+  **42m55s**, 52 tool calls / 7 failed (a `todo` call without `action`, reading the not-yet-written
+  test file, two scratch scripts that forgot to await `Fetcher.get`, ruff I001/F821 before its own
+  fix), 1556k tokens in / 17.4k out, largest reply 3.5k: no thinking-cap stalls). pi wrote both
+  files to the function-by-function brief and its 18 tests passed. Review found one real bug: a
+  server-sent `charset=idna` or `charset=undefined` passes `codecs.lookup` but raises
+  `UnicodeError` even with `errors="replace"`, so a hostile page could crash `extract_text`
+  (and with it `enrich_many`'s `gather`); `_decode` now falls back to utf-8 on any decode error.
+  Tidied (`ERROR_MAX_CHARS`, redundant except, unused logger), garbage test parametrized; tests
+  18 → 42 functions/cases. Mutation checks (27, all red: allowlist, `allow_hosts` on every hop,
+  error mapping and cap, media type, 2 MB / 20000 caps and truncation, `to_text`, charset,
+  concurrency, deadline, worker thread, case). trafilatura's urllib3 SOCKS DependencyWarning is
+  filtered in `pyproject.toml`. Full suite 848 passed, ruff clean.
