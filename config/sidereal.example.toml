@@ -73,13 +73,16 @@ recency_floor = 0.8
 tz = "Europe/London"
 
 [notify]
-channels = []                      # "email", "discord" (M28)
-quiet_start = "22:00"
-quiet_end = "07:00"
+# New TOP stories, once per story and channel, one message per run (M28). Secrets are NOT set
+# here: SIDEREAL_SMTP_PASSWORD and SIDEREAL_DISCORD_WEBHOOK_URL go in ~/.config/sidereal/env
+# (mode 0600); see deploy/README.md. Test with `sidereal notify test [--channel discord]`.
+channels = []                      # "email", "discord"
+quiet_start = "22:00"              # local time (schedule.tz); held until quiet_end
+quiet_end = "07:00"                # equal start and end = no quiet hours
 smtp_host = ""
-smtp_port = 587
+smtp_port = 587                    # STARTTLS; with smtp_ssl = true use 465 (implicit TLS)
 smtp_ssl = false
-smtp_user = ""
+smtp_user = ""                     # empty = no login
 smtp_from = ""
 smtp_to = []
 

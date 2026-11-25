@@ -561,3 +561,27 @@ a brief says so.
   strip off, hidden/visibility filter off, each trigger off, backfill off, rank order, no
   look-ahead, highlight off) all red. OpenAPI types regenerated; pytest, ruff, static rules,
   vitest, tsc, eslint, build clean.
+- 2026-11-25 **M28 notifications** (Claude, no pi; run alongside M26, so the migration is
+  `0005_notify.sql`). New TOP stories go out after each run by Discord channel webhook and/or
+  SMTP email, once per story and channel (`notifications` table, a row = sent), one batch per
+  channel per run, only stories first seen in the last 48 h (turning a channel on never floods),
+  hidden ones skipped, quiet hours 22:00-07:00 local held until the next run after them. A
+  channel failure is logged and stored in the run's stats with secrets scrubbed, leaves the run
+  `partial` (`notify failed: discord`), never `failed`, and the stories retry next run. Secrets
+  only from the environment (systemd `EnvironmentFile=` already in the units), systemd
+  credentials, or `~/.config/sidereal/env` read directly when private (0600; refused otherwise).
+  Discord goes through a new `Fetcher.post_json` (guard + `discord.com`/`discordapp.com`
+  allowlist, no redirects, no 5xx retry, host-only errors), so rule 3 holds; every message has
+  `allowed_mentions: {parse: []}`, Markdown-escaped one-line fields and Discord's length limits.
+  Found while testing: httpx logs `HTTP Request: POST <full url>` at INFO, which would have put
+  the webhook token in the journal; a filter on the `httpx` logger now redacts POST URLs. Email
+  uses stdlib `smtplib` (STARTTLS or implicit TLS, verified certs), allowed only in
+  `notify/email.py` by a new static rule; headers are one line (CR/LF stripped). CLI
+  `sidereal notify test [--channel]`. Also changed `apply_migrations` to apply every file whose
+  number is not recorded (it skipped anything at or below the max version), so parallel
+  milestones' migrations can land in any order. Tests: 9 new files (89 tests) + 2 static-rule
+  cases, back end 1779 passed; 20 mutants all red (dedupe off twice, `allowed_mentions` dropped
+  or widened, CR/LF kept, secrets logged three ways, scrub/escape/allowlist/quiet hours/hidden
+  filter/env-file mode/migration gap off, and more; list in AGENTS.md Status). pytest, ruff and
+  static rules clean; `web/` untouched. Left for M27: the Settings test button and
+  `configured: true` flags.

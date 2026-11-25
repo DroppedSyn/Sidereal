@@ -1,4 +1,10 @@
-"""Outbound internet fetcher (plan §6.2). The only module that makes internet HTTP requests."""
+"""Outbound internet fetcher (plan §6.2). The only module that makes internet HTTP requests.
+
+``get`` fetches feeds and articles. ``post_json`` (M28) sends one JSON POST, used only for the
+Discord webhook: the caller's ``allow_hosts`` is required, redirects are refused, 5xx is not
+retried (a POST may have landed), and logs/errors name only the host, never the URL (a webhook
+URL is a bearer secret).
+"""
 from __future__ import annotations
 
 import asyncio
@@ -29,6 +35,25 @@ MAX_REDIRECTS = 5
 MAX_RETRY_AFTER_S = 60.0
 
 _logger = logging.getLogger(__name__)
+
+
+class _RedactPostUrls(logging.Filter):
+    """httpx logs every request as ``HTTP Request: <METHOD> <url> ...`` at INFO. A POST URL
+    can be a secret (Discord webhook): keep only its host in that line."""
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        args = record.args
+        if isinstance(args, tuple) and len(args) >= 2 and args[0] == "POST":
+            try:
+                host = httpx.URL(str(args[1])).host
+            except Exception:
+                host = "?"
+            record.args = (args[0], f"https://{host}/[redacted]", *args[2:])
+        return True
+
+
+_HTTPX_FILTER = _RedactPostUrls()
+logging.getLogger("httpx").addFilter(_HTTPX_FILTER)
 
 
 class FetchError(Exception):
@@ -120,7 +145,8 @@ class Fetcher:
         while True:
             # The guard sees every URL before it is requested: the first one and each redirect.
             checked = await self._guard.check(current, allow_hosts=allow_hosts)
-            status, resp_headers, body = await self._hop(checked.host, current, headers, limit)
+            status, resp_headers, body = await self._hop(
+                checked.host, current, headers, limit, label=current)
 
             if status in REDIRECT_STATUSES:
                 location = resp_headers.get("location")
@@ -155,10 +181,37 @@ class Fetcher:
                 )
             raise FetchHTTPError(status)
 
+    async def post_json(
+        self,
+        url: str,
+        payload: object,
+        *,
+        allow_hosts: Iterable[str],
+        max_bytes: int = 64_000,
+    ) -> FetchResponse:
+        """POST ``payload`` as JSON to ``url`` (host must be in ``allow_hosts``). Any 3xx is an
+        error, 2xx returns, other statuses raise ``FetchHTTPError``; a 429 with a usable
+        ``Retry-After`` is waited out once. Connect errors are retried (nothing was sent)."""
+        checked = await self._guard.check(url, allow_hosts=list(allow_hosts))
+        headers = {"User-Agent": USER_AGENT, "Content-Type": "application/json"}
+        status, resp_headers, body = await self._hop(
+            checked.host, url, headers, max_bytes, label=checked.host, method="POST",
+            payload=payload, retry_statuses=frozenset())
+        if not 200 <= status <= 299:
+            if status in REDIRECT_STATUSES:
+                raise FetchError(f"HTTP {status} redirect from {checked.host} refused")
+            raise FetchHTTPError(status)
+        return FetchResponse(url=url, status=status, content=body,
+                             content_type=resp_headers.get("content-type", ""),
+                             etag=None, last_modified=None, not_modified=False)
+
     async def _hop(
-        self, host: str, url: str, headers: dict[str, str], limit: int
+        self, host: str, url: str, headers: dict[str, str], limit: int, *, label: str,
+        method: str = "GET", payload: object = None,
+        retry_statuses: frozenset[int] = RETRY_STATUSES,
     ) -> tuple[int, httpx.Headers, bytes]:
-        """One URL with retries. The host semaphore is held per request, never while sleeping."""
+        """One URL with retries. The host semaphore is held per request, never while sleeping.
+        ``label`` names the request in logs and errors (the URL for GET, the host for POST)."""
         sem = self._sems.get(host)
         if sem is None:
             sem = self._sems[host] = asyncio.Semaphore(self._per_host)
@@ -167,20 +220,21 @@ class Fetcher:
         while True:
             try:
                 async with sem:
-                    status, resp_headers, body = await self._request(url, headers, limit)
+                    status, resp_headers, body = await self._request(
+                        url, headers, limit, method=method, payload=payload)
             except _CONNECT_ERRORS as exc:
                 if retries < len(BACKOFF_S):
-                    _logger.info("%s on %s, retrying", type(exc).__name__, url)
+                    _logger.info("%s on %s, retrying", type(exc).__name__, label)
                     await self._sleep(BACKOFF_S[retries])
                     retries += 1
                     continue
-                raise FetchError(f"{type(exc).__name__} for {url}") from exc
+                raise FetchError(f"{type(exc).__name__} for {label}") from exc
             except httpx.HTTPError as exc:  # read timeout, protocol error, ...: not retried
-                raise FetchError(f"{type(exc).__name__} for {url}") from exc
+                raise FetchError(f"{type(exc).__name__} for {label}") from exc
 
-            if status in RETRY_STATUSES:
+            if status in retry_statuses:
                 if retries < len(BACKOFF_S):
-                    _logger.info("HTTP %d on %s, retrying", status, url)
+                    _logger.info("HTTP %d on %s, retrying", status, label)
                     await self._sleep(BACKOFF_S[retries])
                     retries += 1
                     continue
@@ -190,18 +244,20 @@ class Fetcher:
                 if delay is None or retried_429:
                     raise FetchHTTPError(429)
                 retried_429 = True
-                _logger.info("HTTP 429 on %s, waiting %.1fs", url, delay)
+                _logger.info("HTTP 429 on %s, waiting %.1fs", label, delay)
                 await self._sleep(delay)
                 continue
-            _logger.debug("HTTP %d %s", status, url)
+            _logger.debug("HTTP %d %s", status, label)
             return status, resp_headers, body
 
     async def _request(
-        self, url: str, headers: dict[str, str], limit: int
+        self, url: str, headers: dict[str, str], limit: int, *, method: str = "GET",
+        payload: object = None,
     ) -> tuple[int, httpx.Headers, bytes]:
-        """One GET; the body is read (capped at `limit` bytes) only for 2xx."""
+        """One request; the body is read (capped at `limit` bytes) only for 2xx."""
+        extra = {} if method == "GET" else {"json": payload}
         async with self._client.stream(
-            "GET", url, headers=headers, timeout=self._timeout, follow_redirects=False
+            method, url, headers=headers, timeout=self._timeout, follow_redirects=False, **extra
         ) as resp:
             status = resp.status_code
             if not 200 <= status <= 299:

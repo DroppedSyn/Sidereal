@@ -86,7 +86,7 @@ async def _run(settings: Settings, args: argparse.Namespace) -> runs_repo.RunRow
 
 def _print_counts(stats: dict) -> None:
     for key in ("sources", "items", "stories", "prefilter", "triage", "enrich", "assess",
-                "buckets", "digest", "retention", "durations_s"):
+                "buckets", "digest", "notify", "retention", "durations_s"):
         if key in stats:
             _out(f"{key}: {json.dumps(stats[key], sort_keys=True)}")
 

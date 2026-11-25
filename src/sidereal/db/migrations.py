@@ -66,11 +66,14 @@ def read_version(conn: sqlite3.Connection) -> int:
 
 
 def apply_migrations(conn: sqlite3.Connection, sql_dir: Path = SQL_DIR) -> list[int]:
-    """Apply every migration newer than the current version. Returns the versions applied."""
+    """Apply every migration whose number is not recorded in ``schema_version`` (in number
+    order), so a lower-numbered file that lands after a higher one still applies. Returns the
+    versions applied."""
     applied: list[int] = []
-    version = current_version(conn)
+    current_version(conn)  # creates schema_version if missing
+    done = {int(r[0]) for r in conn.execute("SELECT version FROM schema_version").fetchall()}
     for number, path in migration_files(sql_dir):
-        if number <= version:
+        if number in done:
             continue
         statements = split_statements(path.read_text(encoding="utf-8"))
         old_isolation = conn.isolation_level

@@ -33,6 +33,8 @@ IMPORT_ALLOW: dict[str, set[str]] = {
     "http.client": set(),
     "aiohttp": set(),
     "subprocess": {"api/routes_runs.py"},
+    # M28: SMTP is not HTTP (rule 3), but outbound sockets stay in one audited place.
+    "smtplib": {"notify/email.py"},
 }
 SUBPROCESS_ALLOWED = {"api/routes_runs.py"}
 SUBPROCESS_CALLS = re.compile(
@@ -233,6 +235,7 @@ def test_frontend_has_no_banned_apis():
         ("import httpx", "notify/discord.py", "import httpx"),
         ("import aiohttp", "net/fetch.py", "import aiohttp"),
         ("import subprocess", "pipeline/runner.py", "import subprocess"),
+        ("import smtplib", "notify/dispatcher.py", "import smtplib"),
         ("import os\nos.system('ls')", "cli.py", "os.system()"),
         ("import asyncio\nasyncio.create_subprocess_exec('x')", "x.py", "create_subprocess"),
         ("import sqlite3", "api/app.py", "sqlite3 only in db/"),
@@ -271,6 +274,7 @@ def test_checker_flags(snippet: str, rel: str, fragment: str):
     [
         ("import httpx", "net/fetch.py"),
         ("import socket", "net/guard.py"),
+        ("import smtplib", "notify/email.py"),
         ("import subprocess\nsubprocess.run(['systemctl'])", "api/routes_runs.py"),
         ("from urllib.parse import urlsplit", "urls.py"),
         ("import sqlite3\nconn.execute('SELECT 1 FROM t WHERE a = ?', (a,))", "db/x_repo.py"),

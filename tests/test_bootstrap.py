@@ -27,7 +27,7 @@ def test_seed_files_are_valid():
 
 def test_init_creates_db_and_seeds(settings):
     report = init(settings)
-    assert report.migrations_applied == [1, 2, 3, 4]
+    assert report.migrations_applied == [1, 2, 3, 4, 5]
     assert report.sources_added == 21
     assert report.focus_areas_added == 7
     conn = connect(settings.db_path)

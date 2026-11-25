@@ -56,6 +56,54 @@ in user units here (systemd 257, unprivileged user namespaces; checked with a tr
 If you move the state dir (`[paths] state_dir`), change `ReadWritePaths` in the three services
 and re-run `install.sh`, or every run fails with `226/NAMESPACE` / read-only errors.
 
+## Notifications (M28)
+
+After each run, new TOP stories (first seen in the last 48 h, not hidden) go out once per story
+and channel, one message per run: title, sources, the "why" line and the link. Quiet hours
+(default 22:00-07:00 local) hold them until the first run after `quiet_end`. A failed send
+leaves the run `partial` ("notify failed: discord"), is logged without secrets and is retried
+next run.
+
+1. Settings in `~/.config/sidereal/sidereal.toml` (no secrets here):
+
+   ```toml
+   [notify]
+   channels = ["discord", "email"]
+   smtp_host = "smtp.example.net"
+   smtp_port = 587            # STARTTLS; or smtp_ssl = true with 465
+   smtp_user = "me@example.net"
+   smtp_from = "Sidereal <me@example.net>"
+   smtp_to = ["me@example.net"]
+   ```
+
+2. Secrets in `~/.config/sidereal/env`, mode 0600 (systemd reads it through
+   `EnvironmentFile=`; `sidereal doctor` fails and notify refuses the file if group/other can
+   read it):
+
+   ```sh
+   install -m 600 /dev/null ~/.config/sidereal/env   # only if it does not exist yet
+   $EDITOR ~/.config/sidereal/env
+   #   SIDEREAL_DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/<id>/<token>
+   #   SIDEREAL_SMTP_PASSWORD=<app password>
+   ```
+
+   The webhook URL comes from Discord: channel settings → Integrations → Webhooks → New Webhook
+   → Copy Webhook URL. Anyone holding it can post to the channel: treat it like a password
+   (Discord can delete and re-create it if it leaks). Only `https://discord.com/api/webhooks/...`
+   and `discordapp.com` URLs are accepted.
+
+   Alternative: systemd credentials. Put each secret in its own 0600 file and add to
+   `sidereal-run.service` / `sidereal-run-manual.service` (a drop-in via
+   `systemctl --user edit`):
+   `LoadCredential=discord_webhook_url:%h/.config/sidereal/discord_webhook_url` and
+   `LoadCredential=smtp_password:%h/.config/sidereal/smtp_password`. Sidereal reads
+   `$CREDENTIALS_DIRECTORY/<name>` when the env variable is not set.
+
+3. Check: `~/Projects/Sidereal/.venv/bin/sidereal notify test` (every configured channel) or
+   `... notify test --channel discord`. Prints `discord: sent` or the failure (never the secret).
+   The services pick up env-file changes at their next start; no restart is needed for the
+   timer-driven runs.
+
 ## Data lifecycle (plan §12.4, `[retention]` in the config)
 
 - Every run ends by clearing `content_text` (enriched article text) older than `content_days`

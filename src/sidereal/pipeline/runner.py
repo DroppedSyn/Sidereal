@@ -1,11 +1,11 @@
 """Pipeline runner (plan §9): one run = gate → ingest → judgement → digests, recorded in
-``runs``. A thin coordinator: the steps live in ``ingest``, ``assess_step``, ``placement``
-and ``digest_step``. The caller (``sidereal run``) holds the run lock (rule 10) and owns the
-``Fetcher`` / ``OllamaClient``; nothing here opens network clients itself.
+``runs``. A thin coordinator: the steps live in ``ingest``, ``assess_step``, ``placement``,
+``digest_step`` and ``notify.dispatcher``. The caller (``sidereal run``) holds the run lock
+(rule 10) and owns the ``Fetcher`` / ``OllamaClient``; nothing here opens network clients itself.
 
 Status: ``ok``; ``partial`` when a source failed, the deadline cut the run short, Ollama
-became unavailable or a digest was left for later; ``failed`` on any unexpected exception
-(each step commits its own work, so what was stored stays).
+became unavailable, a digest was left for later or a notification channel failed; ``failed``
+on any unexpected exception (each step commits its own work, so what was stored stays).
 """
 
 from __future__ import annotations
@@ -22,6 +22,7 @@ from sidereal.db.runs_repo import RunRow
 from sidereal.llm.gate import Gate
 from sidereal.llm.ollama import LLMError, LLMUnavailable, OllamaClient
 from sidereal.net.fetch import Fetcher
+from sidereal.notify.dispatcher import dispatch as notify_dispatch
 from sidereal.pipeline import digest_step, ingest, placement, retention
 from sidereal.pipeline.assess_step import run_assess
 from sidereal.pipeline.common import Deadline, short_error
@@ -124,6 +125,12 @@ async def run_once(settings: Settings, conn: Connection, *, fetcher: Fetcher,
                 asr.llm_error = short_error(exc)
                 llm_used = True
         stats["durations_s"]["digest"] = round(clock() - t, 1)
+        if settings.notify.channels:  # never fails the run: errors land in stats["notify"]
+            stats["notify"] = await notify_dispatch(conn, settings, fetcher=fetcher, now=now,
+                                                    run_id=run_id)
+            failed = sorted(k for k, v in stats["notify"].items() if "error" in v)
+            if failed:
+                reasons.append(f"notify failed: {', '.join(failed)}")
         try:  # §12.4 lifecycle; a failure here leaves the run partial, not failed
             stats["retention"] = retention.apply_retention(conn, settings.retention, now=now)
         except Exception as exc:

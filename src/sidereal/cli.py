@@ -17,6 +17,7 @@ from sidereal.auth.usercli import add_parser as add_user_parser
 from sidereal.commands import add_parsers
 from sidereal.config import ConfigError, Settings, load_settings
 from sidereal.db.migrations import MigrationError
+from sidereal.notify.notifycli import add_parser as add_notify_parser
 
 EXIT_OK, EXIT_FAILED, EXIT_CONFIG = 0, 1, 2
 
@@ -100,6 +101,7 @@ def build_parser() -> argparse.ArgumentParser:
     serve.set_defaults(func=cmd_serve)
     add_parsers(sub)
     add_user_parser(sub)
+    add_notify_parser(sub)
     for name, milestone in PLANNED.items():
         sub.add_parser(name, help=f"(not implemented yet, {milestone})").set_defaults(
             func=cmd_planned
