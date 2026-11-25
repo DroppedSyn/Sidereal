@@ -220,3 +220,16 @@ a brief says so.
   error mapping and cap, media type, 2 MB / 20000 caps and truncation, `to_text`, charset,
   concurrency, deadline, worker thread, case). trafilatura's urllib3 SOCKS DependencyWarning is
   filtered in `pyproject.toml`. Full suite 848 passed, ruff clean.
+- 2026-11-25 **M11b** (pi run r61, `qwen3.6:35b-a3b-coding:off`, i.e. **thinking off**, builtin
+  edit tools, done in **13m33s**, 14 tool calls / 1 failed (ruff F841 on an unused `r`), 279k
+  tokens in / 5.9k out, largest reply 4.2k). The experiment: the `:low` runs either stalled on
+  16k-token pure-thinking replies (r52, r58: no output) or took 43-50 min (r59, r60). With thinking
+  off pi read the three referenced files, wrote the test file, then the module, each in one go, and
+  went green on the first test run. The brief spelled out the module almost line by line, so this
+  measures transcription and test-writing, not design; the review found no bug in pi's code, only
+  spec gaps in the brief: `exploited_in_wild` lax bool (took `"true"`/`1`) → `StrictBool`;
+  `strip_urls` case-sensitive (`HTTPS://` survived) → `re.IGNORECASE`; unknown-focus log value cut
+  to 40 chars. Test fixes: pi's F841 fix deleted test 12's result check instead of asserting it;
+  test 14 lacked the briefed 1-call assert. Tests 24 → 33 functions (41 cases). Mutation checks
+  (30, all red), see AGENTS.md M11. `assess.strip_urls` is the canonical URL stripper; r64's
+  `digest.py` copy should import it in review. Full suite 890 passed, ruff clean.
