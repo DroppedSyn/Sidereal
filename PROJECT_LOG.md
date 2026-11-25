@@ -180,3 +180,15 @@ a brief says so.
   landed: `gate.py` 130, `ollama.py` 211, `test_gate.py` 255 (28 tests), `test_ollama_probe.py` 87
   (6). Mutation checks (19, all red; dropping the `is_dir()` guard is equivalent). Full suite 684
   passed, ruff clean.
+- 2026-11-25 **M11a** (pi run r58, `qwen3.6:35b-a3b-coding:low`, builtin edit tools, done in
+  **33m42s**, 15 tool calls / 1 failed (`python3 -c "from sidereal.config ..."` before the venv
+  existed), 225k tokens in / 50.0k out, largest reply 16.4k, 2 stall resumes). **0 files changed.**
+  Cause: after seven short turns (reading `config.py`, `pipeline/__init__.py`, two test files,
+  creating the venv), its next three replies were pure thinking cut at the 16384-token output cap
+  (stopReason `length`, 42k/50k/54k chars of thinking, no tool call); both resumes were used up, so
+  pi exited `done` without writing either file, although the run was already `:low` and the brief
+  was only 2 files (the r52 failure mode, now on a 2-file brief with 23 parametrized tests and
+  computed values). Claude wrote `pipeline/scoring.py` (152 lines) and `tests/test_scoring.py`
+  from the brief: the 23 briefed tests plus every remaining config field shown to be used, a 24.5 h
+  recency case and input-not-mutated, 62 cases. Mutation checks (21, all red after adding the
+  24.5 h case, which killed "recency end shifted"). Full suite 747 passed, ruff clean.
