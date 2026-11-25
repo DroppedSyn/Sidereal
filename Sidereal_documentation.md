@@ -28,17 +28,17 @@ file, re-run it so they stay true.
 | 6 | 6. Data model | L350–L383 |
 | 7 | 7. Web API | L384–L414 |
 | 8 | 8. Authentication and web security | L415–L439 |
-| 9 | 9. Front end | L440–L460 |
-| 10 | 10. Configuration | L461–L489 |
-| 11 | 11. CLI | L490–L508 |
-| 12 | 12. Deployment and operations | L509–L528 |
-| 13 | 13. Invariants (never break these) | L529–L550 |
-| 14 | 14. Testing | L551–L581 |
-| 15 | 15. Maintenance recipes | L582–L624 |
-| 16 | 16. Known limitations and open owner decisions | L625–L639 |
-| 17 | 17. Gotchas | L640–L659 |
-| 18 | 18. Where history lives | L660–L667 |
-| 19 | 19. Regenerating this TOC | L668–L692 |
+| 9 | 9. Front end | L440–L464 |
+| 10 | 10. Configuration | L465–L493 |
+| 11 | 11. CLI | L494–L512 |
+| 12 | 12. Deployment and operations | L513–L532 |
+| 13 | 13. Invariants (never break these) | L533–L554 |
+| 14 | 14. Testing | L555–L585 |
+| 15 | 15. Maintenance recipes | L586–L628 |
+| 16 | 16. Known limitations and open owner decisions | L629–L643 |
+| 17 | 17. Gotchas | L644–L663 |
+| 18 | 18. Where history lives | L664–L671 |
+| 19 | 19. Regenerating this TOC | L672–L696 |
 
 ---
 
@@ -457,6 +457,10 @@ response (strict CSP `script-src 'self'`, nosniff, frame deny, referrer policy),
 - Rules: no `dangerouslySetInnerHTML`/`innerHTML`/`eval`/Markdown renderer (eslint
   `react/no-danger` + static test); no inline scripts (CSP); stored text is always text nodes.
 - Theme: CSS variables in `styles/base.css`, dark via `prefers-color-scheme`; print CSS for Week.
+- Top bar (`.topbar` in `App.tsx`) is `position: sticky`. `lib/useStickyHeight.ts` publishes its
+  live height as `--topbar-h` on `<html>`; the Daily day list (`.daily-left`, also sticky) and
+  `scroll-padding-top` use it so nothing hides under the bar. Under 720 px the bar is compact:
+  masthead + search on one row, tabs in one horizontally scrollable row, small scan status.
 
 ## 10. Configuration
 
@@ -556,7 +560,7 @@ Commands (exact, from `AGENTS.md` `## Commands`):
 .venv/bin/pytest -q                                   # back end, expect "N passed" (2237 at cdc33be)
 .venv/bin/ruff check src tests                        # "All checks passed!"
 .venv/bin/pytest -q tests/test_static_rules.py        # architecture rules only
-(cd web && ~/.local/node/bin/npm test -- --run)       # front end (157 at cdc33be)
+(cd web && ~/.local/node/bin/npm test -- --run)       # front end (159)
 (cd web && ~/.local/node/bin/npx tsc --noEmit)        # types
 (cd web && ~/.local/node/bin/npx eslint src)          # lint
 web/e2e/run-smoke.sh                                  # needs web/dist + /usr/bin/firefox

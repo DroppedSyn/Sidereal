@@ -73,6 +73,9 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* ---- shell ---- */
 .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   background: var(--paper);
   border-bottom: 3px double var(--rule-strong);
 }
@@ -264,7 +267,12 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* ---- daily ---- */
 .daily { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 2rem; align-items: start; }
-.daily-left { position: sticky; top: 1rem; max-height: calc(100vh - 2rem); overflow-y: auto; }
+.daily-left {
+  position: sticky;
+  top: calc(var(--topbar-h, 0px) + 1rem);
+  max-height: calc(100vh - var(--topbar-h, 0px) - 2rem);
+  overflow-y: auto;
+}
 .daylist-pane ol { list-style: none; margin: 0; padding: 0; }
 
 .day-row {
@@ -334,9 +342,15 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* ---- narrow screens ---- */
 @media (max-width: 720px) {
-  .topbar-inner { padding: 0.5rem 0.75rem; }
-  .masthead { font-size: 1.5rem; }
-  .last-run { margin-left: 0; width: 100%; }
+  /* Compact sticky bar: masthead + search, one scrollable row of tabs, scan status. */
+  .topbar-inner { padding: 0.4rem 0.75rem 0.3rem; gap: 0.25rem 0.75rem; align-items: center; }
+  .masthead { font-size: 1.35rem; order: 1; }
+  .search-box { order: 2; flex: 1; min-width: 0; }
+  .search-box input { width: 100%; }
+  .tabs { order: 3; width: 100%; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .tab { white-space: nowrap; padding: 0.2rem 0.4rem; font-size: 0.9rem; }
+  .last-run { order: 4; margin-left: 0; font-size: 0.75rem; }
+  .user-menu { order: 5; }
   .content { padding: 0.75rem; }
   .bucket-relevant .story-list { grid-template-columns: minmax(0, 1fr); }
   .bucket-relevant .story-list > li:nth-last-child(2):nth-child(odd) { border-bottom: 1px solid var(--rule); }
@@ -411,3 +425,6 @@ a:hover { text-decoration-thickness: 2px; }
   .story-list > li { break-inside: avoid; }
   a { color: #000; }
 }
+
+/* Sticky top bar: in-page jumps and focused elements land below it, not under it. */
+html { scroll-padding-top: calc(var(--topbar-h, 0px) + 0.5rem); }

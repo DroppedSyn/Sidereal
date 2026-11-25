@@ -1,8 +1,10 @@
+import { useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import LastRun from './components/LastRun';
 import SearchBox from './components/SearchBox';
 import UserMenu from './components/UserMenu';
 import { useAuthRedirect } from './lib/useAuthRedirect';
+import { useStickyHeight } from './lib/useStickyHeight';
 import AppRoutes from './routes';
 
 const TABS = [
@@ -16,10 +18,12 @@ const TABS = [
 
 export default function App() {
   useAuthRedirect();
+  const topbar = useRef<HTMLElement>(null);
+  useStickyHeight(topbar);
   const onLogin = useLocation().pathname === '/login';
   return (
     <div className="app">
-      <header className="topbar">
+      <header className="topbar" ref={topbar}>
         <div className="topbar-inner">
           <h1 className="masthead">Sidereal</h1>
           {!onLogin && (
