@@ -1,4 +1,4 @@
-# Sidereal web app (plan §12.1). Installed by deploy/install.sh into ~/.config/systemd/user.
+# Sidereal web app (plan §12.1). Installed by install.sh (repo root) into ~/.config/systemd/user.
 [Unit]
 Description=Sidereal web app (127.0.0.1:8470)
 

@@ -1,5 +1,5 @@
-"""deploy/install.sh (M22) against fake ``systemctl`` / ``loginctl`` on PATH: idempotent, never
-sudo, unit paths pointed at this checkout, linger hint only when lingering is off."""
+"""install.sh (M22, now in the repo root) against fake ``systemctl`` / ``loginctl`` on PATH:
+idempotent, never sudo, unit paths pointed at this checkout, linger hint only when off."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ import pytest
 
 from sidereal import doctor_systemd, paths
 
-SCRIPT = paths.project_root() / "deploy" / "install.sh"
+SCRIPT = paths.project_root() / "install.sh"
 pytestmark = pytest.mark.skipif(shutil.which("bash") is None, reason="needs bash")
 
 
@@ -28,10 +28,11 @@ def fakebin(tmp_path):
     return d, log
 
 
-def run(fakebin, linger="no"):
+def run(fakebin, linger="no", *args):
     d, _ = fakebin
     env = {**os.environ, "PATH": f"{d}:{os.environ['PATH']}", "FAKE_LINGER": linger}
-    return subprocess.run(["bash", str(SCRIPT)], env=env, capture_output=True, text=True,
+    argv = ["bash", str(SCRIPT), *(args or ("--no-build", "--no-doctor"))]
+    return subprocess.run(argv, env=env, capture_output=True, text=True,
                           timeout=120, check=False)
 
 

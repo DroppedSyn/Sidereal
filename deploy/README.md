@@ -12,26 +12,25 @@ systemd **user** units, no root services. Claude writes these files, not pi.
 | `sidereal-backup.timer` | `03:30` Europe/London, `Persistent=true` |
 
 `Persistent=true` means a run (or backup) missed while the VM was off happens shortly after the
-next boot. The unit files name the checkout as `%h/Projects/Sidereal`; `install.sh` rewrites that
+next boot. The unit files name the checkout as `%h/Projects/Sidereal`; `install.sh` (repo root) rewrites that
 to the checkout it lives in.
 
-## Install (once, then after any change to `deploy/`)
-
-Prerequisites: the venv (`python3 -m venv .venv && .venv/bin/pip install -e '.[dev]'`), the UI
-build (`(cd web && ~/.local/node/bin/npm ci && ~/.local/node/bin/npm run build)`) and, if needed,
-`~/.config/sidereal/sidereal.toml` (template `config/sidereal.example.toml`).
+## Install (once, then after any `git pull`)
 
 ```sh
-~/Projects/Sidereal/deploy/install.sh     # idempotent; never runs sudo
-sudo loginctl enable-linger al            # once, only if install.sh says lingering is off
-sidereal doctor
-systemctl --user list-timers 'sidereal-*'
+~/Projects/Sidereal/install.sh            # does everything; safe to re-run
+~/Projects/Sidereal/install.sh --uninstall   # stop and remove the services (data kept)
 ```
 
-`install.sh` runs `sidereal init` (state dir, DB, seeds; idempotent), copies the five units into
-`~/.config/systemd/user/`, runs `systemctl --user daemon-reload` and
-`systemctl --user enable --now sidereal-web.service sidereal-run.timer sidereal-backup.timer`.
-Without lingering the user manager (and so the timers and the web app) stops when `al` logs out.
+It sets up the Python venv and packages (re-installed when `pyproject.toml` changes), builds the
+web UI (`npm ci` on first use), runs `sidereal init` (state dir, DB, seeds), links
+`~/.local/bin/sidereal` so `sidereal` is on PATH, installs the six units into
+`~/.config/systemd/user/`, `daemon-reload`, `enable --now` the web app and both timers (and
+restarts the web app on a re-install so new code is served), offers to turn on lingering (asks
+before running `sudo loginctl enable-linger`; only when run from a terminal) and finally runs
+`sidereal doctor`. Without lingering the user manager (and so the timers and the web app) stops
+when `al` logs out. Optional: `~/.config/sidereal/sidereal.toml` (template
+`config/sidereal.example.toml`). `--no-build` skips the venv and UI steps, `--no-doctor` the check.
 
 ## Day to day
 
@@ -43,8 +42,7 @@ Without lingering the user manager (and so the timers and the web app) stops whe
 - Health: `sidereal doctor` (config, env file mode, web bind/exposure/https/proxies, DB, last run, sources, Ollama, web service,
   timers with last/next trigger, linger).
 - Pause runs: `systemctl --user stop sidereal-run.timer` (start it again to resume).
-- Uninstall: `systemctl --user disable --now sidereal-web.service sidereal-run.timer
-  sidereal-backup.timer`, delete the five files from `~/.config/systemd/user/`, `daemon-reload`.
+- Uninstall: `./install.sh --uninstall` (data and settings are kept).
 
 ## Hardening
 

@@ -28,4 +28,4 @@ def test_manual_unit_matches_run_unit_but_trigger():
 def test_route_names_the_deployed_unit():
     assert (DEPLOY / routes_runs.RUN_UNIT).is_file()
     assert routes_runs.RUN_UNIT in doctor_systemd.UNITS
-    assert routes_runs.RUN_UNIT in (DEPLOY / "install.sh").read_text()
+    assert routes_runs.RUN_UNIT in (DEPLOY.parent / "install.sh").read_text()

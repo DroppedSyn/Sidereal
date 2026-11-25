@@ -1,7 +1,7 @@
 """``sidereal doctor`` systemd checks (plan §12.5), by reading files only: rule 12 keeps
 ``subprocess`` (``systemctl``/``loginctl``) out of everything but ``api/routes_runs.py``.
 
-- installed: the unit files in ``~/.config/systemd/user`` (``deploy/install.sh`` copies them);
+- installed: the unit files in ``~/.config/systemd/user`` (``install.sh`` copies them);
 - enabled: the ``<target>.wants/<unit>`` link ``systemctl --user enable`` creates;
 - web service running: a ``sidereal serve`` process in ``/proc``;
 - timers: last trigger = mtime of the ``Persistent=true`` stamp file, next elapse computed from
@@ -31,6 +31,10 @@ BACKUP_TIMES = (time(3, 30),)
 TIMER_TZ = "Europe/London"
 LINGER_DIR = Path("/var/lib/systemd/linger")
 PROC = Path("/proc")
+
+
+def install_hint() -> str:
+    return f"run {paths.project_root() / 'install.sh'}"
 
 
 def next_elapse(now: datetime, times: tuple[time, ...], tz: str = TIMER_TZ) -> datetime:
@@ -68,7 +72,7 @@ def serve_pids(proc: Path = PROC) -> list[int]:
 
 def check_web(unit_dir: Path, proc: Path) -> Check:
     if not (unit_dir / WEB).is_file():
-        return Check(WARN, "web service", f"{WEB} not installed (run deploy/install.sh)")
+        return Check(WARN, "web service", f"{WEB} not installed ({install_hint()})")
     enabled = _enabled(unit_dir, "default.target", WEB)
     pids = serve_pids(proc)
     if pids:
@@ -84,7 +88,7 @@ def check_web(unit_dir: Path, proc: Path) -> Check:
 def check_timer(name: str, unit: str, times: tuple[time, ...], *, unit_dir: Path,
                 stamps: Path, now: datetime) -> Check:
     if not (unit_dir / unit).is_file():
-        return Check(WARN, name, f"{unit} not installed (run deploy/install.sh)")
+        return Check(WARN, name, f"{unit} not installed ({install_hint()})")
     if not _enabled(unit_dir, "timers.target", unit):
         return Check(WARN, name, f"not enabled (systemctl --user enable --now {unit})")
     stamp = stamps / f"stamp-{unit}"

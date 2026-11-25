@@ -58,7 +58,7 @@ def web_dist_dir() -> Path:
 
 
 def systemd_user_dir(env: Mapping[str, str] = os.environ) -> Path:
-    """Where ``deploy/install.sh`` puts the user units: ``$XDG_CONFIG_HOME/systemd/user``."""
+    """Where ``install.sh`` puts the user units: ``$XDG_CONFIG_HOME/systemd/user``."""
     return _xdg(env, "XDG_CONFIG_HOME", ".config") / "systemd" / "user"
 
 

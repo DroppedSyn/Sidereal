@@ -1,4 +1,4 @@
-"""deploy/install.sh puts `sidereal` on PATH: a symlink ~/.local/bin/sidereal → the venv's
+"""install.sh puts `sidereal` on PATH: a symlink ~/.local/bin/sidereal → the venv's
 entry point; idempotent; a non-symlink file there is never replaced."""
 
 from __future__ import annotations
@@ -22,7 +22,7 @@ def test_creates_symlink_to_venv(settings, fakebin):  # noqa: F811
     link = link_path()
     assert link.is_symlink()
     assert os.readlink(link) == str(VENV_BIN)
-    assert "Check with: sidereal doctor" in r.stdout
+    assert "with: sidereal doctor" in r.stdout
 
 
 def test_rerun_keeps_symlink(settings, fakebin):  # noqa: F811

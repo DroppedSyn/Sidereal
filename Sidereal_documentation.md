@@ -12,32 +12,32 @@ file, re-run it so they stay true.
 |---|---------|-------|
 | 0 | 0. How to use this document and the other docs | L44–L59 |
 | 1 | 1. What Sidereal is | L60–L91 |
-| 2 | 2. Repository map | L92–L124 |
-| 3 | 3. Runtime architecture | L125–L149 |
-| 4 | 4. The run pipeline, step by step | L150–L324 |
-| 4.1 | 4.1 Lock, recovery, gate, deadline | L172–L184 |
-| 4.2 | 4.2 Ingest: fetch, normalise, dedupe, store | L185–L216 |
-| 4.3 | 4.3 Prefilter and triage | L217–L233 |
-| 4.4 | 4.4 Enrichment and assessment | L234–L249 |
-| 4.5 | 4.5 Scoring and placement | L250–L281 |
-| 4.6 | 4.6 Day and week digests | L282–L294 |
-| 4.7 | 4.7 Notifications | L295–L309 |
-| 4.8 | 4.8 Retention, unload, finish, run status and stats | L310–L324 |
-| 5 | 5. LLM layer | L325–L346 |
-| 6 | 6. Data model | L347–L380 |
-| 7 | 7. Web API | L381–L411 |
-| 8 | 8. Authentication and web security | L412–L436 |
-| 9 | 9. Front end | L437–L457 |
-| 10 | 10. Configuration | L458–L486 |
-| 11 | 11. CLI | L487–L503 |
-| 12 | 12. Deployment and operations | L504–L522 |
-| 13 | 13. Invariants (never break these) | L523–L544 |
-| 14 | 14. Testing | L545–L575 |
-| 15 | 15. Maintenance recipes | L576–L618 |
-| 16 | 16. Known limitations and open owner decisions | L619–L633 |
-| 17 | 17. Gotchas | L634–L650 |
-| 18 | 18. Where history lives | L651–L658 |
-| 19 | 19. Regenerating this TOC | L659–L683 |
+| 2 | 2. Repository map | L92–L125 |
+| 3 | 3. Runtime architecture | L126–L150 |
+| 4 | 4. The run pipeline, step by step | L151–L325 |
+| 4.1 | 4.1 Lock, recovery, gate, deadline | L173–L185 |
+| 4.2 | 4.2 Ingest: fetch, normalise, dedupe, store | L186–L217 |
+| 4.3 | 4.3 Prefilter and triage | L218–L234 |
+| 4.4 | 4.4 Enrichment and assessment | L235–L250 |
+| 4.5 | 4.5 Scoring and placement | L251–L282 |
+| 4.6 | 4.6 Day and week digests | L283–L295 |
+| 4.7 | 4.7 Notifications | L296–L310 |
+| 4.8 | 4.8 Retention, unload, finish, run status and stats | L311–L325 |
+| 5 | 5. LLM layer | L326–L347 |
+| 6 | 6. Data model | L348–L381 |
+| 7 | 7. Web API | L382–L412 |
+| 8 | 8. Authentication and web security | L413–L437 |
+| 9 | 9. Front end | L438–L458 |
+| 10 | 10. Configuration | L459–L487 |
+| 11 | 11. CLI | L488–L504 |
+| 12 | 12. Deployment and operations | L505–L524 |
+| 13 | 13. Invariants (never break these) | L525–L546 |
+| 14 | 14. Testing | L547–L577 |
+| 15 | 15. Maintenance recipes | L578–L620 |
+| 16 | 16. Known limitations and open owner decisions | L621–L635 |
+| 17 | 17. Gotchas | L636–L652 |
+| 18 | 18. Where history lives | L653–L660 |
+| 19 | 19. Regenerating this TOC | L661–L685 |
 
 ---
 
@@ -97,7 +97,8 @@ config/defaults/sources.toml   21 seed sources ([[source]] tables)
 config/defaults/focus.toml     7 seed focus areas (descriptions go into prompts verbatim)
 config/sidereal.example.toml   every setting with its default
 prompts/                       <name>.v1.txt prompt files + README (format, placeholders)
-deploy/                        systemd user units, install.sh, Caddyfile.example, README
+install.sh                     one-step installer/updater (`--uninstall`, `--help`)
+deploy/                        systemd user units, Caddyfile.example, README
 src/sidereal/
   cli.py, commands.py          argparse entry (`sidereal`); run/rescore/doctor/backup
   doctor*.py                   read-only health checks (core, systemd files, web exposure)
@@ -503,20 +504,21 @@ Settings page). Secrets never go in TOML or the DB (§4.7). The run schedule liv
 
 ## 12. Deployment and operations
 
-- **Install**: `(cd web && ~/.local/node/bin/npm run build)` then `deploy/install.sh`
-  (idempotent: runs `sidereal init`, rewrites unit paths to this checkout, installs units to
-  `~/.config/systemd/user`, links `~/.local/bin/sidereal` → `.venv/bin/sidereal` so `sidereal`
-  is on PATH, `daemon-reload`, enables web + both timers, prints the linger hint),
-  then `sudo loginctl enable-linger al`, then `sidereal doctor`.
+- **Install / update**: `./install.sh` from the repo root does everything and is safe to re-run:
+  venv + packages (when `pyproject.toml` changed), UI build, `sidereal init`, links
+  `~/.local/bin/sidereal` → `.venv/bin/sidereal`, installs the units (checkout path rewritten),
+  `daemon-reload`, enables web + both timers, restarts the web app, offers lingering (asks before
+  sudo), runs `sidereal doctor`. `./install.sh --uninstall` removes services and the link, keeps
+  data. Tests: `tests/test_install_script.py`, `test_install_path_link.py`, `test_install_cli.py`
+  (fake `systemctl`/`loginctl`/`sudo`, `--no-build --no-doctor`).
 - **Logs**: `journalctl --user -u sidereal-run.service -n 200`, same for `sidereal-web`. INFO logs
   carry counts, keys, ids and exception types only (no article text or prompts).
 - **Manual run**: Runs page "Run now", or `systemctl --user start sidereal-run-manual.service`, or
   `.venv/bin/sidereal run` in a shell.
 - **Backups/restore**: `$STATE/backups/`; restore steps in `deploy/README.md` (stop units, copy
   file over `sidereal.db`, remove `-wal`/`-shm`, start).
-- **Upgrading code**: `git pull`, `.venv/bin/pip install -e .` if deps changed, rebuild `web/dist`
-  if the UI changed, `systemctl --user restart sidereal-web`; migrations apply on the next
-  run/serve. The timer service picks up new code automatically.
+- **Upgrading code**: `git pull`, then `./install.sh` (re-installs packages if needed, rebuilds
+  the UI, restarts the web app); migrations apply on the next run/serve.
 - **Health**: `sidereal doctor`; `GET /api/health`; Sources page health badges (ok / stale /
   empty / failing / broken; rules in `sources_repo.health`).
 
@@ -612,7 +614,7 @@ repo, include it in `api/app.py`; writes are guarded automatically; then
 hook in `api/hooks.ts` using `apiGet`; test in `web/tests/`.
 
 **Change the run schedule**: `deploy/sidereal-run.timer`, `web/src/lib/format.ts` `RUN_HOURS`,
-`doctor_systemd.RUN_TIMES`; re-run `deploy/install.sh`.
+`doctor_systemd.RUN_TIMES`; re-run `./install.sh`.
 
 **Turn on auth / LAN**: `deploy/README.md` "Authentication" and "LAN deployment".
 
