@@ -585,3 +585,18 @@ a brief says so.
   filter/env-file mode/migration gap off, and more; list in AGENTS.md Status). pytest, ruff and
   static rules clean; `web/` untouched. Left for M27: the Settings test button and
   `configured: true` flags.
+- 2026-11-25 **M21 static serving** + **M20b E2E smoke** (Claude, no pi; alongside M27). Hashed
+  `assets/*` files are served `public, max-age=31536000, immutable`; `index.html`, the SPA
+  fallback and other dist files `no-cache`; the "UI not built" page `no-store`; `/api` stays
+  `no-store`. A missing `/assets/...` file is now a 404 instead of the SPA shell (a stale bundle
+  would otherwise get HTML as JavaScript). Path traversal: the decoded path is refused (404) when
+  absolute or containing `..`, a backslash or NUL, before any disk access; `resolve_asset` still
+  checks the resolved path stays inside `dist` (symlinks). Media types from a fixed map for what
+  Vite emits. Tests: `tests/test_static_serving.py` (44, raw ASGI paths for `..`, `%2e%2e`,
+  `..%2F`, `..%5c`, `//etc/passwd`; symlinks in and out of `dist`; the real build's assets get
+  the immutable header and correct types) and two more checks in `test_static_rules.py`; 12
+  mutants red. Playwright needs a browser download, so the E2E smoke uses the installed Firefox
+  ESR over WebDriver BiDi with Node's built-in WebSocket (`web/e2e/smoke.mjs`, wrapper
+  `run-smoke.sh` with a temp demo DB on port 8472): three section headings, 0 CSP violations,
+  0 console errors; it fails as it should when an inline script is injected into `index.html`.
+  Backend 1827 passed, ruff clean on M21 files, static rules and `npm run build` clean.

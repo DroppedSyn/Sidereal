@@ -311,3 +311,16 @@ def test_built_index_has_no_inline_scripts():
     scripts = re.findall(r"<script\b([^>]*)>(.*?)</script>", index.read_text(), re.S)
     assert scripts, "no script tags in the built index.html"
     assert all("src=" in attrs and not body.strip() for attrs, body in scripts)
+    # No inline event handlers or javascript: URLs either (script-src 'self' would block them).
+    assert not re.search(r"\son[a-z]+\s*=", index.read_text(), re.I)
+    assert "javascript:" not in index.read_text().lower()
+
+
+def test_csp_script_src_is_self_only():
+    """The CSP the API sends allows scripts from our origin only: no inline, no eval."""
+    from sidereal.api.security import CSP
+
+    directives = dict(d.strip().split(" ", 1) for d in CSP.split(";") if d.strip())
+    assert directives["script-src"] == "'self'"
+    assert directives["default-src"] == "'self'"
+    assert "unsafe-inline" not in CSP and "unsafe-eval" not in CSP
