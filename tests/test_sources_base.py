@@ -126,4 +126,4 @@ def test_package_import_registers_all_kinds():
     out = subprocess.run(
         [sys.executable, "-c", code], capture_output=True, text=True, check=True
     ).stdout
-    assert out.strip() == "['msrc', 'rss']"
+    assert out.strip() == "['cisa_kev', 'hn_algolia', 'msrc', 'rss']"

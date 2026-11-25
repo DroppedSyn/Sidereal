@@ -123,3 +123,18 @@ a brief says so.
   `new` / `side`, recent and since exclusive, title_norm order, triage 4, reason not cleared,
   rubric -1, novelty unchecked, upsert keeping `created_at`, each of the 10 `with conn:` removed.
   Full suite 495 passed, ruff clean.
+- 2026-11-25 **M5** (pi run r54, `qwen3.6:35b-a3b-coding`, builtin edit tools, done in **42m43s**,
+  37 tool calls / 1 failed (a ruff E501 it then fixed by hand); 831k tokens in / 28.6k out,
+  largest reply 16.4k (near the output cap), resumed once after stalling). pi followed the brief
+  closely: both modules match it line for line, 27 tests green, full suite 452, ruff clean.
+  Review: `test_invalid_options` dropped the briefed `match=` on all six `raises(ValueError)`
+  (a min_points check raising the queries message passed; restored), the two URL asserts compared
+  `httpx.URL` to a str instead of `str(...)` (restored), `hit_item`'s `if ...: pass / else` int
+  fallbacks → `_int_or_zero`. Added `test_first_query_wins_on_duplicate_object_id`: the briefed
+  dedupe test serves one fixture for every query, so last-wins survived. Files as landed:
+  `cisa_kev.py` 125 lines, `hn_algolia.py` 134, `test_cisa_kev.py` 193 (14 tests),
+  `test_hn_algolia.py` 219 (14 tests). Mutation checks (22, all red after the fixes): KEV age cap
+  off, dateAdded at 23:59 / −1 s, guid without `kev:`, SourceBroken → `[]` (4 sites), empty-cveID
+  guard off, etag not sent, HN dedupe off / last-wins, non-http url accepted, story url dropped,
+  min_points hard-coded, age cap off, window ignoring `max_age_hours`, bool min_points accepted,
+  min_points message, only the first query fetched. Full suite 547 passed, ruff clean.
