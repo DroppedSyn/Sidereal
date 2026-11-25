@@ -31,9 +31,17 @@ def hash_password(password: str) -> str:
 
 
 def verify(pw_hash: str, password: str) -> bool:
-    """True if ``password`` matches; a corrupt hash or an over-long password is a mismatch."""
+    """True if ``password`` matches; a corrupt hash or an over-long password is a mismatch.
+
+    An over-long password still costs one Argon2 check (against the dummy hash): returning at
+    once would make a known username answer faster than an unknown one (user enumeration)."""
     if len(password) > MAX_LENGTH:
+        _check(_dummy_hash(), password[:MAX_LENGTH])
         return False
+    return _check(pw_hash, password)
+
+
+def _check(pw_hash: str, password: str) -> bool:
     try:
         return _hasher.verify(pw_hash, password)
     except (VerifyMismatchError, VerificationError, InvalidHashError):

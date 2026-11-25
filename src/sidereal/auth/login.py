@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import logging
 import re
+import threading
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Literal
@@ -20,6 +21,12 @@ log = logging.getLogger("sidereal.auth")
 
 USERNAME = re.compile(r"[a-z0-9][a-z0-9._-]{0,63}")
 MAX_USERNAME = 64
+
+# Last TOTP step accepted per (user id, secret): a code is accepted once (RFC 6238 §5.2, no replay).
+# In-process like the rate-limit lock (one uvicorn worker); a restart forgets it, and a code is
+# only valid for about 90 s anyway.
+_TOTP_LOCK = threading.Lock()
+_last_totp_step: dict[tuple[int, str], int] = {}
 
 
 @dataclass(frozen=True)
@@ -45,14 +52,24 @@ def _second_factor(user: users_repo.UserRow, code: str | None, auth: AuthSetting
                         " (sidereal user totp NAME)", user.id)
             return False
         return True
-    return totp.verify(user.totp_secret, code, now.timestamp())
+    step = totp.matching_step(user.totp_secret, code, now.timestamp())
+    if step is None:
+        return False
+    with _TOTP_LOCK:
+        key = (user.id, user.totp_secret)
+        if step <= _last_totp_step.get(key, -1):
+            log.warning("auth: TOTP code reused for user id %d", user.id)
+            return False
+        _last_totp_step[key] = step
+    return True
 
 
 def authenticate(conn: Connection, auth: AuthSettings, *, username: str, password: str,
                  code: str | None, ip: str, user_agent: str | None, now: datetime,
                  old_token: str | None = None) -> LoginResult:
     name = normalize_username(username)[:MAX_USERNAME]
-    if ratelimit.is_limited(conn, name, ip, now=now):
+    attempt_id = ratelimit.reserve(conn, name, ip, now=now)
+    if attempt_id is None:
         log.warning("auth: login rate-limited ip=%s", ip)
         return LoginResult("limited")
     user = users_repo.get_by_username(conn, name) if valid_username(name) else None
@@ -61,10 +78,10 @@ def authenticate(conn: Connection, auth: AuthSettings, *, username: str, passwor
         ok = False
     else:
         ok = passwords.verify(user.pw_hash, password) and _second_factor(user, code, auth, now)
-    ratelimit.record(conn, name, ip, now=now, ok=ok)
     if not ok or user is None:
         log.warning("auth: login failed ip=%s", ip)
         return LoginResult("invalid")
+    ratelimit.succeeded(conn, attempt_id)
     if passwords.needs_rehash(user.pw_hash):
         users_repo.set_password(conn, user.id, passwords.hash_password(password))
     sessions.revoke(conn, old_token)  # rotation: never keep a pre-login session id

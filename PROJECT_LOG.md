@@ -501,3 +501,20 @@ a brief says so.
   or `serve` applies migration 2 to the real DB (empty auth tables; auth stays off until the
   owner sets `[auth] mode = "on"` after `sidereal user add NAME`). Not done: TOTP replay
   protection inside the ±30 s window, `doctor` checks of bind/auth consistency (M30).
+- 2026-11-25 **M25 security review** (Claude, independent review of f77cddd). Reproduced with
+  TestClient in a tmp home, then fixed: (1) rate-limit race, medium: the limit was checked before
+  the Argon2 work and the failure recorded after it, so 30 parallel wrong passwords all got a
+  401 and none a 429 (limit 5); now `ratelimit.reserve` checks and records the attempt as failed
+  under a process-wide lock, a success flips it. (2) user enumeration by timing, medium: a
+  password over 1024 chars returned at once for a known user (~6 ms) but ran the dummy Argon2
+  for an unknown one (~50-90 ms); `passwords.verify` now spends the dummy check too. (3) TOTP
+  replay, low: a code worked again within its ~90 s window; the last accepted step per user is
+  remembered in-process (RFC 6238 §5.2). Tests `tests/test_auth_hardening.py` (7; the race,
+  timing and replay tests fail on the old code). Checked and held: every `/api` path incl.
+  `openapi.json`, HEAD/OPTIONS, trailing slash, `%2F`, `//api/…` and `/API/…` (SPA shell only),
+  dot segments; session rotation; token hashing; cookie flags; write guard before auth (login
+  CSRF); XFF parsing (right-to-left, peer must be trusted); passwd/delete/TOTP-on end sessions;
+  `safeNext`; 422 redaction; getpass in the CLI; rule-9 host parsing (unparsable → non-loopback).
+  Notes, not changed: `trusted_proxies` takes single IPs only (a CIDR is silently ignored, so
+  every client shares the proxy's bucket); `Secure` depends on setting `web.https`; with Caddy on
+  the same host a loopback bind passes rule 9 even with auth off (M30 checklist).

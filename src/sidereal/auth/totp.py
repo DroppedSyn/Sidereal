@@ -34,18 +34,27 @@ def code_at(secret: str, unix_time: float) -> str:
     return str(value % 10**DIGITS).zfill(DIGITS)
 
 
-def verify(secret: str, code: str | None, unix_time: float) -> bool:
-    """Constant-time check of ``code`` against the steps around ``unix_time``."""
+def matching_step(secret: str, code: str | None, unix_time: float) -> int | None:
+    """The time step (counter) ``code`` is valid for within the window, or None. Every step is
+    compared (constant time); the caller rejects a step it has already accepted (no replay,
+    RFC 6238 §5.2)."""
     if code is None:
-        return False
+        return None
     code = code.strip().replace(" ", "")
     if len(code) != DIGITS or not code.isdigit():
-        return False
-    ok = False
+        return None
+    found = None
     for delta in range(-WINDOW, WINDOW + 1):
-        expected = code_at(secret, unix_time + delta * STEP_S)
-        ok |= hmac.compare_digest(expected.encode(), code.encode())
-    return ok
+        t = unix_time + delta * STEP_S
+        if hmac.compare_digest(code_at(secret, t).encode(), code.encode()):
+            found = int(t // STEP_S)
+    return found
+
+
+def verify(secret: str, code: str | None, unix_time: float) -> bool:
+    """Constant-time check of ``code`` against the steps around ``unix_time`` (no replay check:
+    enrolment only; logins use ``matching_step``)."""
+    return matching_step(secret, code, unix_time) is not None
 
 
 def provisioning_uri(secret: str, username: str, issuer: str = "Sidereal") -> str:

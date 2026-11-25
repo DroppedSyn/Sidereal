@@ -180,10 +180,18 @@ def count_sessions(conn: sqlite3.Connection, user_id: int) -> int:
 # --- login attempts ------------------------------------------------------------------------
 
 def record_attempt(conn: sqlite3.Connection, username: str, ip: str, *, at: datetime,
-                   ok: bool) -> None:
+                   ok: bool) -> int:
     with conn:
-        conn.execute("INSERT INTO login_attempts (username, ip, at, ok) VALUES (?, ?, ?, ?)",
-                     (username, ip, iso_z(at), int(ok)))
+        cur = conn.execute(
+            "INSERT INTO login_attempts (username, ip, at, ok) VALUES (?, ?, ?, ?)",
+            (username, ip, iso_z(at), int(ok)),
+        )
+    return int(cur.lastrowid)
+
+
+def mark_attempt_ok(conn: sqlite3.Connection, attempt_id: int) -> None:
+    with conn:
+        conn.execute("UPDATE login_attempts SET ok = 1 WHERE id = ?", (attempt_id,))
 
 
 @dataclass(frozen=True)
