@@ -339,3 +339,17 @@ a brief says so.
   digests and refuses an existing file. 24 tests (21 briefed + 3 added for survivors: a run
   exactly at `now`, the failed/partial run positions, ids growing with time); 21 mutations
   all red, one equivalent. Full suite 1191 passed, ruff clean.
+- 2026-11-25 **M15a-1** (pi r68, timed out at 50 min; Claude finish). `db/views_repo.py`
+  (read-only Gazette/Daily queries: `gazette_views`, `day_views`, `day_summaries`,
+  `runs_between`) and `tests/test_views_repo.py`. pi (thinking `:off`, builtin edit tools) wrote
+  both files to the brief within 15 tool calls, then spent the rest of the run on one red test
+  (`test_hidden_states_excluded`): its `_views` built every story from the loop variable `row`
+  left over from the grouping loop (the last row of the whole result), so bucket, raw, flags and
+  title leaked across stories. It debugged with hand-written schemas and inline SQL scripts
+  (12 failed calls) and never looked at its own loop. Fix: `_story_view(rows)` per story group.
+  Second fix: `_COUNTS + " FROM ..."` tripped the static `+` rule (a name plus an SQL-looking
+  literal); tails are now their own constants. Local-day/DST bounds are not this module's (the
+  stored `day` column and caller-supplied run bounds; `day_bounds` is M15a-5). Tests: the 26
+  briefed + row isolation across two stories, a `seed_demo` round trip, and a trace-callback
+  check that no executed SQL mentions `content`. 18 mutations all red. Full suite 1220 passed,
+  ruff clean.
