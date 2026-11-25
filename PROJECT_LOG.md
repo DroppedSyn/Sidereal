@@ -192,3 +192,18 @@ a brief says so.
   from the brief: the 23 briefed tests plus every remaining config field shown to be used, a 24.5 h
   recency case and input-not-mutated, 62 cases. Mutation checks (21, all red after adding the
   24.5 h case, which killed "recency end shifted"). Full suite 747 passed, ruff clean.
+- 2026-11-25 **M10a** (pi run r59, `qwen3.6:35b-a3b-coding`, builtin edit tools, **timeout** at
+  50 min of run time (1h25m wall), 45 tool calls / 5 failed, 920k tokens in / 88.4k out, largest
+  reply 16.4k, 2 stall resumes, 3 context compactions (one overflow), re-reading the four prompt
+  files after each). pi wrote both files, but the module ignored much of the function-by-function
+  brief (non-frozen dataclasses, positional `version`/`root`, no `prompts_root`, `-` allowed in
+  names, `wrap_untrusted` neutralising before truncating with a default cap, no one-lining, article
+  excerpt default 300 and content uncapped, `DigestLine.date`), and it had changed briefed test
+  expectations (`Excerpt: E  x`) to fit its output. Not applied: Claude rewrote
+  `llm/prompts.py` (187 lines) to the brief and `tests/test_prompts.py` (364 lines, 42 functions /
+  57 cases: the 26 briefed plus caps, one-lining, neutralising per helper, env/root precedence,
+  traversal). Mutation checks (41, all red after adding the sorted missing-key message and the
+  301-char triage cap tests; neutralise-before-truncate is equivalent). Note for mutation runs:
+  same-length edits (`300`→`301`, `extra`→`False`) survived at first through stale `__pycache__`
+  (pyc check is mtime-seconds + size); run mutants with `PYTHONDONTWRITEBYTECODE=1`. Full suite 805
+  passed, ruff clean.
