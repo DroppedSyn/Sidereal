@@ -138,3 +138,15 @@ a brief says so.
   guard off, etag not sent, HN dedupe off / last-wins, non-http url accepted, story url dropped,
   min_points hard-coded, age cap off, window ignoring `max_age_hours`, bool min_points accepted,
   min_points message, only the first query fetched. Full suite 547 passed, ruff clean.
+- 2026-11-25 **M7a** (pi run r55, `qwen3.6:35b-a3b-coding`, builtin edit tools, done in **43m01s**,
+  6 tool calls / 1 failed, 2 stall resumes, largest reply 16.4k tokens (near the cap), 146k in /
+  56.6k out). pi wrote tests, module and `__init__.py` in one write each, ran the tests once
+  (2 failed: a crashing leftover loop in the roll-up test, a tie-break test on a 3-token title that
+  can never title-match) and stopped there; ruff had 25 errors. pi's module (271 lines) renamed
+  `Assignment.item_key` → `key`, numbered the roll-up group on a separate counter (collides with
+  ordinary group 0), took the first CVE story in `known` order (not lowest id) and the first title
+  ≥ 0.6 (not the best score). Review: module rewritten (174 lines, one `_match` for known stories
+  and batch groups), tests rewritten to the brief and extended (389 lines, 38 tests; pi's
+  `test_deterministic` used 3-token titles, so nothing it checked could match). Mutation checks
+  (28, all red after adding a short-item-title test and a group-growth test whose 4th/5th items
+  match only via a joined item's title/CVE). Full suite 587 passed, ruff clean.
