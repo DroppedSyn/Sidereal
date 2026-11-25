@@ -388,7 +388,8 @@ CREATE TABLE assessments (
   raw_json TEXT NOT NULL, duration_ms INTEGER NOT NULL, created_at TEXT NOT NULL
 );
 CREATE TABLE day_digests (
-  day TEXT PRIMARY KEY, overview TEXT NOT NULL,
+  day TEXT PRIMARY KEY, overview TEXT NOT NULL, headline TEXT NOT NULL,
+  story_ids_json TEXT NOT NULL,   -- TOP/Relevant story ids the digest was built from (M12b)
   model TEXT NOT NULL, run_id INTEGER NOT NULL, updated_at TEXT NOT NULL
 );
 CREATE TABLE settings (key TEXT PRIMARY KEY, value_json TEXT NOT NULL);

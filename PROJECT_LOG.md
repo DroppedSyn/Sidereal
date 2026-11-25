@@ -248,3 +248,11 @@ a brief says so.
   restored, tests 19 → 27 functions (34 cases), 35 mutations all red (one survivor, "only the
   current skipped batch marked unfinished", killed by a 3-batch deadline test). Full suite 925
   passed, ruff clean.
+- 2026-11-25 **M12b-1** (pi run r63, `qwen3.6:35b-a3b-coding:off`, builtin edit tools, done in
+  **12m02s**, 11 tool calls / 0 failed, 238k tokens in / 3.9k out, largest reply 2.1k). Schema
+  change first (Claude): `day_digests` gains `headline` and `story_ids_json` in `0001_init.sql`
+  and plan §4 (no database exists yet). pi read the sibling repo and its tests, wrote the test
+  file and the module in one go each and went green on the first run; both match the near-verbatim
+  brief, the review found no bug. One mutation survived (the `before` query ignoring `limit`: the
+  briefed before+limit case only had one row under limit 5), killed by the added
+  `test_list_before_respects_limit`. 22 mutations all red. Full suite 949 passed, ruff clean.
