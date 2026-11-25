@@ -466,3 +466,20 @@ a brief says so.
   run 1 were Algolia typo matches (`bgp` → GPU demos, GPUI, a local-AI guide; `entra` → π
   digits, car fees, a C dialect); checked live that the flag removes them. Tests updated
   (3 exact-URL assertions), plan §6.2 row updated. Full suite 1362 passed, ruff clean.
+- 2026-11-25 **Post-M14 pipeline fixes** (Claude, no pi), from M14 owner suggestions (3) and (4).
+  (a) Assess queue ordered by triage relevance (3 before 2; always-keeps count as 3), then the
+  §7.2 age-band/hint order as tie-break (`assess_step.assess_order`), so the best stories are
+  assessed first when `max_assess_per_run` bites (run 1 left a triage-3 APIM story for run 2
+  behind 18 relevance-0 azure-updates notices; those are always-keeps and still rank as 3, so
+  the azure-updates weight question (2) stays the owner's). (b) Every item's CVE ids now include
+  those named in its title/excerpt (`ingest.item_cve_ids`, reusing `msrc.extract_cve_ids`), so
+  outlets reporting the same CVE merge via dedupe's CVE rule and add corroboration. Roundups:
+  dedupe's ≤ 3 limit is on the story, not the item, so a 10-CVE roundup would have joined the
+  first small story sharing one id and swollen it to 11 CVEs; text ids therefore count only
+  when ≤ 3 (the roundup stays its own story, without CVE ids). Plan §6.7 and §7.2 lines updated.
+  Tests: `test_assess_order.py` (5), `test_ingest_cves.py` (6). Mutations all red (12): relevance
+  sort removed / ascending, always-keeps as 2, pretriaged relevance ignored, age-band tie-break
+  dropped, excerpt not scanned, title not scanned, roundup cap removed / `>=`, adapter ids
+  dropped / after the text ids, no dedup between them. Real DB not back-filled (no re-dedupe
+  command; `rescore` only re-places). Scoring weights, KEV/exploited bonuses and the
+  azure-updates weight untouched.

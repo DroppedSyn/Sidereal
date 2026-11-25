@@ -2,7 +2,8 @@
 
 Stories in state ``new`` are the queue. Prefilter drops (``filtered``) or always-keeps; the
 rest are triaged in the §7.2 order, sliced to ``max_triage_per_run``. Kept stories (always,
-earlier-triaged ones still ``new`` with a keeping relevance, then this run's triage keeps) are
+earlier-triaged ones still ``new`` with a keeping relevance, this run's triage keeps) are
+ordered by triage relevance (always-keeps count as 3), then the §7.2 age-band order, and
 enriched and assessed up to ``max_assess_per_run``; everything not reached stays ``new`` for
 the next run. ``LLMUnavailable`` stops the step (the runner marks the run ``partial``).
 """
@@ -39,6 +40,8 @@ from sidereal.pipeline.prefilter import (
 )
 from sidereal.pipeline.scoring import BUCKETS
 from sidereal.timeutil import day_key, iso_z
+
+ALWAYS_RELEVANCE = 3  # always-keeps rank with the best triage keeps in the assess queue
 
 log = logging.getLogger(__name__)
 
@@ -80,11 +83,12 @@ def _triage_line(b: StoryBundle) -> prompts.TriageLine:
 
 async def _triage(conn: Connection, ollama: OllamaClient, settings: Settings,
                   queue: Sequence[StoryBundle], p: _Prompts,
-                  deadline: Deadline) -> tuple[list[int], dict[str, Any]]:
+                  deadline: Deadline) -> tuple[dict[int, int], dict[str, Any]]:
     """Triage ``queue`` (already ordered and sliced); store relevance and ``triaged_out``.
-    Returns the kept ids in queue order. ``LLMUnavailable`` propagates (nothing stored)."""
+    Returns ``{kept id: relevance}`` in queue order. ``LLMUnavailable`` propagates (nothing
+    stored)."""
     if not queue:
-        return [], dict(_TRIAGE_ZERO)
+        return {}, dict(_TRIAGE_ZERO)
     by_id = {b.story.id: b for b in queue}
 
     def render(ids: Sequence[int]) -> tuple[str, str]:
@@ -103,7 +107,7 @@ async def _triage(conn: Connection, ollama: OllamaClient, settings: Settings,
     stats = {"calls": out.calls, "kept": len(out.kept), "dropped": len(out.dropped),
              "defaulted": len(out.defaulted), "unfinished": len(out.unfinished),
              "invalid_batches": out.invalid_batches}
-    return list(out.kept), stats
+    return {sid: out.relevance[sid] for sid in out.kept}, stats
 
 
 async def _enrich(conn: Connection, fetcher: Fetcher, queue: Sequence[StoryBundle],
@@ -182,10 +186,22 @@ async def _assess_one(conn: Connection, ollama: OllamaClient, settings: Settings
     return bucket, res.duration_ms
 
 
+def assess_order(pairs: Sequence[tuple[Candidate, Decision]], relevance: dict[int, int], *,
+                 now: datetime) -> list[int]:
+    """Assess queue: triage relevance desc (``relevance[story_id]``, always-keeps
+    ``ALWAYS_RELEVANCE``), then the §7.2 order (oldest age band first, hint desc), so the best
+    stories are assessed first when the cap bites and old ones still do not starve."""
+    ordered = order_for_triage(list(pairs), now=now)
+    ordered.sort(key=lambda cd: -(ALWAYS_RELEVANCE if cd[1].always
+                                  else relevance[cd[0].story_id]))  # stable
+    return [c.story_id for c, _ in ordered]
+
+
 def _select(conn: Connection, bundles: Sequence[StoryBundle], settings: Settings,
             focus: Sequence[FocusArea], now: datetime):
-    """Prefilter every pending story; store ``filtered``. Returns id lists (always,
-    pretriaged, to_triage sliced to ``max_triage_per_run``), each in §7.2 order, and stats."""
+    """Prefilter every pending story; store ``filtered``. Returns the kept pairs by id, id
+    lists (always, pretriaged, to_triage sliced to ``max_triage_per_run``), each in §7.2
+    order, and stats."""
     always, pre, tri = [], [], []
     filtered = 0
     keep_min = settings.triage.keep_min
@@ -206,7 +222,8 @@ def _select(conn: Connection, bundles: Sequence[StoryBundle], settings: Settings
     cap = settings.budget.max_triage_per_run
     stats = {"kept": len(always) + len(pre) + len(tri), "filtered": filtered,
              "always": len(always), "deferred": max(0, len(order[2]) - cap)}
-    return order[0], order[1], order[2][:cap], stats
+    pairs = {c.story_id: (c, d) for c, d in always + pre + tri}
+    return pairs, order[0], order[1], order[2][:cap], stats
 
 
 async def run_assess(conn: Connection, ollama: OllamaClient, fetcher: Fetcher,
@@ -217,7 +234,7 @@ async def run_assess(conn: Connection, ollama: OllamaClient, fetcher: Fetcher,
     focus_rows = focus_repo.list_focus_areas(conn)
     focus = [FocusArea(f.key, f.tier, f.keywords) for f in focus_rows]
     bundles = {s.id: bundle(conn, s, sources) for s in stories_repo.pending_stories(conn)}
-    always, pre, to_triage, res.stats["prefilter"] = _select(
+    pairs, always, pre, to_triage, res.stats["prefilter"] = _select(
         conn, list(bundles.values()), settings, focus, now)
     p = _Prompts(
         triage=prompts.load_prompt("triage"), assess=prompts.load_prompt("assess"),
@@ -233,8 +250,9 @@ async def run_assess(conn: Connection, ollama: OllamaClient, fetcher: Fetcher,
             conn, ollama, settings, [bundles[i] for i in to_triage], p, deadline)
     except LLMUnavailable as exc:
         res.llm_error = short_error(exc)
-        kept, res.stats["triage"] = [], dict(_TRIAGE_ZERO)
-    queue_ids = always + pre + kept
+        kept, res.stats["triage"] = {}, dict(_TRIAGE_ZERO)
+    relevance = {i: bundles[i].story.triage_relevance or 0 for i in pre} | kept
+    queue_ids = assess_order([pairs[i] for i in always + pre + list(kept)], relevance, now=now)
     cap = settings.budget.max_assess_per_run if max_assess is None else max_assess
     queue = [bundles[i] for i in queue_ids[:cap]]
     texts, res.stats["enrich"] = (await _enrich(conn, fetcher, queue, deadline)

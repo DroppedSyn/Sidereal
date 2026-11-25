@@ -21,6 +21,7 @@ from sidereal.db.sources_repo import SourceRow
 from sidereal.net.fetch import Fetcher
 from sidereal.pipeline.common import short_error
 from sidereal.pipeline.dedupe import (
+    MAX_STORY_CVES,
     Assignment,
     KnownStory,
     NewItem,
@@ -29,6 +30,7 @@ from sidereal.pipeline.dedupe import (
     rollup_title,
 )
 from sidereal.sources.base import REGISTRY, FetchResult, RawItem, SourceBroken
+from sidereal.sources.msrc import extract_cve_ids
 from sidereal.textclean import clean_title, excerpt
 from sidereal.timeutil import day_key
 from sidereal.urls import canonicalize
@@ -127,21 +129,33 @@ def record_health(conn: Connection, outcomes: Sequence[SourceOutcome],
     return stats
 
 
+def item_cve_ids(adapter_cves: Sequence[object], title: str, excerpt_text: str) -> tuple[str, ...]:
+    """The adapter's CVE ids, then those named in the title/excerpt (upper case, first
+    occurrence kept). Text ids count only when there are at most ``MAX_STORY_CVES`` of them: a
+    roundup naming many CVEs would otherwise join the first small story sharing one of them and
+    grow it past the dedupe limit."""
+    found = extract_cve_ids(title, excerpt_text)
+    if len(found) > MAX_STORY_CVES:
+        found = []
+    return tuple(dict.fromkeys([*(str(c) for c in adapter_cves), *found]))
+
+
 def normalize(source: SourceRow, raw: RawItem) -> Normalized | None:
-    """Plain-text title/excerpt, canonical URL (§6.3); None when the URL is unusable."""
+    """Plain-text title/excerpt, canonical URL (§6.3), CVE ids (``item_cve_ids``); None when
+    the URL is unusable."""
     try:
         canonical = canonicalize(raw.url)
     except ValueError:
         return None
     title = clean_title(raw.title) or canonical
     extra = raw.extra or {}
-    cves = tuple(str(c) for c in extra.get("cve_ids") or ())
+    text = excerpt(raw.excerpt_html or "", EXCERPT_CHARS)
+    cves = item_cve_ids(extra.get("cve_ids") or (), title, text)
     vendor = str(extra.get("vendor") or "") if extra.get("kev") else None
     return Normalized(
         source=source, guid=raw.guid, url=raw.url.strip(), canonical_url=canonical,
         title=title, title_norm=normalize_title(title), author=raw.author,
-        published=raw.published, excerpt=excerpt(raw.excerpt_html or "", EXCERPT_CHARS),
-        cve_ids=cves, kev_vendor=vendor,
+        published=raw.published, excerpt=text, cve_ids=cves, kev_vendor=vendor,
     )
 
 

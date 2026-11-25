@@ -576,7 +576,9 @@ Probed from the VM on 2026-11-22. ✅ = valid feed with items. Claude records a 
 An item joins an existing story when, in this order:
 1. same `canonical_url` or same `(source, guid)` → **duplicate**: not inserted at all;
 2. shares ≥ 1 CVE id with the story and the story has ≤ 3 CVE ids (a Patch Tuesday roll-up shares
-   many CVEs and would swallow everything);
+   many CVEs and would swallow everything). Every item's CVE ids = the adapter's (MSRC, KEV) plus
+   those named in its title/excerpt (`CVE-\d{4}-\d{4,7}`, upper-cased), the text ones only when
+   there are ≤ 3 of them, so a roundup listing many CVEs stays its own story (post-M14);
 3. title similarity: token-set Jaccard over `title_norm` (lowercased, punctuation stripped, stop
    words removed, simple plural stem) ≥ 0.6, and both titles have ≥ 4 tokens.
 Otherwise a new story. **MSRC batching:** ≥ 5 MSRC items in one run with the same release date →
@@ -656,7 +658,10 @@ assess_content_chars = 6000   # enriched text sent to the model
 ```
 Unfinished stories (budget or time) keep state `new` and are picked up first by the next run, oldest
 first. **⚠ Pitfall (starvation):** the queue must be by hint score *within* age bands, else an old
-backlog never clears. Test `test_runner.py::test_backlog_carried_to_next_run`.
+backlog never clears. Test `test_runner.py::test_backlog_carried_to_next_run`. The **assess** queue
+(always-keeps + triage keeps, capped at `max_assess_per_run`) is ordered by triage relevance first
+(3 before 2; always-keeps count as 3), then by the same age-band/hint order (post-M14 change, test
+`test_assess_order.py::test_relevance_3_beats_older_relevance_2_under_the_cap`).
 
 ### 7.3 Prompts (`prompts/*.txt`, Claude writes them, versioned)
 
