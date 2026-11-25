@@ -507,7 +507,7 @@ class FetchResponse:
   `test_timeutil.py::test_cisa_two_digit_year`.
 - **Age cap:** skip items with `published_at` older than `max_age_hours` (default 96). First run
   ever (no prior `ok` run): `backfill_hours` (default 72).
-- **Per-source cap:** keep newest `sources.max_items` (default 50; MSRC 300 before its filter).
+- **Per-source cap:** keep newest `sources.max_items` (default 50; MSRC: filter first, then cap).
 - **Day key:** `day_key(first_seen_at_utc, tz) -> 'YYYY-MM-DD'` via `zoneinfo`.
   **⚠ Pitfall (DST / midnight):** 2026-03-29 00:30 UTC is 00:30 GMT on the 29th; 2026-10-24
   23:30 UTC is 00:30 BST on the 25th. Tests `test_timeutil.py::test_day_key_bst_boundary`,

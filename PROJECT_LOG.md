@@ -75,3 +75,16 @@ a brief says so.
   `recover_stale` touching non-running rows, `list_runs` ASC or `<=`, bad/`running` status
   accepted, `last_ok_run` without partial or ASC, stats dropped, trigger unchecked, unknown run
   silent, writes without `with conn:`. Full suite 347 passed, ruff clean.
+- 2026-11-25 **M4** (pi run r51, `qwen3.6:35b-a3b-coding`, 38m30s, 25 tool calls / 2 failed
+  (a test run with 2 failures, a probe script using `read_bytes` on a file object); 377k tokens
+  in / 60.7k out, one 16.4k reply near the output cap, resumed after stalling 2×). pi wrote all
+  eight files in one pass, ran the tests once, probed feedparser and stopped mid-investigation
+  with 2 tests failing and 38 ruff errors. Files as landed: `sources/base.py` 104 lines,
+  `rss.py` 149, `msrc.py` 66, `__init__.py` 8, `tests/adapter_helpers.py` 54,
+  `tests/test_sources_base.py` 129 (10 tests), `tests/test_rss.py` 366 (51), `tests/test_msrc.py`
+  131 (11). Outcome: landed; review rewrote the three modules (same API) and fixed the tests:
+  `pytest.raises(Exception)` everywhere instead of `SourceBroken`, `test_age_cap` never passed
+  `max_age_hours` and left three unused fetches, the undated-keeps test had no cap, excerpt
+  content-first against the brief. MSRC order changed to filter first, then cap (orchestrator
+  request; plan §6.3 updated). 13 tests added. Mutation checks (45, all red; title `.strip()`
+  equivalent). Full suite 423 passed, ruff clean.
