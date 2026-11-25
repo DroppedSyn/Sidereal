@@ -30,14 +30,14 @@ file, re-run it so they stay true.
 | 9 | 9. Front end | L437–L457 |
 | 10 | 10. Configuration | L458–L486 |
 | 11 | 11. CLI | L487–L503 |
-| 12 | 12. Deployment and operations | L504–L521 |
-| 13 | 13. Invariants (never break these) | L522–L543 |
-| 14 | 14. Testing | L544–L574 |
-| 15 | 15. Maintenance recipes | L575–L617 |
-| 16 | 16. Known limitations and open owner decisions | L618–L632 |
-| 17 | 17. Gotchas | L633–L649 |
-| 18 | 18. Where history lives | L650–L657 |
-| 19 | 19. Regenerating this TOC | L658–L682 |
+| 12 | 12. Deployment and operations | L504–L522 |
+| 13 | 13. Invariants (never break these) | L523–L544 |
+| 14 | 14. Testing | L545–L575 |
+| 15 | 15. Maintenance recipes | L576–L618 |
+| 16 | 16. Known limitations and open owner decisions | L619–L633 |
+| 17 | 17. Gotchas | L634–L650 |
+| 18 | 18. Where history lives | L651–L658 |
+| 19 | 19. Regenerating this TOC | L659–L683 |
 
 ---
 
@@ -505,7 +505,8 @@ Settings page). Secrets never go in TOML or the DB (§4.7). The run schedule liv
 
 - **Install**: `(cd web && ~/.local/node/bin/npm run build)` then `deploy/install.sh`
   (idempotent: runs `sidereal init`, rewrites unit paths to this checkout, installs units to
-  `~/.config/systemd/user`, `daemon-reload`, enables web + both timers, prints the linger hint),
+  `~/.config/systemd/user`, links `~/.local/bin/sidereal` → `.venv/bin/sidereal` so `sidereal`
+  is on PATH, `daemon-reload`, enables web + both timers, prints the linger hint),
   then `sudo loginctl enable-linger al`, then `sidereal doctor`.
 - **Logs**: `journalctl --user -u sidereal-run.service -n 200`, same for `sidereal-web`. INFO logs
   carry counts, keys, ids and exception types only (no article text or prompts).

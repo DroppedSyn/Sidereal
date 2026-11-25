@@ -38,6 +38,21 @@ for u in "${units[@]}"; do
     echo "installed $unit_dir/$u"
 done
 
+# Put `sidereal` on PATH (~/.local/bin) as a symlink to the venv's entry point. A file there
+# that is not a symlink is left alone.
+link_dir="$HOME/.local/bin"
+mkdir -p "$link_dir"
+if [ -e "$link_dir/sidereal" ] && [ ! -L "$link_dir/sidereal" ]; then
+    echo "warning: $link_dir/sidereal exists and is not a symlink; left unchanged" >&2
+else
+    ln -sfn "$bin" "$link_dir/sidereal"
+    echo "linked $link_dir/sidereal -> $bin"
+fi
+case ":$PATH:" in
+    *":$link_dir:"*) ;;
+    *) echo "note: $link_dir is not on PATH; add it to use 'sidereal' directly" >&2 ;;
+esac
+
 systemctl --user daemon-reload
 systemctl --user enable --now "${enable[@]}"
 systemctl --user list-timers 'sidereal-*' --no-pager || true
@@ -50,4 +65,4 @@ if [ "$linger" != "yes" ]; then
     echo "then check: loginctl show-user $user --property=Linger   (expect Linger=yes)"
 fi
 echo
-echo "Done. Check with: $bin doctor"
+echo "Done. Check with: sidereal doctor"

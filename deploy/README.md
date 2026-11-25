@@ -24,7 +24,7 @@ build (`(cd web && ~/.local/node/bin/npm ci && ~/.local/node/bin/npm run build)`
 ```sh
 ~/Projects/Sidereal/deploy/install.sh     # idempotent; never runs sudo
 sudo loginctl enable-linger al            # once, only if install.sh says lingering is off
-~/Projects/Sidereal/.venv/bin/sidereal doctor
+sidereal doctor
 systemctl --user list-timers 'sidereal-*'
 ```
 
@@ -188,7 +188,7 @@ matters: user first, then auth on, then the proxy settings.
 
    ```sh
    systemctl --user restart sidereal-web.service
-   ~/Projects/Sidereal/.venv/bin/sidereal doctor     # web exposure ✅, https ✅, origins ✅
+   sidereal doctor     # web exposure ✅, https ✅, origins ✅
    ```
 
 5. **Caddy** (Debian package; the only sudo steps):
