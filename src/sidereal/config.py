@@ -8,6 +8,7 @@ Unknown sections or keys are errors (typos must not pass silently). Secrets neve
 
 from __future__ import annotations
 
+import ipaddress
 import json
 import os
 import tomllib
@@ -39,7 +40,36 @@ class WebSettings(_Section):
     # Origins on an allowed host with port `port` are always accepted.
     allowed_origins: list[str] = []
     https: bool = False
+    # Peers whose X-Forwarded-For is believed (client IP for the login rate limit): single IPs
+    # or CIDR networks, v4 or v6. An entry that doesn't parse is an error, never dropped.
     trusted_proxies: list[str] = []
+
+    @field_validator("trusted_proxies")
+    @classmethod
+    def _proxies_parse(cls, value: list[str]) -> list[str]:
+        for entry in value:
+            parse_proxy(entry)
+        return value
+
+
+def parse_proxy(entry: str) -> ipaddress.IPv4Network | ipaddress.IPv6Network:
+    """``"127.0.0.1"`` or ``"10.0.0.0/24"`` (v4/v6) → network; host bits set, a hostname or an
+    empty entry → ValueError (pydantic reports it, ``load_settings`` raises ConfigError)."""
+    text = entry.strip()
+    if not text:
+        raise ValueError("trusted_proxies: empty entry")
+    try:
+        return ipaddress.ip_network(text, strict=True)
+    except ValueError as exc:
+        raise ValueError(
+            f"trusted_proxies: {entry!r} is not an IP address or CIDR network ({exc})"
+        ) from None
+
+
+def proxy_networks(
+    entries: list[str],
+) -> tuple[ipaddress.IPv4Network | ipaddress.IPv6Network, ...]:
+    return tuple(parse_proxy(e) for e in entries)
 
 
 class AuthSettings(_Section):

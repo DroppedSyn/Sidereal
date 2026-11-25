@@ -55,7 +55,7 @@ def test_disabled_user_does_not_count(config_file, monkeypatch, served):
     assert main(["serve", "--host", "192.168.1.20"]) == 2
 
 
-def test_users_do_not_help_with_auth_off(settings, served, capsys):
+def test_users_do_not_help_with_auth_off(settings, served, capsys, monkeypatch):
     from sidereal.bootstrap import migrate
 
     migrate(settings)
@@ -64,5 +64,7 @@ def test_users_do_not_help_with_auth_off(settings, served, capsys):
     conn.close()
     assert main(["serve", "--host", "0.0.0.0"]) == 2
     assert "auth.mode is off" in capsys.readouterr().err
+    # the test config's `testserver` host counts as exposure since M30: loopback names only
+    monkeypatch.setenv("SIDEREAL_WEB__ALLOWED_HOSTS", '["127.0.0.1", "localhost"]')
     assert main(["serve"]) == 0  # loopback default
     assert served[0]["host"] == "127.0.0.1"

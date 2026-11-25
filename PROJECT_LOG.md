@@ -634,3 +634,25 @@ a brief says so.
   the DST weeks (BST start 29.03.2026, end 25.10.2026) are tested; mutants red: week from the UTC
   date, regenerate guard, hidden filter, Sunday check, cap, order. Backend 2111 passed, front end
   157 passed; ruff, static rules, tsc, eslint, build and the E2E smoke clean.
+- 2026-11-25 **M30 LAN deployment, prepared** (Claude, no pi). Owner: VM only for now, LAN
+  later, maybe external one day; so everything is built and documented but the live deployment
+  is unchanged (still `127.0.0.1:8470`, auth off, no install, no sudo). Closes the three open
+  notes of the M25 security review: (1) `web.trusted_proxies` now takes single IPs and CIDR
+  networks, v4 and v6; an entry that doesn't parse (hostname, host bits set, empty) is a config
+  error, never silently dropped; IPv4-mapped peers match their v4 network. (2) `Secure` stays
+  tied to `web.https` (explicit, as the plan says), and `doctor` warns when the app is bound
+  beyond loopback or proxied without it, or has it on with no TLS in front. (3) Rule 9 widened:
+  a proxy on the same host (`trusted_proxies` set) or a non-loopback `allowed_hosts` name now
+  counts as exposure, so `serve` refuses it without auth on and a user, and `doctor` reports ❌
+  `web exposure` (it reads the bind host from the installed web unit). Doctor also warns on
+  proxy networks wider than /24 or /64 and on a proxied host name without its `https://name`
+  in `allowed_origins` (the write guard compares the port, so login through Caddy would 403).
+  `deploy/Caddyfile.example` (`tls internal`, `reverse_proxy 127.0.0.1:8470`, 1 MB body cap,
+  timeouts, only the headers the app doesn't send, HSTS commented out) and a README "LAN
+  deployment" section: network, user, config keys, restart + doctor, Caddy, firewall, test,
+  plain-HTTP alternative, rollback, and the external-exposure checklist (TOTP required, public
+  cert + HSTS, fail2ban jail on the login-failure line, only 443/80, offsite backups, security
+  review). The Caddyfile is checked as text only: Caddy isn't installed and downloading it was
+  not allowed. Three existing tests used the test config's `testserver` host with auth off and
+  now pin loopback-only hosts. Tests: 5 new files (106); 21 of 22 mutants red, one equivalent.
+  Backend 2218 passed, front end 157 passed; ruff, static rules, tsc, eslint clean.

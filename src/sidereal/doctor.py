@@ -146,7 +146,9 @@ async def check_ollama(settings: Settings, ollama: OllamaClient) -> list[Check]:
 async def run_checks(settings: Settings, ollama: OllamaClient, *,
                      now: datetime | None = None) -> list[Check]:
     at = now or utc_now()
-    checks = check_config() + check_state_dir(settings)
+    from sidereal.doctor_web import check_web_exposure  # imports Check from here
+
+    checks = check_config() + check_web_exposure(settings) + check_state_dir(settings)
     if settings.state_dir.is_dir():
         checks += check_lock(settings)
     checks += check_db(settings, at)

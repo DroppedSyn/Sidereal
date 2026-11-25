@@ -133,7 +133,8 @@ def test_refuses_nonloopback_without_auth(settings):
         assert not is_loopback(host)
         with pytest.raises(UnsafeBindError):
             check_bind(host, settings, user_count=5)  # auth off: users don't matter
-    check_bind("127.0.0.1", settings, user_count=0)
+    local = settings.web.model_copy(update={"allowed_hosts": ["127.0.0.1", "localhost"]})
+    check_bind("127.0.0.1", settings.model_copy(update={"web": local}), user_count=0)
 
 
 def test_refuses_nonloopback_with_auth_but_no_user(settings):

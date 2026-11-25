@@ -17,7 +17,7 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 
 from sidereal.auth import sessions
-from sidereal.config import Settings
+from sidereal.config import Settings, proxy_networks
 from sidereal.db.connect import connect
 from sidereal.timeutil import utc_now
 
@@ -25,27 +25,39 @@ PUBLIC = frozenset({"/api/health", "/api/auth/login", "/api/auth/logout"})
 CallNext = Callable[[Request], Awaitable[Response]]
 
 
-def _ip(value: str) -> ipaddress.IPv4Address | ipaddress.IPv6Address | None:
+IPAddress = ipaddress.IPv4Address | ipaddress.IPv6Address
+
+
+def _ip(value: str) -> IPAddress | None:
     try:
-        return ipaddress.ip_address(value.strip().strip("[]"))
+        ip = ipaddress.ip_address(value.strip().strip("[]"))
     except ValueError:
         return None
+    if isinstance(ip, ipaddress.IPv6Address) and ip.ipv4_mapped is not None:
+        return ip.ipv4_mapped  # ::ffff:127.0.0.1 from a dual-stack socket is 127.0.0.1
+    return ip
+
+
+def is_trusted(ip: IPAddress, networks: tuple[ipaddress.IPv4Network | ipaddress.IPv6Network,
+                                              ...]) -> bool:
+    return any(ip.version == net.version and ip in net for net in networks)
 
 
 def client_ip(request: Request, trusted_proxies: list[str]) -> str:
-    """The peer address; ``X-Forwarded-For`` is used only when the peer is a trusted proxy, read
-    from the right, skipping trusted hops (plan §11.3)."""
+    """The peer address; ``X-Forwarded-For`` is used only when the peer is in a trusted proxy
+    network (single IPs or CIDRs, validated by ``config``), read from the right, skipping trusted
+    hops (plan §11.3)."""
     peer = request.client.host if request.client else "unknown"
-    trusted = {ip for ip in (_ip(p) for p in trusted_proxies) if ip is not None}
+    trusted = proxy_networks(trusted_proxies)
     peer_ip = _ip(peer)
-    if peer_ip is None or peer_ip not in trusted:
+    if peer_ip is None or not is_trusted(peer_ip, trusted):
         return peer
     hops = [h for h in request.headers.get("x-forwarded-for", "").split(",") if h.strip()]
     for hop in reversed(hops):
         hop_ip = _ip(hop)
         if hop_ip is None:
             return peer
-        if hop_ip not in trusted:
+        if not is_trusted(hop_ip, trusted):
             return str(hop_ip)
     return peer
 

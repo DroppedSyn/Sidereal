@@ -39,6 +39,8 @@ def fake(settings, monkeypatch):
     monkeypatch.setattr(doctor, "utc_now", lambda: NOW)
     monkeypatch.setattr(doctor, "DISK_WARN_BYTES", 0)  # tmp dirs live on a small /tmp
     monkeypatch.setattr(doctor, "DISK_FAIL_BYTES", 0)
+    # the test config's `testserver` host counts as exposure since M30 (test_doctor_web.py)
+    monkeypatch.setenv("SIDEREAL_WEB__ALLOWED_HOSTS", '["127.0.0.1", "localhost"]')
     return f
 
 

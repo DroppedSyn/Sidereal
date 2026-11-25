@@ -1,0 +1,54 @@
+# Sidereal behind Caddy on the same VM (plan §11.3 stage 2: internal network).
+# Copy to /etc/caddy/Caddyfile, replace sidereal.lan with the name (or IP) clients use, then
+# `sudo systemctl reload caddy`. Steps and the matching sidereal.toml: deploy/README.md,
+# "LAN deployment".
+#
+# Sidereal itself stays on 127.0.0.1:8470 (the unit's --host 127.0.0.1); only Caddy listens on
+# the network (80 → redirect, 443 → TLS). The app already sends Content-Security-Policy,
+# X-Content-Type-Options, Referrer-Policy and X-Frame-Options and Cache-Control: no-store on
+# /api: they are NOT repeated here (two CSP headers would both apply, the stricter wins, and
+# drift apart over time).
+
+{
+	# Timeouts against slow clients; the app's slowest answer is a page of JSON.
+	servers {
+		timeouts {
+			read_header 10s
+			read_body 30s
+			write 60s
+			idle 2m
+		}
+	}
+}
+
+# A LAN name with Caddy's own CA ("tls internal"). Clients must trust Caddy's root once:
+# /var/lib/caddy/.local/share/caddy/pki/authorities/local/root.crt
+# For an IP instead of a name, use "https://192.168.1.50 {" (tls internal issues IP certs too).
+sidereal.lan {
+	tls internal
+
+	# Largest real request is a settings/source edit of a few KB; logins are tiny.
+	request_body {
+		max_size 1MB
+	}
+
+	header {
+		# Don't advertise the proxy.
+		-Server
+		# Only what the app doesn't set; "?" = set only when the response lacks it.
+		?Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+		?Cross-Origin-Opener-Policy "same-origin"
+		?Cross-Origin-Resource-Policy "same-origin"
+		# HSTS: enable once every client trusts the certificate (stage 3: a public cert).
+		# Strict-Transport-Security "max-age=31536000"
+	}
+
+	# Keeps the client's Host (must be in web.allowed_hosts) and sets X-Forwarded-For to the
+	# client address (Caddy ignores one sent by an untrusted client); Sidereal believes it only
+	# from web.trusted_proxies = ["127.0.0.1", "::1"].
+	reverse_proxy 127.0.0.1:8470
+
+	log {
+		output file /var/log/caddy/sidereal-access.log
+	}
+}
