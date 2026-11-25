@@ -256,3 +256,14 @@ a brief says so.
   brief, the review found no bug. One mutation survived (the `before` query ignoring `limit`: the
   briefed before+limit case only had one row under limit 5), killed by the added
   `test_list_before_respects_limit`. 22 mutations all red. Full suite 949 passed, ruff clean.
+- 2026-11-25 **M12b-2** (pi run r64, `qwen3.6:35b-a3b-coding:off`, builtin edit tools, done in
+  **26m05s**, 9 tool calls / 0 failed, 240k tokens in / 20.2k out). After reading three files pi
+  produced one 16384-token pure-thinking reply (56k chars, stopReason `length`) before any write,
+  although the brief spelled out the module and every test; after one stall resume it wrote the
+  test file and the module in one go each and went green on the first run. So `:off` does not
+  prevent the pre-write planning runaway either (r61 had none, r62's came after red tests). Both
+  files match the brief verbatim, no bug in pi's code. Review: the module's own case-sensitive URL
+  regex copy (as briefed, pending assess) replaced by an import of the canonical
+  `assess.strip_urls` (`HTTPS://` survived the copy); 3 tests added (helper identity, upper-case
+  URLs in both fields, URL-only overview → `""`); tests 26 → 29 cases. 19 mutations all red, see
+  AGENTS.md M12. M12 done (M12a r60, M12b-1 r63, M12b-2 r64). Full suite 979 passed, ruff clean.
