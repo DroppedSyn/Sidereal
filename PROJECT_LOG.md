@@ -103,3 +103,23 @@ a brief says so.
   Cause: over-thinking at the output cap (pi-bridge failure table r13/r52). A brief of this size
   (4 files, 22 tests) needs a `:low` thinking model or a split (fake + tests, then module).
   Full suite 455 passed, ruff clean.
+- 2026-11-25 **M6b** (pi run r53, `qwen3.6:35b-a3b-coding`, builtin edit tools, **timeout at
+  50m00s**, 30 tool calls / 5 failed (two test runs with failures, one edit `oldText` miss, two
+  whole-file test rewrites not executed because the reply hit the output token limit); 592k
+  tokens in / 52.9k out, largest reply 12.7k). pi wrote all six files by step 19 (modules 154 /
+  256 / 98 lines, tests 391 / 473 / 196), first run 22 failures, rewrote the test files, second
+  run 6 failures, then timed out while re-reading its modules. Cause: its stories tests
+  contradicted the brief (assumed `insert_item` also attaches the item and sets lead /
+  `last_seen_at`; rebound `st` to a `StoryRow` and passed it as an id), and 1568 lines of
+  inline-repeated calls made every fix a whole-file rewrite near the output cap (new row in the
+  pi-bridge failure table). Outcome: pi's diff applied as base; modules kept and tidied:
+  `recent_stories` returned dicts instead of `RecentStory`, `delete_dropped_before` built SQL
+  with `+` (the static rule misses a Name operand), `pending_stories` → one `LIMIT ?` query,
+  items row construction deduplicated, `attach_item` simplified. All three test files rewritten
+  to the brief with helpers (31 → 37 tests). Files as landed: `items_repo.py` 118 lines,
+  `stories_repo.py` 237, `assessments_repo.py` 98, tests 182 / 275 / 94. Mutation checks (30,
+  all red): duplicate via `lastrowid`, prune `<=`, NULL-guid exists, attach resetting lead,
+  `last_seen_at` backwards, CVE merge duplicating, pending order / tie / limit, delete at cutoff /
+  `new` / `side`, recent and since exclusive, title_norm order, triage 4, reason not cleared,
+  rubric -1, novelty unchecked, upsert keeping `created_at`, each of the 10 `with conn:` removed.
+  Full suite 495 passed, ruff clean.
