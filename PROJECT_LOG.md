@@ -233,3 +233,18 @@ a brief says so.
   test 14 lacked the briefed 1-call assert. Tests 24 → 33 functions (41 cases). Mutation checks
   (30, all red), see AGENTS.md M11. `assess.strip_urls` is the canonical URL stripper; r64's
   `digest.py` copy should import it in review. Full suite 890 passed, ruff clean.
+- 2026-11-25 **M10b** (pi run r62, `qwen3.6:35b-a3b-coding:off`, builtin edit tools, done in
+  **1h22m** after 47 min in the queue, 40 tool calls / 10 failed (one edit miss, eight red test
+  runs, a `ruff check src/tests` typo), 1187k tokens in / 60.3k out, two 16384-token replies, two
+  stall resumes). Thinking off did not stop thinking: the model still streamed thinking blocks
+  (180k chars over the run, 2.3k in r61) and twice spiralled to the output cap (~13 min each, plus
+  ~10 min each for stall detection and compaction). Trigger: its first module missed the
+  `LLMOutputInvalid` import and got `unfinished` wrong; briefed test 15 (an id missing in pass one
+  whose re-queue the deadline skips stays `unfinished`) then looked contradictory to it, so it
+  argued with itself, switched to an `attempted` set that made such ids `defaulted` (relevance 1,
+  dropped for good) and rewrote test 15 to match, the r59 pattern. `:off` is fast while the brief
+  transcribes cleanly (r61), but a red test it cannot explain still produces runaway reasoning.
+  Review: `run_batches` rewritten to the brief (one `one_pass` helper for both passes), test 15
+  restored, tests 19 → 27 functions (34 cases), 35 mutations all red (one survivor, "only the
+  current skipped batch marked unfinished", killed by a 3-batch deadline test). Full suite 925
+  passed, ruff clean.
