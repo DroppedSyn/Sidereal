@@ -4,6 +4,7 @@ import GazettePage from './pages/GazettePage';
 import LoginPage from './pages/LoginPage';
 import RunsPage from './pages/RunsPage';
 import SearchPage from './pages/SearchPage';
+import SettingsPage from './pages/SettingsPage';
 import SourcesPage from './pages/SourcesPage';
 
 // Opt in to the v7 behaviour now (silences the v6 future-flag warnings).
@@ -29,6 +30,7 @@ export default function AppRoutes() {
       <Route path="/runs" element={<RunsPage />} />
       <Route path="/sources" element={<SourcesPage />} />
       <Route path="/search" element={<SearchPage />} />
+      <Route path="/settings" element={<SettingsPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

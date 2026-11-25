@@ -366,3 +366,32 @@ a:hover { text-decoration-thickness: 2px; }
 .mutes { margin-top: 1.5rem; }
 .mutes-list { list-style: none; padding: 0; margin: 0; }
 .mutes-list li { padding: 0.2rem 0; }
+
+/* Settings (M27) */
+.settings-section { margin: 1.5rem 0; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
+.settings-section h3 { margin: 0 0 0.4rem; font-family: var(--serif); }
+.settings-note { color: var(--muted); font-size: 0.85rem; margin: 0.25rem 0 0.6rem; }
+.settings-list { list-style: none; margin: 0 0 0.75rem; padding: 0; }
+.settings-list > li { padding: 0.55rem 0; border-bottom: 1px solid var(--rule); }
+.setting-disabled { opacity: 0.65; }
+.setting-head { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; }
+.setting-key, .setting-url { color: var(--muted); font-size: 0.8rem; overflow-wrap: anywhere; }
+.setting-desc { margin: 0.3rem 0; font-size: 0.9rem; }
+.setting-keywords { margin: 0.2rem 0; color: var(--muted); font-size: 0.85rem; }
+.settings-form { display: flex; flex-direction: column; gap: 0.7rem; max-width: 46rem; }
+.settings-form select, .settings-form textarea, .field select, .field textarea {
+  font: inherit; padding: 0.4rem 0.5rem; border: 1px solid var(--rule); border-radius: 4px;
+  background: var(--paper); color: var(--fg);
+}
+.settings-form .mono, .config-dump { font-family: ui-monospace, 'DejaVu Sans Mono', monospace; font-size: 0.8rem; }
+.field-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.field-row .field { flex: 1 1 12rem; }
+.check { display: inline-flex; gap: 0.4rem; align-items: center; }
+.form-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.tuning-group { border: 1px solid var(--rule); border-radius: 4px; padding: 0.5rem 0.75rem;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 0.5rem 0.9rem; }
+.tuning-group legend { font-weight: 600; padding: 0 0.3rem; }
+.tuning-field span { font-size: 0.8rem; color: var(--muted); }
+.feed-test ul { margin: 0.25rem 0 0; padding-left: 1.2rem; font-size: 0.85rem; }
+.config-dump { max-height: 28rem; overflow: auto; background: var(--paper); border: 1px solid var(--rule);
+  padding: 0.6rem; white-space: pre-wrap; overflow-wrap: anywhere; }

@@ -234,6 +234,155 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/settings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Settings View */
+        get: operations["get_settings_view_api_settings_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/settings/focus": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Focus */
+        get: operations["list_focus_api_settings_focus_get"];
+        put?: never;
+        /** Add Focus */
+        post: operations["add_focus_api_settings_focus_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/settings/focus/{key}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Edit Focus */
+        put: operations["edit_focus_api_settings_focus__key__put"];
+        post?: never;
+        /** Delete Focus */
+        delete: operations["delete_focus_api_settings_focus__key__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/settings/notify/test": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Notify Test
+         * @description Send the fixed test message on one channel; failures come back as ``ok: false``.
+         */
+        post: operations["notify_test_api_settings_notify_test_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/settings/overrides": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Put Overrides
+         * @description Replace every override (a missing or null key = back to the file's value).
+         */
+        put: operations["put_overrides_api_settings_overrides_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/settings/sources": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Source Configs */
+        get: operations["list_source_configs_api_settings_sources_get"];
+        put?: never;
+        /** Add Source */
+        post: operations["add_source_api_settings_sources_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/settings/sources/test": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Test Feed
+         * @description Fetch ``url`` once with the adapter of ``kind`` (no conditional GET, no age cap).
+         */
+        post: operations["test_feed_api_settings_sources_test_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/settings/sources/{source_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Edit Source */
+        put: operations["edit_source_api_settings_sources__source_id__put"];
+        post?: never;
+        /** Delete Source */
+        delete: operations["delete_source_api_settings_sources__source_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/sources": {
         parameters: {
             query?: never;
@@ -417,6 +566,41 @@ export interface components {
             /** Run Count */
             run_count: number;
         };
+        /** FeedTestIn */
+        FeedTestIn: {
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "rss" | "msrc" | "cisa_kev" | "hn_algolia";
+            /**
+             * Max Items
+             * @default 50
+             */
+            max_items: number;
+            /**
+             * Options
+             * @default {}
+             */
+            options: {
+                [key: string]: unknown;
+            };
+            /** Url */
+            url: string;
+        };
+        /** FeedTestOut */
+        FeedTestOut: {
+            /** Entries */
+            entries: number;
+            /** Error */
+            error: string | null;
+            /** Items */
+            items: number;
+            /** Ok */
+            ok: boolean;
+            /** Titles */
+            titles: string[];
+        };
         /** FeedbackOut */
         FeedbackOut: {
             /** Hidden */
@@ -427,6 +611,64 @@ export interface components {
             story_id: number;
             /** Vote */
             vote: ("up" | "down") | null;
+        };
+        /** FocusFields */
+        FocusFields: {
+            /** Description */
+            description: string;
+            /**
+             * Enabled
+             * @default true
+             */
+            enabled: boolean;
+            /** Keywords */
+            keywords: string[];
+            /** Name */
+            name: string;
+            /**
+             * Tier
+             * @enum {string}
+             */
+            tier: "primary" | "secondary" | "side";
+        };
+        /** FocusIn */
+        FocusIn: {
+            /** Description */
+            description: string;
+            /**
+             * Enabled
+             * @default true
+             */
+            enabled: boolean;
+            /** Key */
+            key: string;
+            /** Keywords */
+            keywords: string[];
+            /** Name */
+            name: string;
+            /**
+             * Tier
+             * @enum {string}
+             */
+            tier: "primary" | "secondary" | "side";
+        };
+        /** FocusOut */
+        FocusOut: {
+            /** Description */
+            description: string;
+            /** Enabled */
+            enabled: boolean;
+            /** Key */
+            key: string;
+            /** Keywords */
+            keywords: string[];
+            /** Name */
+            name: string;
+            /**
+             * Tier
+             * @enum {string}
+             */
+            tier: "primary" | "secondary" | "side";
         };
         /** Gazette */
         Gazette: {
@@ -501,6 +743,61 @@ export interface components {
             kind: "source" | "keyword";
             /** Value */
             value: string;
+        };
+        /** NotifyChannel */
+        NotifyChannel: {
+            /** Configured */
+            configured: boolean;
+            /** Enabled */
+            enabled: boolean;
+            /**
+             * Name
+             * @enum {string}
+             */
+            name: "email" | "discord";
+            /** Problem */
+            problem: string | null;
+        };
+        /** NotifyTestIn */
+        NotifyTestIn: {
+            /**
+             * Channel
+             * @enum {string}
+             */
+            channel: "email" | "discord";
+        };
+        /** NotifyTestOut */
+        NotifyTestOut: {
+            /** Channel */
+            channel: string;
+            /** Error */
+            error: string | null;
+            /** Ok */
+            ok: boolean;
+        };
+        /** OverridesIn */
+        OverridesIn: {
+            /**
+             * Budget
+             * @default {}
+             */
+            budget: {
+                [key: string]: unknown;
+            };
+            /**
+             * Scoring
+             * @default {}
+             */
+            scoring: {
+                [key: string]: unknown;
+            };
+            /**
+             * Triage
+             * @default {}
+             */
+            triage: {
+                [key: string]: unknown;
+            };
         };
         /** ReadIn */
         ReadIn: {
@@ -578,6 +875,113 @@ export interface components {
             side: components["schemas"]["Story"][];
             /** Top */
             top: components["schemas"]["Story"][];
+        };
+        /** SettingsOut */
+        SettingsOut: {
+            /** Config */
+            config: {
+                [key: string]: unknown;
+            };
+            /** Editable */
+            editable: {
+                [key: string]: string[];
+            };
+            /** Notify */
+            notify: components["schemas"]["NotifyChannel"][];
+            /** Overrides */
+            overrides: {
+                [key: string]: {
+                    [key: string]: unknown;
+                };
+            };
+        };
+        /** SourceConfig */
+        SourceConfig: {
+            /** Enabled */
+            enabled: boolean;
+            /** Id */
+            id: number;
+            /** Key */
+            key: string;
+            /** Kind */
+            kind: string;
+            /** Max Items */
+            max_items: number;
+            /** Name */
+            name: string;
+            /** Options */
+            options: {
+                [key: string]: unknown;
+            };
+            /** Url */
+            url: string;
+            /** Weight */
+            weight: number;
+        };
+        /** SourceFields */
+        SourceFields: {
+            /**
+             * Enabled
+             * @default true
+             */
+            enabled: boolean;
+            /**
+             * Max Items
+             * @default 50
+             */
+            max_items: number;
+            /** Name */
+            name: string;
+            /**
+             * Options
+             * @default {}
+             */
+            options: {
+                [key: string]: unknown;
+            };
+            /** Url */
+            url: string;
+            /**
+             * Weight
+             * @default 1
+             */
+            weight: number;
+        };
+        /** SourceIn */
+        SourceIn: {
+            /**
+             * Enabled
+             * @default true
+             */
+            enabled: boolean;
+            /** Key */
+            key: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "rss" | "msrc" | "cisa_kev" | "hn_algolia";
+            /**
+             * Max Items
+             * @default 50
+             */
+            max_items: number;
+            /** Name */
+            name: string;
+            /**
+             * Options
+             * @default {}
+             */
+            options: {
+                [key: string]: unknown;
+            };
+            /** Url */
+            url: string;
+            /**
+             * Weight
+             * @default 1
+             */
+            weight: number;
         };
         /** SourceOut */
         SourceOut: {
@@ -1234,6 +1638,359 @@ export interface operations {
             };
             /** @description the query could not be run */
             400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_settings_view_api_settings_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SettingsOut"];
+                };
+            };
+        };
+    };
+    list_focus_api_settings_focus_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FocusOut"][];
+                };
+            };
+        };
+    };
+    add_focus_api_settings_focus_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FocusIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FocusOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    edit_focus_api_settings_focus__key__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                key: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FocusFields"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FocusOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_focus_api_settings_focus__key__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                key: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    notify_test_api_settings_notify_test_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["NotifyTestIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["NotifyTestOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_overrides_api_settings_overrides_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OverridesIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SettingsOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_source_configs_api_settings_sources_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SourceConfig"][];
+                };
+            };
+        };
+    };
+    add_source_api_settings_sources_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SourceIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SourceConfig"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    test_feed_api_settings_sources_test_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FeedTestIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FeedTestOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    edit_source_api_settings_sources__source_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                source_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SourceFields"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SourceConfig"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_source_api_settings_sources__source_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                source_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
                 headers: {
                     [name: string]: unknown;
                 };

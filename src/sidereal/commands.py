@@ -19,6 +19,7 @@ from sidereal.db.connect import connect
 from sidereal.llm.ollama import OllamaClient
 from sidereal.net.fetch import Fetcher
 from sidereal.net.guard import UrlGuard
+from sidereal.overrides import effective_settings
 from sidereal.pipeline import lock, placement, runner
 from sidereal.timeutil import utc_now
 
@@ -133,7 +134,8 @@ def cmd_rescore(settings: Settings, args: argparse.Namespace) -> int:
         with lock.RunLock(lock.lock_path(settings.state_dir)):
             conn = connect(settings.db_path)
             try:
-                result = placement.rescore(conn, settings.scoring, day=args.day)
+                cfg = effective_settings(settings, conn).scoring
+                result = placement.rescore(conn, cfg, day=args.day)
             finally:
                 conn.close()
     except lock.RunLocked as exc:

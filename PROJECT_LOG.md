@@ -600,3 +600,19 @@ a brief says so.
   `run-smoke.sh` with a temp demo DB on port 8472): three section headings, 0 CSP violations,
   0 console errors; it fails as it should when an inline script is injected into `index.html`.
   Backend 1827 passed, ruff clean on M21 files, static rules and `npm run build` clean.
+- 2026-11-25 **M27 settings UI** (Claude, no pi; alongside M21). Settings tab with focus-area
+  and source editing in the DB (add, edit, disable, delete; key and kind fixed once created),
+  "Test feed" (one fetch through the real URL guard with the source's adapter, parsed count and
+  first titles, nothing stored), overrides of the `[scoring]`, `[budget]` and `[triage]
+  keep_min` config keys stored in the §4 `settings` table (strict bounds, thresholds kept in
+  order; applied by the run, `sidereal rescore` and the gazette/days views; a stale stored value
+  is skipped with a warning, never failing a run), notification channels as configured / not
+  configured with a "Send test" button, and the effective config read-only. Validation: 422 for
+  bad keys, tiers, empty or multi-line keywords, weights outside 0.5..1.5, non-http(s) URLs,
+  anything the guard's static rules refuse (private/loopback/link-local IP literals, numeric host
+  forms, userinfo, odd ports) and local host names; options are checked per kind and regexes
+  compiled exactly as a run does. Secrets never leave the server: channels report `configured`
+  only, and every string in a settings response is redacted against the loaded secrets on top
+  of M28's scrub. Not done: a "rescore now" button (the plan doesn't ask; the UI points to
+  `sidereal rescore`). Tests: 5 back-end files (197), 3 front-end files (22); 28 mutants all red.
+  Backend 2027 passed, front end 140 passed; ruff, static rules, tsc, eslint and build clean.

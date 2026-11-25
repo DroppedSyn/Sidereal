@@ -7,13 +7,13 @@ import { makeGazette, makeSections, mockFetch, renderWith } from './helpers';
 afterEach(() => vi.unstubAllGlobals());
 
 describe('App shell', () => {
-  it('renders the masthead, the four tabs and the gazette at /', async () => {
+  it('renders the masthead, the five tabs and the gazette at /', async () => {
     mockFetch({ '/api/gazette': makeGazette(makeSections()), '/api/runs': [], '/api/sources': [] });
     renderWith(<App />);
     expect(screen.getByRole('heading', { level: 1, name: 'Sidereal' })).toBeInTheDocument();
     const nav = screen.getByRole('navigation', { name: 'Main' });
     expect(Array.from(nav.querySelectorAll('a')).map((a) => a.textContent)).toEqual([
-      'Gazette', 'Daily', 'Runs', 'Sources',
+      'Gazette', 'Daily', 'Runs', 'Sources', 'Settings',
     ]);
     expect(screen.getByRole('link', { name: 'Gazette' })).toHaveAttribute('aria-current', 'page');
     expect(await screen.findByRole('heading', { name: 'The Gazette' })).toBeInTheDocument();

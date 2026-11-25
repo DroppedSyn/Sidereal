@@ -11,12 +11,25 @@ export class ApiError extends Error {
   }
 }
 
+// One FastAPI validation error (`{loc, msg}`) as "field: message" (the body/query prefix dropped).
+function validationText(item: unknown): string {
+  if (item === null || typeof item !== 'object') return '';
+  const { loc, msg } = item as { loc?: unknown; msg?: unknown };
+  if (typeof msg !== 'string') return '';
+  const where = Array.isArray(loc) ? loc.slice(1).map(String).join('.') : '';
+  return where ? `${where}: ${msg}` : msg;
+}
+
 async function errorMessage(res: Response): Promise<string> {
   try {
     const body: unknown = await res.json();
     if (body !== null && typeof body === 'object' && 'detail' in body) {
       const detail = (body as { detail: unknown }).detail;
       if (typeof detail === 'string') return detail;
+      if (Array.isArray(detail)) {
+        const text = detail.map(validationText).filter((t) => t !== '').join('; ');
+        if (text) return text;
+      }
     }
   } catch {
     // not JSON: fall through to the status text

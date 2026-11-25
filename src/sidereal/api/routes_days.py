@@ -16,6 +16,7 @@ from sidereal.config import Settings
 from sidereal.db.digests_repo import get_day_digest
 from sidereal.db.feedback_repo import story_feedback
 from sidereal.db.views_repo import day_summaries, day_views, runs_between
+from sidereal.overrides import effective_settings
 from sidereal.timeutil import day_key, day_label, parse_iso_z
 
 router = APIRouter()
@@ -41,6 +42,7 @@ def list_days(
     tz = settings.schedule.tz
     with open_db(settings) as conn:
         rows = day_summaries(conn, limit=limit, before=before)
+        scoring = effective_settings(settings, conn).scoring
         runs = []
         if rows:
             start, _ = day_bounds(rows[-1].day, tz)
@@ -48,7 +50,7 @@ def list_days(
             runs = runs_between(conn, start=start, end=end)
     per_day = Counter(day_key(parse_iso_z(r.started_at), tz) for r in runs)
     return [DaySummary(day=r.day, label=day_label(r.day),
-                       counts=placed_counts(r.top, r.relevant, r.side, settings.scoring),
+                       counts=placed_counts(r.top, r.relevant, r.side, scoring),
                        run_count=per_day.get(r.day, 0), headline=r.headline)
             for r in rows]
 
@@ -66,7 +68,8 @@ def get_day(
         feedback = story_feedback(conn, [v.id for v in views])
         digest = get_day_digest(conn, day)
         runs = runs_between(conn, start=start, end=end)
-    sections, counts = build_sections(views, settings.scoring, now=None,
+        scoring = effective_settings(settings, conn).scoring
+    sections, counts = build_sections(views, scoring, now=None,
                                       include_drop=include_drop, feedback=feedback)
     return DayDetail(
         day=day, label=day_label(day),

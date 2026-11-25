@@ -19,6 +19,8 @@ from sidereal.api import (
     routes_health,
     routes_runs,
     routes_search,
+    routes_settings,
+    routes_settings_sources,
     routes_sources,
     routes_stories,
 )
@@ -42,6 +44,8 @@ def create_app(settings: Settings, *, dist_dir: Path | None = None) -> FastAPI:
     app.include_router(routes_sources.router)
     app.include_router(routes_feedback.router)
     app.include_router(routes_search.router)
+    app.include_router(routes_settings.router)
+    app.include_router(routes_settings_sources.router)
     mount_ui(app, dist_dir or paths.web_dist_dir())  # last: catch-all GET
     app.add_exception_handler(RequestValidationError, _validation_error)
     app.middleware("http")(make_auth_middleware(settings))  # inner: runs after the write guard

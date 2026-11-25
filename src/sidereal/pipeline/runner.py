@@ -23,6 +23,7 @@ from sidereal.llm.gate import Gate
 from sidereal.llm.ollama import LLMError, LLMUnavailable, OllamaClient
 from sidereal.net.fetch import Fetcher
 from sidereal.notify.dispatcher import dispatch as notify_dispatch
+from sidereal.overrides import effective_settings
 from sidereal.pipeline import digest_step, ingest, placement, retention
 from sidereal.pipeline.assess_step import run_assess
 from sidereal.pipeline.common import Deadline, short_error
@@ -76,6 +77,7 @@ async def run_once(settings: Settings, conn: Connection, *, fetcher: Fetcher,
     if trigger not in runs_repo.TRIGGERS:
         raise ValueError(f"unknown trigger: {trigger!r}")
     sources = select_sources(conn, only_source)
+    settings = effective_settings(settings, conn)  # settings-UI overrides (M27)
     t0 = clock()
     now = now or utc_now()
     recovered = runs_repo.recover_stale(conn, at=now)

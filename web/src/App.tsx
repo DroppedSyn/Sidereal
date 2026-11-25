@@ -10,6 +10,7 @@ const TABS = [
   { to: '/daily', label: 'Daily', end: false },
   { to: '/runs', label: 'Runs', end: false },
   { to: '/sources', label: 'Sources', end: false },
+  { to: '/settings', label: 'Settings', end: false },
 ];
 
 export default function App() {
