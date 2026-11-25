@@ -56,3 +56,22 @@ a brief says so.
   Retry-After uncapped, UrlBlocked / FetchTooLarge / ReadTimeout retried, redirect limit off by
   one, semaphore hard-coded or held while sleeping, second 429 honoured, no backoff sleep, no
   UA, raw Location. Full suite 315 passed, ruff clean.
+- 2026-11-25 **M6a** (pi run r50, `qwen3.6:35b-a3b-coding`, 21m24s, 35 tool calls / 6 failed:
+  3 test runs fixed by pi (unknown-source test, precedence test twice), 1 edit mismatch, 2 ruff
+  runs (unused import, unused local; fixed with `--fix --unsafe-fixes`); 1022k tokens in / 18.1k
+  out). pi's copy predated M3b (306 tests there). Files as landed: `db/sources_repo.py` 151
+  lines, `db/runs_repo.py` 130, `tests/test_sources_repo.py` 220 (19 tests),
+  `tests/test_runs_repo.py` 170 (11 tests). Outcome: landed; signatures and SQL as briefed, all
+  fixed strings with `?`. Review fixes: no write committed (the brief's `with conn:` rule ignored
+  everywhere) → wrapped, plus `test_writes_commit` in both files; pi's health-test helper dropped
+  unknown kwargs and the seeded `created_at` was real now (after T0), so the `created_at` stale
+  fallback was untested → health tests rebuilt with `created_at` 30 d before T0 and a recent
+  `last_new_item_at` by default, `created_at` 6d23h/7d boundary added; tests added for None
+  overwriting validators and an error keeping ok state; `record_fetch_ok` three near-identical
+  UPDATEs → one with `CASE`, `record_broken` delegates to `record_fetch_error`. Mutation checks
+  (30, all red): thresholds off by one / `>` (3, 6, 7 d, both stale paths), `created_at`
+  fallback always applied, broken without failures, failing/empty swapped, 304 resetting or
+  counting, >0 not resetting, failures not reset, `enabled_only` ignored, broken prefix lost,
+  `recover_stale` touching non-running rows, `list_runs` ASC or `<=`, bad/`running` status
+  accepted, `last_ok_run` without partial or ASC, stats dropped, trigger unchecked, unknown run
+  silent, writes without `with conn:`. Full suite 347 passed, ruff clean.
