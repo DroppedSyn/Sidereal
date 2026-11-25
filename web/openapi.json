@@ -1,6 +1,233 @@
 {
   "components": {
     "schemas": {
+      "Counts": {
+        "properties": {
+          "drop": {
+            "title": "Drop",
+            "type": "integer"
+          },
+          "relevant": {
+            "title": "Relevant",
+            "type": "integer"
+          },
+          "side": {
+            "title": "Side",
+            "type": "integer"
+          },
+          "top": {
+            "title": "Top",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "top",
+          "relevant",
+          "side",
+          "drop"
+        ],
+        "title": "Counts",
+        "type": "object"
+      },
+      "DayCounts": {
+        "properties": {
+          "relevant": {
+            "title": "Relevant",
+            "type": "integer"
+          },
+          "side": {
+            "title": "Side",
+            "type": "integer"
+          },
+          "top": {
+            "title": "Top",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "top",
+          "relevant",
+          "side"
+        ],
+        "title": "DayCounts",
+        "type": "object"
+      },
+      "DayDetail": {
+        "properties": {
+          "counts": {
+            "$ref": "#/components/schemas/Counts"
+          },
+          "day": {
+            "title": "Day",
+            "type": "string"
+          },
+          "headline": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Headline"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "overview": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Overview"
+          },
+          "runs": {
+            "items": {
+              "$ref": "#/components/schemas/DayRun"
+            },
+            "title": "Runs",
+            "type": "array"
+          },
+          "sections": {
+            "$ref": "#/components/schemas/Sections"
+          }
+        },
+        "required": [
+          "day",
+          "label",
+          "overview",
+          "headline",
+          "runs",
+          "sections",
+          "counts"
+        ],
+        "title": "DayDetail",
+        "type": "object"
+      },
+      "DayRun": {
+        "properties": {
+          "finished_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished At"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "started_at": {
+            "title": "Started At",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "trigger": {
+            "title": "Trigger",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "started_at",
+          "finished_at",
+          "trigger",
+          "status"
+        ],
+        "title": "DayRun",
+        "type": "object"
+      },
+      "DaySummary": {
+        "properties": {
+          "counts": {
+            "$ref": "#/components/schemas/DayCounts"
+          },
+          "day": {
+            "title": "Day",
+            "type": "string"
+          },
+          "headline": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Headline"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "run_count": {
+            "title": "Run Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "day",
+          "label",
+          "counts",
+          "run_count",
+          "headline"
+        ],
+        "title": "DaySummary",
+        "type": "object"
+      },
+      "Gazette": {
+        "properties": {
+          "counts": {
+            "$ref": "#/components/schemas/Counts"
+          },
+          "generated_at": {
+            "title": "Generated At",
+            "type": "string"
+          },
+          "sections": {
+            "$ref": "#/components/schemas/Sections"
+          },
+          "window_start": {
+            "title": "Window Start",
+            "type": "string"
+          }
+        },
+        "required": [
+          "generated_at",
+          "window_start",
+          "sections",
+          "counts"
+        ],
+        "title": "Gazette",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
       "Health": {
         "properties": {
           "db": {
@@ -31,6 +258,259 @@
         ],
         "title": "Health",
         "type": "object"
+      },
+      "Sections": {
+        "properties": {
+          "drop": {
+            "items": {
+              "$ref": "#/components/schemas/Story"
+            },
+            "title": "Drop",
+            "type": "array"
+          },
+          "relevant": {
+            "items": {
+              "$ref": "#/components/schemas/Story"
+            },
+            "title": "Relevant",
+            "type": "array"
+          },
+          "side": {
+            "items": {
+              "$ref": "#/components/schemas/Story"
+            },
+            "title": "Side",
+            "type": "array"
+          },
+          "top": {
+            "items": {
+              "$ref": "#/components/schemas/Story"
+            },
+            "title": "Top",
+            "type": "array"
+          }
+        },
+        "required": [
+          "top",
+          "relevant",
+          "side",
+          "drop"
+        ],
+        "title": "Sections",
+        "type": "object"
+      },
+      "SourceOut": {
+        "properties": {
+          "key": {
+            "title": "Key",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          }
+        },
+        "required": [
+          "key",
+          "name",
+          "url"
+        ],
+        "title": "SourceOut",
+        "type": "object"
+      },
+      "Story": {
+        "properties": {
+          "bucket": {
+            "enum": [
+              "top",
+              "relevant",
+              "side",
+              "drop"
+            ],
+            "title": "Bucket",
+            "type": "string"
+          },
+          "day": {
+            "title": "Day",
+            "type": "string"
+          },
+          "excerpt": {
+            "title": "Excerpt",
+            "type": "string"
+          },
+          "first_seen_at": {
+            "title": "First Seen At",
+            "type": "string"
+          },
+          "flags": {
+            "additionalProperties": true,
+            "title": "Flags",
+            "type": "object"
+          },
+          "focus": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Focus"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "lead_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lead Url"
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Published At"
+          },
+          "read": {
+            "default": false,
+            "title": "Read",
+            "type": "boolean"
+          },
+          "score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Score"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/SourceOut"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Summary"
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "why": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Why"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "day",
+          "first_seen_at",
+          "published_at",
+          "bucket",
+          "score",
+          "summary",
+          "why",
+          "tags",
+          "focus",
+          "flags",
+          "sources",
+          "lead_url",
+          "excerpt"
+        ],
+        "title": "Story",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
       }
     }
   },
@@ -40,6 +520,169 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/days": {
+      "get": {
+        "operationId": "list_days_api_days_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 60,
+              "maximum": 365,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "before",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Before"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/DaySummary"
+                  },
+                  "title": "Response List Days Api Days Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Days"
+      }
+    },
+    "/api/days/{day}": {
+      "get": {
+        "operationId": "get_day_api_days__day__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "day",
+            "required": true,
+            "schema": {
+              "title": "Day",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include_drop",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Include Drop",
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DayDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Day"
+      }
+    },
+    "/api/gazette": {
+      "get": {
+        "operationId": "gazette_api_gazette_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "hours",
+            "required": false,
+            "schema": {
+              "default": 24,
+              "maximum": 168,
+              "minimum": 1,
+              "title": "Hours",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include_drop",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Include Drop",
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Gazette"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Gazette"
+      }
+    },
     "/api/health": {
       "get": {
         "operationId": "health_api_health_get",

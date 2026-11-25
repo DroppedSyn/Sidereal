@@ -4,6 +4,57 @@
  */
 
 export interface paths {
+    "/api/days": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Days */
+        get: operations["list_days_api_days_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/days/{day}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Day */
+        get: operations["get_day_api_days__day__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/gazette": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Gazette */
+        get: operations["gazette_api_gazette_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/health": {
         parameters: {
             query?: never;
@@ -25,6 +76,80 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** Counts */
+        Counts: {
+            /** Drop */
+            drop: number;
+            /** Relevant */
+            relevant: number;
+            /** Side */
+            side: number;
+            /** Top */
+            top: number;
+        };
+        /** DayCounts */
+        DayCounts: {
+            /** Relevant */
+            relevant: number;
+            /** Side */
+            side: number;
+            /** Top */
+            top: number;
+        };
+        /** DayDetail */
+        DayDetail: {
+            counts: components["schemas"]["Counts"];
+            /** Day */
+            day: string;
+            /** Headline */
+            headline: string | null;
+            /** Label */
+            label: string;
+            /** Overview */
+            overview: string | null;
+            /** Runs */
+            runs: components["schemas"]["DayRun"][];
+            sections: components["schemas"]["Sections"];
+        };
+        /** DayRun */
+        DayRun: {
+            /** Finished At */
+            finished_at: string | null;
+            /** Id */
+            id: number;
+            /** Started At */
+            started_at: string;
+            /** Status */
+            status: string;
+            /** Trigger */
+            trigger: string;
+        };
+        /** DaySummary */
+        DaySummary: {
+            counts: components["schemas"]["DayCounts"];
+            /** Day */
+            day: string;
+            /** Headline */
+            headline: string | null;
+            /** Label */
+            label: string;
+            /** Run Count */
+            run_count: number;
+        };
+        /** Gazette */
+        Gazette: {
+            counts: components["schemas"]["Counts"];
+            /** Generated At */
+            generated_at: string;
+            sections: components["schemas"]["Sections"];
+            /** Window Start */
+            window_start: string;
+        };
+        /** HTTPValidationError */
+        HTTPValidationError: {
+            /** Detail */
+            detail?: components["schemas"]["ValidationError"][];
+        };
         /** Health */
         Health: {
             /**
@@ -40,6 +165,82 @@ export interface components {
             /** Version */
             version: string;
         };
+        /** Sections */
+        Sections: {
+            /** Drop */
+            drop: components["schemas"]["Story"][];
+            /** Relevant */
+            relevant: components["schemas"]["Story"][];
+            /** Side */
+            side: components["schemas"]["Story"][];
+            /** Top */
+            top: components["schemas"]["Story"][];
+        };
+        /** SourceOut */
+        SourceOut: {
+            /** Key */
+            key: string;
+            /** Name */
+            name: string;
+            /** Url */
+            url: string | null;
+        };
+        /** Story */
+        Story: {
+            /**
+             * Bucket
+             * @enum {string}
+             */
+            bucket: "top" | "relevant" | "side" | "drop";
+            /** Day */
+            day: string;
+            /** Excerpt */
+            excerpt: string;
+            /** First Seen At */
+            first_seen_at: string;
+            /** Flags */
+            flags: {
+                [key: string]: unknown;
+            };
+            /** Focus */
+            focus: string | null;
+            /** Id */
+            id: number;
+            /** Lead Url */
+            lead_url: string | null;
+            /** Published At */
+            published_at: string | null;
+            /**
+             * Read
+             * @default false
+             */
+            read: boolean;
+            /** Score */
+            score: number | null;
+            /** Sources */
+            sources: components["schemas"]["SourceOut"][];
+            /** Summary */
+            summary: string | null;
+            /** Tags */
+            tags: string[];
+            /** Title */
+            title: string;
+            /** Why */
+            why: string | null;
+        };
+        /** ValidationError */
+        ValidationError: {
+            /** Context */
+            ctx?: Record<string, never>;
+            /** Input */
+            input?: unknown;
+            /** Location */
+            loc: (string | number)[];
+            /** Message */
+            msg: string;
+            /** Error Type */
+            type: string;
+        };
     };
     responses: never;
     parameters: never;
@@ -49,6 +250,103 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    list_days_api_days_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+                before?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DaySummary"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_day_api_days__day__get: {
+        parameters: {
+            query?: {
+                include_drop?: boolean;
+            };
+            header?: never;
+            path: {
+                day: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DayDetail"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    gazette_api_gazette_get: {
+        parameters: {
+            query?: {
+                hours?: number;
+                include_drop?: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Gazette"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     health_api_health_get: {
         parameters: {
             query?: never;

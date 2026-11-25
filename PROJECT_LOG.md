@@ -367,3 +367,17 @@ a brief says so.
   red (caps ignored, score-only Gazette order, drop key missing, drop uncounted when hidden,
   non-http links passed, assess_failed scored ×2 / keeping its bucket, stored bucket shown,
   `placed_counts` without either overflow). Full suite 1257 passed, ruff clean.
+- 2026-11-25 **M15a-4 + M15a-5** (Claude, no pi run: M14 held the GPU). `GET /api/gazette`
+  (`hours` 1..168, window `first_seen_at >= now − hours`, score × recency, `include_drop`),
+  `GET /api/days` (`limit` 1..365, `before` exclusive cursor, capped counts, runs per local day,
+  digest headline) and `GET /api/days/{day}` (overview/headline, runs of the local day, Daily
+  score order, `include_drop`). Files: `api/deps.py` (`get_settings`, overridable `get_now`,
+  `open_db` context manager: 503 when the DB file is missing, never creates it; `check_day` 422),
+  `api/routes_gazette.py`, `api/routes_days.py` (`day_bounds`: local midnight to the next date's
+  local midnight, so 23/25 h DST days are right), two includes in `app.py`. The static rule bans
+  `import sqlite3` outside `db/` even for annotations, so `db/connect.py` re-exports
+  `Connection`. Tests: gazette 16 (as briefed), days 28 (25 briefed + the 29 Mar 2026 23 h day,
+  `day_bounds` on both DST days, bad day 422 without creating the DB). OpenAPI types
+  regenerated, tsc clean. 8 mutations all red (DST bounds in UTC / start + 24 h, 404 for bad
+  days, DB created when missing, Gazette window `>`, day unchecked). Full suite 1304 passed,
+  ruff clean. M15a done; M15b open.

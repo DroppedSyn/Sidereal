@@ -5,6 +5,8 @@ from __future__ import annotations
 import sqlite3
 from pathlib import Path
 
+Connection = sqlite3.Connection  # for type hints outside db/ (sqlite3 is imported only here)
+
 PRAGMAS = (
     "PRAGMA journal_mode=WAL",
     "PRAGMA foreign_keys=ON",
