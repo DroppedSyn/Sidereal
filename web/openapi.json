@@ -622,6 +622,61 @@
         "title": "RunStarted",
         "type": "object"
       },
+      "SearchResult": {
+        "properties": {
+          "rank": {
+            "title": "Rank",
+            "type": "number"
+          },
+          "snippet": {
+            "title": "Snippet",
+            "type": "string"
+          },
+          "story": {
+            "$ref": "#/components/schemas/Story"
+          }
+        },
+        "required": [
+          "story",
+          "rank",
+          "snippet"
+        ],
+        "title": "SearchResult",
+        "type": "object"
+      },
+      "SearchResults": {
+        "properties": {
+          "next_before": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Before"
+          },
+          "query": {
+            "title": "Query",
+            "type": "string"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/SearchResult"
+            },
+            "title": "Results",
+            "type": "array"
+          }
+        },
+        "required": [
+          "query",
+          "results",
+          "next_before"
+        ],
+        "title": "SearchResults",
+        "type": "object"
+      },
       "Sections": {
         "properties": {
           "drop": {
@@ -1826,6 +1881,78 @@
           }
         },
         "summary": "Run Detail"
+      }
+    },
+    "/api/search": {
+      "get": {
+        "operationId": "search_stories_api_search_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "schema": {
+              "maxLength": 1000,
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "before",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Before"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResults"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "description": "the query could not be run"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Search Stories"
       }
     },
     "/api/sources": {

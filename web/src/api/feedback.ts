@@ -71,6 +71,7 @@ export function useStoryFeedback() {
     onSettled: (_data, _err, { change }) => {
       void client.invalidateQueries({ queryKey: ['gazette'] });
       void client.invalidateQueries({ queryKey: ['day'] });
+      void client.invalidateQueries({ queryKey: ['search'] });
       if ('hidden' in change) void client.invalidateQueries({ queryKey: ['days'] });
     },
   });

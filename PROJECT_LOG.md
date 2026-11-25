@@ -547,3 +547,17 @@ a brief says so.
   now makes the refetch hang. OpenAPI and `schema.d.ts` regenerated; pytest, ruff, static rules,
   vitest, tsc, eslint and build clean. Not done: hidden stories still count toward the day
   digest's story set; a vote changes placement only at the next run or `sidereal rescore`.
+- 2026-11-25 **M26 search** (Claude, no pi; run alongside the M28 agent, so the migration is
+  `0004_search.sql` and M28 takes 0005). FTS5 `story_search` over story title, assessment
+  summary/why/tags and item excerpts (never `content_text`), porter + unicode61 tokenizer, kept in
+  sync by triggers that rebuild a story's row on any story-title/assessment/item write, back-filled
+  in the migration. `db/search_repo.py` quotes every user word (`OR`, `NEAR(`, `col:`, `"`, `*`
+  become plain words; a trailing `*` is a prefix query), skips hidden and invisible stories,
+  returns bm25 rank and a snippet with U+0002/U+0003 markers; results newest first with a story-id
+  `before` cursor. `GET /api/search` (400 on an FTS error that should never happen, 422 over 1000
+  chars). UI: header search box, `/search` results page reusing `StoryCard`, matches highlighted by
+  splitting on the markers (text only). Tests: back end +91 (`test_search_repo.py`,
+  `test_routes_search.py`), front end +11 (`search.test.tsx`); mutations (sanitiser off, quote
+  strip off, hidden/visibility filter off, each trigger off, backfill off, rank order, no
+  look-ahead, highlight off) all red. OpenAPI types regenerated; pytest, ruff, static rules,
+  vitest, tsc, eslint, build clean.

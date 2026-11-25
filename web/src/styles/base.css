@@ -114,6 +114,23 @@ a:hover { text-decoration-thickness: 2px; }
 
 .content { max-width: 1100px; margin: 0 auto; padding: 1rem; }
 
+/* ---- search (M26) ---- */
+.search-box input {
+  font: inherit;
+  font-size: 0.9rem;
+  width: 14rem;
+  max-width: 100%;
+  padding: 0.25rem 0.5rem;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+.search-results { list-style: none; margin: 0; padding: 0; }
+.search-result { margin: 0 0 1.25rem; }
+.search-snippet { margin: 0 0 0.35rem; color: var(--muted); font-size: 0.9rem; }
+.search-snippet mark { background: var(--warn-bg); color: var(--fg); padding: 0 0.1em; }
+
 /* ---- pages ---- */
 .page-header { margin: 0.5rem 0 1.25rem; }
 .page-header-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 1rem; justify-content: space-between; }

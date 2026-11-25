@@ -72,6 +72,8 @@ _NOT_HIDDEN = (
 _GAZETTE_SQL = (_SELECT + " WHERE s.first_seen_at >= ?" + _VISIBLE + _NOT_HIDDEN
                 + " ORDER BY s.id, i.id")
 _DAY_SQL = _SELECT + " WHERE s.day = ?" + _VISIBLE + _NOT_HIDDEN + " ORDER BY s.id, i.id"
+_IDS_WHERE = " WHERE s.id IN (SELECT value FROM json_each(?))"
+_IDS_SQL = _SELECT + _IDS_WHERE + _VISIBLE + _NOT_HIDDEN + " ORDER BY s.id, i.id"
 _COUNTS = (
     "SELECT d.day AS day,"
     " COALESCE(SUM(s.bucket = 'top'), 0) AS top,"
@@ -160,6 +162,13 @@ def day_views(conn: sqlite3.Connection, day: str) -> list[StoryView]:
     """Visible, not hidden stories for ``day``, by id."""
     _check_day(day)
     return _views(conn.execute(_DAY_SQL, (day,)).fetchall())
+
+
+def views_for_ids(conn: sqlite3.Connection, ids: list[int]) -> list[StoryView]:
+    """Visible, not hidden stories among *ids*, by id (search results, M26)."""
+    if not ids:
+        return []
+    return _views(conn.execute(_IDS_SQL, (json.dumps([int(i) for i in ids]),)).fetchall())
 
 
 def day_summaries(conn: sqlite3.Connection, *,

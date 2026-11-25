@@ -15,10 +15,12 @@ import type {
   Me,
   Run,
   RunStarted,
+  SearchResults,
   SourceStatus,
 } from './types';
 
 export const DAYS_PAGE = 60;
+export const SEARCH_PAGE = 20;
 
 export function useGazette(includeDrop: boolean) {
   return useQuery({
@@ -95,4 +97,15 @@ export function useLogin() {
 
 export function useLogout() {
   return useMutation({ mutationFn: () => apiPost<undefined>('/api/auth/logout') });
+}
+
+export function useSearch(q: string) {
+  return useInfiniteQuery({
+    queryKey: ['search', q],
+    queryFn: ({ pageParam }) =>
+      apiGet<SearchResults>('/api/search', { q, limit: SEARCH_PAGE, before: pageParam }),
+    initialPageParam: undefined as number | undefined,
+    getNextPageParam: (last) => last.next_before ?? undefined,
+    enabled: q.trim() !== '',
+  });
 }

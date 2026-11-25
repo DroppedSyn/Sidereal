@@ -1,5 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import LastRun from './components/LastRun';
+import SearchBox from './components/SearchBox';
 import UserMenu from './components/UserMenu';
 import { useAuthRedirect } from './lib/useAuthRedirect';
 import AppRoutes from './routes';
@@ -28,6 +29,7 @@ export default function App() {
                   </NavLink>
                 ))}
               </nav>
+              <SearchBox />
               <LastRun />
               <UserMenu />
             </>

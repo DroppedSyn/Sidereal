@@ -154,3 +154,15 @@ class SourceStatus(BaseModel):
     consecutive_failures: int
     last_item_at: str | None
     items_7d: int
+
+
+class SearchResult(BaseModel):
+    story: Story
+    rank: float  # FTS5 bm25; lower (more negative) = better match
+    snippet: str  # plain text; matches between U+0002 and U+0003, render as text only
+
+
+class SearchResults(BaseModel):
+    query: str
+    results: list[SearchResult]  # newest first (story id descending)
+    next_before: int | None  # pass as ``before`` for the next page; None = no more

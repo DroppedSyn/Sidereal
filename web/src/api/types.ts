@@ -22,3 +22,5 @@ export type Vote = Feedback['vote'];
 export type Mute = S['MuteOut'];
 export type MuteIn = S['MuteIn'];
 export type DayReadOut = S['DayReadOut'];
+export type SearchResult = S['SearchResult'];
+export type SearchResults = S['SearchResults'];
