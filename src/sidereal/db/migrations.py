@@ -55,6 +55,16 @@ def current_version(conn: sqlite3.Connection) -> int:
     return int(row[0] or 0)
 
 
+def read_version(conn: sqlite3.Connection) -> int:
+    """Applied schema version without creating anything (works on a read-only connection);
+    0 when ``schema_version`` is missing."""
+    try:
+        row = conn.execute("SELECT max(version) FROM schema_version").fetchone()
+    except sqlite3.OperationalError:
+        return 0
+    return int(row[0] or 0)
+
+
 def apply_migrations(conn: sqlite3.Connection, sql_dir: Path = SQL_DIR) -> list[int]:
     """Apply every migration newer than the current version. Returns the versions applied."""
     applied: list[int] = []

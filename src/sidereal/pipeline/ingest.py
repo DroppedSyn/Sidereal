@@ -122,7 +122,8 @@ def record_health(conn: Connection, outcomes: Sequence[SourceOutcome],
         else:
             sources_repo.record_fetch_ok(conn, sid, at=at, etag=r.etag,
                                          last_modified=r.last_modified,
-                                         entry_count=len(r.items))
+                                         entry_count=len(r.items) if r.entry_count is None
+                                         else r.entry_count)
     return stats
 
 

@@ -295,3 +295,21 @@ a brief says so.
   gate before the deadline, re-placing joined stories). Full suite 1081 passed, ruff clean.
   Owner notes: `zero_item_runs` counts items after the age cap (adapters return no raw entry
   count), so a source quiet for 96 h turns `empty` after 6 runs; no source sets `flags.cvss`.
+- 2026-11-25 **M13c** (Claude, not delegated). CLI `run` / `rescore` / `doctor` in a new
+  `commands.py` (cli.py keeps the parser) and a read-only `doctor.py`. `run` migrates, takes the
+  run lock (a held lock records a `skipped` run and exits 0), builds the Fetcher and Ollama
+  client and closes both in `finally`; unknown `--source` exits 2 without a run row; only a
+  `failed` run exits 1. `--dry-run` takes no lock and never builds an Ollama client. `rescore`
+  takes the lock too (held → exit 1). `doctor` checks config, env file mode, state dir and
+  free space, lock, schema version (over a `mode=ro` connection; never creates the DB), last
+  run, source health, Ollama + models (`/api/tags` only); systemd checks wait for M22
+  (subprocess is allowed only in `routes_runs.py`). `reassess` stays a stub ("unscheduled": no
+  milestone row builds it). Fixed the owner note from M13b: adapters now report the feed's own
+  entry count (`FetchResult.entry_count`) and ingest stores it, so `empty` means an empty feed,
+  not a quiet one. trafilatura's urllib3 SOCKS warning no longer prints on every CLI start.
+  39 tests in 4 new files; 27 mutations all red (one survivor killed by an added test: rss
+  counting kept items instead of entries). Full suite 1122 passed, ruff clean. Smoke in a temp
+  home: doctor before init exits 1 and creates nothing, after init exits 0 (real Ollama
+  reachable, `/api/tags` only); a real-network `run --dry-run` took 4 s: 20 sources ok, 98
+  items, 95 new stories; **`sans-isc` failed as broken**: `https://isc.sans.edu/rssfeed_full.xml`
+  now answers an HTML page (31 KB) labelled `text/xml`, also to curl; the source needs a new URL.

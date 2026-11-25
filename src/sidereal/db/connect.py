@@ -37,3 +37,11 @@ def ping(path: Path | str) -> bool:
     except sqlite3.Error:
         return False
     return True
+
+
+def connect_readonly(path: Path | str) -> sqlite3.Connection:
+    """Open an existing database read-only (``mode=ro``; ``sidereal doctor``). Never creates it:
+    a missing file raises ``sqlite3.OperationalError``."""
+    conn = sqlite3.connect(f"file:{Path(path).as_posix()}?mode=ro", uri=True)
+    conn.row_factory = sqlite3.Row
+    return conn

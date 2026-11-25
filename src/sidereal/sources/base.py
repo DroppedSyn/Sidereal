@@ -43,6 +43,9 @@ class FetchResult:
     not_modified: bool = False
     etag: str | None = None
     last_modified: str | None = None
+    # entries in the source's answer before any filter or cap (plan §6.5 zero_item_runs);
+    # None → the runner falls back to len(items)
+    entry_count: int | None = None
 
 
 class SourceAdapter(Protocol):

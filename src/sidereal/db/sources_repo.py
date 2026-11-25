@@ -130,6 +130,14 @@ def record_broken(conn: sqlite3.Connection, source_id: int,
     record_fetch_error(conn, source_id, at=at, error=BROKEN_PREFIX + error)
 
 
+def last_item_times(conn: sqlite3.Connection) -> dict[int, datetime]:
+    """``{source_id: newest item first_seen_at}`` for sources with any item (health input)."""
+    rows = conn.execute(
+        "SELECT source_id, max(first_seen_at) AS at FROM items GROUP BY source_id"
+    ).fetchall()
+    return {r["source_id"]: parse_iso_z(r["at"]) for r in rows}
+
+
 def health(row: SourceRow, *, now: datetime,
            last_new_item_at: datetime | None) -> str:
     """Pure health classification. First matching rule wins."""

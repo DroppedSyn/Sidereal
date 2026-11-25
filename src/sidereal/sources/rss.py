@@ -60,10 +60,11 @@ class RssAdapter:
             return FetchResult(
                 items=[], not_modified=True, etag=resp.etag, last_modified=resp.last_modified
             )
-        items = self.parse(
+        items, entry_count = self.parse_counted(
             source, resp.content, resp.content_type, now, max_age_hours=max_age_hours
         )
-        return FetchResult(items=items, etag=resp.etag, last_modified=resp.last_modified)
+        return FetchResult(items=items, etag=resp.etag, last_modified=resp.last_modified,
+                           entry_count=entry_count)
 
     def parse(
         self,
@@ -74,13 +75,27 @@ class RssAdapter:
         *,
         max_age_hours: float | None = None,
     ) -> list[RawItem]:
+        return self.parse_counted(
+            source, content, content_type, now, max_age_hours=max_age_hours
+        )[0]
+
+    def parse_counted(
+        self,
+        source: SourceLike,
+        content: bytes,
+        content_type: str,
+        now: datetime,
+        *,
+        max_age_hours: float | None = None,
+    ) -> tuple[list[RawItem], int]:
+        """Selected items and the feed's own entry count (before any filter or cap)."""
         # bytes only: feedparser treats a str as a URL or file path and would fetch it itself.
         if not isinstance(content, bytes):
             raise TypeError("feed content must be bytes")
         parsed = feedparser.parse(content)
         check_error_feed(source, parsed, content, content_type)
         items = [it for e in parsed.entries if (it := self.make_item(source, e, now)) is not None]
-        return self.select(source, items, now, max_age_hours)
+        return self.select(source, items, now, max_age_hours), len(parsed.entries)
 
     def make_item(
         self, source: SourceLike, entry: Mapping[str, Any], now: datetime

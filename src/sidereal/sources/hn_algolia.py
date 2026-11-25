@@ -51,7 +51,7 @@ class HnAlgoliaAdapter:
                 merged.setdefault(item.guid, item)
         items = apply_age_cap(list(merged.values()), now, max_age_hours)
         items = newest_first(items, source.max_items)
-        return FetchResult(items=items)
+        return FetchResult(items=items, entry_count=len(merged))
 
 
 def hn_options(source: SourceLike) -> tuple[list[str], int]:

@@ -13,6 +13,7 @@ import sys
 from collections.abc import Sequence
 
 from sidereal import __version__
+from sidereal.commands import add_parsers
 from sidereal.config import ConfigError, Settings, load_settings
 from sidereal.db.migrations import MigrationError
 
@@ -20,10 +21,7 @@ EXIT_OK, EXIT_FAILED, EXIT_CONFIG = 0, 1, 2
 
 # Commands specified in the plan but built in later milestones.
 PLANNED = {
-    "run": "M13",
-    "doctor": "M13",
-    "rescore": "M13",
-    "reassess": "M13",
+    "reassess": "unscheduled",  # §9.3 lists it, no milestone row builds it
     "eval": "M16",
     "user": "M25",
     "backup": "M22",
@@ -98,6 +96,7 @@ def build_parser() -> argparse.ArgumentParser:
     serve.add_argument("--port", type=int, default=None)
     serve.add_argument("--reload", action="store_true", help="auto-reload (development)")
     serve.set_defaults(func=cmd_serve)
+    add_parsers(sub)
     for name, milestone in PLANNED.items():
         sub.add_parser(name, help=f"(not implemented yet, {milestone})").set_defaults(
             func=cmd_planned

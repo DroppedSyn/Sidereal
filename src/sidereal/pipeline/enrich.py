@@ -8,11 +8,14 @@ from __future__ import annotations
 
 import asyncio
 import codecs
+import warnings
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
 from typing import Any
 
-import trafilatura
+with warnings.catch_warnings():  # trafilatura pulls in urllib3's SOCKS module; never used
+    warnings.filterwarnings("ignore", message="SOCKS support in urllib3")
+    import trafilatura
 
 from sidereal.net.fetch import (
     Fetcher,

@@ -47,11 +47,13 @@ class CisaKevAdapter:
                 etag=resp.etag,
                 last_modified=resp.last_modified,
             )
-        items = parse_kev(source, resp.content)
+        entries = vulnerabilities(source, resp.content)
+        items = [item for entry in entries if (item := kev_item(source, entry)) is not None]
         items = apply_age_cap(items, now, max_age_hours)
         items = newest_first(items, source.max_items)
         return FetchResult(
-            items=items, etag=resp.etag, last_modified=resp.last_modified
+            items=items, etag=resp.etag, last_modified=resp.last_modified,
+            entry_count=len(entries),
         )
 
 
@@ -108,7 +110,8 @@ def kev_item(source: SourceLike, entry: Any) -> RawItem | None:
     )
 
 
-def parse_kev(source: SourceLike, content: bytes) -> list[RawItem]:
+def vulnerabilities(source: SourceLike, content: bytes) -> list[Any]:
+    """The catalogue's raw ``vulnerabilities`` list; bad JSON / no list → SourceBroken."""
     try:
         data = json.loads(content)
     except (ValueError, UnicodeDecodeError) as exc:
@@ -117,9 +120,12 @@ def parse_kev(source: SourceLike, content: bytes) -> list[RawItem]:
         data.get("vulnerabilities"), list
     ):
         raise SourceBroken(f"{source.key}: no vulnerabilities list")
-    items = [
+    return data["vulnerabilities"]
+
+
+def parse_kev(source: SourceLike, content: bytes) -> list[RawItem]:
+    return [
         item
-        for entry in data["vulnerabilities"]
+        for entry in vulnerabilities(source, content)
         if (item := kev_item(source, entry)) is not None
     ]
-    return items

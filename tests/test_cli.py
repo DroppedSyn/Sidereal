@@ -13,8 +13,8 @@ def test_init_twice_then_openapi(settings, capsys):
 
 
 def test_planned_command_exits_2(settings, capsys):
-    assert main(["run", "--no-gate"]) == 2
-    assert "not implemented yet (M13)" in capsys.readouterr().err
+    assert main(["reassess", "--day", "2026-11-25"]) == 2
+    assert "not implemented yet (unscheduled)" in capsys.readouterr().err
 
 
 def test_config_error_exits_2(config_file, capsys):
