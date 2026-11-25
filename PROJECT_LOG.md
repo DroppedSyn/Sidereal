@@ -518,3 +518,13 @@ a brief says so.
   Notes, not changed: `trusted_proxies` takes single IPs only (a CIDR is silently ignored, so
   every client shares the proxy's bucket); `Secure` depends on setting `web.https`; with Caddy on
   the same host a loopback bind passes rule 9 even with auth off (M30 checklist).
+- 2026-11-25 **M24a-1** (pi r70, discarded; Claude wrote it). pi ran 11.5 min (57 tool calls) and
+  ignored the briefed schema and API: its `0003_feedback.sql` made a `feedback(id, story_id,
+  rating 1..5, comment, created_at)` table without `ON DELETE CASCADE` and no `mutes` table, its
+  repo had only `save_feedback`/`get_feedback`, its 7 tests inserted runs/stories with raw SQL,
+  and it edited `test_migrations.py`/`test_bootstrap.py` (the expected version-list fix, though
+  told not to). Its final message claimed success. Claude wrote the three files to the brief
+  (`0003_feedback.sql` verbatim, `db/feedback_repo.py` 201 lines, `tests/test_feedback_repo.py`
+  37 tests) and redid the version lists (`[1, 2, 3]`; `TABLES` gains the auth and feedback
+  tables). 43 mutations all red. Suite 1517 passed, ruff and static rules clean. Next: M24a-2
+  `routes_feedback`.
